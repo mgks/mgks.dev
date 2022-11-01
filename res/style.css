@@ -3,13 +3,14 @@
     "Calibre","Inter","San Francisco","SF Pro Text",-apple-system,system-ui,sans-serif;
     --font-mono:
     "SF Mono","Fira Code","Fira Mono","Roboto Mono",monospace;
-    --theme-color:red;
-    --theme-background:#f1f1f1;
-    --theme-flair: #818181;
---theme-black: #868686;
---theme-white: #ffffff;
---flair-light: #1876d269;
---flair-dark: #0a5eb0;
+    --theme-color: #1876d2;
+    --theme-dark: #0a5eb0;--theme-red:#d51313;
+    --theme-lred: #ff6c6c;--theme-background:#f1f1f1;
+    --theme-lgrey: #a1cdf7;
+--theme-grey: #484848;
+--theme-black: #2a2a2a;--theme-white: #ffffff;
+--theme-light: #1876d269;
+--dark-background: #001830;
 }
 body{
     margin: 0;
@@ -21,17 +22,17 @@ body{
 
 a {
     text-decoration: none;
-    color: var(--theme-black);
+    color: var(--theme-grey);
 }
 
 header .banner {
     font-family: var(--font-mono);
     font-size: 3em;
-    background: url('https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/cropped-mgks.dev-logo.png') 0 0 no-repeat;
     background-size: 100%;
-    text-indent: -500px;
     height: 50px;
     width: 50px;
+    background-color: var(--theme-light);
+    border-radius: 100%;
 }
 
 .lefty {
@@ -53,11 +54,12 @@ header {
     display: inline-block;
     margin: 0 1em;
     float: left;
-    transition: .25s;
+    transition: .5s;
 }
 
 .menu {
     font-family: var(--font-mono);
+    margin: .5em 0;
 }
 
 .menu .link b {
@@ -70,22 +72,22 @@ header {
 .menu span.button {
     padding: .5em 1em;
     border-radius: 3px;
-    background-color: var(--flair-light);
+    background-color: var(--theme-light);
     transition: .5s;
-    color: var(--flair-dark);
+    color: var(--theme-dark);
 }
 
 .menu span.button:hover {
     background-color: var(--light-flair);
 }
 
-.menu a:hover {
-    color: var(--flair-dark);
+a:hover {
+    color: var(--theme-dark);
 }
 
 .menu span.button:hover {
-    background-color: var(--flair-dark);
-    color: var(--theme-white);
+    background-color: var(--theme-dark);
+    color: var(--theme-lgrey);
 }
 
 .socialy ul {
@@ -119,7 +121,6 @@ footer {
     text-align: center;
     background-color: var(--theme-white);
     margin: 5em 0;
-    /* padding-bottom: 2em; */
 }
 
 .bar-v {
@@ -140,17 +141,15 @@ footer {
     content: "";
     display: block;
     width: 1px;
-    height: 7em;
+    height: 10em;
     margin: 0 auto;
-    background-color: var(--theme-black);
+    background-color: var(--theme-lgrey);
 }
 
 .bar-email a {
     margin: 1em auto;
     padding-bottom: 1em;
     font-family: var(--font-mono);
-    font-size: var(--fz-xxs);
-    line-height: var(--fz-lg);
     letter-spacing: 0.1em;
     -webkit-writing-mode: vertical-rl;
     writing-mode: vertical-rl;
@@ -167,18 +166,86 @@ footer {
     width: 100%;
 }
 
-.border {
-    height: 0.25em;
+.border,.r-border {
+    height: 0.5em;
     margin: 0 39.5px;
-    border: 1px solid var(--theme-black);
-    border-top: 0;
-    border-radius: 0 0 10px 10px;
+    border: 1px solid var(--theme-lgrey);
 }
 
 .foot-bracket {
     font-family: var(--font-mono);
-    font-size: .85em;
-    padding: 2.5em 0;
+    font-size: .8em;
+    padding: 4em 0;
+    letter-spacing: .5px;
 }
 
-.bar-email a:hover, .socialy ul li a:hover {color: var(--flair-dark);transform:translateY(-3px);}
+.emaily .bar-email a:hover, .socialy ul li a:hover {color: var(--theme-dark);transform:translateY(-3px);}
+
+.built svg {
+    width: 18px;
+    color: var(--theme-red);
+    margin: -5px 0;
+}
+
+.sponsor {
+    margin-bottom: .5em;
+}
+
+footer a:hover {
+    color: var(--flair-dark);
+}
+
+body.dark .socialy ul, body.dark .bar-email, body.dark footer {
+    background-color: var(--dark-background);
+}
+
+body.dark a {
+    color: var(--theme-lgrey);
+}
+
+body.dark .border,body.dark .r-border {
+    border-color: var(--theme-lgrey);
+}
+
+body.dark .built svg {
+    color: var(--theme-lred);
+}
+
+body.dark .socialy ul:after, body.dark .bar-email:after {
+    background-color: var(--theme-lgrey);
+}
+
+body.dark a:hover {
+    color: var(--theme-white);
+}
+
+.border {
+    border-top: 0;
+    border-radius: 0 0 10px 10px;
+}
+
+.r-border {
+    border-bottom: 0;
+    border-radius: 10px 10px 0 0;
+}
+
+.header-holder {
+    width: 100%;
+    position: fixed;
+    opacity: 1.0;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -o-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+    z-index: 10;
+}
+
+.menu a .link {
+    line-height: 2em;
+}
+
+.menu a .link:hover {
+}
+
+.work-area {}
