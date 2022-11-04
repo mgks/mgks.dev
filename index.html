@@ -65,6 +65,28 @@
 			};
 			// repeat the above for replaceState too
 		})();</script>
+        <script>
+/*            var body = document.getElementsByClassName("work-area")[0]; var timer;
+
+            window.addEventListener('scroll', function() {
+            clearTimeout(timer);
+            if(!body.classList.contains('disable-events')) {
+                body.classList.add('disable-events')
+            }
+            
+            timer = setTimeout(function(){
+                body.classList.remove('disable-events')
+            },500);
+            }, false);*/
+            function tab(page){
+                document.querySelectorAll(".wa-pgs").forEach((el) => {
+                    el.classList.add('hide');
+                });
+                document.querySelectorAll("."+page).forEach((el) => {
+                    el.classList.remove('hide');
+                });
+            }
+         </script>
         
         <title>Ghazi Khan</title>
         <link rel="stylesheet" href="res/style.css" />
@@ -74,10 +96,12 @@
         <header>
             <a href="https://mgks.dev"><div class="banner lefty" title="mgks\.dev">\.</div></a>
             <div class="menu righty">
-                <a href=""><span class="link">home</span></a>
-                <a href=""><span class="link">projects</span></a>
-                <a href=""><span class="link">experience</span></a>
-                <a href=""><span class="link">blog</span></a>
+                <a href="#home" onclick="tab('wa-home')"><span class="link">home</span></a>
+                <a href="#about" onclick="tab('wa-about')"><span class="link">about</span></a>
+                <a href="#experience" onclick="tab('wa-experience')"><span class="link">experience</span></a>
+                <a href="#projects" onclick="tab('wa-projects')"><span class="link">projects</span></a>
+                <a href="#contact" onclick="tab('wa-contact')"><span class="link">contact</span></a>
+                <a href="/blog"><span class="link">blog</span></a>
                 <a href=""><span class="button lefty">RESUME</span></a>
             </div>
         </header>
@@ -94,12 +118,48 @@
                 </li>
             </ul>
         </div>
-        <div class="work-area"></div>
+        <div class="work-area">
+
+            <div id="i-home" class="wa-pgs wa-welcome wa-home disable-events">
+                <span class="waw-hello">Hi, my name is</span><span class="waw-name">Ghazi Khan.</span><span class="waw-work">I build simple solutions for complex web problems.</span><span class="waw-sub">I'm a self-taught software developer specializing in building and designing exceptional digital experiences. Currenly, I'm focused on building accessible open source solutions.</span>
+            </div>
+
+            <div id="i-about" class="wa-pgs wa-about hide disable-events backdrop">
+                <h2>About Me</h2>
+                <div class="waa-about"><p>Hello! My name is Ghazi Khan and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try building a web based music player, it was rocky start but taught me a lot about HTML & CSS!</p><p>Fast-forward to today, I’m building open source solutions and had the privilege of working with dozens of small to medium businesses, and hundreds of indie developers around the globe. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.</p><p>I also recently started my learning journey for Python and Machine Learning. Here are a few technologies/services I’ve been working with for some time now:</p>
+                <ul class="gl-tags"><li>AWS</li><li>PHP</li><li>HTML5 / CSS3</li></ul><ul class="gl-tags"><li>Android (Java)</li><li>MySQL</li><li>Wordpress</li></ul>
+                </div>
+                <div class="waa-pic"><img src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/117735571_3352160204835797_5118981377831630920_o.jpg"></div>
+            </div>
+
+            <div id="i-experience" class="wa-pgs wa-experience hide disable-events backdrop">
+                <h2>Work Experience</h2>
+                <div class="wae-experience"></div>
+            </div>
+
+            <div id="i-projects" class="wa-pgs wa-projects hide backdrop">
+                <h2>Some Things I've Built</h2>
+                <div class="wap-projects">
+                    <div class="wap-featured"><div class="wapf-img"></div><div class="wapf-text"><h3></h3><p></p><span class="wap-technologies"></span><span class="wap-social"></span></div></div><div class="wap-featured"></div>
+                    <div class="wap-project"><h3></h3><p></p><span class="wap-technologies"></span><span class="wap-social"></span></div>
+                </div>
+            </div>
+
+            <div id="i-contact" class="wa-pgs wa-contact hide">
+                <h2>Let's Connect</h2>
+                <div class="wac-contact">
+                    <div class="wac-featured">
+                        <h3>I'm always interested in</h3><div class="wac-tags"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div><a href="mailto:hello@mgks.dev" class="wac-contact-b">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <div class="emaily righty vert-v">
             <div class="bar-email"><a href="mailto:hello@mgks.dev">hello@mgks.dev</a></div>
         </div>
         <footer>
-            <div class="border"></div><div class="foot-bracket"><div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div><div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" width="" height="" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div></div>
+            <div class="foot-bracket"><div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div><div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" width="" height="" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div></div>
         </footer>
         <script src="res/canvas.js" type="text/javascript"></script>
     </body>
