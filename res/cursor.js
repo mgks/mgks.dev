@@ -21,7 +21,7 @@ let splatStack = [];
 const { gl, ext } = getWebGLContext(canvas);
 
 function getWebGLContext(canvas) {
-  const params = { alpha: false, depth: false, stencil: false, antialias: false };
+  const params = { alpha: false, depth: false, stencil: false, antialias: false, preserveDrawingBuffer: true, premultipliedAlpha: true };
 
   let gl = canvas.getContext('webgl2', params);
   const isWebGL2 = !!gl;
@@ -38,7 +38,7 @@ function getWebGLContext(canvas) {
     supportLinearFiltering = gl.getExtension('OES_texture_half_float_linear');
   }
 
-  gl.clearColor(0.0, 0.0, 0.0, 1.0);
+  gl.clearColor(255, 255, 255, 1.0);
 
   const halfFloatTexType = isWebGL2 ? gl.HALF_FLOAT : halfFloat.HALF_FLOAT_OES;
   let formatRGBA;
@@ -455,7 +455,7 @@ function createFBO(texId, w, h, internalFormat, format, type, param) {
   gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
   gl.viewport(0, 0, w, h);
   gl.clear(gl.COLOR_BUFFER_BIT);
-
+  gl.clearColor(255, 0, 255, 1.0);
   return [texture, fbo, texId];
 }
 
