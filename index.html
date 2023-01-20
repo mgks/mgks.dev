@@ -93,7 +93,7 @@
                 document.getElementsByClassName("loading-logo")[0].classList.add('fade');
             }
          </script>
-         <link rel="stylesheet" href="https://mgks.dev/res/style.css" />
+         <link rel="stylesheet" href="res/style.css" />
     </head>
     <body>
         <div class="loading-logo">
@@ -104,13 +104,16 @@
         <header class="loading-hidden hide unfade">
             <a href="https://mgks.dev"><div class="banner lefty" title="mgks\.dev">\.</div></a>
             <div class="menu righty">
-                <a href="#home" onclick="tab('wa-home')"><span class="link">home</span></a>
-                <a href="#about" onclick="tab('wa-about')"><span class="link">about</span></a>
-                <a href="#experience" onclick="tab('wa-experience')"><span class="link">experience</span></a>
-                <a href="#projects" onclick="tab('wa-projects')"><span class="link">projects</span></a>
-                <a href="#contact" onclick="tab('wa-contact')"><span class="link">contact</span></a>
-                <a href="/blog"><span class="link">blog</span></a>
+                <nav>
+                <a href="#home" onclick="tab('wa-home')"><span class="link hover-this">home</span></a>
+                <a href="#about" onclick="tab('wa-about')"><span class="link hover-this">about</span></a>
+                <a href="#experience" onclick="tab('wa-experience')"><span class="link hover-this">experience</span></a>
+                <a href="#projects" onclick="tab('wa-projects')"><span class="link hover-this">projects</span></a>
+                <a href="#contact" onclick="tab('wa-contact')"><span class="link hover-this">contact</span></a>
+                <a href="https://mgks.dev/blog"><span class="link hover-this">blog</span></a>
                 <a href="https://mgks.dev/resume.pdf"><span class="button lefty">RESUME</span></a>
+                <div class="cursor"></div>
+                </nav>
             </div>
         </header>
         <div class="socialy lefty">
@@ -295,5 +298,38 @@
             <div class="foot-bracket"><div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div><div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div></div>
         </footer>
         <script src="https://mgks.dev/res/canvas.js" type="text/javascript"></script>
+        <script>
+/*
+            (function () {
+
+            const link = document.querySelectorAll('nav > .hover-this');
+            const cursor = document.querySelector('.cursor');
+
+            const animateit = function (e) {
+                const span = this.querySelector('span');
+                const { offsetX: x, offsetY: y } = e,
+                { offsetWidth: width, offsetHeight: height } = this,
+
+                move = 25,
+                xMove = x / width * (move * 2) - move,
+                yMove = y / height * (move * 2) - move;
+
+                span.style.transform = `translate(${xMove}px, ${yMove}px)`;
+
+                if (e.type === 'mouseleave') span.style.transform = '';
+            };
+
+            const editCursor = e => {
+                const { clientX: x, clientY: y } = e;
+                cursor.style.left = x + 'px';
+                cursor.style.top = y + 'px';
+            };
+
+            //link.forEach(b => b.addEventListener('mousemove', animateit));
+            //link.forEach(b => b.addEventListener('mouseleave', animateit));
+            window.addEventListener('mousemove', editCursor);
+
+            })();*/
+        </script>
     </body>
 </html>
