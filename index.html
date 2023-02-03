@@ -14,7 +14,7 @@
         <meta data-react-helmet="true" property="og:url" content="https://mgks.dev/">
         <meta data-react-helmet="true" property="og:type" content="website">
         <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
-        <meta data-react-helmet="true" name="twitter:creator" content="@mgksdev">
+        <meta data-react-helmet="true" name="twitter:creator" content="@enigmazi">
         <meta data-react-helmet="true" name="twitter:title" content="mgks.dev - open source, problem solving and some trash talk">
         <meta data-react-helmet="true" name="twitter:description" content="I'm a fullstack developer and love building simple solutions for complex web problems.">
         <meta data-react-helmet="true" name="twitter:image" content="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/preview.png">
@@ -32,7 +32,18 @@
         <link rel="apple-touch-icon" sizes="256x256" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/256.png">
         <link rel="apple-touch-icon" sizes="384x384" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/384.png">
         <link rel="apple-touch-icon" sizes="512x512" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/512.png">
-        <script>(function() {
+
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTYS057VRC"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-DTYS057VRC');
+        </script>
+
+        <!--<script>(function() {
 			var _pushState = history.pushState;
 			history.pushState = function(state, title, url) {
 				_pushState.call(this, state, title, url);
@@ -58,8 +69,9 @@
 					new CustomEvent('state-changed', { detail: url })
 				);
 			};
-		})();
-/*            var body = document.getElementsByClassName("work-area")[0]; var timer;
+		})();/*
+
+            var body = document.getElementsByClassName("work-area")[0]; var timer;
 
             window.addEventListener('scroll', function() {
             clearTimeout(timer);
@@ -92,26 +104,25 @@
             function fadeload(){
                 document.getElementsByClassName("loading-logo")[0].classList.add('fade');
             }
-         </script>
+         </script>-->
          <link rel="stylesheet" href="res/style.css" />
     </head>
     <body>
-        <div class="loading-logo">
-            <div class="circle-load"></div>
-            <div class="banner disable-events">\.</div>
-        </div>
-        <canvas></canvas>
-        <header class="loading-hidden hide unfade">
-            <a href="https://mgks.dev"><div class="banner lefty" title="mgks\.dev">\.</div></a>
-            <div class="menu righty">
+        <!--<canvas></canvas>-->
+        <header class="loading-hidden unfade">
+            <div class="loading-logo hide">
+                <div class="circle-load"></div>
+                <div class="banner disable-events">\.</div>
+            </div>
+            <div class="menu">
                 <nav>
-                <a href="#home" onclick="tab('wa-home')"><span class="link hover-this">home</span></a>
-                <a href="#about" onclick="tab('wa-about')"><span class="link hover-this">about</span></a>
-                <a href="#experience" onclick="tab('wa-experience')"><span class="link hover-this">experience</span></a>
                 <a href="#projects" onclick="tab('wa-projects')"><span class="link hover-this">projects</span></a>
-                <a href="#contact" onclick="tab('wa-contact')"><span class="link hover-this">contact</span></a>
                 <a href="https://mgks.dev/blog"><span class="link hover-this">blog</span></a>
-                <a href="https://mgks.dev/resume.pdf"><span class="button lefty">RESUME</span></a>
+                <a href="#experience" onclick="tab('wa-experience')"><span class="link hover-this">experience</span></a>
+                <a href="https://mgks.dev">mgks<span class="banner" title="home">\.</span>dev</a>
+                <a href="#about" onclick="tab('wa-about')"><span class="link hover-this">about</span></a>
+                <a href="#contact" onclick="tab('wa-contact')"><span class="link hover-this">contact</span></a>
+                <a href="https://mgks.dev/resume.pdf"><span class="button">RESUME</span></a>
                 <div class="cursor"></div>
                 </nav>
             </div>
@@ -129,75 +140,20 @@
                 </li>
             </ul>
         </div>
-        <div class="work-area loading-hidden hide unfade">
-            <div id="i-home" class="wa-pgs wa-welcome wa-home disable-events">
-                <span class="waw-hello">Hi, my name is</span><span class="waw-name">Ghazi Khan.</span><span class="waw-work">I build simple solutions for complex web problems.</span><span class="waw-sub">I'm a self-taught software developer specializing in building and designing exceptional digital experiences. Currenly, I'm focused on building accessible open source solutions.</span>
+        <div class="work-area loading-hidden unfade">
+            <div class="zen-mode"><img title="zen by @qtqr8r" src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/hl03ngsp-zen.gif"><span class="bolt-tag"><a href="https://github.com/mgks/zen" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge-fill" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg></a></span></div>
+
+            <div id="home" class="wa-pgs wa-welcome wa-home">
+                <span class="waw-hello">Hi, this is</span><span class="waw-name">Ghazi Khan.</span><span class="waw-work">I build simple solutions for complex web problems.</span><span class="waw-sub">I'm a self-taught software developer specializing in building and designing exceptional digital experiences. Currenly, I'm focused on building accessible open source solutions.</span>
             </div>
 
-            <div id="i-about" class="wa-pgs wa-about hide disable-events backdrop">
-                <h2>About Me</h2>
-                <div class="waa-about"><p>Hello! My name is Ghazi Khan and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try building a web based music player, it was rocky start but taught me a lot about HTML & CSS!</p><p>Fast-forward to today, I’m building open source solutions and had the privilege of working with dozens of small to medium businesses, and hundreds of indie developers around the globe. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.</p><p>I also recently started my learning journey for Python and Machine Learning. Here are a few technologies/services I’ve been working with for some time now:</p>
-                <ul class="gl-tags"><li>AWS</li><li>PHP</li><li>HTML5 / CSS3</li></ul><ul class="gl-tags"><li>Android (Java)</li><li>MySQL</li><li>Wordpress</li></ul>
-                </div>
-                <div class="waa-pic"><img src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/117735571_3352160204835797_5118981377831630920_o.jpg"></div>
-            </div>
-
-            <div id="i-experience" class="wa-pgs wa-experience hide disable-events backdrop">
-                <h2>Work Experience</h2>
-                <div class="wae-experience">
-                    <div class="wae-bl">
-                        <div class="waee-c"><b>March 2018 - Present</b>Remote</div>
-                        <div class="waee-p">
-                            <h4>Open Source Developer &amp; Freelance Consultant <b>@mgks.dev</b></h4>
-                            <ul>
-                            <li>Aesthetic Illustrations (Jul'21) | A fashion designer portfolio</li>
-                            <li>Vibes (Aug'20 - Nov'20) | AWS Infra Design; Wordpress Website | Magazine publishing company</li>
-                            <li>SJ Technologies (Sep'19 - May'20) | AWS Infra Design; WordPress Website; Service Management Portal | Marketing services provider</li>
-                            <li>Vehop (Jul'19 - Aug'19) | Android App | E-commerce shopping app</li>
-                            <li>Dhan Vapasi (Feb'19 - Jun'19) | Android App | Wealth monetization company</li>
-                            <li>Eziconnect (May'18 - Jun'18) | Android App | Datasat - African Broadband service provider</li>
-                            <li>BOSS (Mar'18 - May'18) | Android App | Serendip - French Healthcare consultancy firm</li>
-                            </ul>
-                            <p>Contributing and sharing my insights on open source projects, technical bugs, programming and daily life.</p>
-                            <p>Building open source solutions, along with a dozen contributors globally sharing the same vision of building a healthy environment for open and free information. Started with android apps, now moving towards machine learning and real life problem solving with technology.</p>
-                        </div>
-                    </div>
-                    <div class="wae-bl">
-                        <div class="waee-c"><b>April 2016 - May 2017</b>Haridwar, UK</div>
-                        <div class="waee-p">
-                            <h4>Application Developer <b>@omnia search</b></h4>
-                            <ul>
-                            <li>Complete Project Design</li>
-                            <li>Lead Technology, Market Research and On Ground Surveys</li>
-                            <li>Developed Android App (Java) for Consumer and Business End</li>
-                            </ul>
-                            <p>A big data project to help log, search and navigate consumer products within a local market. Launched in Haridwar (Uttarakhand), as a test site in year 2016.</p>
-                        </div>
-                    </div>
-                    <div class="wae-bl">
-                        <div class="waee-c"><b>May 2014 - Jan 2021</b>New Delhi</div>
-                        <div class="waee-p">
-                            <h4>Fullstack Developer <b>@infeeds</b></h4>
-                            <ul>
-                            <li>Administered Cloud Infrastructure built on Amazon Web Services (AWS)</li>
-                            <li>Fullstack Web Development (HTML5 | CSS3 | JS | PHP | MySQL)</li>
-                            <li>Developed Android App (Java | Firebase)</li>
-                            <li>Content and Advertisement Management</li>
-                            <li>Became a part of Facebook's FbStart program in 2017</li>
-                            </ul>
-                            <p>Online article publishing network, with a million user readership globally. Published in 2014, later discontinued in 2021. Project now available as Open Source.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="i-projects" class="wa-pgs wa-projects hide backdrop">
-                <h2>Some Things I've Built</h2>
+            <div id="projects" class="wa-pgs wa-projects">
+                <h2>Things I've Built</h2>
                 <div class="wap-projects">
                     <div class="wap-featured">
                         <div class="wapf-img"><img src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/swv-art-c.png"></div>
                         <div class="wapf-text">
-                            <b>Featured Project</b>
+                            <b>Featured</b>
                             <h3>Android Smart WebView</h3>
                             <div class="wap-info"><p>Android framework built on Java to develop advanced hybrid webview applications integrated w/ native features to help create most advanced hybrid applications with ease.</p></div>
                             <div class="wap-technologies"><b>Android</b><b>Java</b><b>Firebase</b><b>HTML + CSS</b></div>
@@ -281,7 +237,63 @@
                 </div>
             </div>
 
-            <div id="i-contact" class="wa-pgs wa-contact hide">
+            <div id="experience" class="wa-pgs wa-experience">
+                <h2>Work Experience</h2>
+                <div class="wae-experience">
+                    <div class="wae-bl">
+                        <div class="waee-c"><b>March 2018 - Present</b>Remote</div>
+                        <div class="waee-p">
+                            <h4>Open Source Developer &amp; Freelance Consultant <b>@mgks.dev</b></h4>
+                            <ul>
+                            <li>Aesthetic Illustrations (Jul'21) | A fashion designer portfolio</li>
+                            <li>Vibes (Aug'20 - Nov'20) | AWS Infra Design; Wordpress Website | Magazine publishing company</li>
+                            <li>SJ Technologies (Sep'19 - May'20) | AWS Infra Design; WordPress Website; Service Management Portal | Marketing services provider</li>
+                            <li>Vehop (Jul'19 - Aug'19) | Android App | E-commerce shopping app</li>
+                            <li>Dhan Vapasi (Feb'19 - Jun'19) | Android App | Wealth monetization company</li>
+                            <li>Eziconnect (May'18 - Jun'18) | Android App | Datasat - African Broadband service provider</li>
+                            <li>BOSS (Mar'18 - May'18) | Android App | Serendip - French Healthcare consultancy firm</li>
+                            </ul>
+                            <p>Contributing and sharing my insights on open source projects, technical bugs, programming and daily life.</p>
+                            <p>Building open source solutions, along with a dozen contributors globally sharing the same vision of building a healthy environment for open and free information. Started with android apps, now moving towards machine learning and real life problem solving with technology.</p>
+                        </div>
+                    </div>
+                    <div class="wae-bl">
+                        <div class="waee-c"><b>April 2016 - May 2017</b>Haridwar, UK</div>
+                        <div class="waee-p">
+                            <h4>Application Developer <b>@omnia search</b></h4>
+                            <ul>
+                            <li>Complete Project Design</li>
+                            <li>Lead Technology, Market Research and On Ground Surveys</li>
+                            <li>Developed Android App (Java) for Consumer and Business End</li>
+                            </ul>
+                            <p>A big data project to help log, search and navigate consumer products within a local market. Launched in Haridwar (Uttarakhand), as a test site in year 2016.</p>
+                        </div>
+                    </div>
+                    <div class="wae-bl">
+                        <div class="waee-c"><b>May 2014 - Jan 2021</b>New Delhi</div>
+                        <div class="waee-p">
+                            <h4>Fullstack Developer <b>@infeeds</b></h4>
+                            <ul>
+                            <li>Administered Cloud Infrastructure built on Amazon Web Services (AWS)</li>
+                            <li>Fullstack Web Development (HTML5 | CSS3 | JS | PHP | MySQL)</li>
+                            <li>Developed Android App (Java | Firebase)</li>
+                            <li>Content and Advertisement Management</li>
+                            <li>Became a part of Facebook's FbStart program in 2017</li>
+                            </ul>
+                            <p>Online article publishing network, with a million user readership globally. Published in 2014, later discontinued in 2021. Project now available as Open Source.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="about" class="wa-pgs wa-about">
+                <div class="waa-pic"><img src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/117735571_3352160204835797_5118981377831630920_o.jpg"></div>
+                <div class="waa-about"><p>Hello! My name is Ghazi Khan and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try building a web based music player, it was rocky start but taught me a lot about HTML & CSS!</p><p>Fast-forward to today, I’m building open source solutions and had the privilege of working with dozens of small to medium businesses, and hundreds of indie developers around the globe. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.</p><p>I also recently started my learning journey for Python and Machine Learning. Here are a few technologies/services I’ve been working with for some time now:</p>
+                <ul class="gl-tags"><li>AWS</li><li>PHP</li><li>HTML5 / CSS3</li></ul><ul class="gl-tags"><li>Android (Java)</li><li>MySQL</li><li>Wordpress</li></ul>
+                </div>
+            </div>
+
+            <div id="contact" class="wa-pgs wa-contact">
                 <h2>Let's Connect</h2>
                 <div class="wac-contact">
                     <div class="wac-featured">
@@ -297,9 +309,8 @@
         <footer>
             <div class="foot-bracket"><div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div><div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div></div>
         </footer>
-        <script src="https://mgks.dev/res/canvas.js" type="text/javascript"></script>
-        <script>
-/*
+        <!--<script src="https://mgks.dev/res/canvas.js" type="text/javascript"></script>
+        <script>/*
             (function () {
 
             const link = document.querySelectorAll('nav > .hover-this');
@@ -330,6 +341,6 @@
             window.addEventListener('mousemove', editCursor);
 
             })();*/
-        </script>
+        </script>-->
     </body>
 </html>
