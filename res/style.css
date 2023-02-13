@@ -98,7 +98,6 @@ header {
 .menu a {
     display: inline-block;
     margin: 0 1em;
-    transition: .5s;
     letter-spacing: 2px;
 }
 
@@ -121,7 +120,6 @@ header {
     padding: .5em 1em;
     border-radius: 3px;
     background-color: var(--theme-light);
-    transition: .5s;
     color: var(--theme-dark);
 }
 
