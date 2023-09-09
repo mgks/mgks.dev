@@ -16,6 +16,8 @@
 
 <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
 
+<link href="{{ site.baseurl }}/assets/css/style.min.css" rel="stylesheet">
+
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
 
 </head>
@@ -43,23 +45,57 @@ ga('send', 'pageview');
 
 <!-- Begin Menu Navigation
 ================================================== -->
+<header class="loading-hidden unfade">
+    <div class="loading-logo hide">
+        <div class="circle-load"></div>
+        <div class="banner disable-events">\.</div>
+    </div>
+    <div class="menu">
+        <nav>
+        <a href="{{ site.baseurl }}#projects" onclick="tab('wa-projects')"><span class="link hover-this">projects</span></a>
+        <a href="{{ site.baseurl }}/blog"><span class="link hover-this">blog</span></a>
+        <a href="{{ site.baseurl }}#experience" onclick="tab('wa-experience')"><span class="link hover-this">experience</span></a>
+        <a href="{{ site.baseurl }}">mgks<span class="banner" title="home">\.</span>dev</a>
+        <a href="{{ site.baseurl }}#about" onclick="tab('wa-about')"><span class="link hover-this">about</span></a>
+        <a href="{{ site.baseurl }}#contact" onclick="tab('wa-contact')"><span class="link hover-this">contact</span></a>
+        <a href="{{ site.baseurl }}/resume.pdf"><span class="button">RESUME</span></a>
+        <div class="cursor"></div>
+        </nav>
+    </div>
+</header>
+
+<div class="socialy lefty">
+    <ul>
+        <li>
+            <a href="https://github.com/mgks" aria-label="GitHub" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+        </li>
+        <li>
+            <a href="https://www.instagram.com/_enigmazi" aria-label="Instagram" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><title>Instagram</title><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+        </li>
+        <li>
+            <a href="https://www.linkedin.com/in/mgks" aria-label="Linkedin" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><title>LinkedIn</title><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        </li>
+    </ul>
+</div>
+
+<!--
 <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
 
     <div class="container pr-0">
-
-    <!-- Begin Logo -->
+    -->    
+    <!-- Begin Logo
     <a class="navbar-brand" href="{{ site.baseurl }}/">
     <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
     </a>
-    <!-- End Logo -->
-
+    End Logo -->
+<!--
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarMediumish">
-
-        <!-- Begin Menu -->
+    -->
+        <!-- Begin Menu
 
             <ul class="navbar-nav ml-auto">
 
@@ -95,12 +131,12 @@ ga('send', 'pageview');
 
             </ul>
 
-        <!-- End Menu -->
-
+         End Menu -->
+<!--
     </div>
 
     </div>
-</nav>
+</nav>-->
 <!-- End Navigation
 ================================================== -->
 
@@ -122,13 +158,13 @@ ga('send', 'pageview');
 <div class="main-content">
     {{ content }}
 </div>
-
+<!--
 {% if site.mailchimp-list %}
-<!-- Bottom Alert Bar
-================================================== -->
+ Bottom Alert Bar
+==================================================
 <div class="alertbar">
 	<div class="container text-center">
-		<span><img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
+		<span><img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b>, subscribe to our newsletter</span>
         <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
             <div class="mc-field-group">
             <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
@@ -138,7 +174,7 @@ ga('send', 'pageview');
 	</div>
 </div>
 {% endif %}
-    
+-->
 </div>
 
 <!-- Categories Jumbotron
@@ -166,19 +202,14 @@ ga('send', 'pageview');
 	</div>
 </div>
 
+<div class="emaily righty vert-v">
+    <div class="bar-email"><a href="mailto:hello@mgks.dev">hello@mgks.dev</a></div>
+</div>
+
 <!-- Begin Footer
 ================================================== -->
 <footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                Copyright © {{ site.time | date: "%Y" }} {{ site.name }} 
-            </div>
-            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
-                <a target="_blank" href="https://www.wowthemes.net/mediumish-free-jekyll-template/">Mediumish Jekyll Theme</a> by WowThemes.net
-            </div>
-        </div>
-    </div>
+    <div class="foot-bracket"><div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div><div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div></div>
 </footer>
 <!-- End Footer
 ================================================== -->
