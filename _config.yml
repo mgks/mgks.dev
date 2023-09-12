@@ -4,7 +4,7 @@ title: "mgks.dev - open source, problem solving and stories"
 description: "Hello, Ghazi here. I am an open source developer and I love building simple solutions for complex technical problems."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
-baseurl: /blog
+baseurl: /
 google_analytics: 'UA-46278016-1'
 disqus: 'mgksdev'
 mailchimp-list: ''
