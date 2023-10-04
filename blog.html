@@ -35,13 +35,13 @@ permalink: /blog.html
 
     <div class="section-title">
 
-        <h2><span>All Stories</span></h2>
+        <h2><span>All Stories .</span></h2>
 
     </div>
 
     <div class="row listrecent">
 
-        {% for post in paginator.posts %}
+        {% for post in page.posts %}
 
             {% include postbox.html %}
 
@@ -56,7 +56,7 @@ permalink: /blog.html
 <div class="bottompagination">
 <div class="pointerup"><i class="fa fa-caret-up"></i></div>
 <span class="navigation" role="navigation">
-    {% include pagination.html %}
+<!--    {% include pagination.html %} -->
 </span>
 </div>
 
