@@ -7,7 +7,7 @@ permalink: /blog.html
 {% if page.url == "/blog.html" %}
 
 <!-- Featured
-================================================== -->
+================================================== 
 <section class="featured-posts">
     <div class="section-title">
         <h2><span>Featured</span></h2>
@@ -28,7 +28,7 @@ permalink: /blog.html
 </section>
 
 {% endif %}
-
+-->
 <!-- Posts Index
 ================================================== -->
 <section class="recent-posts">
@@ -41,11 +41,11 @@ permalink: /blog.html
 
     <div class="row listrecent">
 
-    {% for post in page.posts %}
+        {% for post in paginator.posts %}
 
-        {% include postbox.html %}
-    
-    {% endfor %}
+            {% include postbox.html %}
+
+        {% endfor %}
 
     </div>
 
@@ -56,6 +56,7 @@ permalink: /blog.html
 <div class="bottompagination">
 <div class="pointerup"><i class="fa fa-caret-up"></i></div>
 <span class="navigation" role="navigation">
-<!--    {% include pagination.html %} -->
+    {% include pagination.html %}
 </span>
 </div>
+
