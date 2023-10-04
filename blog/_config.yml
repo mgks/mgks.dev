@@ -46,11 +46,11 @@ jekyll-archives:
     - categories
   layout: archive
   permalinks:
-    category: '/category/:name/'
+    category: '/blog/category/:name/'
     
 # Pagination 
 paginate: 6
-paginate_path: /page:num/
+paginate_path: /blog/page:num/
     
 # Other
 markdown: kramdown
