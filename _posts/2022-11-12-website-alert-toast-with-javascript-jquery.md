@@ -2,7 +2,7 @@
 layout: post
 title:  "Website Alert Toast with JavaScript/jQuery"
 author: ghazi
-categories: [ gist ]
+categories: [ gists ]
 tags: [css, javascript]
 image: assets/images/b5.jpg
 description: "There’s a really simple method to show toasts in Android and other mobile apps but you can do the same for your website beautifully."

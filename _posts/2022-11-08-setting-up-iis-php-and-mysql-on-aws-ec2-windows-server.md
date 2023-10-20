@@ -2,7 +2,7 @@
 layout: post
 title:  "Setting Up IIS, PHP, and MySQL on AWS EC2 Windows Server"
 author: ghazi
-categories: [ tutorial ]
+categories: [ tutorials ]
 tags: [aws, iis, php, mysql, openssl]
 image: assets/images/b2.jpg
 description: "We’re going to set up a Windows server on IIS with PHP, MySQL, and OpenSSL, enabling you to configure and host public websites."
