@@ -16,21 +16,12 @@ authors:
   ghazi:
     name: Ghazi
     display_name: Ghazi
-    avatar: 'assets/images/avatar.png'
-    gravatar: e56154546cf4be74e393c62d1ae9f9d4
+    avatar: 'assets/images/avatar.jpg'
+    gravatar: 
     email: hello@mgks.dev
     web: https://mgks.dev
     twitter: 
     description: "I am an open source developer and I love building simple solutions for complex technical problems."
-  shilpi:
-    name: Shilpi
-    display_name: Shilpi
-    avatar: 'assets/images/avatar.png'
-    gravatar: b1cc14991db7a456fcd761680bbc8f81
-    email: 
-    web: 
-    twitter: 
-    description: "This is the author box. Write a short description of the author here. You are currently previewing Mediumish demo, a Jekyll template compatible with Github pages."
 
 # Plugins
 plugins:
