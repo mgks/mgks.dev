@@ -314,15 +314,10 @@ span.post-read-more a:hover {
 }
 
 .footer {
-    border-top: 1px solid rgba(0, 0, 0, .05) !important;
-    padding-top: 15px;
-    padding-bottom: 12px;
-    font-size: 0.8rem;
+    font-size: .95rem;
     color: rgba(0, 0, 0, .44);
-    margin-top: 50px;
-    margin-bottom: 62px;
     position: relative;
-    background: #fff;
+
 }
 
 .link-dark {
@@ -686,6 +681,7 @@ h4,
 h5,
 h6 {
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
 }
 
 .article-post .h1,
@@ -769,18 +765,20 @@ iframe {
 
 @media (min-width:768px) {
     .jumbotron.fortags {
-        margin-bottom: -50px;
+        /* margin-bottom: -50px; */
         margin-top: 3rem;
         padding: 0;
-        height: 350px;
+        height: 12em;
         border-radius: 0;
-        /*background-image: url(../images/jumbotron.jpg);*/
+        /* background-image: url(../images/jumbotron.jpg); */
         background-size: cover;
+    
     }
 
     .jumbotron.fortags .col-md-4 {
-        background: rgba(0, 0, 0, 0.75);
+        background: rgba(0, 0, 0, 0.48);
         color: #fff;
+    
     }
 
     .jumbotron.fortags .row {
@@ -789,11 +787,13 @@ iframe {
 }
 
 .jumbotron.fortags {
-    margin-top: 3rem;
+    margin: 2em 7%;
     padding: 0;
-    border-radius: 0;
-    /*background-image: url(../images/jumbotron.jpg);*/
+    border-radius: 5px;
+    /* background-image: url(../images/jumbotron.jpg); */
     background-size: cover;
+    overflow: hidden;
+
 }
 
 .jumbotron.fortags a {

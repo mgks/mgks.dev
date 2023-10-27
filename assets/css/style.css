@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap');
-:root{
+@import "https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap";
+@import "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap";
+:root {
     --font-sans: "DM Sans", sans-serif;
     --font-title: "DM Serif Display", sans-serif;
-    --font-mono: "SF Mono","Fira Code","Fira Mono","Roboto Mono",monospace;
+    --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
     --theme-color: #1876d2;
     --theme-lcolor: #6397c8;
     --theme-dark: #0a5eb0;
@@ -15,48 +15,45 @@
     --theme-ligrey: #757980;
     --theme-grey: #606060;
     --theme-black: #2a2a2a;
-    --theme-white: #ffffff;
+    --theme-white: #fff;
     --theme-light: #1876d269;
     --theme-backdrop: #a8d0ff21;
     --theme-progdrop: #9500ff17;
     --theme-progdrop-dark: #7702cb17;
     --theme-dark-backdrop: #1a5eb0a1;
-    --dark-background: #001830;
+    --dark-background:#001830
 }
-body{
+
+body {
     margin: 0;
     background-color: #fff;
     font-family: var(--font-mono);
     -webkit-font-smoothing: antialiased;
-    max-height: 100vh;
+    max-height:100vh
 }
-/*.hover-this {
-    transition: all 0.3s ease;
-  }
-  .cursor {
-    pointer-events: none;
-    position: fixed;
-    padding: 0.3rem;
-    background-color: #000;
-    border-radius: 50%;
-    mix-blend-mode: difference;
-    transition: transform 0.3s ease;
-  }
-  .hover-this:hover ~ .cursor {
-    transform:translate(-50%, -50%) scale(8);
-  }*/
-.absolute{position:absolute;z-index: 1;}
+
+.absolute {
+    position: absolute;
+    z-index:1
+}
+
 canvas {
-  width: 100%;
-  min-height: 100vh;
-  position: fixed;
-  top: 0;
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top:0
 }
-.shift-card{transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s, opacity 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s, transform 0.5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s; visibility: visible; opacity: 1; transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);}
+
+.shift-card {
+    transition: all .25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s, opacity .5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s, transform .5s cubic-bezier(0.645, 0.045, 0.355, 1) .2s;
+    visibility: visible;
+    opacity: 1;
+    transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+}
 
 a {
     text-decoration: none;
-    color: var(--theme-grey);
+    color:var(--theme-grey)
 }
 
 .banner {
@@ -71,20 +68,21 @@ a {
     display: inline-block;
     margin: 0 .5em;
     font-weight: 800;
-    vertical-align: middle;
+    vertical-align:middle
 }
 
 .lefty {
     float: left;
-    left: 0;
+    left:0
 }
 
 .righty {
     float: right;
-    right: 0;
+    right:0
 }
 
 header {
+    box-sizing: initial;
     padding: 1em 3%;
     overflow: hidden;
     z-index: 2;
@@ -92,13 +90,13 @@ header {
     width: 94%;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    top: 0;
+    top:0
 }
 
 .menu a {
     display: inline-block;
     margin: 0 1em;
-    letter-spacing: 2px;
+    letter-spacing:2px
 }
 
 .menu {
@@ -106,45 +104,45 @@ header {
     margin: .5em;
     font-size: .85em;
     overflow: hidden;
-    text-align: center;
+    text-align:center
 }
 
 .menu .link b {
     display: block;
     color: var(--flair-dark);
     font-size: .85em;
-    font-weight: 100;
+    font-weight:100
 }
 
 .menu span.button {
     padding: .5em 1em;
     border-radius: 3px;
     background-color: var(--theme-light);
-    color: var(--theme-dark);
+    color:var(--theme-dark)
 }
 
 .menu span.button:hover {
-    background-color: var(--light-flair);
+    background-color:var(--light-flair)
 }
 
 a:hover {
-    color: var(--theme-dark);
+    color:var(--theme-dark)
 }
 
 .menu span.button:hover {
     background-color: var(--theme-dark);
-    color: var(--theme-lgrey);
+    color:var(--theme-lgrey)
 }
 
 .socialy ul {
     list-style: none;
-    padding: 0;
+    padding:0
 }
 
 .socialy ul li {
     display: block;
     width: 1.25em;
-    margin: 0 0 1.5em;
+    margin:0 0 1.5em
 }
 
 .socialy ul, .bar-email {
@@ -155,17 +153,16 @@ a:hover {
     -webkit-box-align: center;
     align-items: center;
     position: relative;
-    bottom: 0;
+    bottom:0
 }
 
 footer {
     overflow: hidden;
     z-index: 2;
-    /* position: relative; */
     text-align: center;
     width: 22em;
     margin: 2em auto;
-    padding: 3em 0;
+    padding: 5em 0 3em;
 }
 
 .bar-v {
@@ -173,13 +170,11 @@ footer {
     width: 1px;
     margin: 0 auto;
     display: block;
-    border-left: 2px solid var(--theme-black);
+    border-left:2px solid var(--theme-black)
 }
 
-.bar-email {}
-
 .emaily {
-    font-family: var(--font-mono);
+    font-family:var(--font-mono)
 }
 
 .socialy ul::after, .bar-email::after {
@@ -188,7 +183,7 @@ footer {
     width: 1px;
     height: 10em;
     margin: 0 auto;
-    background-color: var(--theme-exgrey);
+    background-color:var(--theme-exgrey)
 }
 
 .bar-email a {
@@ -196,31 +191,30 @@ footer {
     padding-bottom: 1em;
     font-size: .85em;
     font-family: var(--font-mono);
-    letter-spacing: 0.1em;
+    letter-spacing: .1em;
     -webkit-writing-mode: vertical-rl;
-    writing-mode: vertical-rl;
+    writing-mode:vertical-rl
 }
 
 .socialy, .emaily {
     bottom: 0;
     position: fixed;
-    z-index: 1;
+    z-index:1
 }
 
 .work-area {
-    width: 80%;
     min-height: 66vh;
-    margin: 17vh 10% 0;
+    margin: 17vh 0 0;
 }
 
-.disable-events{
-    pointer-events: none;
+.disable-events {
+    pointer-events:none
 }
 
-.border,.r-border {
-    height: 0.5em;
+.border, .r-border {
+    height: .5em;
     margin: 0 39.5px;
-    border: 1px solid var(--theme-lgrey);
+    border:1px solid var(--theme-lgrey)
 }
 
 .foot-bracket {
@@ -231,99 +225,103 @@ footer {
     letter-spacing: .5px;
     width: 22em;
     border-radius: 5px;
-    backdrop-filter: blur(15px);
+    backdrop-filter:blur(15px)
 }
 
-.emaily .bar-email a:hover, .socialy ul li a:hover {color: var(--theme-dark);transform:translateY(-3px);}
+.emaily .bar-email a:hover, .socialy ul li a:hover {
+    color: var(--theme-dark);
+    transform:translateY(-3px)
+}
 
 .built svg {
     width: 18px;
     color: var(--theme-red);
-    margin: -5px 0;
+    margin:-5px 0
 }
 
 .sponsor {
     margin-bottom: .5em;
+    font-weight: bold;
 }
 
 footer a:hover {
-    color: var(--flair-dark);
+    color:var(--flair-dark)
 }
 
 body.dark .socialy ul, body.dark .bar-email, body.dark footer {
-    background-color: var(--dark-background);
+    background-color:var(--dark-background)
 }
 
 body.dark a {
-    color: var(--theme-lgrey);
+    color:var(--theme-lgrey)
 }
 
-body.dark .border,body.dark .r-border {
-    border-color: var(--theme-lgrey);
+body.dark .border, body.dark .r-border {
+    border-color:var(--theme-lgrey)
 }
 
 body.dark .built svg {
-    color: var(--theme-lred);
+    color:var(--theme-lred)
 }
 
 body.dark .socialy ul:after, body.dark .bar-email:after {
-    background-color: var(--theme-lgrey);
+    background-color:var(--theme-lgrey)
 }
 
 body.dark a:hover {
-    color: var(--theme-white);
+    color:var(--theme-white)
 }
 
 .border {
     border-top: 0;
-    border-radius: 0 0 10px 10px;
+    border-radius:0 0 10px 10px
 }
 
 .r-border {
     border-bottom: 0;
-    border-radius: 10px 10px 0 0;
+    border-radius:10px 10px 0 0
 }
 
 .header-holder {
     width: 100%;
     position: fixed;
-    opacity: 1.0;
+    opacity: 1;
     -webkit-filter: blur(0px);
     -moz-filter: blur(0px);
     -o-filter: blur(0px);
     -ms-filter: blur(0px);
     filter: blur(0px);
-    z-index: 10;
+    z-index:10
 }
 
 .menu a .link {
-    line-height: 2em;
+    line-height:2em
 }
 
 .wa-welcome .waw-hello {
     font-family: var(--font-mono);
     color: var(--theme-grey);
-    font-weight: 500;
+    font-weight:500
 }
 
-.wa-welcome .waw-hello, .wa-welcome .waw-name, .wa-welcome .waw-work,.wa-welcome .waw-sub {
-    display: block;
+.wa-welcome .waw-hello, .wa-welcome .waw-name, .wa-welcome .waw-work, .wa-welcome .waw-sub {
+    display:block
 }
 
 .wa-welcome .waw-name {
     font-size: 5em;
-    font-weight: bold;
+    font-weight: 700;
     color: var(--theme-dark);
-    font-family: var(--font-title);
+    font-family:var(--font-title)
 }
 
 .wa-welcome .waw-work {
     font-size: 2.5em;
-    font-weight: bold;
+    font-weight: 700;
     color: var(--theme-lcolor);
     font-family: var(--font-title);
     line-height: .9em;
-    mix-blend-mode: multiply;
+    mix-blend-mode:multiply
 }
 
 .wa-welcome .waw-sub {
@@ -333,7 +331,7 @@ body.dark a:hover {
     line-height: 1.5em;
     max-width: 70%;
     margin: 2em 0;
-    font-weight: 500;
+    font-weight:500
 }
 
 .wa-pgs {
@@ -352,21 +350,20 @@ body.dark a:hover {
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
-    position: relative;
+    position:relative
 }
 
 .wa-pgs h2::after {
-    /* content: ""; */
     width: 30%;
     height: 1px;
     margin-left: .5em;
-    background-color: var(--theme-light);
+    background-color:var(--theme-light)
 }
 
 .waa-about {
-    width: 62.5%;
+    width: 70%;
     float: left;
-    margin: 2em 0 0 2.5%;
+    margin: 0 0 0 2.5%;
     padding: 1em 5%;
     background-color: var(--theme-backdrop);
     border-radius: 5px;
@@ -375,54 +372,55 @@ body.dark a:hover {
 .waa-pic {
     width: 25%;
     float: left;
-    position: initial;
+    position:initial
 }
 
 .waa-pic img {
     width: 125%;
     border-radius: 5%;
-    margin: -5em 0;
+    margin: -3em 0;
     transition: .5s;
     filter: grayscale(0);
 }
 
 .waa-pic:hover {
-    filter: none;
+    filter:none
 }
 
 .waa-about ul {
     width: 35%;
-    float: left;
+    float:left
 }
 
 .waa-about p {
     line-height: 1.5;
     font-weight: 500;
-    margin: 1.5em 0 0;
+    margin:1.5em 0 0
 }
-.hide{
-    display: none !important;
+
+.hide {
+    display:none !important
 }
-.fade{
+
+.fade {
     opacity: 0;
     visibility: hidden;
-    -webkit-transition: visibility 0.5s linear, opacity 0.5s linear;
-    -moz-transition: visibility 0.5s linear, opacity 0.5s linear;
-    -o-transition: visibility 0.5s linear, opacity 0.5s linear;
+    -webkit-transition: visibility .5s linear, opacity .5s linear;
+    -moz-transition: visibility .5s linear, opacity .5s linear;
+    -o-transition:visibility .5s linear, opacity .5s linear
 }
-.unfade{
+
+.unfade {
     animation: fadein 1s;
     -webkit-animation: fadein 1s;
     -moz-animation: fadein 1s;
-    -o-animation: fadein 1s;
+    -o-animation:fadein 1s
 }
 
 .backdrop {
     -webkit-backdrop-filter: blur(15px) opacity(0.9);
-    background-color: var(--theme-backdrop);
+    background-color:var(--theme-backdrop)
 }
-
-.wa-about:hover .waa-pic img {}
 
 .wa-about {
     max-width: 80%;
@@ -430,17 +428,14 @@ body.dark a:hover {
     padding: 10em 0 0;
 }
 
-.gl-tags {
-}
-
 .gl-tags li {
-    padding: 0.15em 0;
-    color: var(--theme-dark);
+    padding: .15em 0;
+    color:var(--theme-dark)
 }
 
 .wae-bl {
     margin: 3em 5%;
-    display: flex;
+    display:flex
 }
 
 .waee-c {
@@ -449,42 +444,43 @@ body.dark a:hover {
     font-family: var(--font-mono);
     font-size: .85em;
     backdrop-filter: opacity(1);
-    padding: 1em;
+    padding:1em
 }
 
 .waee-c b {
-    display: block;
+    display:block
 }
 
 .waee-p {
     padding: 1em 2em;
     -webkit-backdrop-filter: opacity(1);
     background-color: var(--theme-backdrop);
-    font-family: var(--font-mono);
+    font-family:var(--font-mono)
 }
 
 .waee-p h4 {
     margin: 0 0 1em;
+    font-family: var(--font-title);
     color: var(--theme-grey);
 }
 
 .waee-p h4 b {
-    color: var(--theme-ligrey);
+    color:var(--theme-ligrey)
 }
 
-.work-area p,.work-area ul {
+.work-area p, .work-area ul {
     color: var(--theme-black);
     letter-spacing: .005em;
-    word-spacing: 0.1em;
-    list-style: circle;
+    word-spacing: .1em;
+    list-style:circle
 }
 
 .work-area ul li {
-    margin: .5em 0;
+    margin:.5em 0
 }
 
 .work-area ul {
-    padding-left: 2em;
+    padding-left:2em
 }
 
 .loading-logo {
@@ -496,13 +492,11 @@ body.dark a:hover {
     margin: 23.5% auto 18.5%;
     display: flex;
     align-items: center;
-    justify-content:
-    center;
+    justify-content:center
 }
 
 .loading-logo .circle-load {
-    position:
-    absolute;
+    position: absolute;
     border: 2.5px dashed var(--theme-dark);
     display: block;
     width: 100%;
@@ -511,40 +505,44 @@ body.dark a:hover {
     border-radius: 100%;
     animation: spin 10s linear infinite;
     background-clip: content-box;
-    cursor: pointer;
+    cursor:pointer
 }
 
-.loading-logo:active .circle-load{
-  animation: spin 2s linear infinite;
+.loading-logo:active .circle-load {
+    animation:spin 2s linear infinite
 }
-@keyframes spin { 
-  100% { 
-    transform: rotateZ(360deg);
-  }
+
+@keyframes spin {
+    100% {
+        transform:rotateZ(360deg)
+    }
 }
 
 @keyframes fadein {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity:0
+    }
+
+    100% {
+        opacity:1
+    }
 }
 
 .circle-load {
     margin: auto;
     color: var(--theme-grey);
     background-color: var(--theme-lgrey);
-    cursor: progress;
+    cursor:progress
 }
-
-header .banner {}
 
 .wap-project {
     width: 75%;
     margin: 1em auto;
-    padding: 1em;
+    padding:1em
 }
 
 .wap-project h3 {
-    margin: 0 0 1em;
+    margin:0 0 1em
 }
 
 .wapf-img {
@@ -556,20 +554,23 @@ header .banner {}
     display: flex;
     justify-content: center;
     vertical-align: middle;
-    align-items: center;
+    align-items:center
 }
 
-.wap-featured {overflow: hidden;width: 80%;margin: 1em auto;}
+.wap-featured {
+    overflow: hidden;
+    margin: 1em auto;
+}
 
 .wap-projects {
-    padding: 2em 0;
+    padding:2em 0
 }
 
 .wapf-text {
     text-align: right;
     float: left;
     width: 46%;
-    margin: 1em 2%;
+    margin:1em 2%
 }
 
 .wapf-text p {
@@ -579,51 +580,52 @@ header .banner {}
     right: 8%;
     width: 50%;
     padding: 1em;
-    border-radius: 5px;
+    border-radius:5px
 }
 
-.wap-technologies {font-family: var(--font-mono);color: var(--theme-grey);font-size: .85em;}
+.wap-technologies {
+    font-family: var(--font-mono);
+    color: var(--theme-grey);
+    font-size:.85em
+}
 
 .wapf-text h3 {
     font-size: 2em;
     font-family: var(--font-title);
     color: var(--theme-black);
-    margin: 0;
+    margin:0
 }
 
 .wap-info {
     width: 100%;
-    height: 8em;
+    height: 12em;
 }
 
 .wap-social {
     width: 100%;
     height: 1em;
     margin: 1em 0;
-    font-size: 1.5em;
+    font-size:1.5em
 }
 
 .wap-technologies b {
-    margin: 0 .5em;
+    margin:0 .5em
 }
 
 .wap-social a {
     width: 1em;
     float: right;
-    margin: 0 .5em;
+    margin:0 .5em
 }
 
 .wapf-img img {
-    height: 100%;
+    height:100%
 }
-
-.wap-featured:hover img {}
-
 
 .wapf-slider {
     width: 100%;
     height: 4.5em;
-    cursor: crosshair;
+    cursor:crosshair
 }
 
 .wapf-slider span {
@@ -631,7 +633,7 @@ header .banner {}
     overflow: hidden;
     margin: 0 1%;
     display: inline-block;
-    float: left;
+    float:left
 }
 
 .wapf-slider .sl-img img {
@@ -639,7 +641,7 @@ header .banner {}
     min-height: 4em;
     border-radius: 5px;
     filter: grayscale(1);
-    transition: .5s;
+    transition:.5s
 }
 
 .wapf-slider .sl-txt {
@@ -652,25 +654,30 @@ header .banner {}
     text-align: center;
     border-radius: 5px;
     transition: .5s;
-    width: 16%;
+    width:16%
 }
 
 .wapf-info p {
     font-family: var(--font-mono);
     font-weight: 500;
-    margin-bottom: 2em;
+    margin-bottom:2em
 }
 
-.wapf-info {padding: 2em;margin: 2em;background-color: var(--theme-backdrop);border-radius: 5px;}
+.wapf-info {
+    padding: 2em;
+    margin: 2em;
+    background-color: var(--theme-backdrop);
+    border-radius:5px
+}
 
 .wap-bar {
     height: 3em;
     display: flex;
-    color: var(--theme-dark);
+    color:var(--theme-dark)
 }
 
 .wap-other .folder {
-    width: 26%;
+    width: 30%;
     background-color: var(--theme-backdrop);
     border-radius: 5px;
     float: left;
@@ -681,17 +688,17 @@ header .banner {}
 }
 
 .wap-bar .wap-social {
-    margin: .5em 0;
+    margin:.5em 0
 }
 
 .wap-other .folder h3 {
     font-family: var(--font-title);
     font-size: 1.5em;
-    color: var(--theme-black);
+    color:var(--theme-black)
 }
 
 .wap-other .folder:hover {
-    background-color: var(--theme-light);
+    background-color:var(--theme-light)
 }
 
 .wap-other {
@@ -699,16 +706,16 @@ header .banner {}
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
-    display: flex;
+    display:flex
 }
 
 .wapf-text b {
     font-family: var(--font-mono);
-    color: var(--theme-grey);
+    color:var(--theme-grey)
 }
 
 .button-area {
-    text-align: center;
+    text-align:center
 }
 
 .button-area .feature-button {
@@ -721,23 +728,23 @@ header .banner {}
     border-radius: 5px;
     margin: 1em auto;
     transition: .5s;
-    width: 25%;
+    width: 40%;
 }
 
 .button-area .feature-button svg {
     width: 1.75em;
     display: block;
-    margin: 0 auto .5em;
+    margin:0 auto .5em
 }
 
-.button-area .feature-button:hover,.wapf-slider .sl-txt:hover {
-    background-color: var(--theme-dark);
+.button-area .feature-button:hover, .wapf-slider .sl-txt:hover {
+    background-color:var(--theme-dark)
 }
 
 .wac-contact-b {
-    font-size: 1.75em;
+    font-size: 1.5em;
     padding: .5em 1em;
-    margin: 2em 0 0;
+    margin: 5em 0 0;
     background-color: var(--theme-color);
     display: inline-block;
     color: var(--theme-white);
@@ -748,19 +755,23 @@ header .banner {}
 
 .wac-featured h3 {
     font-weight: 500;
+    font-family: var(--font-mono);
+    font-size: 1em;
+    margin: 1.25em 0;
 }
 
 .wac-contact-b:hover {
-    color: var(--theme-lgrey);
+    color:var(--theme-lgrey)
 }
 
 .wa-contact {
-    width: 75%;
+    width: 80%;
+    padding: 10em 0;
 }
 
 .wac-tags span {
     display: inline-block;
-    font-size: 1.5em;
+    font-size: 1.25em;
     margin: .25em;
     padding: .25em .5em;
     background-color: var(--theme-backdrop);
@@ -768,60 +779,95 @@ header .banner {}
     transition: .5s;
     cursor: crosshair;
 }
+
 .zen-mode {
     text-align: center;
     max-height: 17em;
-    margin: 0;
+    margin:0
 }
+
 .zen-mode img {
-    max-height: inherit;
+    max-height:inherit
 }
+
 .wa-contact h2 {
-    text-align: left;
+    text-align:left
 }
+
 .wac-tags span:hover {
-    background-color: var(--theme-light);
+    background-color:var(--theme-light)
 }
+
 .bolt-tag a {
     color: var(--theme-exgrey);
-    transition: .5s;
+    transition:.5s
 }
+
 .bolt-tag {
-    position: absolute;
+    position:absolute
 }
+
 .bolt-tag a:hover {
-    color: var(--theme-grey);
+    color:var(--theme-grey)
 }
+
 .wapf-info:hover .wapf-slider .sl-img img {
-    filter: grayscale(0);
+    filter:grayscale(0)
 }
 
 @media only screen and (max-width: 1200px) {
-    .wapf-img, .wapf-text,.wapf-text p{float: none;width: 100%;margin: 0;position: relative;text-align: center;right: 0;padding: 1em 0;}
-   .wapf-text h3{
-    margin-bottom: .5em;
-} .wap-social a{
-    text-align: center;
-}.wapf-slider{
-    display: none;
-}.wap-other .folder{
-    width: 80%;
-    margin: 1em 5%;
-    padding: 2em 5%;
-}.wap-info{
-    height: initial;
-}.wae-bl{
-    display: block;
-}.waa-pic{
-    float: none;
-    margin: 0 auto;
-    width: 50%;
-}.waa-pic img{
-    width: 100%;
-    margin: 0;
-}.wa-about{
-    padding: 5em 0 0;
-}.waa-about{
-    width: 90%;
-}
+    .wapf-img, .wapf-text, .wapf-text p {
+        float: none;
+        width: 100%;
+        margin: 0;
+        position: relative;
+        text-align: center;
+        right: 0;
+        padding:1em 0
+    }
+
+    .wapf-text h3 {
+        margin-bottom:.5em
+    }
+
+    .wap-social a {
+        text-align:center
+    }
+
+    .wapf-slider {
+        display:none
+    }
+
+    .wap-other .folder {
+        width: 80%;
+        margin: 1em 5%;
+        padding:2em 5%
+    }
+
+    .wap-info {
+        height:initial
+    }
+
+    .wae-bl {
+        display:block
+    }
+
+    .waa-pic {
+        float: none;
+        margin: 0 auto;
+        width:50%
+    }
+
+    .waa-pic img {
+        width: 100%;
+        margin:0
+    }
+
+    .wa-about {
+        padding:5em 0 0
+    }
+
+    .waa-about {
+        width: 90%
+    }
 }
