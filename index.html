@@ -7,32 +7,32 @@
         <title>mgks.dev - open source, problem solving and stories</title>
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
         <meta data-react-helmet="true" name="description" content="Hello, Ghazi here. I am an open source developer and I love building simple solutions for complex technical problems.">
-        <meta data-react-helmet="true" name="image" content="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/preview.png">
+        <meta data-react-helmet="true" name="image" content="{{site.baseurl}}/assets/images/preview.png">
         <meta data-react-helmet="true" property="og:title" content="mgks.dev - open source, problem solving and stories">
         <meta data-react-helmet="true" property="og:description" content="Hello, Ghazi here. I am an open source developer and I love building simple solutions for complex technical problems.">
-        <meta data-react-helmet="true" property="og:image" content="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/preview.png">
-        <meta data-react-helmet="true" property="og:url" content="https://mgks.dev/">
+        <meta data-react-helmet="true" property="og:image" content="{{site.baseurl}}/assets/images/preview.png">
+        <meta data-react-helmet="true" property="og:url" content="{{site.baseurl}}">
         <meta data-react-helmet="true" property="og:type" content="website">
         <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
         <meta data-react-helmet="true" name="twitter:creator" content="@enigmazi">
         <meta data-react-helmet="true" name="twitter:title" content="mgks.dev - open source, problem solving and stories">
         <meta data-react-helmet="true" name="twitter:description" content="Hello, Ghazi here. I am an open source developer and I love building simple solutions for complex technical problems.">
-        <meta data-react-helmet="true" name="twitter:image" content="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/preview.png">
+        <meta data-react-helmet="true" name="twitter:image" content="{{site.baseurl}}/assets/images/preview.png">
         <style data-styled="active" data-styled-version="5.3.0"></style>
 
-        <!--<link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml">
-        <link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous">-->
+        <link rel="sitemap" type="application/xml" href="{{site.baseurl}}/feed.xml">
+        <link rel="manifest" href="{{site.baseurl}}/manifest.webmanifest" crossorigin="anonymous">
 
-        <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-        <link rel="icon" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/144.png" type="image/png">
-        <link rel="apple-touch-icon" sizes="48x48" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/48.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/72.png">
-        <link rel="apple-touch-icon" sizes="96x96" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/96.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/144.png">
-        <link rel="apple-touch-icon" sizes="192x192" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/192.png">
-        <link rel="apple-touch-icon" sizes="256x256" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/256.png">
-        <link rel="apple-touch-icon" sizes="384x384" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/384.png">
-        <link rel="apple-touch-icon" sizes="512x512" href="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/fav/512.png">
+        <link rel="icon" type="image/x-icon" href="{{site.baseurl}}/assets/images/favicon.ico">
+        <link rel="icon" href="{{site.baseurl}}/assets/images/fav/144.png" type="image/png">
+        <link rel="apple-touch-icon" sizes="48x48" href="{{site.baseurl}}/assets/images/fav/48.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{site.baseurl}}/assets/images/fav/72.png">
+        <link rel="apple-touch-icon" sizes="96x96" href="{{site.baseurl}}/assets/images/fav/96.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{site.baseurl}}/assets/images/fav/144.png">
+        <link rel="apple-touch-icon" sizes="192x192" href="{{site.baseurl}}/assets/images/fav/192.png">
+        <link rel="apple-touch-icon" sizes="256x256" href="{{site.baseurl}}/assets/images/fav/256.png">
+        <link rel="apple-touch-icon" sizes="384x384" href="{{site.baseurl}}/assets/images/fav/384.png">
+        <link rel="apple-touch-icon" sizes="512x512" href="{{site.baseurl}}/assets/images/fav/512.png">
 
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTYS057VRC"></script>
@@ -106,7 +106,7 @@
                 document.getElementsByClassName("loading-logo")[0].classList.add('fade');
             }
          </script>-->
-         <link rel="stylesheet" href="assets/css/style.min.css" />
+         <link rel="stylesheet" href="{{site.baseurl}}/assets/css/style.min.css" />
     </head>
     <body>
         <!--<canvas></canvas>-->
@@ -117,13 +117,13 @@
             </div>
             <div class="menu">
                 <nav>
-                <a href="#projects" onclick="tab('wa-projects')"><span class="link hover-this">projects</span></a>
-                <a href="/blog"><span class="link hover-this">blog</span></a>
-                <a href="#experience" onclick="tab('wa-experience')"><span class="link hover-this">experience</span></a>
-                <a href="#">mgks<span class="banner" title="home">\.</span>dev</a>
-                <a href="#about" onclick="tab('wa-about')"><span class="link hover-this">about</span></a>
-                <a href="#contact" onclick="tab('wa-contact')"><span class="link hover-this">contact</span></a>
-                <a href="/resume.pdf"><span class="button">RESUME</span></a>
+                <a href="{{site.baseurl}}/#projects" onclick="tab('wa-projects')"><span class="link hover-this">projects</span></a>
+                <a href="{{site.baseurl}}/blog"><span class="link hover-this">blog</span></a>
+                <a href="{{site.baseurl}}/#experience" onclick="tab('wa-experience')"><span class="link hover-this">experience</span></a>
+                <a href="{{site.baseurl}}">mgks<span class="banner" title="home">\.</span>dev</a>
+                <a href="{{site.baseurl}}/#about" onclick="tab('wa-about')"><span class="link hover-this">about</span></a>
+                <a href="{{site.baseurl}}/#contact" onclick="tab('wa-contact')"><span class="link hover-this">contact</span></a>
+                <a href="{{site.baseurl}}/resume.pdf"><span class="button">RESUME</span></a>
                 <div class="cursor"></div>
                 </nav>
             </div>
@@ -142,7 +142,7 @@
             </ul>
         </div>
         <div class="work-area loading-hidden unfade">
-            <div class="zen-mode"><img title="zen by @qtqr8r" src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/hl03ngsp-zen.gif"><span class="bolt-tag"><a href="https://github.com/mgks/zen" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge-fill" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg></a></span></div>
+            <div class="zen-mode"><img title="zen by @qtqr8r" src="{{site.baseurl}}/assets/images/zen.gif"><span class="bolt-tag"><a href="https://github.com/mgks/zen" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge-fill" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg></a></span></div>
 
             <div id="home" class="wa-pgs wa-welcome wa-home">
                 <span class="waw-hello">Hi, my name is</span><span class="waw-name">Ghazi Khan.</span><span class="waw-work">I build simple solutions for complex web problems.</span><span class="waw-sub">I'm a self-taught software developer specializing in building and designing exceptional digital experiences. Currenly, I'm focused on building accessible open source solutions.</span>
@@ -152,27 +152,27 @@
                 <h2>Things I've Built</h2>
                 <div class="wap-projects">
                     <div class="wap-featured">
-                        <div class="wapf-img"><img src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/swv-art-c.png"></div>
+                        <div class="wapf-img"><img src="{{site.baseurl}}/assets/images/swv.jpg"></div>
                         <div class="wapf-text">
                             <b>Featured</b>
                             <h3>Android Smart WebView</h3>
                             <div class="wap-info"><p>Android framework built on Java to develop advanced hybrid webview applications integrated w/ native features to help create most advanced hybrid applications with ease.</p></div>
                             <div class="wap-technologies"><b>Android</b><b>Java</b><b>Firebase</b><b>HTML + CSS</b></div>
-                            <div class="wap-social"><a href="https://mgks.dev/blog/android-smart-webview"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/Android-SmartWebView"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                            <div class="wap-social"><a href="{{site.baseurl}}/blog/android-smart-webview"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/Android-SmartWebView"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                         </div>
                     </div>
                     <div class="wapf-info">
                         <p>More than <span class="highlight">250k+</span> android apps have been deployed till date with <span class="highlight">Smart WebView</span>, by thousands of developers globally.</p>
                         <div class="wapf-slider">
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/8XZCtNSn-unnamed-400x400.webp"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/czPhgJtp-unnamed-400x400.webp"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/TbWwh4SL-jump-300x300.webp"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/d0gakXhe-unnamed-400x400.webp"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/erEK0cPO-unnamed-400x400.webp"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/unnamed-400x400.webp"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/unnamed-300x300.jpg"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/wKfS5gFm-unnamed-400x400.webp"></span>
-                            <span class="sl-img"><img src="https://s3-ap-south-1.amazonaws.com/mgks.dev/cache/X3fKCwgD-unnamed-400x400.webp"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c1.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c2.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c3.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c4.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c5.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c6.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c7.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c8.jpg"></span>
+                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c9.jpg"></span>
                             <span class="sl-txt">&amp; More.</span>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                         <div class="folder">
                             <div class="wap-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><a href="https://mgks.dev/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Website</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mgks.dev"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                                <div class="wap-social"><a href="{{site.baseurl}}"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Website</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mgks.dev"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                             </div>
                             <h3>mgks.dev</h3>
                             <div class="wap-info"><p>Main website source code with WebGL canvas algorithm to design fluid backgrounds.</p></div>
@@ -189,7 +189,7 @@
                         <div class="folder">
                             <div class="wap-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="https://mgks.dev/blog/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                                <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                             </div>
                             <h3>os-fileup</h3>
                             <div class="wap-info"><p>Helper app to understand how to upload files and do basic image/video processing in hybrid android apps.</p></div>
@@ -198,7 +198,7 @@
                         <div class="folder">
                             <div class="wap-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><a href="https://mgks.dev/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mini-press"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                                <div class="wap-social"><a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mini-press"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                             </div>
                             <h3>mini-press</h3>
                             <div class="wap-info"><p>A minimal open source wordpress theme for neat bloggers.</p></div>
@@ -207,7 +207,7 @@
                         <div class="folder in-progress">
                             <div class="wap-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="https://mgks.dev/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/PaperlessQL"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                                <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/PaperlessQL"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                             </div>
                             <h3>PaperlessQL</h3>
                             <div class="wap-info"><b>IN DEVELOPMENT</b><p>Paperless Query Language for micro command management and hybrid device communations.</p></div>
@@ -216,7 +216,7 @@
                         <div class="folder in-progress">
                             <div class="wap-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="https://mgks.dev/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="hhttps://github.com/mgks/PaperlessQL-DB"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                                <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="hhttps://github.com/mgks/PaperlessQL-DB"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                             </div>
                             <h3>PaperlessQL-DB</h3>
                             <div class="wap-info"><b>IN DEVELOPMENT</b><p>Small text based micro data storage library to simply pull and push information in serverless files with minimal workload.</p></div>
@@ -225,7 +225,7 @@
                         <div class="folder in-progress">
                             <div class="wap-bar">
                                 <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="https://mgks.dev/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/Dhwani"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                                <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/Dhwani"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                             </div>
                             <h3>Dhwani</h3>
                             <div class="wap-info"><b>IN DEVELOPMENT</b><p>A machine learning based project to generate music based on user interest.</p></div>
@@ -288,7 +288,7 @@
             </div>
 
             <div id="about" class="wa-pgs wa-about">
-                <div class="waa-pic"><img src="https://s3.ap-south-1.amazonaws.com/mgks.dev/cache/117735571_3352160204835797_5118981377831630920_o.jpg"></div>
+                <div class="waa-pic"><img src="{{site.baseurl}}/assets/images/profile.jpg"></div>
                 <div class="waa-about"><p>Hello! My name is Ghazi Khan and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try building a web based music player, it was rocky start but taught me a lot about HTML & CSS!</p><p>Fast-forward to today, I’m building open source solutions and had the privilege of working with dozens of small to medium businesses, and hundreds of indie developers around the globe. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.</p><p>I also recently started my learning journey for Python and Machine Learning. Here are a few technologies/services I’ve been working with for some time now:</p>
                 <ul class="gl-tags"><li>AWS</li><li>PHP</li><li>HTML5 / CSS3</li></ul><ul class="gl-tags"><li>Android (Java)</li><li>MySQL</li><li>Wordpress</li></ul>
                 </div>
@@ -310,7 +310,7 @@
         <footer>
             <div class="foot-bracket"><div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div><div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div></div>
         </footer>
-        <!--<script src="https://mgks.dev/res/canvas.js" type="text/javascript"></script>
+        <!--<script src="{{site.baseurl}}/assets/js/canvas.js" type="text/javascript"></script>
         <script>/*
             (function () {
 

@@ -6,7 +6,7 @@ categories: [ conversations ]
 tags: [artificial intelligence, career, prompts]
 image: assets/images/b10.jpg
 description: "Significance of prompt engineering, its growing relevance, & the transformative impact it can have on the careers of engineers."
-featured: false
+featured: true
 hidden: false
 toc: false
 ---

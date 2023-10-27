@@ -6,7 +6,7 @@ categories: [ projects ]
 tags: [swv, android, ios, java, kotlin, webview]
 image: assets/images/b6.jpg
 description: "Smart WebView is a simple open source framework built to develop advanced hybrid webview applications with ease."
-featured: false
+featured: true
 hidden: false
 toc: false
 ---
