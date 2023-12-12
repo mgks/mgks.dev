@@ -64,8 +64,8 @@ By harnessing the power of AI, we can create a future where healthcare is more p
 
 **Here are some additional resources you may find helpful:**
 
-*The Future of AI in Healthcare: (https://www.mckinsey.com/industries/healthcare/our-insights/tackling-healthcares-biggest-burdens-with-generative-ai)*
+*The Future of AI in Healthcare: [https://www.mckinsey.com/industries/healthcare/our-insights/tackling-healthcares-biggest-burdens-with-generative-ai](https://www.mckinsey.com/industries/healthcare/our-insights/tackling-healthcares-biggest-burdens-with-generative-ai){:target="_blank"}{:rel="noopener noreferrer"}*
 
-*AI for Health: 10 Breakthroughs That Will Transform Medicine: (https://www.forbes.com/sites/geristengel/2022/07/13/ai-startup-speeds-healthcare-innovations-to-save-lives/)*
+*AI for Health: 10 Breakthroughs That Will Transform Medicine: [https://www.forbes.com/sites/geristengel/2022/07/13/ai-startup-speeds-healthcare-innovations-to-save-lives/](https://www.forbes.com/sites/geristengel/2022/07/13/ai-startup-speeds-healthcare-innovations-to-save-lives/){:target="_blank"}{:rel="noopener noreferrer"}*
 
-*World Health Organization: Artificial Intelligence for Health: (https://www.who.int/news/item/16-05-2023-who-calls-for-safe-and-ethical-ai-for-health)*
+*World Health Organization: Artificial Intelligence for Health: [https://www.who.int/news/item/16-05-2023-who-calls-for-safe-and-ethical-ai-for-health](https://www.who.int/news/item/16-05-2023-who-calls-for-safe-and-ethical-ai-for-health){:target="_blank"}{:rel="noopener noreferrer"}*
