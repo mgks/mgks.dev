@@ -12,8 +12,6 @@ hidden: false
 toc: false
 ---
 
-**From My Newsletter - What's up with AI**
-
 Remember 2023? Ah, yes, the year ChatGPT became our digital bard, composing sonnets and scripts while simultaneously sparking an existential crisis about the future of writing (and let's be honest, our jobs). But fear not, fellow homo sapiens, because 2024 is proving even wilder for the world of AI. Strap yourselves in, tech enthusiasts, as we hurtle down this rabbit hole of kemajuan teknolojik... or should I say, technological advancements?
 
 Last year, generative AI exploded like a rogue transformer, spewing out text with the finesse of a Shakespearean chatbot on Red Bull. We saw robots do parkour that would make Jackie Chan jealous, and surgical bots with hands steadier than a neurosurgeon fueled by espresso (because let's face it, AI doesn't need sleep, just processing power). But 2024... buckle up, buttercups, because things are getting personal.
