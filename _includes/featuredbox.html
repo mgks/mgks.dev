@@ -1,9 +1,17 @@
 <!-- begin post -->
 {% assign author = site.authors[post.author] %}
-<div class="col-md-6 mb-30px">
+    {% if post.topper %}
+        <div class="col-md-12 mb-30px">
+    {% else %}
+        <div class="col-md-6 mb-30px">
+    {% endif %}
     <div class="listfeaturedtag h-100">
         <div class="row h-100">
-            <div class="col-12 col-md-12 col-lg-5 pr-lg-0">
+            {% if post.topper %}
+                <div class="col-12 col-md-12 col-lg-6 pr-lg-0">
+            {% else %}
+                <div class="col-12 col-md-12 col-lg-12">
+            {% endif %}
                 <div class="h-100">
                     <div class="wrapthumbnail">
                         <a href="{{ site.baseurl }}{{ post.url }}">
@@ -16,7 +24,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-12 col-lg-7">
+            {% if post.topper %}
+                <div class="col-12 col-md-12 col-lg-6">
+            {% else %}
+                <div class="col-12 col-md-12 col-lg-12">
+            {% endif %}
                 <div class="h-100 card-group">
                     <div class="card">
                         <div class="card-body">
