@@ -6,7 +6,7 @@ categories: [ conversations ]
 tags: [intro, story]
 image: assets/images/b1.jpg
 description: "I’m Ghazi, and I created this blog to share some ideas, issues and solve problems related to programming."
-featured: true
+featured: false
 hidden: false
 ---
 
