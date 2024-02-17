@@ -6,7 +6,7 @@ categories: [ conversations ]
 tags: [artificial intelligence, health, llm]
 image: assets/images/b11.jpg
 description: "From personalized medicine and precision diagnostics to robotic surgery and AI-powered assistants, these innovations hold immense potential to improve patient outcomes, optimize healthcare delivery, and reduce costs."
-featured: true
+featured: false
 hidden: false
 toc: false
 ---
