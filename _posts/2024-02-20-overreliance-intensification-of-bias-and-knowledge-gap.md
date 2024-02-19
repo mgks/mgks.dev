@@ -4,7 +4,7 @@ title:  "Overreliance, Intensification of Bias and Knowledge Gap"
 author: ghazi
 categories: [ articles ]
 tags: [artificial intelligence, bias, tips]
-image: assets/images/b12.jpg
+image: assets/images/b13.jpg
 description: "A 2023 study in the Journal of Educational Psychology found students using AI writing assistants scored lower on comprehension tests compared to those writing manually."
 featured: true
 topper: true
