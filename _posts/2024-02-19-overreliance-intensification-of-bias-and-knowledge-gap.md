@@ -41,8 +41,10 @@ The future of AI shouldn't be a dystopian picture where robots do all the thinki
 
 We can discuss more about AI Bias in a separate article.
 
-[Subscribe to my weekly newsletter on LikedIn](https://www.linkedin.com/newsletters/7164151096125407232/) :)
+**[Subscribe to my weekly newsletter on LikedIn](https://www.linkedin.com/newsletters/7164151096125407232/) :)**
 
 *References:*
+
 *Anderson, M., & Perrin, A. (2022, October 27). Artificial intelligence and the future of learning. Pew Research Center. - [https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/](https://www.pewresearch.org/topic/internet-technology/emerging-technology/artificial-intelligence/)*
+
 *Papadopoulos, C., & Singer, M. (2023). When do students trust AI-generated text summaries more than their own comprehension? The role of perceived difficulty and cognitive load. Journal of Educational Psychology, 115(8), 1718-1735. - [https://journals.sagepub.com/doi/abs/10.1177/00332941211061696](https://journals.sagepub.com/doi/abs/10.1177/00332941211061696)*
