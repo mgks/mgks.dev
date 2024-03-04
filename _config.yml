@@ -5,7 +5,7 @@ description: "Hello, Ghazi here. I am an open source developer and I love buildi
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: https://mgks.dev
-google_analytics: 'UA-181730831-1'
+google_analytics: 'G-DTYS057VRC'
 disqus: 'mgksdev'
 mailchimp-list: ''
 include: ["_pages"]
