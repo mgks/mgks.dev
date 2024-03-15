@@ -11,6 +11,7 @@ topper: false
 hidden: false
 toc: false
 ---
+
 Greetings, AI aficionados! Ditch the paintbrushes and grab your keyboards, because this week we're diving headfirst into the realm of AI-powered creativity!
 
 ### DeepMind's Genie, Text to Game in a Flash!
