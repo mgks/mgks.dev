@@ -20,9 +20,9 @@ Remember those pixelated monstrosities that haunted the early days of text-to-im
 
 Sure, it's early days, and you might not be slaying dragons in a photorealistic Skyrim just yet. But the potential is mind-blowing. Think personalised game levels on the fly, educational adventures tailored to your learning style, or even creating custom content for existing games. Buckle up, because AI-powered gaming is closer than you think!
 
-DeepMind's paper, "Genie: Generative Interactive Environments" (https://arxiv.org/html/2402.15391v1), delves into the fascinating world of unsupervised learning. This means the AI doesn't need pre-labeled data (like millions of existing game levels) to learn. Instead, it explores the possibilities within a defined set of parameters, essentially learning by playing (or should we say, procedurally generating) the game itself.
+DeepMind's paper, "Genie: Generative Interactive Environments" ([https://arxiv.org/html/2402.15391v1](https://arxiv.org/html/2402.15391v1)), delves into the fascinating world of unsupervised learning. This means the AI doesn't need pre-labeled data (like millions of existing game levels) to learn. Instead, it explores the possibilities within a defined set of parameters, essentially learning by playing (or should we say, procedurally generating) the game itself.
 
-### The paper outlines a combination of techniques, including:
+**The paper outlines a combination of techniques, including:**
 
 Variational Autoencoders (VAEs): These powerful neural networks can compress information (like a game's environment or mechanics) into a latent space, allowing for efficient exploration of different game concepts.
 Policy Gradients: By rewarding the AI for creating playable and engaging experiences, the model learns to prioritise elements that make for a fun game.
@@ -32,13 +32,13 @@ Policy Gradients: By rewarding the AI for creating playable and engaging experie
 While DeepMind's research focuses on complex game generation, Google's Gemma offers a more user-friendly approach to AI creativity. This lightweight, open-source gem (pun intended!) empowers everyone to explore the world of AI art and text manipulation.
 
 Here's where Gemma shines:
-- Text-to-Image with a Twist: Similar to Stable Diffusion 3, Gemma can transform your wildest text prompts into captivating visuals. Craving a hyperrealistic depiction of a T-Rex wearing a tutu while judging a baking competition? Gemma's on it (although, the judging criteria might be a bit… primal).
-- Framework Flexibility: Whether you're a TensorFlow devotee or a PyTorch loyalist, Gemma integrates seamlessly with various frameworks. No need to rewrite all your code to unleash your inner AI artist.
-- Beyond Images: The Power of Text: Gemma doesn't stop at visuals. It can tackle tasks like text summarisation and retrieval-augmented generation (think of it as your AI brainstorming buddy, helping you generate creative text formats based on existing information). Imagine crafting compelling storylines for your AI-generated games!
+- **Text-to-Image with a Twist:** Similar to Stable Diffusion 3, Gemma can transform your wildest text prompts into captivating visuals. Craving a hyperrealistic depiction of a T-Rex wearing a tutu while judging a baking competition? Gemma's on it (although, the judging criteria might be a bit… primal).
+- **Framework Flexibility:** Whether you're a TensorFlow devotee or a PyTorch loyalist, Gemma integrates seamlessly with various frameworks. No need to rewrite all your code to unleash your inner AI artist.
+- **Beyond Images:** The Power of Text: Gemma doesn't stop at visuals. It can tackle tasks like text summarisation and retrieval-augmented generation (think of it as your AI brainstorming buddy, helping you generate creative text formats based on existing information). Imagine crafting compelling storylines for your AI-generated games!
 
 Gemma leverages a Transformer-based architecture, a powerful neural network design that excels at processing sequential data like text. This allows Gemma to not only analyse your text prompt but also understand the relationships between words, leading to more nuanced and creative outputs.
 
-For the code-savvy folks out there, the official Gemma GitHub repository (https://github.com/google-deepmind/gemma) provides a treasure trove of information, including pre-trained models and detailed explanations of the architecture.
+For the code-savvy folks out there, the official Gemma GitHub repository ([https://github.com/google-deepmind/gemma](https://github.com/google-deepmind/gemma)) provides a treasure trove of information, including pre-trained models and detailed explanations of the architecture.
 
 ### The Future is Written (or Generated) in Code
 
