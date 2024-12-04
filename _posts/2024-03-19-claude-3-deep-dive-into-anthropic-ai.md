@@ -4,7 +4,7 @@ title:  "Claude 3, A Deep Dive into Anthropic's Latest AI Powerhouse"
 author: ghazi
 categories: [ articles ]
 tags: [claude, artificial intelligence, anthropic, discussion]
-image: assets/images/b18.jpg
+image: assets/images/b18.png
 description: "The world of large language models (LLMs) is in a constant state of evolution, and Anthropic's recent unveiling of Claude 3 marks a significant leap forward."
 featured: false
 topper: false
