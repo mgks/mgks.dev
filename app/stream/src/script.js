@@ -43,13 +43,20 @@ function generateHash(password) {
 }
 
 // Function to get a pre-signed URL for a video
-function getPresignedUrl(key) {
+function getPresignedUrl(key, callback) {
     const params = {
         Bucket: bucketName,
         Key: key,
-        Expires: 3600 // URL expires in 1 hour (adjust as needed)
+        Expires: 3600
     };
-    return s3.getSignedUrl('getObject', params);
+    s3.getSignedUrl('getObject', params, (err, url) => {
+        if (err) {
+            console.error("Error generating pre-signed URL", err);
+            callback(null);
+        } else {
+            callback(url);
+        }
+    });
 }
 
 // Function to determine file type
@@ -64,107 +71,151 @@ function getFileType(key) {
     }
 }
 
-// Function to list all videos and create list items
 async function listAllVideos() {
-    const videoList = document.getElementById('videoList');
-    videoList.innerHTML = '';
     const allItems = await deepSearch('');
-    const folders = {};
+    const categories = {};
 
     allItems.forEach(item => {
         if (item.type === 'folder') {
-            folders[item.key] = {
-                items: []
+            const folderKey = item.key;
+            categories[folderKey] = {
+                items: [],
+                thumbnail: null
             };
-        } else if (item.type === 'video' || item.type === 'audio') {
-            // Assuming folders are listed before files
-            const folderKey = item.key.substring(0, item.key.lastIndexOf('/') + 1);
-            if (!folders[folderKey]) {
-                folders[folderKey] = {
-                    items: []
-                };
-            }
-            folders[folderKey].items.push(item);
         }
     });
 
-    // Function to create and append a video item element
-    function appendVideoItem(item) {
-        const listItem = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = '#';
+    allItems.forEach(item => {
+        if (item.type !== 'folder') {
+            const folderKey = item.key.substring(0, item.key.lastIndexOf('/') + 1);
+            if (folderKey === '') {
+                const fileType = getFileType(item.key);
+                if (fileType === 'video' || fileType === 'audio') {
+                    if (!categories['root']) {
+                        categories['root'] = { items: [], thumbnail: null };
+                    }
+                    categories['root'].items.push(item);
+                }
+            } else if (categories[folderKey]) {
+                categories[folderKey].items.push(item);
+            }
+        } else if (item.key.endsWith('/')) {
+            const potentialThumbnailKey = item.key + item.key.split('/').slice(-2, -1)[0] + '.jpg';
+            if (!categories[item.key].thumbnail) {
+                getPresignedUrl(potentialThumbnailKey, (url) => {
+                    if (url) {
+                        categories[item.key].thumbnail = url;
+                        updateCategoryDisplay(item.key, categories[item.key]);
+                    }
+                });
+            }
+        }
+    });
 
-        // Check for a thumbnail in the same folder
-        const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-        const thumbnailUrl = getPresignedUrl(thumbnailKey);
-        const thumbnailImg = new Image();
+    const categoriesContainer = document.getElementById('allVideos');
+    categoriesContainer.innerHTML = '';
 
-        thumbnailImg.onload = () => {
-            // Thumbnail exists, display it
-            const thumbnail = document.createElement('div');
-            thumbnail.classList.add('thumbnail');
-            thumbnail.appendChild(thumbnailImg);
-            link.appendChild(thumbnail);
-        };
+    function createCategoryElement(categoryKey, categoryData) {
+        const categoryElement = document.createElement('div');
+        categoryElement.classList.add('category-row');
+        categoryElement.id = 'category-' + categoryKey.replace(/[^a-zA-Z0-9]/g, '');
 
-        thumbnailImg.onerror = () => {
-            // Thumbnail does not exist, generate a placeholder
-            const placeholder = document.createElement('div');
-            placeholder.classList.add('thumbnail');
-            const firstLetter = item.key.split('/').pop().charAt(0).toUpperCase();
-            placeholder.textContent = firstLetter;
-            placeholder.style.backgroundColor = getRandomColor();
-            link.appendChild(placeholder);
-        };
+        const titleElement = document.createElement('h3');
+        titleElement.classList.add('category-title');
+        titleElement.textContent = categoryKey === 'root' ? 'Root' : categoryKey.replace(/\/$/, '');
+        categoryElement.appendChild(titleElement);
 
-        thumbnailImg.src = thumbnailUrl; // Set the source to trigger onload/onerror
+        const videoGrid = document.createElement('ul');
+        videoGrid.classList.add('video-grid');
+        categoryElement.appendChild(videoGrid);
 
-        const title = document.createElement('div');
-        title.classList.add('video-title');
-        title.textContent = item.key.split('/').pop();
-        link.appendChild(title);
+        if (categoryData.thumbnail) {
+            const img = new Image();
+            img.src = categoryData.thumbnail;
+            img.onload = () => {
+                titleElement.style.backgroundImage = `url(${categoryData.thumbnail})`;
+                titleElement.style.backgroundSize = 'cover';
+                titleElement.style.color = 'transparent';
+            };
+        }
 
-        link.addEventListener('click', () => {
-            const presignedUrl = getPresignedUrl(item.key);
-            playVideo(presignedUrl, item.type);
-            updateWatchHistory(item.key, presignedUrl);
+        categoryData.items.forEach(item => {
+            if (getFileType(item.key) !== 'other') {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = '#';
+
+                getPresignedUrl(item.key, (presignedUrl) => {
+                    if (presignedUrl) {
+                        const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
+                        getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
+                            const thumbnail = document.createElement('div');
+                            thumbnail.classList.add('thumbnail');
+
+                            if (thumbnailUrl) {
+                                const thumbnailImg = new Image();
+                                thumbnailImg.src = thumbnailUrl;
+                                thumbnailImg.onload = () => {
+                                    thumbnail.appendChild(thumbnailImg);
+                                };
+                                thumbnailImg.onerror = () => {
+                                    createPlaceholder(thumbnail, item.key);
+                                };
+                            } else {
+                                createPlaceholder(thumbnail, item.key);
+                            }
+
+                            link.appendChild(thumbnail);
+
+                            const title = document.createElement('div');
+                            title.classList.add('video-title');
+                            title.textContent = item.key.split('/').pop().replace(/\.[^/.]+$/, "");
+                            link.appendChild(title);
+
+                            link.addEventListener('click', () => {
+                                playVideo(presignedUrl, item.type);
+                                updateWatchHistory(item.key, presignedUrl);
+                            });
+                            const fileType = getFileType(item.key);
+                            if (fileType === 'video' || fileType === 'audio') {
+                                listItem.appendChild(link);
+                                videoGrid.appendChild(listItem);
+                            }
+                        });
+                    }
+                });
+
+                listItem.appendChild(link);
+                videoGrid.appendChild(listItem);
+            }
         });
 
-        listItem.appendChild(link);
-        videoList.appendChild(listItem);
+        return categoryElement;
     }
 
-    for (const folderKey in folders) {
-        if (folderKey !== '') {
-            const folderItem = document.createElement('li');
-            const folderLink = document.createElement('a');
-            folderLink.href = '#';
-            folderLink.classList.add('folder');
+    for (const categoryKey in categories) {
+        const categoryElement = createCategoryElement(categoryKey, categories[categoryKey]);
+        categoriesContainer.appendChild(categoryElement);
+    }
+}
 
-            // Add a folder icon or placeholder
-            const folderIcon = document.createElement('div');
-            folderIcon.classList.add('thumbnail');
-            folderIcon.textContent = '📁'; // Folder icon
-            folderLink.appendChild(folderIcon);
+function createPlaceholder(thumbnail, videoKey) {
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('thumbnail-placeholder');
+    const firstLetter = videoKey.split('/').pop().charAt(0).toUpperCase();
+    placeholder.textContent = firstLetter;
+    placeholder.style.backgroundColor = getColorForKey(videoKey);
+    thumbnail.appendChild(placeholder);
+}
 
-            const folderTitle = document.createElement('div');
-            folderTitle.classList.add('video-title');
-            folderTitle.textContent = folderKey.replace(/\/$/, '');
-            folderLink.appendChild(folderTitle);
-
-            folderLink.addEventListener('click', () => listVideos(folderKey));
-            folderItem.appendChild(folderLink);
-            videoList.appendChild(folderItem);
-
-            // Now list the files within this folder
-            folders[folderKey].items.forEach(item => {
-                appendVideoItem(item);
-            });
-        } else {
-            // Handle files in the root folder
-            folders[folderKey].items.forEach(item => {
-                appendVideoItem(item);
-            });
+function updateCategoryDisplay(categoryKey, categoryData) {
+    const categoryElement = document.getElementById('category-' + categoryKey.replace(/[^a-zA-Z0-9]/g, ''));
+    if (categoryElement) {
+        const titleElement = categoryElement.querySelector('.category-title');
+        if (categoryData.thumbnail) {
+            titleElement.style.backgroundImage = `url(${categoryData.thumbnail})`;
+            titleElement.style.backgroundSize = 'cover';
+            titleElement.style.color = 'transparent';
         }
     }
 }
@@ -177,10 +228,27 @@ function playVideo(url, fileType) {
         sources: [
             {
                 src: url,
-                type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg', // Adjust MIME type if needed
+                type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
             },
         ],
     };
+
+    // Request fullscreen
+    player.on('loadedmetadata', () => {
+        setTimeout(() => {
+            if (!player.fullscreen.active) {
+                player.fullscreen.enter();
+            }
+        }, 1000);
+    });
+
+    player.on('pause', () => {
+        player.fullscreen.exit();
+    });
+
+    player.on('ended', () => {
+        player.fullscreen.exit();
+    });
 }
 
 // Function to perform a deep search of the entire bucket
@@ -223,67 +291,70 @@ async function deepSearch(searchTerm) {
 
 // Function to display search results
 function displaySearchResults(results) {
-    const videoList = document.getElementById('videoList');
+    const videoList = document.getElementById('allVideos');
     videoList.innerHTML = '';
 
     if (results.length === 0) {
-        videoList.innerHTML = '<li>No results found.</li>';
+        const noResults = document.createElement('div');
+        noResults.textContent = 'No results found.';
+        videoList.appendChild(noResults);
         return;
     }
 
+    const resultGrid = document.createElement('ul');
+    resultGrid.classList.add('video-grid');
+    videoList.appendChild(resultGrid);
+
     results.forEach(item => {
-        const itemName = item.key;
         const listItem = document.createElement('li');
         const link = document.createElement('a');
         link.href = '#';
 
         if (item.type === 'folder') {
             link.classList.add('folder');
-            link.textContent = `[Folder] ${itemName}`;
+            link.textContent = `[Folder] ${item.key}`;
             link.addEventListener('click', () => {
                 listVideos(item.key);
             });
         } else if (item.type === 'video' || item.type === 'audio') {
-            const presignedUrl = getPresignedUrl(item.key);
-            
-            // Check for a thumbnail in the same folder
-            const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-            const thumbnailUrl = getPresignedUrl(thumbnailKey);
-            const thumbnailImg = new Image();
+            getPresignedUrl(item.key, (presignedUrl) => {
+                if (presignedUrl) {
+                    const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
+                    getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
+                        const thumbnail = document.createElement('div');
+                        thumbnail.classList.add('thumbnail');
 
-            thumbnailImg.onload = () => {
-                // Thumbnail exists, display it
-                const thumbnail = document.createElement('div');
-                thumbnail.classList.add('thumbnail');
-                thumbnail.appendChild(thumbnailImg);
-                link.appendChild(thumbnail);
-            };
+                        if (thumbnailUrl) {
+                            const thumbnailImg = new Image();
+                            thumbnailImg.src = thumbnailUrl;
+                            thumbnailImg.onload = () => {
+                                thumbnail.appendChild(thumbnailImg);
+                            };
+                            thumbnailImg.onerror = () => {
+                                createPlaceholder(thumbnail, item.key);
+                            };
+                        } else {
+                            createPlaceholder(thumbnail, item.key);
+                        }
 
-            thumbnailImg.onerror = () => {
-                // Thumbnail does not exist, generate a placeholder
-                const placeholder = document.createElement('div');
-                placeholder.classList.add('thumbnail');
-                const firstLetter = item.key.split('/').pop().charAt(0).toUpperCase();
-                placeholder.textContent = firstLetter;
-                placeholder.style.backgroundColor = getRandomColor();
-                link.appendChild(placeholder);
-            };
+                        link.appendChild(thumbnail);
 
-            thumbnailImg.src = thumbnailUrl; // Set the source to trigger onload/onerror
+                        const title = document.createElement('div');
+                        title.classList.add('video-title');
+                        title.textContent = item.key.split('/').pop().replace(/\.[^/.]+$/, "");
+                        link.appendChild(title);
 
-            const title = document.createElement('div');
-            title.classList.add('video-title');
-            title.textContent = itemName.split('/').pop();
-            link.appendChild(title);
-
-            link.addEventListener('click', () => {
-                playVideo(presignedUrl, item.type);
-                updateWatchHistory(item.key, presignedUrl);
+                        link.addEventListener('click', () => {
+                            playVideo(presignedUrl, item.type);
+                            updateWatchHistory(item.key, presignedUrl);
+                        });
+                    });
+                }
             });
         }
 
         listItem.appendChild(link);
-        videoList.appendChild(listItem);
+        resultGrid.appendChild(listItem);
     });
 }
 
@@ -305,24 +376,28 @@ document.getElementById('search').addEventListener('input', filterVideos);
 
 // Function to toggle dark mode
 function toggleTheme() {
-    document.body.classList.toggle('dark-mode');
+    document.body.classList.toggle('light-mode');
     const themeToggle = document.getElementById('themeToggle');
-    if (document.body.classList.contains('dark-mode')) {
-        themeToggle.textContent = 'Light Mode';
-    } else {
+    if (document.body.classList.contains('light-mode')) {
         themeToggle.textContent = 'Dark Mode';
+    } else {
+        themeToggle.textContent = 'Light Mode';
     }
 }
 
 // Add event listener to the theme toggle button
 document.getElementById('themeToggle').addEventListener('click', toggleTheme);
 
-// Function to get a random color for video placeholders
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
+// Function to get a consistent color for video placeholders
+function getColorForKey(key) {
+    let hash = 0;
+    for (let i = 0; i < key.length; i++) {
+        hash = key.charCodeAt(i) + ((hash << 5) - hash);
+    }
     let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+    for (let i = 0; i < 3; i++) {
+        const value = (hash >> (i * 8)) & 0xFF;
+        color += ('00' + value.toString(16)).substr(-2);
     }
     return color;
 }
@@ -330,19 +405,6 @@ function getRandomColor() {
 // Updated function to list videos and create list items
 async function listVideos(prefix = '') {
     currentPath = prefix;
-
-    // Back button logic
-    const backButton = document.getElementById('backButton');
-    if (prefix === '') {
-        backButton.style.display = 'none';
-    } else {
-        backButton.style.display = 'inline-block';
-        backButton.onclick = () => {
-            const parentPath = prefix.substring(0, prefix.lastIndexOf('/', prefix.length - 2) + 1);
-            listVideos(parentPath);
-        };
-    }
-
     document.getElementById('search').value = '';
     filterVideos();
 }
@@ -350,12 +412,13 @@ async function listVideos(prefix = '') {
 // Function to update watch history
 function updateWatchHistory(videoKey, videoUrl) {
     let history = JSON.parse(localStorage.getItem('watchHistory')) || [];
+    const watchedTime = player.currentTime;
 
     // Remove the video from history if it already exists
     history = history.filter(item => item.key !== videoKey);
 
     // Add the video to the beginning of the history
-    history.unshift({ key: videoKey, url: videoUrl });
+    history.unshift({ key: videoKey, url: videoUrl, time: watchedTime });
 
     // Limit the history to 10 items
     history = history.slice(0, 10);
@@ -383,39 +446,61 @@ function loadWatchHistory() {
 
             // Add a thumbnail or placeholder
             const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-            const thumbnailUrl = getPresignedUrl(thumbnailKey);
-            const thumbnailImg = new Image();
-
-            thumbnailImg.onload = () => {
+            
+            getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
                 const thumbnail = document.createElement('div');
                 thumbnail.classList.add('thumbnail');
-                thumbnail.appendChild(thumbnailImg);
+
+                if (thumbnailUrl) {
+                    const thumbnailImg = new Image();
+                    thumbnailImg.src = thumbnailUrl;
+                    thumbnailImg.onload = () => {
+                        thumbnail.appendChild(thumbnailImg);
+                    };
+                    thumbnailImg.onerror = () => {
+                        createPlaceholder(thumbnail, item.key);
+                    };
+                } else {
+                    createPlaceholder(thumbnail, item.key);
+                }
+
                 link.appendChild(thumbnail);
-            };
 
-            thumbnailImg.onerror = () => {
-                const placeholder = document.createElement('div');
-                placeholder.classList.add('thumbnail');
-                const firstLetter = item.key.split('/').pop().charAt(0).toUpperCase();
-                placeholder.textContent = firstLetter;
-                placeholder.style.backgroundColor = getRandomColor();
-                link.appendChild(placeholder);
-            };
+                const title = document.createElement('div');
+                title.classList.add('video-title');
+                title.textContent = item.key.split('/').pop().replace(/\.[^/.]+$/, "");
+                link.appendChild(title);
 
-            thumbnailImg.src = thumbnailUrl;
+                // Add a progress bar
+                const progressBar = document.createElement('div');
+                progressBar.classList.add('progress-bar');
+                
+                getPresignedUrl(item.key, (presignedUrl) => {
+                    if (presignedUrl) {
+                        const video = document.createElement('video');
+                        video.src = presignedUrl;
+                        video.addEventListener('loadedmetadata', () => {
+                            const duration = video.duration;
+                            const progress = (item.time / duration) * 100;
+                            progressBar.style.width = `${progress}%`;
+                        });
+                    }
+                });
+                thumbnail.appendChild(progressBar);
 
-            const title = document.createElement('div');
-            title.classList.add('video-title');
-            title.textContent = item.key.split('/').pop();
-            link.appendChild(title);
+                link.addEventListener('click', () => {
+                    getPresignedUrl(item.key, (presignedUrl) => {
+                        if (presignedUrl) {
+                            playVideo(presignedUrl, getFileType(item.key));
+                            updateWatchHistory(item.key, presignedUrl);
+                            player.currentTime = item.time || 0;
+                        }
+                    });
+                });
 
-            link.addEventListener('click', () => {
-                playVideo(item.url, getFileType(item.key));
-                updateWatchHistory(item.key, item.url);
+                listItem.appendChild(link);
+                watchHistoryDiv.appendChild(listItem);
             });
-
-            listItem.appendChild(link);
-            watchHistoryDiv.appendChild(listItem);
         });
     } else {
         watchHistoryHeading.style.display = 'none';

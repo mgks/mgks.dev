@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Private Video Streaming</title>
+    <title>StreamIt</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
@@ -17,9 +17,11 @@
 
     <div class="container">
         <div class="top-bar">
-            <button id="themeToggle">Dark Mode</button>
-            <button id="backButton" style="display: none;">Back</button>
-            <input type="text" id="search" placeholder="Search videos..." />
+            <h1 id="site-title">StreamIt</h1>
+            <div class="settings">
+                <button id="themeToggle">Light Mode</button>
+                <input type="text" id="search" placeholder="Search videos..." />
+            </div>
         </div>
         <div id="video-container">
             <video id="player" controls crossorigin playsinline></video>
@@ -27,8 +29,7 @@
         <div id="categories">
             <h3 id="watchHistoryHeading" style="display: none;">Watch History</h3>
             <div id="watchHistory" class="video-grid"></div>
-            <h3 id="allVideosHeading">All Videos</h3>
-            <div id="videoList" class="video-grid"></div>
+            <div id="allVideos" class="categories-grid"></div>
         </div>
     </div>
 
