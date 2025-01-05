@@ -1,34 +1,19 @@
-:root {
-    --bg-color: #f8f8f8;
-    --text-color: #000;
-    --container-bg: #fff;
-    --container-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    --link-hover-bg: #f0f0f0;
-}
-
-.dark-mode {
-    --bg-color: #222;
-    --text-color: #eee;
-    --container-bg: #333;
-    --container-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
-    --link-hover-bg: #444;
-}
-
 body {
-    font-family: sans-serif;
-    margin: 20px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: none; /* Initially hide the main container */
-    background-color: var(--container-bg);
-    box-shadow: var(--container-shadow);
-    border-radius: 5px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    display: none;
 }
 
 #auth {
@@ -36,13 +21,53 @@ body {
     margin: 0 auto;
     text-align: center;
     background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
+#auth h2 {
+    margin-bottom: 20px;
+}
+
+#auth input[type="password"] {
+    width: 70%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#auth button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#auth button:hover {
+    background-color: #0056b3;
+}
+
+#authMessage {
+    color: #dc3545;
+    margin-top: 10px;
+}
+
+#video-container {
+    display: none;
+    margin-bottom: 20px;
+}
+
+#player {
+    width: 100%;
+    max-height: 500px;
+}
+
 #videoList {
-    margin-top: 20px;
     list-style: none;
     padding: 0;
 }
@@ -53,55 +78,92 @@ body {
 
 #videoList li a {
     display: block;
-    padding: 10px;
-    border: 1px solid #ccc;
+    padding: 12px 15px;
     text-decoration: none;
-    color: #000;
-    border-radius: 3px;
-    transition: background-color 0.2s;
+    color: #333;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    transition: background-color 0.3s;
 }
 
 #videoList li a:hover {
-    background-color: var(--link-hover-bg);
+    background-color: #e9e9e9;
 }
 
 .folder {
     font-weight: bold;
-}
-
-#player {
-    width: 100%;
-    margin-bottom: 20px;
+    color: #007bff;
 }
 
 #search {
-    width: 100%;
+    width: calc(100% - 22px);
     padding: 10px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 3px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-#video-container {
-    display: none; /* Initially hide the video player */
+#backButton {
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #6c757d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: none;
 }
 
-#authMessage{
-    color: red;
+#backButton:hover {
+    background-color: #5a6268;
 }
 
-@media (max-width: 600px) {
-    .container, #auth {
-        margin: 10px;
-        padding: 10px;
-    }
+#themeToggle {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-    #videoList li a {
-        padding: 8px;
-    }
+#themeToggle:hover {
+    background-color: #218838;
+}
 
-    #search {
-        padding: 8px;
-    }
+.dark-mode {
+    --bg-color: #222;
+    --text-color: #eee;
+    --container-bg: #333;
+    --container-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    --link-hover-bg: #444;
+}
+
+.dark-mode body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.dark-mode .container, .dark-mode #auth {
+    background-color: var(--container-bg);
+    box-shadow: var(--container-shadow);
+}
+
+.dark-mode #videoList li a {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--text-color);
+}
+
+.dark-mode #videoList li a:hover {
+    background-color: var(--link-hover-bg);
+}
+
+.dark-mode #search, .dark-mode input[type="password"] {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-color: var(--text-color);
 }

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="src/style.css" />
 </head>
 <body>
-    <button id="themeToggle">Toggle Theme</button>
     <div id="auth">
         <h2>Enter Password:</h2>
         <input type="password" id="password" />
@@ -17,6 +16,8 @@
     </div>
 
     <div class="container">
+        <button id="themeToggle">Dark Mode</button>
+        <button id="backButton" style="display: none;">Back</button>
         <input type="text" id="search" placeholder="Search videos..." />
         <div id="video-container">
             <video id="player" controls crossorigin playsinline></video>
