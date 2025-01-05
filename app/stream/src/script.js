@@ -14,8 +14,9 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 const s3 = new AWS.S3();
 
 // Supported video and audio file extensions
-const supportedVideoFormats = ['.mp4', '.mkv', '.3gp'];
-const supportedAudioFormats = ['.mp3'];
+const supportedVideoFormats = ['.mp4', '.mkv', '.3gp', '.webm', '.ogg', '.ogv', '.avi', '.mov', '.wmv'];
+const supportedAudioFormats = ['.mp3', '.wav', '.aac', '.flac', '.ogg', '.wma'];
+const supportedSubtitleFormats = ['.srt', '.vtt', '.ass', '.ssa'];
 
 // Global variable to store the current path/prefix
 let currentPath = '';
@@ -66,6 +67,8 @@ function getFileType(key) {
         return 'video';
     } else if (supportedAudioFormats.includes(extension)) {
         return 'audio';
+    } else if (supportedSubtitleFormats.includes(extension)) {
+        return 'subtitle';
     } else {
         return 'other';
     }
@@ -73,250 +76,15 @@ function getFileType(key) {
 
 async function listAllVideos() {
     const allItems = await deepSearch('');
-    const categories = {};
-
-    allItems.forEach(item => {
-        if (item.type === 'folder') {
-            const folderKey = item.key;
-            categories[folderKey] = {
-                items: [],
-                thumbnail: null
-            };
-        }
-    });
-
-    allItems.forEach(item => {
-        if (item.type !== 'folder') {
-            const folderKey = item.key.substring(0, item.key.lastIndexOf('/') + 1);
-            if (folderKey === '') {
-                const fileType = getFileType(item.key);
-                if (fileType === 'video' || fileType === 'audio') {
-                    if (!categories['root']) {
-                        categories['root'] = { items: [], thumbnail: null };
-                    }
-                    categories['root'].items.push(item);
-                }
-            } else if (categories[folderKey]) {
-                categories[folderKey].items.push(item);
-            }
-        } else if (item.key.endsWith('/')) {
-            const potentialThumbnailKey = item.key + item.key.split('/').slice(-2, -1)[0] + '.jpg';
-            if (!categories[item.key].thumbnail) {
-                getPresignedUrl(potentialThumbnailKey, (url) => {
-                    if (url) {
-                        categories[item.key].thumbnail = url;
-                        updateCategoryDisplay(item.key, categories[item.key]);
-                    }
-                });
-            }
-        }
-    });
-
-    const categoriesContainer = document.getElementById('allVideos');
-    categoriesContainer.innerHTML = '';
-
-    function createCategoryElement(categoryKey, categoryData) {
-        const categoryElement = document.createElement('div');
-        categoryElement.classList.add('category-row');
-        categoryElement.id = 'category-' + categoryKey.replace(/[^a-zA-Z0-9]/g, '');
-
-        const titleElement = document.createElement('h3');
-        titleElement.classList.add('category-title');
-        titleElement.textContent = categoryKey === 'root' ? 'Root' : categoryKey.replace(/\/$/, '');
-        categoryElement.appendChild(titleElement);
-
-        const videoGrid = document.createElement('ul');
-        videoGrid.classList.add('video-grid');
-        categoryElement.appendChild(videoGrid);
-
-        if (categoryData.thumbnail) {
-            const img = new Image();
-            img.src = categoryData.thumbnail;
-            img.onload = () => {
-                titleElement.style.backgroundImage = `url(${categoryData.thumbnail})`;
-                titleElement.style.backgroundSize = 'cover';
-                titleElement.style.color = 'transparent';
-            };
-        }
-
-        categoryData.items.forEach(item => {
-            if (getFileType(item.key) !== 'other') {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = '#';
-
-                getPresignedUrl(item.key, (presignedUrl) => {
-                    if (presignedUrl) {
-                        const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-                        getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
-                            const thumbnail = document.createElement('div');
-                            thumbnail.classList.add('thumbnail');
-
-                            if (thumbnailUrl) {
-                                const thumbnailImg = new Image();
-                                thumbnailImg.src = thumbnailUrl;
-                                thumbnailImg.onload = () => {
-                                    thumbnail.appendChild(thumbnailImg);
-                                };
-                                thumbnailImg.onerror = () => {
-                                    createPlaceholder(thumbnail, item.key);
-                                };
-                            } else {
-                                createPlaceholder(thumbnail, item.key);
-                            }
-
-                            link.appendChild(thumbnail);
-
-                            const title = document.createElement('div');
-                            title.classList.add('video-title');
-                            title.textContent = item.key.split('/').pop().replace(/\.[^/.]+$/, "");
-                            link.appendChild(title);
-
-                            link.addEventListener('click', () => {
-                                playVideo(presignedUrl, item.type);
-                                updateWatchHistory(item.key, presignedUrl);
-                            });
-                            const fileType = getFileType(item.key);
-                            if (fileType === 'video' || fileType === 'audio') {
-                                listItem.appendChild(link);
-                                videoGrid.appendChild(listItem);
-                            }
-                        });
-                    }
-                });
-
-                listItem.appendChild(link);
-                videoGrid.appendChild(listItem);
-            }
-        });
-
-        return categoryElement;
-    }
-
-    for (const categoryKey in categories) {
-        const categoryElement = createCategoryElement(categoryKey, categories[categoryKey]);
-        categoriesContainer.appendChild(categoryElement);
-    }
-}
-
-function createPlaceholder(thumbnail, videoKey) {
-    const placeholder = document.createElement('div');
-    placeholder.classList.add('thumbnail-placeholder');
-    const firstLetter = videoKey.split('/').pop().charAt(0).toUpperCase();
-    placeholder.textContent = firstLetter;
-    placeholder.style.backgroundColor = getColorForKey(videoKey);
-    thumbnail.appendChild(placeholder);
-}
-
-function updateCategoryDisplay(categoryKey, categoryData) {
-    const categoryElement = document.getElementById('category-' + categoryKey.replace(/[^a-zA-Z0-9]/g, ''));
-    if (categoryElement) {
-        const titleElement = categoryElement.querySelector('.category-title');
-        if (categoryData.thumbnail) {
-            titleElement.style.backgroundImage = `url(${categoryData.thumbnail})`;
-            titleElement.style.backgroundSize = 'cover';
-            titleElement.style.color = 'transparent';
-        }
-    }
-}
-
-// Function to play a video or audio using Plyr
-function playVideo(url, fileType) {
-    document.getElementById('video-container').style.display = 'block';
-    player.source = {
-        type: fileType,
-        sources: [
-            {
-                src: url,
-                type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
-            },
-        ],
-    };
-
-    // Request fullscreen
-    player.on('loadedmetadata', () => {
-        setTimeout(() => {
-            if (!player.fullscreen.active) {
-                player.fullscreen.enter();
-            }
-        }, 1000);
-    });
-
-    player.on('pause', () => {
-        player.fullscreen.exit();
-    });
-
-    player.on('ended', () => {
-        player.fullscreen.exit();
-    });
-}
-
-// Function to perform a deep search of the entire bucket
-async function deepSearch(searchTerm) {
-    const allItems = [];
-
-    async function listAllObjects(prefix = '', continuationToken = null) {
-        const params = {
-            Bucket: bucketName,
-            Delimiter: '/',
-            Prefix: prefix,
-            ContinuationToken: continuationToken
-        };
-
-        const data = await s3.listObjectsV2(params).promise();
-
-        data.CommonPrefixes.forEach(folder => {
-            allItems.push({ type: 'folder', key: folder.Prefix });
-        });
-
-        data.Contents.forEach(item => {
-            allItems.push({ type: getFileType(item.Key), key: item.Key });
-        });
-
-        if (data.IsTruncated) {
-            await listAllObjects(prefix, data.NextContinuationToken);
-        }
-    }
-
-    await listAllObjects();
-
-    if (searchTerm) {
-        const filteredItems = allItems.filter(item => item.key.toLowerCase().includes(searchTerm.toLowerCase()));
-        displaySearchResults(filteredItems);
-        return [];
-    } else {
-        return allItems;
-    }
-}
-
-// Function to display search results
-function displaySearchResults(results) {
-    const videoList = document.getElementById('allVideos');
+    const videoList = document.getElementById('videoList');
     videoList.innerHTML = '';
 
-    if (results.length === 0) {
-        const noResults = document.createElement('div');
-        noResults.textContent = 'No results found.';
-        videoList.appendChild(noResults);
-        return;
-    }
+    allItems.forEach(item => {
+        if (getFileType(item.key) === 'video' || getFileType(item.key) === 'audio') {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#';
 
-    const resultGrid = document.createElement('ul');
-    resultGrid.classList.add('video-grid');
-    videoList.appendChild(resultGrid);
-
-    results.forEach(item => {
-        const listItem = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = '#';
-
-        if (item.type === 'folder') {
-            link.classList.add('folder');
-            link.textContent = `[Folder] ${item.key}`;
-            link.addEventListener('click', () => {
-                listVideos(item.key);
-            });
-        } else if (item.type === 'video' || item.type === 'audio') {
             getPresignedUrl(item.key, (presignedUrl) => {
                 if (presignedUrl) {
                     const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
@@ -341,21 +109,183 @@ function displaySearchResults(results) {
 
                         const title = document.createElement('div');
                         title.classList.add('video-title');
-                        title.textContent = item.key.split('/').pop().replace(/\.[^/.]+$/, "");
+                        title.textContent = item.key.replace(/\.[^/.]+$/, "");
                         link.appendChild(title);
 
                         link.addEventListener('click', () => {
-                            playVideo(presignedUrl, item.type);
+                            playVideo(presignedUrl, item.type, item.key);
                             updateWatchHistory(item.key, presignedUrl);
                         });
+
+                        listItem.appendChild(link);
+                        videoList.appendChild(listItem);
                     });
                 }
             });
         }
-
-        listItem.appendChild(link);
-        resultGrid.appendChild(listItem);
     });
+}
+
+function createPlaceholder(thumbnail, videoKey) {
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('thumbnail-placeholder');
+    const firstLetter = videoKey.charAt(0).toUpperCase();
+    placeholder.textContent = firstLetter;
+    placeholder.style.backgroundColor = getColorForKey(videoKey);
+    thumbnail.appendChild(placeholder);
+}
+
+// Function to play a video or audio using Plyr
+function playVideo(url, fileType, videoKey) {
+    document.getElementById('video-container').style.display = 'block';
+    document.getElementById('search').style.display = 'none';
+    document.getElementById('allVideosHeading').style.display = 'none';
+    document.getElementById('watchHistoryHeading').style.display = 'none';
+    document.getElementById('videoList').style.display = 'none';
+    document.getElementById('watchHistory').style.display = 'none';
+    document.getElementById('backButton').style.display = 'inline-block';
+
+    // Check for subtitles
+    let subtitleTracks = [];
+    supportedSubtitleFormats.forEach(format => {
+        const subtitleKey = videoKey.replace(/\.[^/.]+$/, format);
+        getPresignedUrl(subtitleKey, (subtitleUrl) => {
+            if (subtitleUrl) {
+                subtitleTracks.push({
+                    kind: 'captions',
+                    label: format.toUpperCase(),
+                    srclang: 'en', // You can modify the language code if needed
+                    src: subtitleUrl,
+                    default: true
+                });
+            }
+        });
+    });
+
+    player.source = {
+        type: fileType,
+        sources: [{
+            src: url,
+            type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
+        }],
+        tracks: subtitleTracks
+    };
+
+    setTimeout(() => {
+        if (!player.fullscreen.active) {
+            player.fullscreen.enter();
+        }
+    }, 500);
+
+    // Add event listener for 'enterfullscreen' event
+    player.on('enterfullscreen', () => {
+        // Hide the close button when entering fullscreen
+        document.getElementById('closePlayer').style.display = 'none';
+    });
+
+    // Add event listener for 'exitfullscreen' event
+    player.on('exitfullscreen', () => {
+        // Show the close button when exiting fullscreen
+        document.getElementById('closePlayer').style.display = 'block';
+    });
+}
+
+// Function to perform a deep search of the entire bucket
+async function deepSearch(searchTerm) {
+    document.getElementById('videoList').style.display = 'none';
+    document.getElementById('watchHistory').style.display = 'none';
+    const allItems = [];
+
+    async function listAllObjects(prefix = '', continuationToken = null) {
+        const params = {
+            Bucket: bucketName,
+            Prefix: prefix,
+            ContinuationToken: continuationToken
+        };
+
+        const data = await s3.listObjectsV2(params).promise();
+
+        data.Contents.forEach(item => {
+            allItems.push({ type: getFileType(item.Key), key: item.Key });
+        });
+
+        if (data.IsTruncated) {
+            await listAllObjects(prefix, data.NextContinuationToken);
+        }
+    }
+
+    await listAllObjects();
+
+    if (searchTerm) {
+        const filteredItems = allItems.filter(item => item.key.toLowerCase().includes(searchTerm.toLowerCase()));
+        displaySearchResults(filteredItems);
+        return [];
+    } else {
+        return allItems;
+    }
+}
+
+// Function to display search results
+function displaySearchResults(results) {
+    const videoList = document.getElementById('videoList');
+    videoList.innerHTML = '';
+
+    if (results.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.textContent = 'No results found.';
+        videoList.appendChild(noResults);
+        return;
+    }
+
+    const resultGrid = document.createElement('ul');
+    resultGrid.classList.add('video-grid');
+    videoList.appendChild(resultGrid);
+
+    results.forEach(item => {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = '#';
+
+         if (item.type === 'video' || item.type === 'audio') {
+            getPresignedUrl(item.key, (presignedUrl) => {
+                if (presignedUrl) {
+                    const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
+                    getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
+                        const thumbnail = document.createElement('div');
+                        thumbnail.classList.add('thumbnail');
+
+                        if (thumbnailUrl) {
+                            const thumbnailImg = new Image();
+                            thumbnailImg.src = thumbnailUrl;
+                            thumbnailImg.onload = () => {
+                                thumbnail.appendChild(thumbnailImg);
+                            };
+                            thumbnailImg.onerror = () => {
+                                createPlaceholder(thumbnail, item.key);
+                            };
+                        } else {
+                            createPlaceholder(thumbnail, item.key);
+                        }
+
+                        link.appendChild(thumbnail);
+
+                        const title = document.createElement('div');
+                        title.classList.add('video-title');
+                        title.textContent = item.key.replace(/\.[^/.]+$/, "");
+                        link.appendChild(title);
+
+                        link.addEventListener('click', () => {
+                            playVideo(presignedUrl, item.type, item.key);
+                            updateWatchHistory(item.key, presignedUrl);
+                        });
+                        listItem.appendChild(link);
+                        resultGrid.appendChild(listItem);
+                    });
+                }
+            });
+        }
+    });
+    videoList.style.display = 'flex';
 }
 
 // Modify the filterVideos function to use deepSearch
@@ -400,13 +330,6 @@ function getColorForKey(key) {
         color += ('00' + value.toString(16)).substr(-2);
     }
     return color;
-}
-
-// Updated function to list videos and create list items
-async function listVideos(prefix = '') {
-    currentPath = prefix;
-    document.getElementById('search').value = '';
-    filterVideos();
 }
 
 // Function to update watch history
@@ -468,7 +391,7 @@ function loadWatchHistory() {
 
                 const title = document.createElement('div');
                 title.classList.add('video-title');
-                title.textContent = item.key.split('/').pop().replace(/\.[^/.]+$/, "");
+                title.textContent = item.key.replace(/\.[^/.]+$/, "");
                 link.appendChild(title);
 
                 // Add a progress bar
@@ -491,7 +414,7 @@ function loadWatchHistory() {
                 link.addEventListener('click', () => {
                     getPresignedUrl(item.key, (presignedUrl) => {
                         if (presignedUrl) {
-                            playVideo(presignedUrl, getFileType(item.key));
+                            playVideo(presignedUrl, getFileType(item.key), item.key);
                             updateWatchHistory(item.key, presignedUrl);
                             player.currentTime = item.time || 0;
                         }
@@ -506,3 +429,30 @@ function loadWatchHistory() {
         watchHistoryHeading.style.display = 'none';
     }
 }
+
+function closePlayer() {
+    player.pause();
+    player.currentTime = 0;
+
+    document.getElementById('video-container').style.display = 'none';
+    document.getElementById('search').style.display = 'block';
+    document.getElementById('allVideosHeading').style.display = 'block';
+    document.getElementById('videoList').style.display = 'flex';
+    document.getElementById('backButton').style.display = 'none';
+
+    if (localStorage.getItem('watchHistory') && JSON.parse(localStorage.getItem('watchHistory')).length > 0) {
+        document.getElementById('watchHistoryHeading').style.display = 'block';
+        document.getElementById('watchHistory').style.display = 'flex';
+    }
+
+    const searchTerm = document.getElementById('search').value;
+    if (searchTerm) {
+        deepSearch(searchTerm);
+    } else {
+        listAllVideos();
+    }
+}
+
+document.getElementById('backButton').addEventListener('click', () => {
+    closePlayer();
+});

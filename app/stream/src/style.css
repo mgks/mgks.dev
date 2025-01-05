@@ -21,7 +21,7 @@ body {
     width: 100%;
 }
 
-.settings {
+.left-buttons, .right-buttons {
     display: flex;
     align-items: center;
 }
@@ -70,14 +70,10 @@ body {
     margin-top: 10px;
 }
 
-#site-title {
-    color: #eee;
-    margin-right: auto;
-}
-
 #video-container {
     display: none;
     margin-bottom: 20px;
+    position: relative;
 }
 
 #player {
@@ -85,22 +81,7 @@ body {
     max-height: 500px;
 }
 
-.categories-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.category-row {
-    margin-bottom: 20px;
-}
-
-.category-title {
-    color: #eee;
-    margin-bottom: 10px;
-}
-
-.video-grid {
+#videoList {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
@@ -108,12 +89,12 @@ body {
     padding: 0;
 }
 
-.video-grid li {
-    flex: 0 0 calc(25% - 15px);
+#videoList li {
+    flex: 1 0 20%;
     box-sizing: border-box;
 }
 
-.video-grid li a {
+#videoList li a {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -125,8 +106,13 @@ body {
     transition: background-color 0.3s;
 }
 
-.video-grid li a:hover {
+#videoList li a:hover {
     background-color: #444;
+}
+
+.folder {
+    font-weight: bold;
+    color: #007bff;
 }
 
 #search {
@@ -136,6 +122,26 @@ body {
     border-radius: 4px;
     background-color: #222;
     color: #eee;
+    max-width: 50vw;
+}
+
+#backButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #6c757d;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+#backButton:hover {
+    background-color: #5a6268;
 }
 
 #themeToggle {
@@ -191,6 +197,35 @@ body {
     text-align: center;
     word-break: break-word;
     color: #eee;
+}
+
+.video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.video-grid li {
+    flex: 0 0 calc(25% - 15px);
+    box-sizing: border-box;
+}
+
+.video-grid li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #eee;
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+.video-grid li a:hover {
+    background-color: #444;
 }
 
 .light-mode {
@@ -299,4 +334,17 @@ body {
 
 .video-grid li a:hover .progress-bar {
     width: 100%;
+}
+
+#closePlayer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
 }
