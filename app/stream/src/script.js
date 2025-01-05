@@ -136,7 +136,7 @@ function createPlaceholder(thumbnail, videoKey) {
 }
 
 // Function to play a video or audio using Plyr
-function playVideo(url, fileType, videoKey) {
+async function playVideo(url, fileType, videoKey) {
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('search').style.display = 'none';
     document.getElementById('allVideosHeading').style.display = 'none';
@@ -145,22 +145,132 @@ function playVideo(url, fileType, videoKey) {
     document.getElementById('watchHistory').style.display = 'none';
     document.getElementById('backButton').style.display = 'inline-block';
 
-    // Check for subtitles
+    // Hide the player initially
+    player.style.display = 'none';
+
+    // Check for embedded subtitles
     let subtitleTracks = [];
-    supportedSubtitleFormats.forEach(format => {
-        const subtitleKey = videoKey.replace(/\.[^/.]+$/, format);
-        getPresignedUrl(subtitleKey, (subtitleUrl) => {
-            if (subtitleUrl) {
-                subtitleTracks.push({
-                    kind: 'captions',
-                    label: format.toUpperCase(),
-                    srclang: 'en', // You can modify the language code if needed
-                    src: subtitleUrl,
-                    default: true
+    const fileExtension = videoKey.substring(videoKey.lastIndexOf('.') + 1).toLowerCase();
+
+    if (fileExtension === 'mkv' || fileExtension === 'mp4') {
+        const params = {
+            Bucket: bucketName,
+            Prefix: videoKey.substring(0, videoKey.lastIndexOf('.') + 1),
+        };
+
+        const data = await s3.listObjectsV2(params).promise();
+
+        data.Contents.forEach(item => {
+            const key = item.Key;
+            const subtitleType = getFileType(key);
+
+            if (subtitleType === 'subtitle') {
+                getPresignedUrl(key, (subtitleUrl) => {
+                    if (subtitleUrl) {
+                        const subtitleLang = key.split('.').slice(-2, -1)[0];
+                        subtitleTracks.push({
+                            kind: 'captions',
+                            label: subtitleLang,
+                            srclang: subtitleLang,
+                            src: subtitleUrl,
+                            default: subtitleTracks.length === 0,
+                        });
+
+                        // Update player source with new tracks if already set
+                        if (player.source) {
+                            player.source = {
+                                type: fileType,
+                                sources: [{
+                                    src: url,
+                                    type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
+                                }],
+                                tracks: subtitleTracks,
+                            };
+                        }
+                    }
                 });
             }
         });
+    }
+
+    // Use mediainfo.js to get audio track information
+    const mediaInfo = await new Promise((resolve) => {
+        const mediainfo = new MediaInfo({ chunkSize: 1024 * 1024 * 10, format: 'object' }); // Increased chunk size to 10MB
+
+        mediainfo.analyzeData(() => {
+            return {
+                size: 1024 * 1024 * 100, // Assume a maximum of 100MB needed for parsing
+                supply: async (chunkSize, offset) => {
+                    return new Promise((resolve, reject) => {
+                        fetch(url, {
+                            headers: {
+                                Range: `bytes=${offset}-${offset + chunkSize - 1}`
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! status: ${response.status}`);
+                            }
+                            return response.arrayBuffer();
+                        })
+                        .then(buffer => {
+                            resolve(new Uint8Array(buffer));
+                        })
+                        .catch(error => {
+                            console.error("Error fetching data for mediainfo:", error);
+                            reject(error);
+                        });
+                    });
+                }
+            };
+        }, (err) => {
+            console.error("Error mediainfo:", err);
+        }).then((result) => {
+            resolve(result);
+        });
     });
+
+    const audioTracks = mediaInfo.media.track.filter(track => track.type === 'Audio').map((track, index) => ({
+        kind: 'main',
+        label: track.Language || `Audio Track ${index + 1}`,
+        srclang: track.Language || '',
+        default: index === 0,
+        value: index,
+    }));
+
+    const audioSelect = document.getElementById('audio-select');
+    audioSelect.innerHTML = ''; // Clear existing options
+
+    if (audioTracks.length > 1) {
+        audioTracks.forEach((track, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.text = track.label;
+            audioSelect.appendChild(option);
+        });
+
+        audioSelect.addEventListener('change', (event) => {
+            const selectedTrackIndex = parseInt(event.target.value);
+            const currentVideoTime = player.currentTime;
+
+            player.source = {
+                type: fileType,
+                sources: [{
+                    src: url,
+                    type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
+                }],
+                tracks: subtitleTracks,
+                audioTracks: audioTracks
+            };
+
+            player.currentTime = currentVideoTime;
+            player.play();
+        });
+
+        document.getElementById('audio-controls').style.display = 'block';
+    } else {
+        document.getElementById('audio-controls').style.display = 'none';
+    }
 
     player.source = {
         type: fileType,
@@ -168,14 +278,22 @@ function playVideo(url, fileType, videoKey) {
             src: url,
             type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
         }],
-        tracks: subtitleTracks
+        tracks: subtitleTracks,
+        audioTracks: audioTracks
     };
 
-    setTimeout(() => {
+    // Autoplay the video
+    player.on('loadedmetadata', () => {
+        player.style.display = 'block'; // Show the player only when loaded
+        player.play();
+    });
+
+    // Enter fullscreen
+    player.on('play', () => {
         if (!player.fullscreen.active) {
             player.fullscreen.enter();
         }
-    }, 500);
+    });
 
     // Add event listener for 'enterfullscreen' event
     player.on('enterfullscreen', () => {
@@ -246,7 +364,7 @@ function displaySearchResults(results) {
         const link = document.createElement('a');
         link.href = '#';
 
-         if (item.type === 'video' || item.type === 'audio') {
+        if (item.type === 'video' || item.type === 'audio') {
             getPresignedUrl(item.key, (presignedUrl) => {
                 if (presignedUrl) {
                     const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';

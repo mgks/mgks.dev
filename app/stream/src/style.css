@@ -348,3 +348,26 @@ body {
     cursor: pointer;
     z-index: 1001;
 }
+
+#audio-controls {
+    position: absolute;
+    bottom: 60px; /* Adjust position as needed */
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 100;
+}
+
+#audio-controls label {
+    color: white;
+    margin-right: 5px;
+}
+
+#audio-controls select {
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 5px;
+}
