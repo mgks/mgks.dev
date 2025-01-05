@@ -1,16 +1,33 @@
+:root {
+    --bg-color: #f8f8f8;
+    --text-color: #000;
+    --container-bg: #fff;
+    --container-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    --link-hover-bg: #f0f0f0;
+}
+
+.dark-mode {
+    --bg-color: #222;
+    --text-color: #eee;
+    --container-bg: #333;
+    --container-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+    --link-hover-bg: #444;
+}
+
 body {
     font-family: sans-serif;
     margin: 20px;
-    background-color: #f8f8f8;
+    background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
     display: none; /* Initially hide the main container */
-    background-color: #fff;
+    background-color: var(--container-bg);
+    box-shadow: var(--container-shadow);
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
@@ -45,7 +62,7 @@ body {
 }
 
 #videoList li a:hover {
-    background-color: #f0f0f0;
+    background-color: var(--link-hover-bg);
 }
 
 .folder {

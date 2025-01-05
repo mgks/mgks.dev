@@ -13,6 +13,28 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 // Initialize S3 client
 const s3 = new AWS.S3();
 
+// Function to toggle dark mode
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    // Update the button text
+    const themeToggle = document.getElementById('themeToggle');
+    if (document.body.classList.contains('dark-mode')) {
+        themeToggle.textContent = 'Light Mode';
+    } else {
+        themeToggle.textContent = 'Dark Mode';
+    }
+}
+
+// Add event listener to the theme toggle button
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
+// Function to generate SHA-256 hash (for users to verify their password)
+function generateHash(password) {
+    const hash = CryptoJS.SHA256(password).toString();
+    console.log("SHA-256 Hash:", hash);
+    return hash;
+}
+
 // Function to check the entered password
 function checkPassword() {
     const enteredPassword = document.getElementById('password').value;

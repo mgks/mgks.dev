@@ -11,10 +11,11 @@ This project is a simple, self-hosted private video streaming service built usin
 
 ## Features
 
-*   **Password Protection:** A basic password check to restrict access.
+*   **Password Protection:** A basic password check to restrict access (using SHA-256 hashing).
 *   **Folder Structure:** Organizes videos into folders and subfolders.
 *   **Search:** Filter videos by name.
 *   **Responsive Design:** Adapts to different screen sizes (mobile-friendly).
+*   **Light and Dark Mode:** Toggle between light and dark themes.
 *   **Lightweight:** Designed to be relatively lightweight for use on devices like Android TV.
 
 ## Prerequisites
@@ -36,10 +37,31 @@ This project is a simple, self-hosted private video streaming service built usin
         *   `region`
         *   `identityPoolId`
         *   `bucketName`
-        *   `encryptedPassword` (You can use an online SHA-256 generator to create a hash of your desired password. For example, the hash of "stream321" is "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8")
+        *   `encryptedPassword`
 
-3. **Host the Files:**
-    *   Host the `index.html`, `script.js`, `config.js`, and `style.css` files on a web server or using a service like GitHub Pages.
+## Password Hashing
+
+To generate the SHA-256 hash of your desired password, you can use the following function in your browser's developer console:
+
+1. Open your browser's developer console (usually by pressing F12).
+2. Go to the "Console" tab.
+3. Paste the following code and press Enter:
+
+    ```javascript
+    function generateHash(password) {
+        const hash = CryptoJS.SHA256(password).toString();
+        console.log("SHA-256 Hash:", hash);
+        return hash;
+    }
+    ```
+
+4. Call the function with your desired password:
+
+    ```javascript
+    generateHash("your_password"); // Replace "your_password" with your actual password
+    ```
+
+5. Copy the generated SHA-256 hash and paste it into the `encryptedPassword` field in your `config.js` file.
 
 ## Usage
 
@@ -48,6 +70,7 @@ This project is a simple, self-hosted private video streaming service built usin
 3. Browse the list of videos and folders.
 4. Click on a video to play it.
 5. Use the search bar to filter videos.
+6. Click the "Toggle Theme" button to switch between light and dark mode.
 
 ## Security Considerations
 
@@ -61,4 +84,4 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details. (You'll need to create a LICENSE file if you choose the MIT License or another open-source license).
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
