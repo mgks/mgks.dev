@@ -3,28 +3,30 @@
 <head>
     <title>Private Video Streaming</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
-    <style>
-        body {
-            font-family: sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-    </style>
+    <link rel="stylesheet" href="src/style.css" />
 </head>
 <body>
+    <div id="auth">
+        <h2>Enter Password:</h2>
+        <input type="password" id="password" />
+        <button onclick="checkPassword()">Submit</button>
+        <p id="authMessage"></p>
+    </div>
+
     <div class="container">
-        <h1>My Private Videos</h1>
-        <video id="player" controls crossorigin playsinline></video>
-        <ul id="videoList">
-            </ul>
+        <input type="text" id="search" placeholder="Search videos..." />
+        <div id="video-container">
+            <video id="player" controls crossorigin playsinline></video>
+        </div>
+        <ul id="videoList"></ul>
     </div>
 
     <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1566.0.min.js"></script>
-    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js" integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFltzmFlRokyুনিকh=w1200-h630-p-k-no-nu" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="src/config.js"></script>
+    <script src="src/script.js"></script>
 </body>
 </html>
