@@ -45,7 +45,7 @@ function generateHash(password) {
 }
 
 // Function to get a pre-signed URL for a video
-function getPresignedUrl(key, callback) {
+async function getPresignedUrl(key, callback) {
     const cloudFrontUrl = `https://${cloudFrontDomain}/${key}`;
 
     // Check if the URL is for a thumbnail
@@ -72,15 +72,15 @@ function getPresignedUrl(key, callback) {
             Expires: 3600
         };
 
-        s3.getSignedUrl('getObject', params, (err, url) => {
-            if (err) {
-                console.error("Error generating pre-signed URL", err);
-                callback(null, key);
-            } else {
+        s3.getSignedUrlPromise('getObject', params)
+            .then(url => {
                 const updatedUrl = url.replace(`${bucketName}.s3.amazonaws.com`, cloudFrontDomain);
                 callback(updatedUrl, key);
-            }
-        });
+            })
+            .catch(err => {
+                console.error("Error generating pre-signed URL", err);
+                callback(null, key);
+            });
     }
 }
 
@@ -103,49 +103,58 @@ async function listAllVideos() {
     const videoList = document.getElementById('videoList');
     videoList.innerHTML = '';
 
-    allItems.forEach(item => {
-        if (getFileType(item.key) === 'video' || getFileType(item.key) === 'audio') {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = '#';
+    const presignedUrlPromises = allItems.map(item => {
+        return new Promise((resolve) => {
+            if (getFileType(item.key) === 'video' || getFileType(item.key) === 'audio') {
+                getPresignedUrl(item.key, (presignedUrl, itemKey) => {
+                    resolve({ item, presignedUrl });
+                });
+            } else {
+                resolve(null);
+            }
+        });
+    });
 
-            getPresignedUrl(item.key, (presignedUrl, itemKey) => {
-                if (presignedUrl) {
-                    // Use the working thumbnail logic from the previous version
-                    const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-                    getPresignedUrl(thumbnailKey, (thumbnailUrl, tKey) => {
-                        const thumbnail = document.createElement('div');
-                        thumbnail.classList.add('thumbnail');
+    const results = await Promise.all(presignedUrlPromises);
 
-                        if (thumbnailUrl) {
-                            const thumbnailImg = new Image();
-                            thumbnailImg.src = thumbnailUrl;
-                            thumbnailImg.onload = () => {
-                                thumbnail.appendChild(thumbnailImg);
-                            };
-                            thumbnailImg.onerror = () => {
-                                createPlaceholder(thumbnail, item.key);
-                            };
-                        } else {
-                            createPlaceholder(thumbnail, item.key);
-                        }
+    results.filter(result => result !== null).forEach(({ item, presignedUrl }) => {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = '#';
 
-                        link.appendChild(thumbnail);
+        if (presignedUrl) {
+            const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
+            getPresignedUrl(thumbnailKey, (thumbnailUrl, tKey) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.classList.add('thumbnail');
 
-                        const title = document.createElement('div');
-                        title.classList.add('video-title');
-                        title.textContent = item.key.replace(/\.[^/.]+$/, "");
-                        link.appendChild(title);
-
-                        link.addEventListener('click', () => {
-                            playVideo(presignedUrl, item.type, item.key);
-                            updateWatchHistory(item.key, presignedUrl);
-                        });
-
-                        listItem.appendChild(link);
-                        videoList.appendChild(listItem);
-                    });
+                if (thumbnailUrl) {
+                    const thumbnailImg = new Image();
+                    thumbnailImg.src = thumbnailUrl;
+                    thumbnailImg.onload = () => {
+                        thumbnail.appendChild(thumbnailImg);
+                    };
+                    thumbnailImg.onerror = () => {
+                        createPlaceholder(thumbnail, item.key);
+                    };
+                } else {
+                    createPlaceholder(thumbnail, item.key);
                 }
+
+                link.appendChild(thumbnail);
+
+                const title = document.createElement('div');
+                title.classList.add('video-title');
+                title.textContent = item.key.replace(/\.[^/.]+$/, "");
+                link.appendChild(title);
+
+                link.addEventListener('click', () => {
+                    playVideo(presignedUrl, item.type, item.key);
+                    updateWatchHistory(item.key, presignedUrl);
+                });
+
+                listItem.appendChild(link);
+                videoList.appendChild(listItem);
             });
         }
     });
