@@ -37,6 +37,13 @@ function checkPassword() {
     }
 }
 
+// Add event listener for 'Enter' key on password field
+document.getElementById('password').addEventListener('keyup', function(event) {
+    if (event.key === 'Enter') {
+        checkPassword();
+    }
+});
+
 // Function to generate SHA-256 hash (for users to verify their password)
 function generateHash(password) {
     const hash = CryptoJS.SHA256(password).toString();
@@ -103,62 +110,90 @@ async function listAllVideos() {
     const videoList = document.getElementById('videoList');
     videoList.innerHTML = '';
 
-    const presignedUrlPromises = allItems.map(item => {
+    const videoItems = allItems.filter(item => getFileType(item.key) === 'video' || getFileType(item.key) === 'audio');
+
+    const presignedUrlPromises = videoItems.map(item => {
         return new Promise((resolve) => {
-            if (getFileType(item.key) === 'video' || getFileType(item.key) === 'audio') {
-                getPresignedUrl(item.key, (presignedUrl, itemKey) => {
-                    resolve({ item, presignedUrl });
-                });
-            } else {
-                resolve(null);
-            }
+            getPresignedUrl(item.key, (presignedUrl) => {
+                resolve({ item, presignedUrl });
+            });
         });
     });
 
     const results = await Promise.all(presignedUrlPromises);
 
-    results.filter(result => result !== null).forEach(({ item, presignedUrl }) => {
-        const listItem = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = '#';
+    const thumbnailPromises = videoItems.map(item => {
+        const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
+        return new Promise((resolve) => {
+          checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
+            resolve({ item, thumbnailUrl });
+          });
+        });
+    });
 
+    const thumbnailResults = await Promise.all(thumbnailPromises);
+
+    results.forEach(({ item, presignedUrl }) => {
         if (presignedUrl) {
-            const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-            getPresignedUrl(thumbnailKey, (thumbnailUrl, tKey) => {
-                const thumbnail = document.createElement('div');
-                thumbnail.classList.add('thumbnail');
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#';
 
-                if (thumbnailUrl) {
-                    const thumbnailImg = new Image();
-                    thumbnailImg.src = thumbnailUrl;
-                    thumbnailImg.onload = () => {
-                        thumbnail.appendChild(thumbnailImg);
-                    };
-                    thumbnailImg.onerror = () => {
-                        createPlaceholder(thumbnail, item.key);
-                    };
-                } else {
+            const thumbnailData = thumbnailResults.find(t => t.item.key === item.key);
+            const thumbnailUrl = thumbnailData ? thumbnailData.thumbnailUrl : null;
+
+            const thumbnail = document.createElement('div');
+            thumbnail.classList.add('thumbnail');
+
+            if (thumbnailUrl) {
+                const thumbnailImg = new Image();
+                thumbnailImg.src = thumbnailUrl;
+                thumbnailImg.onload = () => {
+                    thumbnail.appendChild(thumbnailImg);
+                };
+                thumbnailImg.onerror = () => {
                     createPlaceholder(thumbnail, item.key);
-                }
+                };
+            } else {
+                createPlaceholder(thumbnail, item.key);
+            }
 
-                link.appendChild(thumbnail);
+            link.appendChild(thumbnail);
 
-                const title = document.createElement('div');
-                title.classList.add('video-title');
-                title.textContent = item.key.replace(/\.[^/.]+$/, "");
-                link.appendChild(title);
+            const title = document.createElement('div');
+            title.classList.add('video-title');
+            title.textContent = item.key.replace(/\.[^/.]+$/, "");
+            link.appendChild(title);
 
-                link.addEventListener('click', () => {
-                    playVideo(presignedUrl, item.type, item.key);
-                    updateWatchHistory(item.key, presignedUrl);
-                });
-
-                listItem.appendChild(link);
-                videoList.appendChild(listItem);
+            link.addEventListener('click', () => {
+                playVideo(presignedUrl, item.type, item.key);
+                updateWatchHistory(item.key, presignedUrl);
             });
+
+            listItem.appendChild(link);
+            videoList.appendChild(listItem);
         }
     });
 }
+
+function checkThumbnail(baseKey, formatIndex, callback) {
+    const supportedThumbnailFormats = ['.jpg', '.png', '.webp'];
+  
+    if (formatIndex >= supportedThumbnailFormats.length) {
+      callback(null); // No supported thumbnail format found
+      return;
+    }
+  
+    const thumbnailKey = baseKey + supportedThumbnailFormats[formatIndex];
+    getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
+      if (thumbnailUrl) {
+        callback(thumbnailUrl); // Thumbnail found
+      } else {
+        // Try the next format
+        checkThumbnail(baseKey, formatIndex + 1, callback);
+      }
+    });
+  }
 
 function createPlaceholder(thumbnail, videoKey) {
     const placeholder = document.createElement('div');
@@ -170,7 +205,7 @@ function createPlaceholder(thumbnail, videoKey) {
 }
 
 // Function to play a video or audio using Plyr
-async function playVideo(url, fileType, videoKey) {
+async function playVideo(cloudFrontUrl, fileType, videoKey) {
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('search').style.display = 'none';
     document.getElementById('allVideosHeading').style.display = 'none';
@@ -215,7 +250,7 @@ async function playVideo(url, fileType, videoKey) {
                             player.source = {
                                 type: fileType,
                                 sources: [{
-                                    src: url,
+                                    src: cloudFrontUrl,
                                     type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
                                 }],
                                 tracks: subtitleTracks,
@@ -236,7 +271,7 @@ async function playVideo(url, fileType, videoKey) {
                 size: 1024 * 1024 * 100,
                 supply: async (chunkSize, offset) => {
                     return new Promise((resolve, reject) => {
-                        fetch(url, {
+                        fetch(cloudFrontUrl, {
                             headers: {
                                 Range: `bytes=${offset}-${offset + chunkSize - 1}`
                             }
@@ -290,7 +325,7 @@ async function playVideo(url, fileType, videoKey) {
             player.source = {
                 type: fileType,
                 sources: [{
-                    src: url,
+                    src: cloudFrontUrl,
                     type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
                 }],
                 tracks: subtitleTracks,
@@ -309,7 +344,7 @@ async function playVideo(url, fileType, videoKey) {
     player.source = {
         type: fileType,
         sources: [{
-            src: url,
+            src: cloudFrontUrl,
             type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
         }],
         tracks: subtitleTracks,
@@ -401,23 +436,23 @@ function displaySearchResults(results) {
         if (item.type === 'video' || item.type === 'audio') {
             getPresignedUrl(item.key, (presignedUrl) => {
                 if (presignedUrl) {
-                    const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-                    getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
-                        const thumbnail = document.createElement('div');
-                        thumbnail.classList.add('thumbnail');
-
-                        if (thumbnailUrl) {
-                            const thumbnailImg = new Image();
-                            thumbnailImg.src = thumbnailUrl;
-                            thumbnailImg.onload = () => {
-                                thumbnail.appendChild(thumbnailImg);
-                            };
-                            thumbnailImg.onerror = () => {
-                                createPlaceholder(thumbnail, item.key);
-                            };
-                        } else {
-                            createPlaceholder(thumbnail, item.key);
-                        }
+                    const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
+                    checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
+                    const thumbnail = document.createElement('div');
+                    thumbnail.classList.add('thumbnail');
+        
+                    if (thumbnailUrl) {
+                        const thumbnailImg = new Image();
+                        thumbnailImg.src = thumbnailUrl;
+                        thumbnailImg.onload = () => {
+                        thumbnail.appendChild(thumbnailImg);
+                        };
+                        thumbnailImg.onerror = () => {
+                        createPlaceholder(thumbnail, item.key);
+                        };
+                    } else {
+                        createPlaceholder(thumbnail, item.key);
+                    }
 
                         link.appendChild(thumbnail);
 
@@ -520,9 +555,9 @@ function loadWatchHistory() {
             link.href = '#';
 
             // Add a thumbnail or placeholder
-            const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-            
-            getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
+            const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
+   
+            checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
                 const thumbnail = document.createElement('div');
                 thumbnail.classList.add('thumbnail');
 
@@ -530,10 +565,10 @@ function loadWatchHistory() {
                     const thumbnailImg = new Image();
                     thumbnailImg.src = thumbnailUrl;
                     thumbnailImg.onload = () => {
-                        thumbnail.appendChild(thumbnailImg);
+                    thumbnail.appendChild(thumbnailImg);
                     };
                     thumbnailImg.onerror = () => {
-                        createPlaceholder(thumbnail, item.key);
+                    createPlaceholder(thumbnail, item.key);
                     };
                 } else {
                     createPlaceholder(thumbnail, item.key);
