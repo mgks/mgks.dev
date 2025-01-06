@@ -1,7 +1,14 @@
+// Configuration from config.js
+const region = config.region;
+const identityPoolId = config.identityPoolId;
+const encryptedPassword = config.encryptedPassword;
+const bucketName = config.bucketName;
+const cloudFrontDomain = config.cloudFrontDomain;
+
 // Initialize the Amazon Cognito credentials provider
-AWS.config.region = config.region;
+AWS.config.region = region;
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: config.identityPoolId,
+    IdentityPoolId: identityPoolId,
 });
 
 // Initialize S3 client
@@ -12,7 +19,10 @@ const supportedVideoFormats = ['.mp4', '.mkv', '.3gp', '.webm', '.ogg', '.ogv', 
 const supportedAudioFormats = ['.mp3', '.wav', '.aac', '.flac', '.ogg', '.wma'];
 const supportedSubtitleFormats = ['.srt', '.vtt', '.ass', '.ssa'];
 
-// Global variable to store all items in the bucket
+// Global variable to store the current path/prefix
+let currentPath = '';
+
+// All items in the bucket
 let allItems = [];
 
 // Function to check the entered password
@@ -20,7 +30,7 @@ function checkPassword() {
     const enteredPassword = document.getElementById('password').value;
     const hashedPassword = CryptoJS.SHA256(enteredPassword).toString();
 
-    if (hashedPassword === config.encryptedPassword) {
+    if (hashedPassword === encryptedPassword) {
         document.getElementById('auth').style.display = 'none';
         document.querySelector('.container').style.display = 'block';
         initialize();
@@ -62,7 +72,6 @@ function getFileType(key) {
     }
 }
 
-// Function to preload all items from the S3 bucket
 async function loadAllItems() {
     allItems = await listAllObjects();
 }
@@ -165,6 +174,22 @@ async function listAllVideos() {
     }
 }
 
+// Initialize Plyr player
+const player = new Plyr('#player', {
+    controls: [
+        'play-large',
+        'play',
+        'progress',
+        'current-time',
+        'mute',
+        'volume',
+        'captions',
+        'settings',
+        'fullscreen',
+    ],
+    // Other Plyr options if needed
+});
+
 // Function to play a video or audio using Plyr
 async function playVideo(cloudFrontUrl, fileType, videoKey) {
     document.getElementById('video-container').style.display = 'block';
@@ -175,8 +200,8 @@ async function playVideo(cloudFrontUrl, fileType, videoKey) {
     document.getElementById('watchHistory').style.display = config.features.enableWatchHistory ? 'flex' : 'none';
     document.getElementById('backButton').style.display = 'inline-block';
 
-    // Hide the player initially
-    player.style.display = 'none';
+    // Show the player
+    player.style.display = 'block';
 
     // Check for embedded subtitles (if enabled)
     let subtitleTracks = [];
@@ -419,9 +444,6 @@ function filterVideos() {
     }
 }
 
-// Initialize Plyr player
-const player = new Plyr('#player');
-
 // Add event listener for search input
 document.getElementById('search').addEventListener('input', filterVideos);
 
@@ -522,23 +544,23 @@ async function loadWatchHistory() {
             // Add a progress bar
             const progressBar = document.createElement('div');
             progressBar.classList.add('progress-bar');
-            
-            const presignedUrl = await getPresignedUrl(item.key);
-            if (presignedUrl) {
+
+            const cloudFrontUrl = await getPresignedUrl(item.key);
+            if (cloudFrontUrl) {
                 const video = document.createElement('video');
-                video.src = presignedUrl;
+                video.src = cloudFrontUrl;
                 video.addEventListener('loadedmetadata', () => {
                     const duration = video.duration;
                     const progress = (item.time / duration) * 100;
                     progressBar.style.width = `${progress}%`;
                 });
             }
-            
+
             thumbnail.appendChild(progressBar);
 
             link.addEventListener('click', () => {
-                playVideo(presignedUrl, getFileType(item.key), item.key);
-                updateWatchHistory(item.key, presignedUrl);
+                playVideo(cloudFrontUrl, getFileType(item.key), item.key);
+                updateWatchHistory(item.key, cloudFrontUrl);
                 player.currentTime = item.time || 0;
             });
 
