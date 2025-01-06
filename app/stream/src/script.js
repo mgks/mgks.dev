@@ -22,6 +22,9 @@ const supportedSubtitleFormats = ['.srt', '.vtt', '.ass', '.ssa'];
 // Global variable to store the current path/prefix
 let currentPath = '';
 
+// All items in the bucket
+let allItems = [];
+
 // Function to check the entered password
 function checkPassword() {
     const enteredPassword = document.getElementById('password').value;
@@ -30,8 +33,10 @@ function checkPassword() {
     if (hashedPassword === encryptedPassword) {
         document.getElementById('auth').style.display = 'none';
         document.querySelector('.container').style.display = 'block';
-        listAllVideos();
-        loadWatchHistory();
+        loadAllItems().then(() => {
+            listAllVideos();
+            loadWatchHistory();
+        });
     } else {
         document.getElementById('authMessage').textContent = 'Incorrect password!';
     }
@@ -52,43 +57,9 @@ function generateHash(password) {
 }
 
 // Function to get a pre-signed URL for a video
-async function getPresignedUrl(key, callback) {
+async function getPresignedUrl(key) {
     const cloudFrontUrl = `https://${cloudFrontDomain}/${key}`;
-
-    // Check if the URL is for a thumbnail
-    if (key.endsWith('.jpg')) {
-        // Use a simple HTTP request for thumbnails
-        const xhr = new XMLHttpRequest();
-        xhr.open('HEAD', cloudFrontUrl);
-        xhr.onload = () => {
-            if (xhr.status >= 200 && xhr.status < 300) {
-                callback(cloudFrontUrl, key);
-            } else {
-                callback(null, key); // Thumbnail not found
-            }
-        };
-        xhr.onerror = () => {
-            callback(null, key); // Error fetching thumbnail
-        };
-        xhr.send();
-    } else {
-        // For non-thumbnail files, use the original pre-signed URL logic
-        const params = {
-            Bucket: bucketName,
-            Key: key,
-            Expires: 3600
-        };
-
-        s3.getSignedUrlPromise('getObject', params)
-            .then(url => {
-                const updatedUrl = url.replace(`${bucketName}.s3.amazonaws.com`, cloudFrontDomain);
-                callback(updatedUrl, key);
-            })
-            .catch(err => {
-                console.error("Error generating pre-signed URL", err);
-                callback(null, key);
-            });
-    }
+    return cloudFrontUrl;
 }
 
 // Function to determine file type
@@ -105,95 +76,93 @@ function getFileType(key) {
     }
 }
 
+async function loadAllItems() {
+    async function listAllObjects(prefix = '', continuationToken = null) {
+        const params = {
+            Bucket: bucketName,
+            Prefix: prefix,
+            ContinuationToken: continuationToken
+        };
+
+        const data = await s3.listObjectsV2(params).promise();
+
+        data.Contents.forEach(item => {
+            allItems.push({ type: getFileType(item.Key), key: item.Key });
+        });
+
+        if (data.IsTruncated) {
+            await listAllObjects(prefix, data.NextContinuationToken);
+        }
+    }
+
+    await listAllObjects();
+}
+
 async function listAllVideos() {
-    const allItems = await deepSearch('');
     const videoList = document.getElementById('videoList');
     videoList.innerHTML = '';
 
     const videoItems = allItems.filter(item => getFileType(item.key) === 'video' || getFileType(item.key) === 'audio');
 
-    const presignedUrlPromises = videoItems.map(item => {
-        return new Promise((resolve) => {
-            getPresignedUrl(item.key, (presignedUrl) => {
-                resolve({ item, presignedUrl });
-            });
-        });
-    });
+    for (const item of videoItems) {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = '#';
 
-    const results = await Promise.all(presignedUrlPromises);
+        const thumbnailUrl = await findThumbnailUrl(item.key);
 
-    const thumbnailPromises = videoItems.map(item => {
-        const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
-        return new Promise((resolve) => {
-          checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
-            resolve({ item, thumbnailUrl });
-          });
-        });
-    });
+        const thumbnail = document.createElement('div');
+        thumbnail.classList.add('thumbnail');
 
-    const thumbnailResults = await Promise.all(thumbnailPromises);
-
-    results.forEach(({ item, presignedUrl }) => {
-        if (presignedUrl) {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = '#';
-
-            const thumbnailData = thumbnailResults.find(t => t.item.key === item.key);
-            const thumbnailUrl = thumbnailData ? thumbnailData.thumbnailUrl : null;
-
-            const thumbnail = document.createElement('div');
-            thumbnail.classList.add('thumbnail');
-
-            if (thumbnailUrl) {
-                const thumbnailImg = new Image();
-                thumbnailImg.src = thumbnailUrl;
-                thumbnailImg.onload = () => {
-                    thumbnail.appendChild(thumbnailImg);
-                };
-                thumbnailImg.onerror = () => {
-                    createPlaceholder(thumbnail, item.key);
-                };
-            } else {
+        if (thumbnailUrl) {
+            const thumbnailImg = new Image();
+            thumbnailImg.src = thumbnailUrl;
+            thumbnailImg.onload = () => {
+                thumbnail.appendChild(thumbnailImg);
+            };
+            thumbnailImg.onerror = () => {
                 createPlaceholder(thumbnail, item.key);
-            }
+            };
+        } else {
+            createPlaceholder(thumbnail, item.key);
+        }
 
-            link.appendChild(thumbnail);
+        link.appendChild(thumbnail);
 
-            const title = document.createElement('div');
-            title.classList.add('video-title');
-            title.textContent = item.key.replace(/\.[^/.]+$/, "");
-            link.appendChild(title);
+        const title = document.createElement('div');
+        title.classList.add('video-title');
+        title.textContent = item.key.replace(/\.[^/.]+$/, "");
+        link.appendChild(title);
 
-            link.addEventListener('click', () => {
+        link.addEventListener('click', async () => {
+            const presignedUrl = await getPresignedUrl(item.key);
+            if (presignedUrl) {
                 playVideo(presignedUrl, item.type, item.key);
                 updateWatchHistory(item.key, presignedUrl);
-            });
+            }
+        });
 
-            listItem.appendChild(link);
-            videoList.appendChild(listItem);
-        }
-    });
+        listItem.appendChild(link);
+        videoList.appendChild(listItem);
+    }
 }
 
-function checkThumbnail(baseKey, formatIndex, callback) {
+async function findThumbnailUrl(videoKey) {
     const supportedThumbnailFormats = ['.jpg', '.png', '.webp'];
-  
-    if (formatIndex >= supportedThumbnailFormats.length) {
-      callback(null); // No supported thumbnail format found
-      return;
+    const baseKey = videoKey.substring(0, videoKey.lastIndexOf('.'));
+
+    for (const format of supportedThumbnailFormats) {
+        const thumbnailKey = baseKey + format;
+        const thumbnailUrl = await getPresignedUrl(thumbnailKey);
+
+        const thumbnailExists = allItems.some(item => item.key === thumbnailKey);
+        if (thumbnailExists) {
+            return thumbnailUrl;
+        }
     }
-  
-    const thumbnailKey = baseKey + supportedThumbnailFormats[formatIndex];
-    getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
-      if (thumbnailUrl) {
-        callback(thumbnailUrl); // Thumbnail found
-      } else {
-        // Try the next format
-        checkThumbnail(baseKey, formatIndex + 1, callback);
-      }
-    });
-  }
+
+    return null; // No thumbnail found
+}
 
 function createPlaceholder(thumbnail, videoKey) {
     const placeholder = document.createElement('div');
@@ -381,35 +350,9 @@ async function playVideo(cloudFrontUrl, fileType, videoKey) {
 async function deepSearch(searchTerm) {
     document.getElementById('videoList').style.display = 'none';
     document.getElementById('watchHistory').style.display = 'none';
-    const allItems = [];
-
-    async function listAllObjects(prefix = '', continuationToken = null) {
-        const params = {
-            Bucket: bucketName,
-            Prefix: prefix,
-            ContinuationToken: continuationToken
-        };
-
-        const data = await s3.listObjectsV2(params).promise();
-
-        data.Contents.forEach(item => {
-            allItems.push({ type: getFileType(item.Key), key: item.Key });
-        });
-
-        if (data.IsTruncated) {
-            await listAllObjects(prefix, data.NextContinuationToken);
-        }
-    }
-
-    await listAllObjects();
-
-    if (searchTerm) {
-        const filteredItems = allItems.filter(item => item.key.toLowerCase().includes(searchTerm.toLowerCase()));
-        displaySearchResults(filteredItems);
-        return [];
-    } else {
-        return allItems;
-    }
+    
+    const filteredItems = allItems.filter(item => item.key.toLowerCase().includes(searchTerm.toLowerCase()));
+    displaySearchResults(filteredItems);
 }
 
 // Function to display search results
@@ -436,23 +379,24 @@ function displaySearchResults(results) {
         if (item.type === 'video' || item.type === 'audio') {
             getPresignedUrl(item.key, (presignedUrl) => {
                 if (presignedUrl) {
+                    // Use optimized thumbnail check for search results
                     const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
                     checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
-                    const thumbnail = document.createElement('div');
-                    thumbnail.classList.add('thumbnail');
-        
-                    if (thumbnailUrl) {
-                        const thumbnailImg = new Image();
-                        thumbnailImg.src = thumbnailUrl;
-                        thumbnailImg.onload = () => {
-                        thumbnail.appendChild(thumbnailImg);
-                        };
-                        thumbnailImg.onerror = () => {
-                        createPlaceholder(thumbnail, item.key);
-                        };
-                    } else {
-                        createPlaceholder(thumbnail, item.key);
-                    }
+                        const thumbnail = document.createElement('div');
+                        thumbnail.classList.add('thumbnail');
+
+                        if (thumbnailUrl) {
+                            const thumbnailImg = new Image();
+                            thumbnailImg.src = thumbnailUrl;
+                            thumbnailImg.onload = () => {
+                                thumbnail.appendChild(thumbnailImg);
+                            };
+                            thumbnailImg.onerror = () => {
+                                createPlaceholder(thumbnail, item.key);
+                            };
+                        } else {
+                            createPlaceholder(thumbnail, item.key);
+                        }
 
                         link.appendChild(thumbnail);
 
@@ -556,7 +500,7 @@ function loadWatchHistory() {
 
             // Add a thumbnail or placeholder
             const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
-   
+
             checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
                 const thumbnail = document.createElement('div');
                 thumbnail.classList.add('thumbnail');
@@ -565,10 +509,10 @@ function loadWatchHistory() {
                     const thumbnailImg = new Image();
                     thumbnailImg.src = thumbnailUrl;
                     thumbnailImg.onload = () => {
-                    thumbnail.appendChild(thumbnailImg);
+                        thumbnail.appendChild(thumbnailImg);
                     };
                     thumbnailImg.onerror = () => {
-                    createPlaceholder(thumbnail, item.key);
+                        createPlaceholder(thumbnail, item.key);
                     };
                 } else {
                     createPlaceholder(thumbnail, item.key);
