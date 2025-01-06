@@ -1,14 +1,24 @@
 // Configuration from config.js
-const region = config.region;
-const identityPoolId = config.identityPoolId;
-const encryptedPassword = config.encryptedPassword;
-const bucketName = config.bucketName;
-const cloudFrontDomain = config.cloudFrontDomain;
+const config = {
+    region: 'YOUR-S3-REGION',
+    identityPoolId: 'YOUR-COGNITO-IDENTITY-POOL-ID',
+    encryptedPassword: 'YOUR_ENCRYPTED_PASSWORD', // e.g., '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'
+    bucketName: 'YOUR-S3-BUCKET-NAME',
+    cloudFrontDomain: 'YOUR_CLOUDFRONT_DOMAIN', // e.g., 'd12345abcdef.cloudfront.net'
+    features: {
+        enableAudioControls: true, // Enable/disable audio track selection
+        enableSubtitles: true, // Enable/disable subtitles
+        enableMediaInfo: true, // Enable/disable media info parsing for audio tracks
+        enableSearch: true, // Enable/disable search functionality
+        enableWatchHistory: true, // Enable/disable watch history
+        enableDarkMode: true, // Enable/disable dark mode toggle
+    }
+};
 
 // Initialize the Amazon Cognito credentials provider
-AWS.config.region = region;
+AWS.config.region = config.region;
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-    IdentityPoolId: identityPoolId,
+    IdentityPoolId: config.identityPoolId,
 });
 
 // Initialize S3 client
@@ -19,10 +29,7 @@ const supportedVideoFormats = ['.mp4', '.mkv', '.3gp', '.webm', '.ogg', '.ogv', 
 const supportedAudioFormats = ['.mp3', '.wav', '.aac', '.flac', '.ogg', '.wma'];
 const supportedSubtitleFormats = ['.srt', '.vtt', '.ass', '.ssa'];
 
-// Global variable to store the current path/prefix
-let currentPath = '';
-
-// All items in the bucket
+// Global variable to store all items in the bucket
 let allItems = [];
 
 // Function to check the entered password
@@ -30,13 +37,10 @@ function checkPassword() {
     const enteredPassword = document.getElementById('password').value;
     const hashedPassword = CryptoJS.SHA256(enteredPassword).toString();
 
-    if (hashedPassword === encryptedPassword) {
+    if (hashedPassword === config.encryptedPassword) {
         document.getElementById('auth').style.display = 'none';
         document.querySelector('.container').style.display = 'block';
-        loadAllItems().then(() => {
-            listAllVideos();
-            loadWatchHistory();
-        });
+        initialize();
     } else {
         document.getElementById('authMessage').textContent = 'Incorrect password!';
     }
@@ -56,10 +60,9 @@ function generateHash(password) {
     return hash;
 }
 
-// Function to get a pre-signed URL for a video
-async function getPresignedUrl(key) {
-    const cloudFrontUrl = `https://${cloudFrontDomain}/${key}`;
-    return cloudFrontUrl;
+// Function to get a CloudFront URL for a given key
+function getCloudFrontUrl(key) {
+    return `https://${config.cloudFrontDomain}/${key}`;
 }
 
 // Function to determine file type
@@ -76,28 +79,60 @@ function getFileType(key) {
     }
 }
 
+// Function to preload all items from the S3 bucket
 async function loadAllItems() {
-    async function listAllObjects(prefix = '', continuationToken = null) {
-        const params = {
-            Bucket: bucketName,
-            Prefix: prefix,
-            ContinuationToken: continuationToken
-        };
+    allItems = await listAllObjects();
+}
 
-        const data = await s3.listObjectsV2(params).promise();
+// Function to list all objects in the S3 bucket (recursive)
+async function listAllObjects(prefix = '', continuationToken = null) {
+    const params = {
+        Bucket: config.bucketName,
+        Prefix: prefix,
+        ContinuationToken: continuationToken
+    };
 
-        data.Contents.forEach(item => {
-            allItems.push({ type: getFileType(item.Key), key: item.Key });
-        });
+    const data = await s3.listObjectsV2(params).promise();
 
-        if (data.IsTruncated) {
-            await listAllObjects(prefix, data.NextContinuationToken);
+    const items = data.Contents.map(item => ({
+        type: getFileType(item.Key),
+        key: item.Key
+    }));
+
+    if (data.IsTruncated) {
+        const nextItems = await listAllObjects(prefix, data.NextContinuationToken);
+        return [...items, ...nextItems];
+    } else {
+        return items;
+    }
+}
+
+// Function to find a thumbnail URL for a given video key
+async function findThumbnailUrl(videoKey) {
+    const supportedThumbnailFormats = ['.jpg', '.png', '.webp'];
+    const baseKey = videoKey.substring(0, videoKey.lastIndexOf('.'));
+
+    for (const format of supportedThumbnailFormats) {
+        const thumbnailKey = baseKey + format;
+        if (allItems.some(item => item.key === thumbnailKey)) {
+            return getCloudFrontUrl(thumbnailKey);
         }
     }
 
-    await listAllObjects();
+    return null; // No thumbnail found
 }
 
+// Function to create a placeholder thumbnail
+function createPlaceholder(thumbnail, videoKey) {
+    const placeholder = document.createElement('div');
+    placeholder.classList.add('thumbnail-placeholder');
+    const firstLetter = videoKey.charAt(0).toUpperCase();
+    placeholder.textContent = firstLetter;
+    placeholder.style.backgroundColor = getColorForKey(videoKey);
+    thumbnail.appendChild(placeholder);
+}
+
+// Function to display the video list
 async function listAllVideos() {
     const videoList = document.getElementById('videoList');
     videoList.innerHTML = '';
@@ -135,10 +170,10 @@ async function listAllVideos() {
         link.appendChild(title);
 
         link.addEventListener('click', async () => {
-            const presignedUrl = await getPresignedUrl(item.key);
-            if (presignedUrl) {
-                playVideo(presignedUrl, item.type, item.key);
-                updateWatchHistory(item.key, presignedUrl);
+            const cloudFrontUrl = getCloudFrontUrl(item.key);
+            playVideo(cloudFrontUrl, item.type, item.key);
+            if (config.features.enableWatchHistory) {
+                updateWatchHistory(item.key, cloudFrontUrl);
             }
         });
 
@@ -147,139 +182,39 @@ async function listAllVideos() {
     }
 }
 
-async function findThumbnailUrl(videoKey) {
-    const supportedThumbnailFormats = ['.jpg', '.png', '.webp'];
-    const baseKey = videoKey.substring(0, videoKey.lastIndexOf('.'));
-
-    for (const format of supportedThumbnailFormats) {
-        const thumbnailKey = baseKey + format;
-        const thumbnailUrl = await getPresignedUrl(thumbnailKey);
-
-        const thumbnailExists = allItems.some(item => item.key === thumbnailKey);
-        if (thumbnailExists) {
-            return thumbnailUrl;
-        }
-    }
-
-    return null; // No thumbnail found
-}
-
-function createPlaceholder(thumbnail, videoKey) {
-    const placeholder = document.createElement('div');
-    placeholder.classList.add('thumbnail-placeholder');
-    const firstLetter = videoKey.charAt(0).toUpperCase();
-    placeholder.textContent = firstLetter;
-    placeholder.style.backgroundColor = getColorForKey(videoKey);
-    thumbnail.appendChild(placeholder);
-}
-
 // Function to play a video or audio using Plyr
 async function playVideo(cloudFrontUrl, fileType, videoKey) {
     document.getElementById('video-container').style.display = 'block';
-    document.getElementById('search').style.display = 'none';
+    document.getElementById('search').style.display = config.features.enableSearch ? 'block' : 'none';
     document.getElementById('allVideosHeading').style.display = 'none';
-    document.getElementById('watchHistoryHeading').style.display = 'none';
+    document.getElementById('watchHistoryHeading').style.display = config.features.enableWatchHistory ? 'block' : 'none';
     document.getElementById('videoList').style.display = 'none';
-    document.getElementById('watchHistory').style.display = 'none';
+    document.getElementById('watchHistory').style.display = config.features.enableWatchHistory ? 'flex' : 'none';
     document.getElementById('backButton').style.display = 'inline-block';
 
     // Hide the player initially
     player.style.display = 'none';
 
-    // Check for embedded subtitles
+    // Check for embedded subtitles (if enabled)
     let subtitleTracks = [];
-    const fileExtension = videoKey.substring(videoKey.lastIndexOf('.') + 1).toLowerCase();
-
-    if (fileExtension === 'mkv' || fileExtension === 'mp4') {
-        const params = {
-            Bucket: bucketName,
-            Prefix: videoKey.substring(0, videoKey.lastIndexOf('.') + 1),
-        };
-
-        const data = await s3.listObjectsV2(params).promise();
-
-        data.Contents.forEach(item => {
-            const key = item.Key;
-            const subtitleType = getFileType(key);
-
-            if (subtitleType === 'subtitle') {
-                getPresignedUrl(key, (subtitleUrl) => {
-                    if (subtitleUrl) {
-                        const subtitleLang = key.split('.').slice(-2, -1)[0];
-                        subtitleTracks.push({
-                            kind: 'captions',
-                            label: subtitleLang,
-                            srclang: subtitleLang,
-                            src: subtitleUrl,
-                            default: subtitleTracks.length === 0,
-                        });
-
-                        // Update player source with new tracks if already set
-                        if (player.source) {
-                            player.source = {
-                                type: fileType,
-                                sources: [{
-                                    src: cloudFrontUrl,
-                                    type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
-                                }],
-                                tracks: subtitleTracks,
-                            };
-                        }
-                    }
-                });
-            }
-        });
+    if (config.features.enableSubtitles) {
+        subtitleTracks = await findSubtitles(videoKey);
     }
 
-    // Use mediainfo.js to get audio track information
-    const mediaInfo = await new Promise((resolve) => {
-        const mediainfo = new MediaInfo({ chunkSize: 1024 * 1024 * 10, format: 'object' });
-
-        mediainfo.analyzeData(() => {
-            return {
-                size: 1024 * 1024 * 100,
-                supply: async (chunkSize, offset) => {
-                    return new Promise((resolve, reject) => {
-                        fetch(cloudFrontUrl, {
-                            headers: {
-                                Range: `bytes=${offset}-${offset + chunkSize - 1}`
-                            }
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error(`HTTP error! status: ${response.status}`);
-                            }
-                            return response.arrayBuffer();
-                        })
-                        .then(buffer => {
-                            resolve(new Uint8Array(buffer));
-                        })
-                        .catch(error => {
-                            console.error("Error fetching data for mediainfo:", error);
-                            reject(error);
-                        });
-                    });
-                }
-            };
-        }, (err) => {
-            console.error("Error mediainfo:", err);
-        }).then((result) => {
-            resolve(result);
-        });
-    });
-
-    const audioTracks = mediaInfo.media.track.filter(track => track.type === 'Audio').map((track, index) => ({
-        kind: 'main',
-        label: track.Language || `Audio Track ${index + 1}`,
-        srclang: track.Language || '',
-        default: index === 0,
-        value: index,
-    }));
+    // Use mediainfo.js to get audio track information (if enabled)
+    let audioTracks = [];
+    if (config.features.enableMediaInfo && config.features.enableAudioControls) {
+        try {
+            audioTracks = await getAudioTracks(cloudFrontUrl);
+        } catch (error) {
+            console.error("Error getting audio tracks:", error);
+        }
+    }
 
     const audioSelect = document.getElementById('audio-select');
     audioSelect.innerHTML = '';
 
-    if (audioTracks.length > 1) {
+    if (audioTracks.length > 1 && config.features.enableAudioControls) {
         audioTracks.forEach((track, index) => {
             const option = document.createElement('option');
             option.value = index;
@@ -346,8 +281,81 @@ async function playVideo(cloudFrontUrl, fileType, videoKey) {
     });
 }
 
+// Function to find subtitles for a given video key
+async function findSubtitles(videoKey) {
+    const subtitleTracks = [];
+    const fileExtension = videoKey.substring(videoKey.lastIndexOf('.') + 1).toLowerCase();
+
+    if (fileExtension === 'mkv' || fileExtension === 'mp4') {
+        const subtitleKeys = allItems
+            .filter(item => item.type === 'subtitle' && item.key.startsWith(videoKey.substring(0, videoKey.lastIndexOf('.') + 1)))
+            .map(item => item.key);
+
+        for (const key of subtitleKeys) {
+            const subtitleUrl = getCloudFrontUrl(key);
+            const subtitleLang = key.split('.').slice(-2, -1)[0]; // Assume language code before extension
+            subtitleTracks.push({
+                kind: 'captions',
+                label: subtitleLang,
+                srclang: subtitleLang,
+                src: subtitleUrl,
+                default: subtitleTracks.length === 0, // Set the first track as default
+            });
+        }
+    }
+
+    return subtitleTracks;
+}
+
+// Function to get audio tracks using mediainfo.js
+async function getAudioTracks(cloudFrontUrl) {
+    if (!config.features.enableMediaInfo) return [];
+    
+    const mediaInfo = await new Promise((resolve, reject) => {
+        const mediainfo = new MediaInfo({ chunkSize: 1024 * 1024 * 10, format: 'object' });
+
+        mediainfo.analyzeData(() => {
+            return {
+                size: 1024 * 1024 * 100,
+                supply: async (chunkSize, offset) => {
+                    try {
+                        const response = await fetch(cloudFrontUrl, {
+                            headers: {
+                                Range: `bytes=${offset}-${offset + chunkSize - 1}`
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+
+                        const buffer = await response.arrayBuffer();
+                        return new Uint8Array(buffer);
+                    } catch (error) {
+                        console.error("Error fetching data for mediainfo:", error);
+                        reject(error);
+                    }
+                }
+            };
+        }, (err) => {
+            console.error("Error mediainfo:", err);
+            reject(err);
+        }).then((result) => {
+            resolve(result);
+        });
+    });
+
+    return mediaInfo.media.track.filter(track => track.type === 'Audio').map((track, index) => ({
+        kind: 'main',
+        label: track.Language || `Audio Track ${index + 1}`,
+        srclang: track.Language || '',
+        default: index === 0,
+        value: index,
+    }));
+}
+
 // Function to perform a deep search of the entire bucket
-async function deepSearch(searchTerm) {
+function deepSearch(searchTerm) {
     document.getElementById('videoList').style.display = 'none';
     document.getElementById('watchHistory').style.display = 'none';
     
@@ -356,7 +364,7 @@ async function deepSearch(searchTerm) {
 }
 
 // Function to display search results
-function displaySearchResults(results) {
+async function displaySearchResults(results) {
     const videoList = document.getElementById('videoList');
     videoList.innerHTML = '';
 
@@ -371,51 +379,50 @@ function displaySearchResults(results) {
     resultGrid.classList.add('video-grid');
     videoList.appendChild(resultGrid);
 
-    results.forEach(item => {
-        const listItem = document.createElement('li');
-        const link = document.createElement('a');
-        link.href = '#';
-
+    for (const item of results) {
         if (item.type === 'video' || item.type === 'audio') {
-            getPresignedUrl(item.key, (presignedUrl) => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = '#';
+
+            const thumbnailUrl = await findThumbnailUrl(item.key);
+
+            const thumbnail = document.createElement('div');
+            thumbnail.classList.add('thumbnail');
+
+            if (thumbnailUrl) {
+                const thumbnailImg = new Image();
+                thumbnailImg.src = thumbnailUrl;
+                thumbnailImg.onload = () => {
+                    thumbnail.appendChild(thumbnailImg);
+                };
+                thumbnailImg.onerror = () => {
+                    createPlaceholder(thumbnail, item.key);
+                };
+            } else {
+                createPlaceholder(thumbnail, item.key);
+            }
+
+            link.appendChild(thumbnail);
+
+            const title = document.createElement('div');
+            title.classList.add('video-title');
+            title.textContent = item.key.replace(/\.[^/.]+$/, "");
+            link.appendChild(title);
+
+            link.addEventListener('click', async () => {
+                const presignedUrl = await getPresignedUrl(item.key);
                 if (presignedUrl) {
-                    // Use optimized thumbnail check for search results
-                    const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
-                    checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
-                        const thumbnail = document.createElement('div');
-                        thumbnail.classList.add('thumbnail');
-
-                        if (thumbnailUrl) {
-                            const thumbnailImg = new Image();
-                            thumbnailImg.src = thumbnailUrl;
-                            thumbnailImg.onload = () => {
-                                thumbnail.appendChild(thumbnailImg);
-                            };
-                            thumbnailImg.onerror = () => {
-                                createPlaceholder(thumbnail, item.key);
-                            };
-                        } else {
-                            createPlaceholder(thumbnail, item.key);
-                        }
-
-                        link.appendChild(thumbnail);
-
-                        const title = document.createElement('div');
-                        title.classList.add('video-title');
-                        title.textContent = item.key.replace(/\.[^/.]+$/, "");
-                        link.appendChild(title);
-
-                        link.addEventListener('click', () => {
-                            playVideo(presignedUrl, item.type, item.key);
-                            updateWatchHistory(item.key, presignedUrl);
-                        });
-                        listItem.appendChild(link);
-                        resultGrid.appendChild(listItem);
-                    });
+                    playVideo(presignedUrl, item.type, item.key);
+                    updateWatchHistory(item.key, presignedUrl);
                 }
             });
+
+            listItem.appendChild(link);
+            resultGrid.appendChild(listItem);
         }
-    });
+    }
+
     videoList.style.display = 'flex';
 }
 
@@ -465,6 +472,8 @@ function getColorForKey(key) {
 
 // Function to update watch history
 function updateWatchHistory(videoKey, videoUrl) {
+    if (!config.features.enableWatchHistory) return;
+
     let history = JSON.parse(localStorage.getItem('watchHistory')) || [];
     const watchedTime = player.currentTime;
 
@@ -485,7 +494,9 @@ function updateWatchHistory(videoKey, videoUrl) {
 }
 
 // Function to load and display watch history
-function loadWatchHistory() {
+async function loadWatchHistory() {
+    if (!config.features.enableWatchHistory) return;
+
     const history = JSON.parse(localStorage.getItem('watchHistory')) || [];
     const watchHistoryDiv = document.getElementById('watchHistory');
     const watchHistoryHeading = document.getElementById('watchHistoryHeading');
@@ -493,69 +504,64 @@ function loadWatchHistory() {
 
     if (history.length > 0) {
         watchHistoryHeading.style.display = 'block';
-        history.forEach(item => {
+
+        for (const item of history) {
             const listItem = document.createElement('li');
             const link = document.createElement('a');
             link.href = '#';
 
             // Add a thumbnail or placeholder
-            const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.'));
+            const thumbnailUrl = await findThumbnailUrl(item.key);
 
-            checkThumbnail(thumbnailKey, 0, (thumbnailUrl) => {
-                const thumbnail = document.createElement('div');
-                thumbnail.classList.add('thumbnail');
+            const thumbnail = document.createElement('div');
+            thumbnail.classList.add('thumbnail');
 
-                if (thumbnailUrl) {
-                    const thumbnailImg = new Image();
-                    thumbnailImg.src = thumbnailUrl;
-                    thumbnailImg.onload = () => {
-                        thumbnail.appendChild(thumbnailImg);
-                    };
-                    thumbnailImg.onerror = () => {
-                        createPlaceholder(thumbnail, item.key);
-                    };
-                } else {
+            if (thumbnailUrl) {
+                const thumbnailImg = new Image();
+                thumbnailImg.src = thumbnailUrl;
+                thumbnailImg.onload = () => {
+                    thumbnail.appendChild(thumbnailImg);
+                };
+                thumbnailImg.onerror = () => {
                     createPlaceholder(thumbnail, item.key);
-                }
+                };
+            } else {
+                createPlaceholder(thumbnail, item.key);
+            }
 
-                link.appendChild(thumbnail);
+            link.appendChild(thumbnail);
 
-                const title = document.createElement('div');
-                title.classList.add('video-title');
-                title.textContent = item.key.replace(/\.[^/.]+$/, "");
-                link.appendChild(title);
+            const title = document.createElement('div');
+            title.classList.add('video-title');
+            title.textContent = item.key.replace(/\.[^/.]+$/, "");
+            link.appendChild(title);
 
-                // Add a progress bar
-                const progressBar = document.createElement('div');
-                progressBar.classList.add('progress-bar');
-                
-                getPresignedUrl(item.key, (presignedUrl) => {
-                    if (presignedUrl) {
-                        const video = document.createElement('video');
-                        video.src = presignedUrl;
-                        video.addEventListener('loadedmetadata', () => {
-                            const duration = video.duration;
-                            const progress = (item.time / duration) * 100;
-                            progressBar.style.width = `${progress}%`;
-                        });
-                    }
+            // Add a progress bar
+            const progressBar = document.createElement('div');
+            progressBar.classList.add('progress-bar');
+            
+            const presignedUrl = await getPresignedUrl(item.key);
+            if (presignedUrl) {
+                const video = document.createElement('video');
+                video.src = presignedUrl;
+                video.addEventListener('loadedmetadata', () => {
+                    const duration = video.duration;
+                    const progress = (item.time / duration) * 100;
+                    progressBar.style.width = `${progress}%`;
                 });
-                thumbnail.appendChild(progressBar);
+            }
+            
+            thumbnail.appendChild(progressBar);
 
-                link.addEventListener('click', () => {
-                    getPresignedUrl(item.key, (presignedUrl) => {
-                        if (presignedUrl) {
-                            playVideo(presignedUrl, getFileType(item.key), item.key);
-                            updateWatchHistory(item.key, presignedUrl);
-                            player.currentTime = item.time || 0;
-                        }
-                    });
-                });
-
-                listItem.appendChild(link);
-                watchHistoryDiv.appendChild(listItem);
+            link.addEventListener('click', () => {
+                playVideo(presignedUrl, getFileType(item.key), item.key);
+                updateWatchHistory(item.key, presignedUrl);
+                player.currentTime = item.time || 0;
             });
-        });
+
+            listItem.appendChild(link);
+            watchHistoryDiv.appendChild(listItem);
+        }
     } else {
         watchHistoryHeading.style.display = 'none';
     }
@@ -566,18 +572,18 @@ function closePlayer() {
     player.currentTime = 0;
 
     document.getElementById('video-container').style.display = 'none';
-    document.getElementById('search').style.display = 'block';
+    document.getElementById('search').style.display = config.features.enableSearch ? 'block' : 'none';
     document.getElementById('allVideosHeading').style.display = 'block';
     document.getElementById('videoList').style.display = 'flex';
     document.getElementById('backButton').style.display = 'none';
 
-    if (localStorage.getItem('watchHistory') && JSON.parse(localStorage.getItem('watchHistory')).length > 0) {
+    if (config.features.enableWatchHistory && localStorage.getItem('watchHistory') && JSON.parse(localStorage.getItem('watchHistory')).length > 0) {
         document.getElementById('watchHistoryHeading').style.display = 'block';
         document.getElementById('watchHistory').style.display = 'flex';
     }
 
     const searchTerm = document.getElementById('search').value;
-    if (searchTerm) {
+    if (searchTerm && config.features.enableSearch) {
         deepSearch(searchTerm);
     } else {
         listAllVideos();
@@ -587,3 +593,17 @@ function closePlayer() {
 document.getElementById('backButton').addEventListener('click', () => {
     closePlayer();
 });
+
+// Initialize the application
+async function initialize() {
+    await loadAllItems();
+    listAllVideos();
+    if (config.features.enableWatchHistory) {
+        loadWatchHistory();
+    }
+    // Hide/show elements based on feature flags
+    document.getElementById('search').style.display = config.features.enableSearch ? 'block' : 'none';
+    document.getElementById('watchHistoryHeading').style.display = config.features.enableWatchHistory ? 'block' : 'none';
+    document.getElementById('watchHistory').style.display = config.features.enableWatchHistory ? 'flex' : 'none';
+    document.getElementById('themeToggle').style.display = config.features.enableDarkMode ? 'block' : 'none';
+}
