@@ -7,7 +7,7 @@ const config = {
     features: {
         enableAudioControls: false,
         enableSubtitles: true,
-        enableMediaInfo: false,
+        enableMediaInfo: true,
         enableSearch: true,
         enableWatchHistory: true,
         enableDarkMode: true

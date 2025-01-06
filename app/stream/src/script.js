@@ -58,6 +58,12 @@ function getCloudFrontUrl(key) {
     return `https://${cloudFrontDomain}/${key}`;
 }
 
+// Function to get a pre-signed URL for a video (updated for CloudFront)
+async function getPresignedUrl(key) {
+    const cloudFrontUrl = `https://${cloudFrontDomain}/${key}`;
+    return cloudFrontUrl;
+}
+
 // Function to determine file type
 function getFileType(key) {
     const extension = key.substring(key.lastIndexOf('.')).toLowerCase();
@@ -137,7 +143,6 @@ async function listAllVideos() {
         link.href = '#';
 
         const thumbnailUrl = await findThumbnailUrl(item.key);
-
         const thumbnail = document.createElement('div');
         thumbnail.classList.add('thumbnail');
 
@@ -201,16 +206,6 @@ async function playVideo(cloudFrontUrl, fileType, videoKey) {
 
     // Show the player
     player.style.display = 'block';
-
-    // Reset Plyr for new video
-    player.source = {
-        type: fileType,
-        sources: [{
-            src: cloudFrontUrl,
-            type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
-        }],
-        tracks: [],
-    };
 
     // Check for embedded subtitles (if enabled)
     let subtitleTracks = [];
