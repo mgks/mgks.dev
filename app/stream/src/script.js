@@ -55,7 +55,7 @@ function generateHash(password) {
 
 // Function to get a CloudFront URL for a given key
 function getCloudFrontUrl(key) {
-    return `https://${config.cloudFrontDomain}/${key}`;
+    return `https://${cloudFrontDomain}/${key}`;
 }
 
 // Function to determine file type
@@ -79,7 +79,7 @@ async function loadAllItems() {
 // Function to list all objects in the S3 bucket (recursive)
 async function listAllObjects(prefix = '', continuationToken = null) {
     const params = {
-        Bucket: config.bucketName,
+        Bucket: bucketName,
         Prefix: prefix,
         ContinuationToken: continuationToken
     };
@@ -187,7 +187,6 @@ const player = new Plyr('#player', {
         'settings',
         'fullscreen',
     ],
-    // Other Plyr options if needed
 });
 
 // Function to play a video or audio using Plyr
@@ -202,6 +201,16 @@ async function playVideo(cloudFrontUrl, fileType, videoKey) {
 
     // Show the player
     player.style.display = 'block';
+
+    // Reset Plyr for new video
+    player.source = {
+        type: fileType,
+        sources: [{
+            src: cloudFrontUrl,
+            type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
+        }],
+        tracks: [],
+    };
 
     // Check for embedded subtitles (if enabled)
     let subtitleTracks = [];
@@ -419,10 +428,10 @@ async function displaySearchResults(results) {
             link.appendChild(title);
 
             link.addEventListener('click', async () => {
-                const presignedUrl = await getPresignedUrl(item.key);
-                if (presignedUrl) {
-                    playVideo(presignedUrl, item.type, item.key);
-                    updateWatchHistory(item.key, presignedUrl);
+                const cloudFrontUrl = await getPresignedUrl(item.key);
+                if (cloudFrontUrl) {
+                    playVideo(cloudFrontUrl, item.type, item.key);
+                    updateWatchHistory(item.key, cloudFrontUrl);
                 }
             });
 
@@ -545,22 +554,21 @@ async function loadWatchHistory() {
             const progressBar = document.createElement('div');
             progressBar.classList.add('progress-bar');
 
-            const cloudFrontUrl = await getPresignedUrl(item.key);
-            if (cloudFrontUrl) {
+            // Use the item's URL directly for setting the progress bar
+            if (item.url) {
                 const video = document.createElement('video');
-                video.src = cloudFrontUrl;
+                video.src = item.url;
                 video.addEventListener('loadedmetadata', () => {
                     const duration = video.duration;
                     const progress = (item.time / duration) * 100;
                     progressBar.style.width = `${progress}%`;
                 });
+                thumbnail.appendChild(progressBar);
             }
 
-            thumbnail.appendChild(progressBar);
-
             link.addEventListener('click', () => {
-                playVideo(cloudFrontUrl, getFileType(item.key), item.key);
-                updateWatchHistory(item.key, cloudFrontUrl);
+                playVideo(item.url, getFileType(item.key), item.key);
+                updateWatchHistory(item.key, item.url);
                 player.currentTime = item.time || 0;
             });
 
