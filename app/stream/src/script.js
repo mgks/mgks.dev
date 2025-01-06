@@ -1,20 +1,3 @@
-// Configuration from config.js
-const config = {
-    region: 'YOUR-S3-REGION',
-    identityPoolId: 'YOUR-COGNITO-IDENTITY-POOL-ID',
-    encryptedPassword: 'YOUR_ENCRYPTED_PASSWORD', // e.g., '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'
-    bucketName: 'YOUR-S3-BUCKET-NAME',
-    cloudFrontDomain: 'YOUR_CLOUDFRONT_DOMAIN', // e.g., 'd12345abcdef.cloudfront.net'
-    features: {
-        enableAudioControls: true, // Enable/disable audio track selection
-        enableSubtitles: true, // Enable/disable subtitles
-        enableMediaInfo: true, // Enable/disable media info parsing for audio tracks
-        enableSearch: true, // Enable/disable search functionality
-        enableWatchHistory: true, // Enable/disable watch history
-        enableDarkMode: true, // Enable/disable dark mode toggle
-    }
-};
-
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = config.region;
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
