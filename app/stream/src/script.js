@@ -14,6 +14,9 @@ AWS.config.credentials = new AWS.CognitoIdentityCredentials({
 // Initialize S3 client
 const s3 = new AWS.S3();
 
+// Initialize player
+let player;
+
 // Supported video and audio file extensions
 const supportedVideoFormats = ['.mp4', '.mkv', '.3gp', '.webm', '.ogg', '.ogv', '.avi', '.mov', '.wmv'];
 const supportedAudioFormats = ['.mp3', '.wav', '.aac', '.flac', '.ogg', '.wma'];
@@ -178,21 +181,6 @@ async function listAllVideos() {
         videoList.appendChild(listItem);
     }
 }
-
-// Initialize Plyr player
-const player = new Plyr('#player', {
-    controls: [
-        'play-large',
-        'play',
-        'progress',
-        'current-time',
-        'mute',
-        'volume',
-        'captions',
-        'settings',
-        'fullscreen',
-    ],
-});
 
 // Function to play a video or audio using Plyr
 async function playVideo(cloudFrontUrl, fileType, videoKey) {
@@ -615,3 +603,17 @@ async function initialize() {
     document.getElementById('watchHistory').style.display = config.features.enableWatchHistory ? 'flex' : 'none';
     document.getElementById('themeToggle').style.display = config.features.enableDarkMode ? 'block' : 'none';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Plyr player after the DOM is fully loaded
+    player = new Plyr('#player', {
+        controls: [
+            'play-large', 'play', 'progress', 'current-time', 'mute',
+            'volume', 'captions', 'settings', 'fullscreen',
+        ],
+        // Other Plyr options if needed
+    });
+
+    // Other functions and logic that use the player object can remain as they are.
+
+});
