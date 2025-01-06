@@ -3,6 +3,7 @@ const region = config.region;
 const identityPoolId = config.identityPoolId;
 const encryptedPassword = config.encryptedPassword;
 const bucketName = config.bucketName;
+const cloudFrontDomain = config.cloudFrontDomain;
 
 // Initialize the Amazon Cognito credentials provider
 AWS.config.region = region;
@@ -45,19 +46,42 @@ function generateHash(password) {
 
 // Function to get a pre-signed URL for a video
 function getPresignedUrl(key, callback) {
-    const params = {
-        Bucket: bucketName,
-        Key: key,
-        Expires: 3600
-    };
-    s3.getSignedUrl('getObject', params, (err, url) => {
-        if (err) {
-            console.error("Error generating pre-signed URL", err);
-            callback(null);
-        } else {
-            callback(url);
-        }
-    });
+    const cloudFrontUrl = `https://${cloudFrontDomain}/${key}`;
+
+    // Check if the URL is for a thumbnail
+    if (key.endsWith('.jpg')) {
+        // Use a simple HTTP request for thumbnails
+        const xhr = new XMLHttpRequest();
+        xhr.open('HEAD', cloudFrontUrl);
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                callback(cloudFrontUrl, key);
+            } else {
+                callback(null, key); // Thumbnail not found
+            }
+        };
+        xhr.onerror = () => {
+            callback(null, key); // Error fetching thumbnail
+        };
+        xhr.send();
+    } else {
+        // For non-thumbnail files, use the original pre-signed URL logic
+        const params = {
+            Bucket: bucketName,
+            Key: key,
+            Expires: 3600
+        };
+
+        s3.getSignedUrl('getObject', params, (err, url) => {
+            if (err) {
+                console.error("Error generating pre-signed URL", err);
+                callback(null, key);
+            } else {
+                const updatedUrl = url.replace(`${bucketName}.s3.amazonaws.com`, cloudFrontDomain);
+                callback(updatedUrl, key);
+            }
+        });
+    }
 }
 
 // Function to determine file type
@@ -85,10 +109,11 @@ async function listAllVideos() {
             const link = document.createElement('a');
             link.href = '#';
 
-            getPresignedUrl(item.key, (presignedUrl) => {
+            getPresignedUrl(item.key, (presignedUrl, itemKey) => {
                 if (presignedUrl) {
+                    // Use the working thumbnail logic from the previous version
                     const thumbnailKey = item.key.substring(0, item.key.lastIndexOf('.')) + '.jpg';
-                    getPresignedUrl(thumbnailKey, (thumbnailUrl) => {
+                    getPresignedUrl(thumbnailKey, (thumbnailUrl, tKey) => {
                         const thumbnail = document.createElement('div');
                         thumbnail.classList.add('thumbnail');
 
@@ -195,11 +220,11 @@ async function playVideo(url, fileType, videoKey) {
 
     // Use mediainfo.js to get audio track information
     const mediaInfo = await new Promise((resolve) => {
-        const mediainfo = new MediaInfo({ chunkSize: 1024 * 1024 * 10, format: 'object' }); // Increased chunk size to 10MB
+        const mediainfo = new MediaInfo({ chunkSize: 1024 * 1024 * 10, format: 'object' });
 
         mediainfo.analyzeData(() => {
             return {
-                size: 1024 * 1024 * 100, // Assume a maximum of 100MB needed for parsing
+                size: 1024 * 1024 * 100,
                 supply: async (chunkSize, offset) => {
                     return new Promise((resolve, reject) => {
                         fetch(url, {
@@ -239,7 +264,7 @@ async function playVideo(url, fileType, videoKey) {
     }));
 
     const audioSelect = document.getElementById('audio-select');
-    audioSelect.innerHTML = ''; // Clear existing options
+    audioSelect.innerHTML = '';
 
     if (audioTracks.length > 1) {
         audioTracks.forEach((track, index) => {
@@ -284,7 +309,7 @@ async function playVideo(url, fileType, videoKey) {
 
     // Autoplay the video
     player.on('loadedmetadata', () => {
-        player.style.display = 'block'; // Show the player only when loaded
+        player.style.display = 'block';
         player.play();
     });
 
