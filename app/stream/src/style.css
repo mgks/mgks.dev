@@ -10,7 +10,7 @@ body {
 .container {
     width: 95%;
     margin: 0;
-    padding: 0 2.5%;
+    padding: 2.5%;
     display: none;
 
 }
@@ -119,13 +119,17 @@ body {
 }
 
 #search {
-    padding: 10px;
-    margin-left: 10px;
-    border: 1px solid #555;
-    border-radius: 4px;
+    padding: .7em;
+    margin-left: 1em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
     background-color: #222;
     color: #eee;
-    max-width: 50vw;
+    width: 50vw;
+    font-family: inherit;
+    font-size: .75em;
+    font-weight: 500;
+
 }
 
 #backButton {
@@ -137,10 +141,7 @@ body {
     cursor: pointer;
     transition: background-color 0.3s;
     display: none;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
+
 }
 
 #backButton:hover {
@@ -164,21 +165,21 @@ body {
 
 .thumbnail {
     width: 100%;
-    height: 150px;
+    min-height: 275px;
     background-color: #333;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
-    border-radius: 6px;
     overflow: hidden;
     position: relative;
+
 }
 
 .thumbnail img {
     max-width: 100%;
-    max-height: 100%;
+    min-height: 100%;
     object-fit: cover;
+
 }
 
 .thumbnail-placeholder {
@@ -187,19 +188,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 24px;
+    font-size: 5em;
     color: #eee;
     position: absolute;
     top: 0;
     left: 0;
+    text-shadow: 0 0 10px;
+
 }
 
 .video-title {
-    padding: 5px 10px;
+    padding: 1em;
     font-size: 0.9em;
+    font-weight: 500;
     text-align: center;
     word-break: break-word;
     color: #eee;
+
 }
 
 .video-grid {
@@ -211,8 +216,9 @@ body {
 }
 
 .video-grid li {
-    flex: 0 0 calc(25% - 15px);
+    flex: 0 0 calc(25% - 1em);
     box-sizing: border-box;
+
 }
 
 .video-grid li a {
@@ -223,8 +229,10 @@ body {
     color: #eee;
     background-color: #333;
     border: 1px solid #555;
-    border-radius: 6px;
+    border-radius: 3px;
     transition: background-color 0.3s;
+    height: 100%;
+
 }
 
 .video-grid li a:hover {
@@ -323,16 +331,18 @@ body {
 
 .progress-bar {
     width: 0%;
-    height: 5px;
+    height: 3px;
     background-color: #ff0000;
     position: absolute;
     bottom: 0;
     left: 0;
     transition: width 0.3s ease;
+
 }
 
 .light-mode .progress-bar {
-    background-color: #ff0000;
+    background-color: rgba(255, 41, 41, 0.93);
+
 }
 
 .video-grid li a:hover .progress-bar {
@@ -373,4 +383,18 @@ body {
     border: none;
     border-radius: 3px;
     padding: 3px 5px;
+}
+body.light-mode {
+    background-color: var(--bg-color);
+
+}
+.light-mode {}
+.light-mode h1, h2, h3, h4, h5, b {
+    color: var(--text-color);
+
+}
+h3 {
+    font-size: 1.5em;
+    font-weight: 500;
+
 }

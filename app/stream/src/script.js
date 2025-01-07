@@ -58,7 +58,7 @@ function getCloudFrontUrl(key) {
     return `https://${cloudFrontDomain}/${key}`;
 }
 
-// Function to get an S3 URL for a given key
+// Function to get an S3 URL for a given key (only used if streamFrom is 's3')
 async function getS3Url(key) {
     const params = {
         Bucket: bucketName,
@@ -148,12 +148,17 @@ async function listAllVideos() {
 
     const videoItems = allItems.filter(item => getFileType(item.key) === 'video' || getFileType(item.key) === 'audio');
 
-    for (const item of videoItems) {
+    const thumbnailPromises = videoItems.map(async (item) => {
+        const thumbnailUrl = await findThumbnailUrl(item.key);
+        return { item, thumbnailUrl };
+    });
+
+    const thumbnailResults = await Promise.all(thumbnailPromises);
+
+    for (const { item, thumbnailUrl } of thumbnailResults) {
         const listItem = document.createElement('li');
         const link = document.createElement('a');
         link.href = '#';
-
-        const thumbnailUrl = await findThumbnailUrl(item.key);
 
         const thumbnail = document.createElement('div');
         thumbnail.classList.add('thumbnail');
@@ -179,12 +184,9 @@ async function listAllVideos() {
         link.appendChild(title);
 
         link.addEventListener('click', async () => {
-            let urlToPlay = '';
-            if (config.features.streamFrom === 'cloudfront') {
-                urlToPlay = getCloudFrontUrl(item.key);
-            } else if (config.features.streamFrom === 's3') {
-                urlToPlay = await getS3Url(item.key);
-            }
+            const urlToPlay = (config.features.streamFrom === 'cloudfront')
+                ? getCloudFrontUrl(item.key)
+                : await getS3Url(item.key);
 
             if (urlToPlay) {
                 playVideo(urlToPlay, item.type, item.key);
@@ -202,21 +204,14 @@ async function listAllVideos() {
 // Initialize Plyr player
 const player = new Plyr('#player', {
     controls: [
-        'play-large',
-        'play',
-        'progress',
-        'current-time',
-        'mute',
-        'volume',
-        'captions',
-        'settings',
-        'fullscreen',
+        'play-large', 'play', 'progress', 'current-time', 'mute',
+        'volume', 'captions', 'settings', 'fullscreen',
     ],
     // Other Plyr options if needed
 });
 
 // Function to play a video or audio using Plyr
-async function playVideo(urlToPlay, fileType, videoKey) {
+async function playVideo(cloudFrontUrl, fileType, videoKey) {
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('search').style.display = config.features.enableSearch ? 'block' : 'none';
     document.getElementById('allVideosHeading').style.display = 'none';
@@ -228,6 +223,16 @@ async function playVideo(urlToPlay, fileType, videoKey) {
     // Show the player
     player.style.display = 'block';
 
+    // Re-initialize the player
+    player.source = {
+        type: fileType,
+        sources: [{
+            src: cloudFrontUrl,
+            type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
+        }],
+        tracks: [] // Clear existing tracks
+    };
+
     // Check for embedded subtitles (if enabled)
     let subtitleTracks = [];
     if (config.features.enableSubtitles) {
@@ -238,7 +243,7 @@ async function playVideo(urlToPlay, fileType, videoKey) {
     player.source = {
         type: fileType,
         sources: [{
-            src: urlToPlay,
+            src: cloudFrontUrl,
             type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
         }],
         tracks: subtitleTracks
@@ -361,13 +366,7 @@ async function displaySearchResults(results) {
             link.appendChild(title);
 
             link.addEventListener('click', async () => {
-                let urlToPlay = '';
-                if (config.features.streamFrom === 'cloudfront') {
-                    urlToPlay = getCloudFrontUrl(item.key);
-                } else if (config.features.streamFrom === 's3') {
-                    urlToPlay = await getS3Url(item.key);
-                }
-
+                const urlToPlay = (config.features.streamFrom === 'cloudfront') ? getCloudFrontUrl(item.key) : await getS3Url(item.key);
                 if (urlToPlay) {
                     playVideo(urlToPlay, item.type, item.key);
                     updateWatchHistory(item.key, urlToPlay);
@@ -548,6 +547,7 @@ document.getElementById('backButton').addEventListener('click', () => {
 
 // Initialize the application
 async function initialize() {
+    player;
     await loadAllItems();
     listAllVideos();
     if (config.features.enableWatchHistory) {
@@ -559,3 +559,67 @@ async function initialize() {
     document.getElementById('watchHistory').style.display = config.features.enableWatchHistory ? 'flex' : 'none';
     document.getElementById('themeToggle').style.display = config.features.enableDarkMode ? 'block' : 'none';
 }
+
+function createPlayButton() {
+    // Create a button element
+    const button = document.createElement('button');
+    button.textContent = 'Play Video';
+    button.id = 'playVideoButton'; // Add an id for reference
+  
+    // Add an event listener to the button
+    button.addEventListener('click', () => {
+      // Initialize the player (if it's not already initialized)
+      if (typeof player === 'undefined' || player === null) {
+          player = new Plyr('#player', {
+              controls: [
+                  'play-large', 'play', 'progress', 'current-time', 'mute',
+                  'volume', 'captions', 'settings', 'fullscreen',
+              ],
+          });
+      }
+  
+      // Set the video source
+      player.source = {
+        type: 'video',
+        sources: [{
+          src: 'https://de4yq1f0f6nkd.cloudfront.net/Due%20Date%20(2010).mkv', // Your CloudFront URL
+          type: 'video/mp4', // Replace with the correct video type if needed (e.g., video/webm)
+        }],
+      };
+  
+      // Show the player
+      document.getElementById('video-container').style.display = 'block';
+  
+      // Autoplay the video
+      player.on('loadedmetadata', () => {
+          player.play();
+      });
+  
+      // Enter fullscreen
+      player.on('play', () => {
+          if (!player.fullscreen.active) {
+              player.fullscreen.enter();
+          }
+      });
+      
+      // Add event listener for 'enterfullscreen' event
+      player.on('enterfullscreen', () => {
+          // Hide the close button when entering fullscreen
+          document.getElementById('closePlayer').style.display = 'none';
+      });
+  
+      // Add event listener for 'exitfullscreen' event
+      player.on('exitfullscreen', () => {
+          // Show the close button when exiting fullscreen
+          document.getElementById('closePlayer').style.display = 'block';
+      });
+    });
+  
+    // Append the button to the body (or any other container element)
+    document.body.appendChild(button);
+  }
+  
+  // Call the function to create the button when the page loads
+  document.addEventListener('DOMContentLoaded', () => {
+      createPlayButton();
+  });
