@@ -211,7 +211,7 @@ const player = new Plyr('#player', {
 });
 
 // Function to play a video or audio using Plyr
-async function playVideo(cloudFrontUrl, fileType, videoKey) {
+async function playVideo(urlToPlay, fileType, videoKey) {
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('search').style.display = config.features.enableSearch ? 'block' : 'none';
     document.getElementById('allVideosHeading').style.display = 'none';
@@ -223,27 +223,17 @@ async function playVideo(cloudFrontUrl, fileType, videoKey) {
     // Show the player
     player.style.display = 'block';
 
-    // Re-initialize the player
-    player.source = {
-        type: fileType,
-        sources: [{
-            src: cloudFrontUrl,
-            type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
-        }],
-        tracks: [] // Clear existing tracks
-    };
-
     // Check for embedded subtitles (if enabled)
     let subtitleTracks = [];
     if (config.features.enableSubtitles) {
         subtitleTracks = await findSubtitles(videoKey);
     }
 
-    // Set the source for the player
+    // Set the source for the player using the CloudFront URL directly
     player.source = {
         type: fileType,
         sources: [{
-            src: cloudFrontUrl,
+            src: urlToPlay, // Use the urlToPlay directly
             type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
         }],
         tracks: subtitleTracks
@@ -582,7 +572,7 @@ function createPlayButton() {
       player.source = {
         type: 'video',
         sources: [{
-          src: 'https://de4yq1f0f6nkd.cloudfront.net/Due%20Date%20(2010).mkv', // Your CloudFront URL
+          src: 'https://de4yq1f0f6nkd.cloudfront.net/AKB48.mp4', // Your CloudFront URL
           type: 'video/mp4', // Replace with the correct video type if needed (e.g., video/webm)
         }],
       };
