@@ -1,16 +1,18 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 1em 5%;
     background-color: #181818;
     color: #eee;
+
 }
 
 .container {
-    width: 100%;
+    width: 95%;
     margin: 0;
-    padding: 20px;
+    padding: 0 2.5%;
     display: none;
+
 }
 
 .top-bar {
@@ -72,8 +74,9 @@ body {
 
 #video-container {
     display: none;
-    margin-bottom: 20px;
+    margin-bottom: 1em;
     position: relative;
+
 }
 
 #player {

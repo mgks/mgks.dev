@@ -10,6 +10,7 @@ const config = {
         enableMediaInfo: true,
         enableSearch: true,
         enableWatchHistory: true,
-        enableDarkMode: true
+        enableDarkMode: true,
+        streamFrom: 'cloudfront'
     }
 };

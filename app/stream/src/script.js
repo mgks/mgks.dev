@@ -53,23 +53,26 @@ function generateHash(password) {
     return hash;
 }
 
-
-const player = new Plyr('#player', {
-    controls: [
-        'play-large', 'play', 'progress', 'current-time', 'mute',
-        'volume', 'captions', 'settings', 'fullscreen',
-    ],
-});
-
 // Function to get a CloudFront URL for a given key
 function getCloudFrontUrl(key) {
     return `https://${cloudFrontDomain}/${key}`;
 }
 
-// Function to get a pre-signed URL for a video (updated for CloudFront)
-async function getPresignedUrl(key) {
-    const cloudFrontUrl = `https://${cloudFrontDomain}/${key}`;
-    return cloudFrontUrl;
+// Function to get an S3 URL for a given key
+async function getS3Url(key) {
+    const params = {
+        Bucket: bucketName,
+        Key: key,
+        Expires: 3600 // You can adjust the expiration time as needed
+    };
+
+    try {
+        const url = await s3.getSignedUrlPromise('getObject', params);
+        return url;
+    } catch (err) {
+        console.error("Error generating pre-signed URL", err);
+        return null;
+    }
 }
 
 // Function to determine file type
@@ -151,6 +154,7 @@ async function listAllVideos() {
         link.href = '#';
 
         const thumbnailUrl = await findThumbnailUrl(item.key);
+
         const thumbnail = document.createElement('div');
         thumbnail.classList.add('thumbnail');
 
@@ -175,10 +179,18 @@ async function listAllVideos() {
         link.appendChild(title);
 
         link.addEventListener('click', async () => {
-            const cloudFrontUrl = getCloudFrontUrl(item.key);
-            playVideo(cloudFrontUrl, item.type, item.key);
-            if (config.features.enableWatchHistory) {
-                updateWatchHistory(item.key, cloudFrontUrl);
+            let urlToPlay = '';
+            if (config.features.streamFrom === 'cloudfront') {
+                urlToPlay = getCloudFrontUrl(item.key);
+            } else if (config.features.streamFrom === 's3') {
+                urlToPlay = await getS3Url(item.key);
+            }
+
+            if (urlToPlay) {
+                playVideo(urlToPlay, item.type, item.key);
+                if (config.features.enableWatchHistory) {
+                    updateWatchHistory(item.key, urlToPlay);
+                }
             }
         });
 
@@ -187,8 +199,24 @@ async function listAllVideos() {
     }
 }
 
+// Initialize Plyr player
+const player = new Plyr('#player', {
+    controls: [
+        'play-large',
+        'play',
+        'progress',
+        'current-time',
+        'mute',
+        'volume',
+        'captions',
+        'settings',
+        'fullscreen',
+    ],
+    // Other Plyr options if needed
+});
+
 // Function to play a video or audio using Plyr
-async function playVideo(cloudFrontUrl, fileType, videoKey) {
+async function playVideo(urlToPlay, fileType, videoKey) {
     document.getElementById('video-container').style.display = 'block';
     document.getElementById('search').style.display = config.features.enableSearch ? 'block' : 'none';
     document.getElementById('allVideosHeading').style.display = 'none';
@@ -197,68 +225,28 @@ async function playVideo(cloudFrontUrl, fileType, videoKey) {
     document.getElementById('watchHistory').style.display = config.features.enableWatchHistory ? 'flex' : 'none';
     document.getElementById('backButton').style.display = 'inline-block';
 
+    // Show the player
+    player.style.display = 'block';
+
     // Check for embedded subtitles (if enabled)
     let subtitleTracks = [];
     if (config.features.enableSubtitles) {
         subtitleTracks = await findSubtitles(videoKey);
     }
 
-    // Use mediainfo.js to get audio track information (if enabled)
-    let audioTracks = [];
-    if (config.features.enableMediaInfo && config.features.enableAudioControls) {
-        try {
-            audioTracks = await getAudioTracks(cloudFrontUrl);
-        } catch (error) {
-            console.error("Error getting audio tracks:", error);
-        }
-    }
-
-    const audioSelect = document.getElementById('audio-select');
-    audioSelect.innerHTML = '';
-
-    if (audioTracks.length > 1 && config.features.enableAudioControls) {
-        audioTracks.forEach((track, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.text = track.label;
-            audioSelect.appendChild(option);
-        });
-
-        audioSelect.addEventListener('change', (event) => {
-            const selectedTrackIndex = parseInt(event.target.value);
-            const currentVideoTime = player.currentTime;
-
-            player.source = {
-                type: fileType,
-                sources: [{
-                    src: cloudFrontUrl,
-                    type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
-                }],
-                tracks: subtitleTracks,
-                audioTracks: audioTracks
-            };
-
-            player.currentTime = currentVideoTime;
-            player.play();
-        });
-
-        document.getElementById('audio-controls').style.display = 'block';
-    } else {
-        document.getElementById('audio-controls').style.display = 'none';
-    }
-
+    // Set the source for the player
     player.source = {
         type: fileType,
         sources: [{
-            src: cloudFrontUrl,
+            src: urlToPlay,
             type: fileType === 'video' ? 'video/mp4' : 'audio/mpeg',
         }],
-        tracks: subtitleTracks,
-        audioTracks: audioTracks
+        tracks: subtitleTracks
     };
 
     // Autoplay the video
     player.on('loadedmetadata', () => {
+        player.style.display = 'block';
         player.play();
     });
 
@@ -293,66 +281,27 @@ async function findSubtitles(videoKey) {
             .map(item => item.key);
 
         for (const key of subtitleKeys) {
-            const subtitleUrl = getCloudFrontUrl(key);
-            const subtitleLang = key.split('.').slice(-2, -1)[0]; // Assume language code before extension
-            subtitleTracks.push({
-                kind: 'captions',
-                label: subtitleLang,
-                srclang: subtitleLang,
-                src: subtitleUrl,
-                default: subtitleTracks.length === 0, // Set the first track as default
-            });
+            let subtitleUrl = '';
+            if (config.features.streamFrom === 'cloudfront') {
+                subtitleUrl = getCloudFrontUrl(key);
+            } else if (config.features.streamFrom === 's3') {
+                subtitleUrl = await getS3Url(key);
+            }
+
+            if (subtitleUrl) {
+                const subtitleLang = key.split('.').slice(-2, -1)[0];
+                subtitleTracks.push({
+                    kind: 'captions',
+                    label: subtitleLang,
+                    srclang: subtitleLang,
+                    src: subtitleUrl,
+                    default: subtitleTracks.length === 0, // Set the first track as default
+                });
+            }
         }
     }
 
     return subtitleTracks;
-}
-
-// Function to get audio tracks using mediainfo.js
-async function getAudioTracks(cloudFrontUrl) {
-    if (!config.features.enableMediaInfo) return [];
-    
-    const mediaInfo = await new Promise((resolve, reject) => {
-        const mediainfo = new MediaInfo({ chunkSize: 1024 * 1024 * 10, format: 'object' });
-
-        mediainfo.analyzeData(() => {
-            return {
-                size: 1024 * 1024 * 100,
-                supply: async (chunkSize, offset) => {
-                    try {
-                        const response = await fetch(cloudFrontUrl, {
-                            headers: {
-                                Range: `bytes=${offset}-${offset + chunkSize - 1}`
-                            }
-                        });
-
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-
-                        const buffer = await response.arrayBuffer();
-                        return new Uint8Array(buffer);
-                    } catch (error) {
-                        console.error("Error fetching data for mediainfo:", error);
-                        reject(error);
-                    }
-                }
-            };
-        }, (err) => {
-            console.error("Error mediainfo:", err);
-            reject(err);
-        }).then((result) => {
-            resolve(result);
-        });
-    });
-
-    return mediaInfo.media.track.filter(track => track.type === 'Audio').map((track, index) => ({
-        kind: 'main',
-        label: track.Language || `Audio Track ${index + 1}`,
-        srclang: track.Language || '',
-        default: index === 0,
-        value: index,
-    }));
 }
 
 // Function to perform a deep search of the entire bucket
@@ -412,10 +361,16 @@ async function displaySearchResults(results) {
             link.appendChild(title);
 
             link.addEventListener('click', async () => {
-                const cloudFrontUrl = await getPresignedUrl(item.key);
-                if (cloudFrontUrl) {
-                    playVideo(cloudFrontUrl, item.type, item.key);
-                    updateWatchHistory(item.key, cloudFrontUrl);
+                let urlToPlay = '';
+                if (config.features.streamFrom === 'cloudfront') {
+                    urlToPlay = getCloudFrontUrl(item.key);
+                } else if (config.features.streamFrom === 's3') {
+                    urlToPlay = await getS3Url(item.key);
+                }
+
+                if (urlToPlay) {
+                    playVideo(urlToPlay, item.type, item.key);
+                    updateWatchHistory(item.key, urlToPlay);
                 }
             });
 
