@@ -335,7 +335,7 @@ body.dark a:hover {
 }
 
 .wa-pgs {
-    padding: 6em 1% 4em;
+    padding: 4em 1%;
     border-radius: 7px;
     overflow: hidden;
     position: relative;
@@ -561,7 +561,7 @@ body.dark a:hover {
 }
 
 .wap-projects {
-    padding:2em 0
+    padding: 2em 0;
 }
 
 .wapf-text {
@@ -872,4 +872,49 @@ body.dark a:hover {
     .waa-about {
         width: 90%
     }
+}
+
+.wap-block .wb-bio .wbb-logo {
+    width: 10em;
+    display: inline-block;
+    float: left;
+}
+
+.wap-block .wb-bio .wbb-desc {
+    display: inline-block;
+    float: right;
+}
+
+.wap-block .wb-bio .wbb-desc h3 {
+    font-size: 3em;
+    font-family: var(--font-title);
+    color: #464646;
+}
+
+.wbb-social a svg {
+    width: 20px;
+}
+
+.wbb-social {
+    margin: 0 1em;
+    float: right;
+}
+
+.wap-block .wb-bio {
+    margin: 1em 5%;
+    overflow: hidden;
+}
+
+.wap-block {
+    padding: 1em;
+    border-radius: 5px;
+    background-color: #f4f9ff;
+}
+
+.wb-cover {
+}
+
+.wb-cover img { /* Remove the image from normal flow */ /* Align it with the top of the container */ /* Start positioning from the center of the parent */ /* Center the image horizontally */ /* Make it full width of the viewport */border-radius: 5px;}
+
+.wbb-desc {
 }
