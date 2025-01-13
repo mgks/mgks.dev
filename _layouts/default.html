@@ -35,7 +35,7 @@
 <link rel="apple-touch-icon" sizes="384x384" href="{{site.baseurl}}/assets/images/fav/384.png">
 <link rel="apple-touch-icon" sizes="512x512" href="{{site.baseurl}}/assets/images/fav/512.png">
 
-<title>{{ page.title }} | {{site.name}}</title>
+<title>{{ page.title }} : {{site.name}}</title>
 
 {% seo %}
 
@@ -43,41 +43,32 @@
     
 <link href="{{ site.baseurl }}/assets/css/screen.css" rel="stylesheet">
 <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
-<link href="{{ site.baseurl }}/assets/css/style.min.css" rel="stylesheet">
-
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5ST96QXF');</script>
-<!-- End Google Tag Manager -->
+<link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet">
 
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/script.js"></script>
 
 </head>
 
 {% if jekyll.environment == 'production' %}
 <!-- change your GA id in _config.yml -->
 <!-- Google tag (gtag.js) -->
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{site.google_analytics}}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', '{{site.google_analytics}}');
 </script>
 {% endif %}
 
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
 <body class="{{layout}}">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ST96QXF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 	<!-- defer loading of font and font awesome -->
 	<noscript id="deferred-styles">
 		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 	</noscript>
-
 
 <!-- Begin Menu Navigation
 ================================================== -->
