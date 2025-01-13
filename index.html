@@ -2,349 +2,267 @@
 layout: default
 title: welcome
 ---
-<!--<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>mgks.dev - open source, problem solving and stories</title>
-        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-        <meta data-react-helmet="true" name="description" content="Hello, Ghazi here. I am an open source developer and I love building simple solutions for complex technical problems.">
-        <meta data-react-helmet="true" name="image" content="{{site.baseurl}}/assets/images/preview.png">
-        <meta data-react-helmet="true" property="og:title" content="mgks.dev - open source, problem solving and stories">
-        <meta data-react-helmet="true" property="og:description" content="Hello, Ghazi here. I am an open source developer and I love building simple solutions for complex technical problems.">
-        <meta data-react-helmet="true" property="og:image" content="{{site.baseurl}}/assets/images/preview.png">
-        <meta data-react-helmet="true" property="og:url" content="{{site.baseurl}}">
-        <meta data-react-helmet="true" property="og:type" content="website">
-        <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
-        <meta data-react-helmet="true" name="twitter:creator" content="@enigmazi">
-        <meta data-react-helmet="true" name="twitter:title" content="mgks.dev - open source, problem solving and stories">
-        <meta data-react-helmet="true" name="twitter:description" content="Hello, Ghazi here. I am an open source developer and I love building simple solutions for complex technical problems.">
-        <meta data-react-helmet="true" name="twitter:image" content="{{site.baseurl}}/assets/images/preview.png">
-        <style data-styled="active" data-styled-version="5.3.0"></style>
+<div class="work-area loading-hidden unfade">
+    <div class="zen-mode"><img title="zen by @qtqr8r" src="{{site.baseurl}}/assets/images/zen.gif"><span class="bolt-tag"><a href="https://github.com/mgks/zen" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge-fill" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg></a></span></div>
 
-        <link rel="sitemap" type="application/xml" href="{{site.baseurl}}/feed.xml">
-        <link rel="manifest" href="{{site.baseurl}}/manifest.webmanifest" crossorigin="anonymous">
+    <div id="home" class="wa-pgs wa-welcome wa-home">
+        <span class="waw-hello">Hi, my name is</span><span class="waw-name">Ghazi Khan.</span><span class="waw-work">I build simple solutions for complex web problems.</span><span class="waw-sub">I'm a self-taught software developer specializing in building and designing exceptional digital experiences. Currenly, I'm focused on building accessible open source solutions.</span>
+    </div>
 
-        <link rel="icon" type="image/x-icon" href="{{site.baseurl}}/assets/images/favicon.ico">
-        <link rel="icon" href="{{site.baseurl}}/assets/images/fav/144.png" type="image/png">
-        <link rel="apple-touch-icon" sizes="48x48" href="{{site.baseurl}}/assets/images/fav/48.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{site.baseurl}}/assets/images/fav/72.png">
-        <link rel="apple-touch-icon" sizes="96x96" href="{{site.baseurl}}/assets/images/fav/96.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{site.baseurl}}/assets/images/fav/144.png">
-        <link rel="apple-touch-icon" sizes="192x192" href="{{site.baseurl}}/assets/images/fav/192.png">
-        <link rel="apple-touch-icon" sizes="256x256" href="{{site.baseurl}}/assets/images/fav/256.png">
-        <link rel="apple-touch-icon" sizes="384x384" href="{{site.baseurl}}/assets/images/fav/384.png">
-        <link rel="apple-touch-icon" sizes="512x512" href="{{site.baseurl}}/assets/images/fav/512.png">
-
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{site.google_analytics}}"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '{{site.google_analytics}}');
-        </script>
-
-        <script>(function() {
-			var _pushState = history.pushState;
-			history.pushState = function(state, title, url) {
-				_pushState.call(this, state, title, url);
-				window.dispatchEvent(
-					new CustomEvent('state-changed', { detail: url })
-				);
-			};
-		})();
-        (function() {
-			var _pushState = history.pushState;
-			history.pushState = function(state, title, url) {
-				_pushState.call(this, state, title, url);
-				window.dispatchEvent(
-					new CustomEvent('state-changed', { detail: url })
-				);
-			};
-		})();
-        (function() {
-			var _pushState = history.pushState;
-			history.pushState = function(state, title, url) {
-				_pushState.call(this, state, title, url);
-				window.dispatchEvent(
-					new CustomEvent('state-changed', { detail: url })
-				);
-			};
-		})();/*
-
-            var body = document.getElementsByClassName("work-area")[0]; var timer;
-
-            window.addEventListener('scroll', function() {
-            clearTimeout(timer);
-            if(!body.classList.contains('disable-events')) {
-                body.classList.add('disable-events')
-            }
-            
-            timer = setTimeout(function(){
-                body.classList.remove('disable-events')
-            },500);
-            }, false);*/
-            function tab(page){
-                document.querySelectorAll(".wa-pgs").forEach((el) => {
-                    el.classList.add('hide');
-                });
-                document.querySelectorAll("."+page).forEach((el) => {
-                    el.classList.remove('hide');
-                });
-            }
-            window.onload = function() {
-                setTimeout(function() { fadeload(); }, 500);
-                setTimeout(function() { hideload(); }, 1000);
-            }
-            function hideload(){
-                document.getElementsByClassName("loading-logo")[0].classList.add('hide');
-                document.querySelectorAll(".loading-hidden").forEach((el) => {
-                    el.classList.remove('hide','fade');
-                });
-            }
-            function fadeload(){
-                document.getElementsByClassName("loading-logo")[0].classList.add('fade');
-            }
-         </script>
-         <link rel="stylesheet" href="{{site.baseurl}}/assets/css/style.min.css" />
-    </head>
-    <body>
-        <canvas></canvas>
-        <header class="loading-hidden unfade">
-            <div class="loading-logo hide">
-                <div class="circle-load"></div>
-                <div class="banner disable-events">\.</div>
-            </div>
-            <div class="menu">
-                <nav>
-                <a href="{{site.baseurl}}/#projects" onclick="tab('wa-projects')"><span class="link hover-this">projects</span></a>
-                <a href="{{site.baseurl}}/blog"><span class="link hover-this">blog</span></a>
-                <a href="{{site.baseurl}}/#experience" onclick="tab('wa-experience')"><span class="link hover-this">experience</span></a>
-                <a href="{{site.baseurl}}">mgks<span class="banner" title="home">\.</span>dev</a>
-                <a href="{{site.baseurl}}/#about" onclick="tab('wa-about')"><span class="link hover-this">about</span></a>
-                <a href="{{site.baseurl}}/#contact" onclick="tab('wa-contact')"><span class="link hover-this">contact</span></a>
-                <a href="{{site.baseurl}}/resume.pdf"><span class="button">RESUME</span></a>
-                <div class="cursor"></div>
-                </nav>
-            </div>
-        </header>
-        <div class="socialy lefty">
-            <ul>
-                <li>
-                    <a href="https://github.com/mgks" aria-label="GitHub" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
-                </li>
-                <li>
-                    <a href="https://www.instagram.com/_enigmazi" aria-label="Instagram" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><title>Instagram</title><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/mgks" aria-label="Linkedin" target="_blank" rel="noreferrer"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><title>LinkedIn</title><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
-                </li>
-            </ul>
-        </div>-->
-        <div class="work-area loading-hidden unfade">
-            <div class="zen-mode"><img title="zen by @qtqr8r" src="{{site.baseurl}}/assets/images/zen.gif"><span class="bolt-tag"><a href="https://github.com/mgks/zen" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lightning-charge-fill" viewBox="0 0 16 16"><path d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z"/></svg></a></span></div>
-
-            <div id="home" class="wa-pgs wa-welcome wa-home">
-                <span class="waw-hello">Hi, my name is</span><span class="waw-name">Ghazi Khan.</span><span class="waw-work">I build simple solutions for complex web problems.</span><span class="waw-sub">I'm a self-taught software developer specializing in building and designing exceptional digital experiences. Currenly, I'm focused on building accessible open source solutions.</span>
-            </div>
-
-            <div id="projects" class="wa-pgs wa-projects">
-                <h2>Things I've Built</h2>
-                <div class="wap-projects">
-                    <div class="wap-featured">
-                        <div class="wapf-img"><img src="{{site.baseurl}}/assets/images/swv.jpg"></div>
-                        <div class="wapf-text">
-                            <b>Featured</b>
-                            <h3>Android Smart WebView</h3>
-                            <div class="wap-info"><p>Android framework built on Java to develop advanced hybrid webview applications integrated w/ native features to help create most advanced hybrid applications with ease.</p></div>
-                            <div class="wap-technologies"><b>Android</b><b>Java</b><b>Firebase</b><b>HTML + CSS</b></div>
-                            <div class="wap-social"><a href="{{site.baseurl}}/smart-webview"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/Android-SmartWebView"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+    <div id="projects" class="wa-pgs wa-projects">
+        <h2>Things I've Built</h2>
+        <div class="wap-projects">
+            <!-- Android Smart WebView Showcase Open -->
+            <div class="wap-block">
+                <div class="wb-bio">
+                    <span class="wbb-logo">
+                        <img src="{{site.baseurl}}/assets/images/swv.jpg">
+                    </span>
+                    <span class="wbb-desc">
+                        <h3>Android Smart WebView</h3>
+                        <div class="wbb-social">
+                            <a href="{{site.baseurl}}/smart-webview">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <a href="https://github.com/mgks/Android-SmartWebView">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
                         </div>
-                    </div>
-                    <div class="wapf-info">
-                        <p>More than <span class="highlight">250k+</span> android apps have been deployed till date with <span class="highlight">Smart WebView</span>, by thousands of developers globally.</p>
-                        <div class="wapf-slider">
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c1.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c2.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c3.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c4.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c5.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c6.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c7.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c8.jpg"></span>
-                            <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c9.jpg"></span>
-                            <span class="sl-txt">&amp; More.</span>
-                        </div>
-                    </div>
-                    <div class="wap-other">
-                        <div class="folder">
-                            <div class="wap-bar">
-                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><a href="{{site.baseurl}}"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Website</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mgks.dev"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
-                            </div>
-                            <h3>mgks.dev</h3>
-                            <div class="wap-info"><p>Main website source code built using HTML5 and CSS3 only.</p></div>
-                            <div class="wap-technologies"><b>HTML/CSS</b><b>Zen</b></div>
-                        </div>
-                        <div class="folder">
-                            <div class="wap-bar">
-                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="{{site.baseurl}}/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
-                            </div>
-                            <h3>os-fileup</h3>
-                            <div class="wap-info"><p>Helper app to understand how to upload files and do basic image/video processing in hybrid android apps.</p></div>
-                            <div class="wap-technologies"><b>Android</b><b>Java</b><b>Camera API</b></div>
-                        </div>
-                        <div class="folder">
-                            <div class="wap-bar">
-                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mini-press"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
-                            </div>
-                            <h3>mini-press</h3>
-                            <div class="wap-info"><p>A minimal open source wordpress theme for programmers and bloggers.</p></div>
-                            <div class="wap-technologies"><b>Blog</b><b>HTML/CSS</b><b>WordPress</b></div>
-                        </div>
-                        <div class="folder in-progress">
-                            <div class="wap-bar">
-                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/PaperlessQL"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
-                            </div>
-                            <h3>PaperlessQL</h3>
-                            <div class="wap-info"><b>IN DEVELOPMENT</b><p>Paperless Query Language for micro command management and hybrid device communations.</p></div>
-                            <div class="wap-technologies"><b>Serverless</b><b>SQL</b><b>REST API</b></div>
-                        </div>
-                        <div class="folder in-progress">
-                            <div class="wap-bar">
-                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="hhttps://github.com/mgks/PaperlessQL-DB"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
-                            </div>
-                            <h3>PaperlessQL-DB</h3>
-                            <div class="wap-info"><b>IN DEVELOPMENT</b><p>Small text based micro data storage library to simply pull and push information in serverless files with minimal workload.</p></div>
-                            <div class="wap-technologies"><b>SQL</b><b>PQL</b><b>JavaScript</b></div>
-                        </div>
-                        <div class="folder in-progress">
-                            <div class="wap-bar">
-                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                                <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/Dhwani"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
-                            </div>
-                            <h3>Dhwani</h3>
-                            <div class="wap-info"><b>IN DEVELOPMENT</b><p>A machine learning based project to generate music based on user interest.</p></div>
-                            <div class="wap-technologies"><b>Python</b><b>ML</b></div>
-                        </div>
-                    </div>
-                    <div class="button-area">
-                        <a href="https://github.com/mgks" class="feature-button"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>More Projects</a>
+                    </span>
+                </div>
+                <div class="wb-cover">
+                    <img src="{{site.baseurl}}/assets/images/swv.jpg">
+                </div>
+                <div class="wbb-desc">
+                    <p>Android framework built on Java to develop advanced hybrid webview applications integrated w/ native features to help create most advanced hybrid applications with ease.</p>
+                    <span class="wbbd-tech"><b>Android</b><b>Java</b><b>Firebase</b><b>HTML / CSS</b></span>
+                </div>
+                <div class="wb-plugs">
+                    <p>More than <span class="highlight">250k+</span> android apps have been deployed till date with <span class="highlight">Smart WebView</span>, by thousands of developers globally.</p>
+                    <div class="wapf-slider">
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c1.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c2.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c3.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c4.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c5.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c6.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c7.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c8.jpg"></span>
+                        <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c9.jpg"></span>
+                        <span class="sl-txt">&amp; More.</span>
                     </div>
                 </div>
             </div>
+            <!-- Android Smart WebView Showcase Close -->
 
-            <div id="experience" class="wa-pgs wa-experience">
-                <h2>Work Experience</h2>
-                <div class="wae-experience">
-                    <div class="wae-bl">
-                        <div class="waee-c"><b>March 2018 - Present</b>Remote</div>
-                        <div class="waee-p">
-                            <h4>Open Source Developer &amp; Freelance Consultant <b>@mgks.dev</b></h4>
-                            <ul>
-                            <li>Svaasthify (Oct'23) | WordPress Website | Online Health and Wellness Brand</li>
-                            <li>Aesthetic Illustrations (Jul'21) | Website | A Fashion Designer Portfolio</li>
-                            <li>Vibes (Aug'20 - Nov'20) | AWS Infra Design; WordPress Website | Magazine Publishing Company</li>
-                            <li>SJ Technologies (Sep'19 - May'20) | AWS Infra Design; WordPress Website; Service Management Portal | Marketing services provider</li>
-                            <li>Vehop (Jul'19 - Aug'19) | Android App | E-commerce Shopping App</li>
-                            <li>Dhan Vapasi (Feb'19 - Jun'19) | Android App | Wealth Monetization Company</li>
-                            <li>Eziconnect (May'18 - Jun'18) | Android App | Datasat - African Broadband Service Provider</li>
-                            <li>BOSS (Mar'18 - May'18) | Android App | Serendip - French Healthcare Consultancy Firm</li>
-                            </ul>
-                            <p>Contributing and sharing my insights on open source projects, technical bugs, programming and daily life.</p>
-                            <p>Building open source solutions, along with a dozen contributors globally sharing the same vision of building a healthy environment for open and free information. Started with android apps, now moving towards machine learning and real life problem solving with technology.</p>
+            <!-- Infeeds Showcase Open -->
+            <div class="wap-block">
+                <div class="wb-bio">
+                    <span class="wbb-logo">
+                        <img src="{{site.baseurl}}/assets/images/swv.jpg">
+                    </span>
+                    <span class="wbb-desc">
+                        <h3>Infeeds : directory based forum</h3>
+                        <div class="wbb-social">
+                            <a href="https://infeeds.com">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Website</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
                         </div>
-                    </div>
-                    <div class="wae-bl">
-                        <div class="waee-c"><b>April 2016 - May 2017</b>Haridwar, UK</div>
-                        <div class="waee-p">
-                            <h4>Application Developer <b>@omnia search</b></h4>
-                            <ul>
-                            <li>Complete Project Design</li>
-                            <li>Lead Technology, Market Research and On Ground Surveys</li>
-                            <li>Developed Android App (Java) for Consumer and Business End</li>
-                            </ul>
-                            <p>A big data project to help log, search and navigate consumer products within a local market. Launched in Haridwar (Uttarakhand), as a test site in year 2016.</p>
-                        </div>
-                    </div>
-                    <div class="wae-bl">
-                        <div class="waee-c"><b>May 2014 - Jan 2021</b>New Delhi</div>
-                        <div class="waee-p">
-                            <h4>Fullstack Developer <b>@infeeds</b></h4>
-                            <ul>
-                            <li>Administered Cloud Infrastructure built on Amazon Web Services (AWS)</li>
-                            <li>Fullstack Web Development (HTML5 | CSS3 | JS | PHP | MySQL)</li>
-                            <li>Developed Android App (Java | Firebase)</li>
-                            <li>Content and Advertisement Management</li>
-                            <li>Became a part of Facebook's FbStart program in 2017</li>
-                            </ul>
-                            <p>Online article publishing network, with a million user readership globally. Published in 2014, later discontinued in 2021. Project now available as Open Source.</p>
-                        </div>
-                    </div>
+                    </span>
+                </div>
+                <div class="wb-cover">
+                    <img src="{{site.baseurl}}/assets/images/swv.jpg">
+                </div>
+                <div class="wbb-desc">
+                    <p>Infeeds</p>
+                    <span class="wbbd-tech"><b>AWS / IIS</b><b>PHP</b><b>MySQL</b><b>HTML / CSS / JS</b><b>jQuery</b></span>
+                </div>
+                <div class="wb-plugs">
                 </div>
             </div>
+            <!-- Infeeds Showcase Close -->
 
-            <div id="about" class="wa-pgs wa-about">
-                <div class="waa-pic"><img alt="Ghazi Khan Profile" src="{{site.baseurl}}/assets/images/profile.jpg"></div>
-                <div class="waa-about"><p>Hello! My name is Ghazi Khan and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try building a web based music player, it was rocky start but taught me a lot about HTML & CSS!</p><p>Fast-forward to today, I’m building open source solutions and had the privilege of working with dozens of small to medium businesses, and hundreds of indie developers around the globe. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.</p><p>I also recently started my learning journey for Python and Machine Learning. Here are a few technologies/services I’ve been working with for some time now:</p>
-                <ul class="gl-tags"><li>AWS</li><li>PHP</li><li>HTML5 / CSS3</li></ul><ul class="gl-tags"><li>Android (Java)</li><li>MySQL</li><li>Wordpress</li></ul>
+            <!-- Omnia Search Showcase Open -->
+            <div class="wap-block">
+                <div class="wb-bio">
+                    <span class="wbb-logo">
+                        <img src="{{site.baseurl}}/assets/images/swv.jpg">
+                    </span>
+                    <span class="wbb-desc">
+                        <h3>Omnia Search & Business App</h3>
+                        <div class="wbb-social">
+                            <a href="{{site.baseurl}}/smart-webview">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                            </a>
+                            <a href="https://github.com/mgks/Android-SmartWebView">
+                                <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                            </a>
+                        </div>
+                    </span>
+                </div>
+                <div class="wb-cover">
+                    <img src="{{site.baseurl}}/assets/images/swv.jpg">
+                </div>
+                <div class="wbb-desc">
+                    <p>Omnia Search is a local area based search engine to locate </p>
+                    <span class="wbbd-tech"><b>Android</b><b>AWS / IIS</b><b>HTML / CSS</b><b>jQuery</b></span>
+                </div>
+                <div class="wb-plugs">
                 </div>
             </div>
+            <!-- Omnia Search Showcase Close -->
 
-            <div id="contact" class="wa-pgs wa-contact">
-                <h2>Let's Connect</h2>
-                <div class="wac-contact">
-                    <div class="wac-featured">
-                        <h3>Are you minding a project? I'm always interested about</h3><div class="wac-tags"><span>AI/ML</span><span>Open Source</span><span>Problem Solving</span><span>AWS</span><span>Server Architecture</span><span>Project Consultation</span><span>WordPress</span><span>Fullstack Development</span><span>Coffee</span></div><a href="mailto:hello@mgks.dev" class="wac-contact-b">Contact Me</a>
+            <div class="wap-featured">
+                <div class="wapf-img"><img src="{{site.baseurl}}/assets/images/swv.jpg"></div>
+                <div class="wapf-text">
+                    <b>Featured</b>
+                    <h3>Android Smart WebView</h3>
+                    <div class="wap-info"><p>Android framework built on Java to develop advanced hybrid webview applications integrated w/ native features to help create most advanced hybrid applications with ease.</p></div>
+                    <div class="wap-technologies"><b>Android</b><b>Java</b><b>Firebase</b><b>HTML + CSS</b></div>
+                    <div class="wap-social"><a href="{{site.baseurl}}/smart-webview"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/Android-SmartWebView"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                </div>
+            </div>
+            <div class="wapf-info">
+                <p>More than <span class="highlight">250k+</span> android apps have been deployed till date with <span class="highlight">Smart WebView</span>, by thousands of developers globally.</p>
+                <div class="wapf-slider">
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c1.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c2.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c3.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c4.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c5.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c6.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c7.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c8.jpg"></span>
+                    <span class="sl-img"><img src="{{site.baseurl}}/assets/images/brands/c9.jpg"></span>
+                    <span class="sl-txt">&amp; More.</span>
+                </div>
+            </div>
+            <div class="wap-other">
+                <div class="folder">
+                    <div class="wap-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <div class="wap-social"><a href="{{site.baseurl}}"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Website</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mgks.dev"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
                     </div>
+                    <h3>mgks.dev</h3>
+                    <div class="wap-info"><p>Main website source code built using HTML5 and CSS3 only.</p></div>
+                    <div class="wap-technologies"><b>HTML/CSS</b><b>Zen</b></div>
+                </div>
+                <div class="folder">
+                    <div class="wap-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <div class="wap-social"><!--<a href="{{site.baseurl}}/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog Post</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/os-fileup"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                    </div>
+                    <h3>os-fileup</h3>
+                    <div class="wap-info"><p>Helper app to understand how to upload files and do basic image/video processing in hybrid android apps.</p></div>
+                    <div class="wap-technologies"><b>Android</b><b>Java</b><b>Camera API</b></div>
+                </div>
+                <div class="folder">
+                    <div class="wap-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <div class="wap-social"><a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a><a href="https://github.com/mgks/mini-press"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                    </div>
+                    <h3>mini-press</h3>
+                    <div class="wap-info"><p>A minimal open source wordpress theme for programmers and bloggers.</p></div>
+                    <div class="wap-technologies"><b>Blog</b><b>HTML/CSS</b><b>WordPress</b></div>
+                </div>
+                <div class="folder in-progress">
+                    <div class="wap-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/PaperlessQL"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                    </div>
+                    <h3>PaperlessQL</h3>
+                    <div class="wap-info"><b>IN DEVELOPMENT</b><p>Paperless Query Language for micro command management and hybrid device communations.</p></div>
+                    <div class="wap-technologies"><b>Serverless</b><b>SQL</b><b>REST API</b></div>
+                </div>
+                <div class="folder in-progress">
+                    <div class="wap-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="hhttps://github.com/mgks/PaperlessQL-DB"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                    </div>
+                    <h3>PaperlessQL-DB</h3>
+                    <div class="wap-info"><b>IN DEVELOPMENT</b><p>Small text based micro data storage library to simply pull and push information in serverless files with minimal workload.</p></div>
+                    <div class="wap-technologies"><b>SQL</b><b>PQL</b><b>JavaScript</b></div>
+                </div>
+                <div class="folder in-progress">
+                    <div class="wap-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-folder"><title>Folder</title><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <div class="wap-social"><!--<a href="{{site.baseurl}}/blog/"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><title>Blog</title><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a>--><a href="https://github.com/mgks/Dhwani"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></div>
+                    </div>
+                    <h3>Dhwani</h3>
+                    <div class="wap-info"><b>IN DEVELOPMENT</b><p>A machine learning based project to generate music based on user interest.</p></div>
+                    <div class="wap-technologies"><b>Python</b><b>ML</b></div>
                 </div>
             </div>
-
+            <div class="button-area">
+                <a href="https://github.com/mgks" class="feature-button"><svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub Source</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>More Projects</a>
+            </div>
         </div>
-        <!--<div class="emaily righty vert-v">
-            <div class="bar-email"><a href="mailto:hello@mgks.dev">hello@mgks.dev</a></div>
+    </div>
+
+    <div id="experience" class="wa-pgs wa-experience">
+        <h2>Work Experience</h2>
+        <div class="wae-experience">
+            <div class="wae-bl">
+                <div class="waee-c"><b>March 2018 - Present</b>Remote</div>
+                <div class="waee-p">
+                    <h4>Open Source Developer &amp; Freelance Consultant <b>@mgks.dev</b></h4>
+                    <ul>
+                    <li>Svaasthify (Oct'23) | WordPress Website | Online Health and Wellness Brand</li>
+                    <li>Aesthetic Illustrations (Jul'21) | Website | A Fashion Designer Portfolio</li>
+                    <li>Vibes (Aug'20 - Nov'20) | AWS Infra Design; WordPress Website | Magazine Publishing Company</li>
+                    <li>SJ Technologies (Sep'19 - May'20) | AWS Infra Design; WordPress Website; Service Management Portal | Marketing services provider</li>
+                    <li>Vehop (Jul'19 - Aug'19) | Android App | E-commerce Shopping App</li>
+                    <li>Dhan Vapasi (Feb'19 - Jun'19) | Android App | Wealth Monetization Company</li>
+                    <li>Eziconnect (May'18 - Jun'18) | Android App | Datasat - African Broadband Service Provider</li>
+                    <li>BOSS (Mar'18 - May'18) | Android App | Serendip - French Healthcare Consultancy Firm</li>
+                    </ul>
+                    <p>Contributing and sharing my insights on open source projects, technical bugs, programming and daily life.</p>
+                    <p>Building open source solutions, along with a dozen contributors globally sharing the same vision of building a healthy environment for open and free information. Started with android apps, now moving towards machine learning and real life problem solving with technology.</p>
+                </div>
+            </div>
+            <div class="wae-bl">
+                <div class="waee-c"><b>April 2016 - May 2017</b>Haridwar, UK</div>
+                <div class="waee-p">
+                    <h4>Application Developer <b>@omnia search</b></h4>
+                    <ul>
+                    <li>Complete Project Design</li>
+                    <li>Lead Technology, Market Research and On Ground Surveys</li>
+                    <li>Developed Android App (Java) for Consumer and Business End</li>
+                    </ul>
+                    <p>A big data project to help log, search and navigate consumer products within a local market. Launched in Haridwar (Uttarakhand), as a test site in year 2016.</p>
+                </div>
+            </div>
+            <div class="wae-bl">
+                <div class="waee-c"><b>May 2014 - Jan 2021</b>New Delhi</div>
+                <div class="waee-p">
+                    <h4>Fullstack Developer <b>@infeeds</b></h4>
+                    <ul>
+                    <li>Administered Cloud Infrastructure built on Amazon Web Services (AWS)</li>
+                    <li>Fullstack Web Development (HTML5 | CSS3 | JS | PHP | MySQL)</li>
+                    <li>Developed Android App (Java | Firebase)</li>
+                    <li>Content and Advertisement Management</li>
+                    <li>Became a part of Facebook's FbStart program in 2017</li>
+                    </ul>
+                    <p>Online article publishing network, with a million user readership globally. Published in 2014, later discontinued in 2021. Project now available as Open Source.</p>
+                </div>
+            </div>
         </div>
-        <footer>
-            <div class="foot-bracket"><div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div><div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div></div>
-        </footer>
-        <script src="{{site.baseurl}}/assets/js/canvas.js" type="text/javascript"></script>
-        <script>/*
-            (function () {
+    </div>
 
-            const link = document.querySelectorAll('nav > .hover-this');
-            const cursor = document.querySelector('.cursor');
+    <div id="about" class="wa-pgs wa-about">
+        <div class="waa-pic"><img alt="Ghazi Khan Profile" src="{{site.baseurl}}/assets/images/profile.jpg"></div>
+        <div class="waa-about"><p>Hello! My name is Ghazi Khan and I enjoy creating things that live on the internet. My interest in web development started back in 2012 when I decided to try building a web based music player, it was rocky start but taught me a lot about HTML & CSS!</p><p>Fast-forward to today, I’m building open source solutions and had the privilege of working with dozens of small to medium businesses, and hundreds of indie developers around the globe. My main focus these days is building accessible, inclusive products and digital experiences for a variety of clients.</p><p>I also recently started my learning journey for Python and Machine Learning. Here are a few technologies/services I’ve been working with for some time now:</p>
+        <ul class="gl-tags"><li>AWS</li><li>PHP</li><li>HTML5 / CSS3</li></ul><ul class="gl-tags"><li>Android (Java)</li><li>MySQL</li><li>Wordpress</li></ul>
+        </div>
+    </div>
 
-            const animateit = function (e) {
-                const span = this.querySelector('span');
-                const { offsetX: x, offsetY: y } = e,
-                { offsetWidth: width, offsetHeight: height } = this,
+    <div id="contact" class="wa-pgs wa-contact">
+        <h2>Let's Connect</h2>
+        <div class="wac-contact">
+            <div class="wac-featured">
+                <h3>Are you minding a project? I'm always interested about</h3><div class="wac-tags"><span>AI/ML</span><span>Open Source</span><span>Problem Solving</span><span>AWS</span><span>Server Architecture</span><span>Project Consultation</span><span>WordPress</span><span>Fullstack Development</span><span>Coffee</span></div><a href="mailto:hello@mgks.dev" class="wac-contact-b">Contact Me</a>
+            </div>
+        </div>
+    </div>
 
-                move = 25,
-                xMove = x / width * (move * 2) - move,
-                yMove = y / height * (move * 2) - move;
-
-                span.style.transform = `translate(${xMove}px, ${yMove}px)`;
-
-                if (e.type === 'mouseleave') span.style.transform = '';
-            };
-
-            const editCursor = e => {
-                const { clientX: x, clientY: y } = e;
-                cursor.style.left = x + 'px';
-                cursor.style.top = y + 'px';
-            };
-
-            //link.forEach(b => b.addEventListener('mousemove', animateit));
-            //link.forEach(b => b.addEventListener('mouseleave', animateit));
-            window.addEventListener('mousemove', editCursor);
-
-            })();*/
-        </script>
-    </body>
-</html>-->
+</div>

@@ -204,7 +204,7 @@ footer {
 
 .work-area {
     min-height: 66vh;
-    margin: 17vh 0 0;
+    margin: 4em 0 0;
 }
 
 .disable-events {
@@ -335,7 +335,7 @@ body.dark a:hover {
 }
 
 .wa-pgs {
-    padding: 6em 2em 4em;
+    padding: 6em 1% 4em;
     border-radius: 7px;
     overflow: hidden;
     position: relative;
@@ -344,7 +344,6 @@ body.dark a:hover {
 .wa-pgs h2 {
     font-size: 3em;
     font-weight: 800;
-    text-align: center;
     color: var(--theme-color);
     font-family: var(--font-title);
     flex-direction: row;
@@ -425,7 +424,6 @@ body.dark a:hover {
 .wa-about {
     max-width: 80%;
     margin: 0 auto;
-    padding: 10em 0 0;
 }
 
 .gl-tags li {
@@ -870,4 +868,9 @@ body.dark a:hover {
     .waa-about {
         width: 90%
     }
+}
+
+
+.wa-welcome {
+    padding: 6em 4% 3em;
 }
