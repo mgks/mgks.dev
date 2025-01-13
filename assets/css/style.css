@@ -813,6 +813,10 @@ body.dark a:hover {
     filter:grayscale(0)
 }
 
+.wa-welcome {
+    padding: 6em 4% 3em;
+}
+
 @media only screen and (max-width: 1200px) {
     .wapf-img, .wapf-text, .wapf-text p {
         float: none;
@@ -868,9 +872,4 @@ body.dark a:hover {
     .waa-about {
         width: 90%
     }
-}
-
-
-.wa-welcome {
-    padding: 6em 4% 3em;
 }
