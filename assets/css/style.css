@@ -910,7 +910,8 @@ body.dark a:hover {
 
 .wap-block {overflow: hidden;margin: 2em auto 4em;}
 
-.wb-cover img { width: 100%;}
+
+.wb-cover img { /* Remove the image from normal flow */ /* Align it with the top of the container */ /* Start positioning from the center of the parent */ /* Center the image horizontally */ /* Make it full width of the viewport */width: 100%;}
 
 .wbb-desc, .wb-plugs {max-width: 80%;margin: 0 auto;padding: 1.5em;background-color: #f4f9ff;border-radius: 5px 5px 0 0;}
 
