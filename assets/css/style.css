@@ -21,7 +21,9 @@
     --theme-progdrop: #9500ff17;
     --theme-progdrop-dark: #7702cb17;
     --theme-dark-backdrop: #1a5eb0a1;
-    --dark-background:#001830
+    --dark-background:#001830;
+    --hold-orange: #ffae0017;
+    --hold-orange-dark: #ffae0042;
 }
 
 body {
@@ -29,7 +31,7 @@ body {
     background-color: #fff;
     font-family: var(--font-mono);
     -webkit-font-smoothing: antialiased;
-    max-height:100vh
+    max-height:100vh;
 }
 
 .absolute {
@@ -96,15 +98,15 @@ header {
 .menu a {
     display: inline-block;
     margin: 0 1em;
-    letter-spacing:2px
+    letter-spacing:2px;
 }
 
 .menu {
     font-family: var(--font-mono);
-    margin: .5em;
     font-size: .85em;
     overflow: hidden;
-    text-align:center
+    text-align: center;
+    margin: .5em 0;
 }
 
 .menu .link b {
@@ -126,7 +128,7 @@ header {
 }
 
 a:hover {
-    color:var(--theme-dark)
+    color:var(--theme-dark);
 }
 
 .menu span.button:hover {
@@ -204,7 +206,7 @@ footer {
 
 .work-area {
     min-height: 66vh;
-    margin: 17vh 0 0;
+    margin: 3em 0 0;
 }
 
 .disable-events {
@@ -335,7 +337,7 @@ body.dark a:hover {
 }
 
 .wa-pgs {
-    padding: 6em 2em 4em;
+    padding: 2em 0;
     border-radius: 7px;
     overflow: hidden;
     position: relative;
@@ -344,13 +346,13 @@ body.dark a:hover {
 .wa-pgs h2 {
     font-size: 3em;
     font-weight: 800;
-    text-align: center;
     color: var(--theme-color);
     font-family: var(--font-title);
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
-    position:relative
+    position:relative;
+    text-align: center;
 }
 
 .wa-pgs h2::after {
@@ -372,15 +374,12 @@ body.dark a:hover {
 .waa-pic {
     width: 25%;
     float: left;
-    position:initial
+    position:initial;
 }
 
 .waa-pic img {
-    width: 125%;
-    border-radius: 5%;
     margin: -3em 0;
-    transition: .5s;
-    filter: grayscale(0);
+    border-radius: 10px;
 }
 
 .waa-pic:hover {
@@ -388,7 +387,7 @@ body.dark a:hover {
 }
 
 .waa-about ul {
-    width: 35%;
+    width: 40%;
     float:left
 }
 
@@ -425,11 +424,11 @@ body.dark a:hover {
 .wa-about {
     max-width: 80%;
     margin: 0 auto;
-    padding: 10em 0 0;
+    padding-top: 10em;
 }
 
 .gl-tags li {
-    padding: .15em 0;
+    padding: .5em 0.25em;
     color:var(--theme-dark)
 }
 
@@ -461,7 +460,7 @@ body.dark a:hover {
 .waee-p h4 {
     margin: 0 0 1em;
     font-family: var(--font-title);
-    color: var(--theme-grey);
+    color: var(--theme-black);
 }
 
 .waee-p h4 b {
@@ -470,17 +469,14 @@ body.dark a:hover {
 
 .work-area p, .work-area ul {
     color: var(--theme-black);
-    letter-spacing: .005em;
-    word-spacing: .1em;
     list-style:circle
 }
 
 .work-area ul li {
-    margin:.5em 0
 }
 
 .work-area ul {
-    padding-left:2em
+    padding: 2em 5% 0;
 }
 
 .loading-logo {
@@ -563,7 +559,7 @@ body.dark a:hover {
 }
 
 .wap-projects {
-    padding:2em 0
+    padding: 3em 0;
 }
 
 .wapf-text {
@@ -624,7 +620,7 @@ body.dark a:hover {
 
 .wapf-slider {
     width: 100%;
-    height: 4.5em;
+    height: 5em;
     cursor:crosshair
 }
 
@@ -645,11 +641,11 @@ body.dark a:hover {
 }
 
 .wapf-slider .sl-txt {
-    background-color: var(--theme-lcolor);
-    height: 3em;
+    background-color: var(--theme-color);
+    height: 3.25em;
     color: var(--theme-white);
     font-family: var(--font-title);
-    line-height: 3em;
+    line-height: 3.25em;
     font-size: 1.4em;
     text-align: center;
     border-radius: 5px;
@@ -703,7 +699,8 @@ body.dark a:hover {
 
 .wap-other {
     overflow: hidden;
-    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
     flex-direction: row;
     flex-wrap: wrap;
     display:flex
@@ -721,14 +718,14 @@ body.dark a:hover {
 .button-area .feature-button {
     display: inline-block;
     background-color: var(--theme-color);
-    padding: 1.5em 2.5%;
+    padding: 1em 2%;
     font-family: var(--font-title);
     color: var(--theme-white);
     font-size: 1.5em;
     border-radius: 5px;
     margin: 1em auto;
     transition: .5s;
-    width: 40%;
+    min-width: 12em;
 }
 
 .button-area .feature-button svg {
@@ -765,7 +762,8 @@ body.dark a:hover {
 }
 
 .wa-contact {
-    width: 80%;
+    max-width: 70%;
+    margin: 0 auto;
     padding: 10em 0;
 }
 
@@ -815,6 +813,10 @@ body.dark a:hover {
     filter:grayscale(0)
 }
 
+.wa-welcome {
+    padding: 5em 15%;
+}
+
 @media only screen and (max-width: 1200px) {
     .wapf-img, .wapf-text, .wapf-text p {
         float: none;
@@ -839,7 +841,7 @@ body.dark a:hover {
     }
 
     .wap-other .folder {
-        width: 80%;
+        width: 90%;
         margin: 1em 5%;
         padding:2em 5%
     }
@@ -860,14 +862,87 @@ body.dark a:hover {
 
     .waa-pic img {
         width: 100%;
-        margin:0
+        margin: 0 0 2em;
     }
 
     .wa-about {
-        padding:5em 0 0
     }
 
     .waa-about {
-        width: 90%
+        width: 100%;
+        margin: 0;
     }
+    .wap-block .wb-bio,.wbp-desc{min-width: 90%;}
+    .wb-cover img{border: none !important;!i;!;min-width: 100%;}
+}
+
+.wap-block .wb-bio .wbb-logo {
+    display: inline-block;
+    float: left;
+}
+
+.wap-block .wb-bio .wbb-desc {
+    display: inline-block;
+    float: left;
+}
+
+.wap-block .wb-bio .wbb-desc h3 {
+    font-size: 3em;
+    font-family: var(--font-title);
+    color: #464646;
+}
+
+.wbb-social a svg {
+    width: 20px;
+}
+
+.wbb-social {
+    float: left;
+}
+
+.wap-block .wb-bio {
+    margin: 0 auto;
+    padding: 1em 1.5em;
+    overflow: hidden;
+    max-width: 65%;
+    background-color: var(--theme-backdrop);
+    border-radius: 5px 5px 0 0;
+}
+
+.wap-block {overflow: hidden;margin: 2em auto 4em;}
+
+
+.wb-cover img {max-width: 85%;border-radius: 15px;border: 5px solid var(--theme-light);margin: 0 auto;display: block;}
+
+.wbp-desc, .wb-plugs {max-width: 65%;margin: 0 auto;padding: 0 1.5em 1.5em;background-color: var(--theme-backdrop);}
+
+.wbbd-tech b {
+    margin-right: 1em;
+    padding: .25em 1em;
+    display: inline-block;
+    background-color: #085eb0;
+    color: #fff;
+    border-radius: 3px;
+    font-size: .75em;
+}
+
+.wapf-slider .sl-img img:hover {
+    filter: none;
+}
+
+.wa-experience {
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.in-progress {
+    background-color: var(--hold-orange) !important;
+}
+
+.in-progress:hover {
+    background-color: var(--hold-orange-dark) !important;
+}
+
+.wb-plugs {
+    padding: 1.5em;
 }
