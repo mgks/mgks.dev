@@ -21,7 +21,9 @@
     --theme-progdrop: #9500ff17;
     --theme-progdrop-dark: #7702cb17;
     --theme-dark-backdrop: #1a5eb0a1;
-    --dark-background:#001830
+    --dark-background:#001830;
+    --hold-orange: #ffae0017;
+    --hold-orange-dark: #ffae0042;
 }
 
 body {
@@ -96,15 +98,15 @@ header {
 .menu a {
     display: inline-block;
     margin: 0 1em;
-    letter-spacing:2px
+    letter-spacing:2px;
 }
 
 .menu {
     font-family: var(--font-mono);
-    margin: .5em;
     font-size: .85em;
     overflow: hidden;
     text-align: center;
+    margin: .5em 0;
 }
 
 .menu .link b {
@@ -126,7 +128,7 @@ header {
 }
 
 a:hover {
-    color:var(--theme-dark)
+    color:var(--theme-dark);
 }
 
 .menu span.button:hover {
@@ -457,7 +459,7 @@ body.dark a:hover {
 .waee-p h4 {
     margin: 0 0 1em;
     font-family: var(--font-title);
-    color: var(--theme-grey);
+    color: var(--theme-black);
 }
 
 .waee-p h4 b {
@@ -466,8 +468,6 @@ body.dark a:hover {
 
 .work-area p, .work-area ul {
     color: var(--theme-black);
-    letter-spacing: .005em;
-    word-spacing: .1em;
     list-style:circle
 }
 
@@ -813,7 +813,7 @@ body.dark a:hover {
 }
 
 .wa-welcome {
-    padding: 5em 4%;
+    padding: 5em 15%;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -874,7 +874,6 @@ body.dark a:hover {
 }
 
 .wap-block .wb-bio .wbb-logo {
-    width: 10em;
     display: inline-block;
     float: left;
 }
@@ -882,6 +881,7 @@ body.dark a:hover {
 .wap-block .wb-bio .wbb-desc {
     display: inline-block;
     float: right;
+    padding: 1em;
 }
 
 .wap-block .wb-bio .wbb-desc h3 {
@@ -903,7 +903,7 @@ body.dark a:hover {
     margin: 0 auto;
     padding: 1.5em;
     overflow: hidden;
-    max-width: 80%;
+    max-width: 65%;
     background-color: #f4f9ff;
     border-radius: 5px 5px 0 0;
 }
@@ -911,9 +911,9 @@ body.dark a:hover {
 .wap-block {overflow: hidden;margin: 2em auto 4em;}
 
 
-.wb-cover img { /* Remove the image from normal flow */ /* Align it with the top of the container */ /* Start positioning from the center of the parent */ /* Center the image horizontally */ /* Make it full width of the viewport */width: 100%;}
+.wb-cover img {max-width: 85%;border-radius: 15px;border: 5px solid var(--theme-lcolor);margin: 0 auto;display: block;}
 
-.wbb-desc, .wb-plugs {max-width: 80%;margin: 0 auto;padding: 1.5em;background-color: #f4f9ff;border-radius: 5px 5px 0 0;}
+.wbp-desc, .wb-plugs {max-width: 75%;margin: 0 auto;padding: 1.5em;background-color: #f4f9ff;5px 5px 0CONTAIN-INTRINSIC-BLOCK-SIZE: AUTO 100PX;}
 
 .wbbd-tech b {
     margin-right: 1em;
@@ -932,4 +932,12 @@ body.dark a:hover {
 .wa-experience {
     max-width: 90%;
     margin: 0 auto;
+}
+
+.in-progress {
+    background-color: var(--hold-orange) !important;
+}
+
+.in-progress:hover {
+    background-color: var(--hold-orange-dark) !important;
 }
