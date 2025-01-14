@@ -387,7 +387,7 @@ body.dark a:hover {
 }
 
 .waa-about ul {
-    width: 35%;
+    width: 40%;
     float:left
 }
 
@@ -424,10 +424,11 @@ body.dark a:hover {
 .wa-about {
     max-width: 80%;
     margin: 0 auto;
+    padding-top: 10em;
 }
 
 .gl-tags li {
-    padding: .15em 0;
+    padding: .5em 0.25em;
     color:var(--theme-dark)
 }
 
@@ -472,11 +473,10 @@ body.dark a:hover {
 }
 
 .work-area ul li {
-    margin:.5em 0
 }
 
 .work-area ul {
-    padding-left:2em
+    padding: 2em 5% 0;
 }
 
 .loading-logo {
@@ -763,7 +763,8 @@ body.dark a:hover {
 
 .wa-contact {
     max-width: 70%;
-    margin: 10em auto;
+    margin: 0 auto;
+    padding: 10em 0;
 }
 
 .wac-tags span {
@@ -840,7 +841,7 @@ body.dark a:hover {
     }
 
     .wap-other .folder {
-        width: 80%;
+        width: 90%;
         margin: 1em 5%;
         padding:2em 5%
     }
@@ -861,16 +862,18 @@ body.dark a:hover {
 
     .waa-pic img {
         width: 100%;
-        margin:0
+        margin: 0 0 2em;
     }
 
     .wa-about {
-        padding:5em 0 0
     }
 
     .waa-about {
-        width: 90%
+        width: 100%;
+        margin: 0;
     }
+    .wap-block .wb-bio,.wbp-desc{min-width: 90%;}
+    .wb-cover img{border: none !important;!i;!;min-width: 100%;}
 }
 
 .wap-block .wb-bio .wbb-logo {
@@ -880,8 +883,7 @@ body.dark a:hover {
 
 .wap-block .wb-bio .wbb-desc {
     display: inline-block;
-    float: right;
-    padding: 1em;
+    float: left;
 }
 
 .wap-block .wb-bio .wbb-desc h3 {
@@ -895,25 +897,24 @@ body.dark a:hover {
 }
 
 .wbb-social {
-    margin: 0 1em;
-    float: right;
+    float: left;
 }
 
 .wap-block .wb-bio {
     margin: 0 auto;
-    padding: 1.5em;
+    padding: 1em 1.5em;
     overflow: hidden;
     max-width: 65%;
-    background-color: #f4f9ff;
+    background-color: var(--theme-backdrop);
     border-radius: 5px 5px 0 0;
 }
 
 .wap-block {overflow: hidden;margin: 2em auto 4em;}
 
 
-.wb-cover img {max-width: 85%;border-radius: 15px;border: 5px solid var(--theme-lcolor);margin: 0 auto;display: block;}
+.wb-cover img {max-width: 85%;border-radius: 15px;border: 5px solid var(--theme-light);margin: 0 auto;display: block;}
 
-.wbp-desc, .wb-plugs {max-width: 75%;margin: 0 auto;padding: 1.5em;background-color: #f4f9ff;5px 5px 0CONTAIN-INTRINSIC-BLOCK-SIZE: AUTO 100PX;}
+.wbp-desc, .wb-plugs {max-width: 65%;margin: 0 auto;padding: 0 1.5em 1.5em;background-color: var(--theme-backdrop);}
 
 .wbbd-tech b {
     margin-right: 1em;
@@ -940,4 +941,8 @@ body.dark a:hover {
 
 .in-progress:hover {
     background-color: var(--hold-orange-dark) !important;
+}
+
+.wb-plugs {
+    padding: 1.5em;
 }
