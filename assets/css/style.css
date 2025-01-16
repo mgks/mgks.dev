@@ -337,7 +337,7 @@ body.dark a:hover {
 }
 
 .wa-pgs {
-    padding: 2em 0;
+    padding: 5em 0 2em;
     border-radius: 7px;
     overflow: hidden;
     position: relative;
@@ -814,7 +814,7 @@ body.dark a:hover {
 }
 
 .wa-welcome {
-    padding: 5em 15%;
+    padding: 5em 15% 0;
 }
 
 @media only screen and (max-width: 1200px) {
