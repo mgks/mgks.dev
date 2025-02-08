@@ -408,7 +408,8 @@ body.dark a:hover {
     visibility: hidden;
     -webkit-transition: visibility .5s linear, opacity .5s linear;
     -moz-transition: visibility .5s linear, opacity .5s linear;
-    -o-transition:visibility .5s linear, opacity .5s linear
+    -o-transition:visibility .5s linear, opacity .5s linear;
+    transition: visibility .5s linear, opacity .5s linear;
 }
 
 .unfade {
@@ -420,6 +421,7 @@ body.dark a:hover {
 
 .backdrop {
     -webkit-backdrop-filter: blur(15px) opacity(0.9);
+    backdrop-filter: blur(15px) opacity(0.9);
     background-color:var(--theme-backdrop)
 }
 
@@ -455,6 +457,7 @@ body.dark a:hover {
 
 .backdrop-sh{
     -webkit-backdrop-filter: opacity(1);
+    backdrop-filter: opacity(1);
     background-color: var(--theme-backdrop);
     box-shadow: 0 0 100px -2px var(--theme-backdrop-shadow);    
 }
@@ -605,9 +608,10 @@ body.dark a:hover {
 
 .wap-social {
     width: 100%;
-    height: 1em;
-    margin: 1em 0;
-    font-size:1.5em
+    height: 1.5em;
+    margin: .25em 0 0;
+    font-size: 1.5em;
+
 }
 
 .wap-technologies b {
@@ -641,9 +645,10 @@ body.dark a:hover {
 .wapf-slider .sl-img img {
     max-width: 100%;
     min-height: 4em;
-    border-radius: 5px;
+    border-radius: 15px;
     filter: grayscale(1);
-    transition:.5s
+    transition: .5s;
+
 }
 
 .wapf-slider .sl-txt {
@@ -690,10 +695,6 @@ body.dark a:hover {
     margin: 1.65%;
 }
 
-.wap-bar .wap-social {
-    margin:.5em 0
-}
-
 .wap-other .folder h3 {
     font-family: var(--font-title);
     font-size: 1.5em;
@@ -725,7 +726,7 @@ body.dark a:hover {
 .button-area .feature-button {
     display: inline-block;
     background-color: var(--theme-color);
-    padding: 1em 2%;
+    padding: 1em 2% .75em;
     font-family: var(--font-title);
     color: var(--theme-white);
     font-size: 1.5em;
@@ -733,6 +734,7 @@ body.dark a:hover {
     margin: 1em auto;
     transition: .5s;
     min-width: 12em;
+
 }
 
 .button-area .feature-button svg {
@@ -872,23 +874,15 @@ body.dark a:hover {
         margin: 0 0 2em;
     }
 
-    .wa-about {
-    }
-
     .waa-about {
         width: 100%;
         margin: 0;
     }
     .wap-block .wb-bio,.wbp-desc{min-width: 90%;}
-    .wb-cover img{border: none !important;!i;!;min-width: 100%;}
+    .wb-cover img{border: none !important;min-width: 100%;}
 }
 
-.wap-block .wb-bio .wbb-logo {
-    display: inline-block;
-    float: left;
-}
-
-.wap-block .wb-bio .wbb-desc {
+.wap-block .wb-bio .wbb-logo, .wap-block .wb-bio .wbb-desc {
     display: inline-block;
     float: left;
 }
