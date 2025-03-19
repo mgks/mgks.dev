@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2024-06-13 12:42:00 +0300
-title: Stable Diffusion 3: A New Era of AI Image Synthesis
+title: Stable Diffusion 3, A New Era of AI Image Synthesis
 author: ghazi
 categories: [artificial intelligence]
 tags: [stable diffusion, image generation]
