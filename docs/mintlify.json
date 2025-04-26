@@ -40,7 +40,7 @@
   "navigation": [
     {
       "group": "Getting Started",
-      "pages": ["introduction", "quickstart"]
+      "pages": ["index", "introduction", "quickstart"]
     },
     {
       "group": "API Documentation",

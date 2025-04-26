@@ -47,6 +47,21 @@ jobs:
         run: |
           mkdir -p ./_site/docs
           cp -r ./docs/* ./_site/docs/
+          
+          # Create an HTML file that will redirect to index.mdx
+          if [ ! -f ./_site/docs/index.html ]; then
+            cat > ./_site/docs/index.html << 'EOL'
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta http-equiv="refresh" content="0; url='index'" />
+            </head>
+            <body>
+              <p>Redirecting to <a href="index">documentation home</a>...</p>
+            </body>
+            </html>
+            EOL
+          fi
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
