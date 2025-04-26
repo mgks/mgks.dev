@@ -64,4 +64,4 @@ lazyimages: "disabled"
 # Documentation
 docs_url: "/docs"
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, "mintlify-docs-build", "node_modules"]
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, "mintlify-docs-build", "node_modules", "vendor"]

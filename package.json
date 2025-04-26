@@ -1,0 +1,34 @@
+{
+  "name": "mgks-dev",
+  "version": "1.0.0",
+  "description": "Personal website and documentation for mgks.dev",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "mintlify dev ./docs",
+    "docs:build": "mintlify build ./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mgks/mgks.dev.git"
+  },
+  "keywords": [
+    "jekyll",
+    "blog",
+    "portfolio",
+    "documentation",
+    "mintlify"
+  ],
+  "author": "Ghazi Khan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mgks/mgks.dev/issues"
+  },
+  "homepage": "https://mgks.dev",
+  "devDependencies": {
+    "mintlify": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
+} 

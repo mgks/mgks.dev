@@ -21,14 +21,13 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: '2.7'
           bundler-cache: true # This caches dependencies
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install Jekyll dependencies
         run: bundle install
@@ -46,8 +45,8 @@ jobs:
 
       - name: Build Mintlify documentation
         run: |
-          mintlify build ./docs
-          cp -r ./mintlify-docs-build ./_site/docs
+          mkdir -p ./_site/docs
+          cp -r ./docs/* ./_site/docs/
 
       - name: Deploy to GitHub Pages
         if: github.ref == 'refs/heads/main'
