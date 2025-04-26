@@ -8,14 +8,14 @@ baseurl: https://mgks.dev
 google_analytics: 'G-DTYS057VRC'
 disqus: 'mgksdev'
 mailchimp-list: ''
-include: ["_pages"]
+include: ["_pages", "docs/**"]
 permalink: /:title/
 
 # Authors
 authors:
   ghazi:
     name: Ghazi
-    display_name: Ghazi Khan
+    display_name: Ghazi
     avatar: 'assets/images/avatar.jpg'
     gravatar: 
     email: hello@mgks.dev
@@ -61,4 +61,7 @@ adsense-data-ad-slot: ""
 # Lazy Images ("enabled" or "disabled")
 lazyimages: "disabled"
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+# Documentation
+docs_url: "/docs"
+
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, "mintlify-docs-build", "node_modules"]
