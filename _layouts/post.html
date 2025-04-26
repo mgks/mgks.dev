@@ -5,158 +5,121 @@ archive: false
 post_class: post-template
 ---
 
-<!-- Begin Article
-================================================== -->
-<div class="container">
-    <div class="row">
-
-        <!-- Post Share -->
-        <div class="col-md-2 pl-0">
-            {% include share.html %}
-        </div>
-
-        <!-- Post -->
-        {% assign author = site.authors[page.author] %}
-
-        <div class="col-md-9 flex-first flex-md-unordered">
-            <div class="mainheading">
-
-                <!-- Author Box -->
-                {% if page.author %}
-                <div class="row post-top-meta">
-                    <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
-                        {% if author.avatar %}
-                        <img class="author-thumb" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
-                        {% else %}
-                        <img class="author-thumb" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
-                        {% endif %}
-                    </div>
-                    <div class="col-xs-12 col-md-9 col-lg-10 text-center text-md-left">
-                        <a class="link-dark" href="{{ author.web }}">{{ author.display_name }}</a>
-                        <span class="author-description">{{ author.description }}</span>
-                    </div>
-                </div>
+<div class="work-area loading-hidden unfade">
+    <div class="wa-pgs wa-post">
+        <div class="wap-post">
+            <!-- Author info -->
+            {% assign author = site.authors[page.author] %}
+            {% if page.author %}
+            <div class="post-author">
+                {% if author.avatar %}
+                <img class="author-image" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
+                {% else %}
+                <img class="author-image" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
                 {% endif %}
-
-                <!-- Post Title -->
-                <h1 class="posttitle">{{ page.title }}</h1>
-
+                <div class="author-info">
+                    <a href="{{ author.web }}">{{ author.display_name }}</a>
+                    <span>{{ author.description }}</span>
+                </div>
             </div>
-
-            <!-- Adsense if enabled from _config.yml (change your pub id and slot) -->
-            {% if site.adsense == "enabled" %}
-                {% include adsense-under-header.html %}
             {% endif %}
-            <!-- End Adsense -->
+
+            <!-- Post Title -->
+            <h1 class="post-title">{{ page.title }}</h1>
+
+            <!-- Post Date -->
+            <p class="post-date">
+                <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+                {% if page.last_modified_at %}
+                <span>(Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)</span>
+                {% endif %}
+            </p>
 
             <!-- Post Featured Image -->
             {% if page.image %}
-
-            {% if site.lazyimages == "enabled" %}
-            <img class="featured-image img-fluid lazyimg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAACCAQAAAA3fa6RAAAADklEQVR42mNkAANGCAUAACMAA2w/AMgAAAAASUVORK5CYII=" data-src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
-            {% else %}
-            <img class="featured-image img-fluid" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+            <img class="featured-image backdrop-sh" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
             {% endif %}
 
+            <!-- Table of Contents -->
+            {% if page.toc %}
+                {% if page.beforetoc %}
+                    <p class="toc-description"><em>{{page.beforetoc}}</em></p>
+                {% endif %}
+                <div class="post-toc backdrop-sh">
+                    <h3>Summary</h3>
+                    {% include toc.html html=content %}
+                </div>
             {% endif %}
-            <!-- End Featured Image -->
 
             <!-- Post Content -->
-            <div class="article-post">
-                <!-- Toc if any -->
-                {% if page.toc %}
-                    {% if page.beforetoc %}
-                        <p><em>{{page.beforetoc}}</em></p>
-                    {% endif %}
-                    <div class="toc mt-4 mb-4 lead">
-                        <h3 class="font-weight-bold">Summary</h3>
-                        {% include toc.html html=content %}
-                    </div>
-                {% endif %}
-                <!-- End Toc -->
+            <div class="post-content backdrop-sh">
                 {{content}}
             </div>
 
             <!-- Rating -->
             {% if page.rating %}
-            <div class="rating mb-4 d-flex align-items-center">
-                <strong class="mr-1">Rating:</strong> {% include star_rating.html %}
+            <div class="post-rating">
+                <span>Rating:</span> {% include star_rating.html %}
             </div>
             {% endif %}
 
-            <!-- Post Date -->
-            <p>
-            <small>
-                <span class="post-date"><time class="post-date" datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time></span>           
-                {% if page.last_modified_at %}
-                (Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)
-                {% endif %}
-                </small>
-            </p>
-
-            <!-- Post Categories -->
-            <div class="after-post-cats">
-                <ul class="tags mb-4">
+            <!-- Categories and Tags -->
+            <div class="post-meta">
+                <!-- Categories -->
+                {% if page.categories.size > 0 %}
+                <div class="post-categories">
+                    <span>Categories:</span>
+                    <ul>
                     {% assign sortedCategories = page.categories | sort %}
                     {% for category in sortedCategories %}
-                    <li>
-                        <a class="smoothscroll" href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a>
-                    </li>
+                        <li><a href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a></li>
                     {% endfor %}
-                </ul>
-            </div>
-            <!-- End Categories -->
+                    </ul>
+                </div>
+                {% endif %}
 
-            <!-- Post Tags -->
-            <div class="after-post-tags">
-                <ul class="tags">
+                <!-- Tags -->
+                {% if page.tags.size > 0 %}
+                <div class="post-tags">
+                    <span>Tags:</span>
+                    <ul>
                     {% assign sortedTags = page.tags | sort %}
                     {% for tag in sortedTags %}
-                    <li>
-                        <a class="smoothscroll" href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a>
-                    </li>
+                        <li><a href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a></li>
                     {% endfor %}
-                </ul>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
-            <!-- End Tags -->
 
-            <!-- Prev/Next -->
-            <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
-            {% if page.previous.url %}
-            <a class="prev d-block col-md-6" href="{{site.baseurl}}{{page.previous.url}}"> &laquo; {{page.previous.title}}</a>
-            {% endif %}
-            {% if page.next.url %}
-            <a class="next d-block col-md-6 text-lg-right" href="{{site.baseurl}}{{page.next.url}}">{{page.next.title}} &raquo; </a>
-            {% endif %}
-            <div class="clearfix"></div>
+            <!-- Post Navigation -->
+            <div class="post-navigation">
+                {% if page.previous.url %}
+                <a class="prev-post" href="{{site.baseurl}}{{page.previous.url}}">
+                    <span>Previous</span>
+                    <h4>{{page.previous.title}}</h4>
+                </a>
+                {% endif %}
+                
+                {% if page.next.url %}
+                <a class="next-post" href="{{site.baseurl}}{{page.next.url}}">
+                    <span>Next</span>
+                    <h4>{{page.next.title}}</h4>
+                </a>
+                {% endif %}
             </div>
-            <!-- End Categories -->
 
-        </div>
-        <!-- End Post -->
-
-    </div>
-</div>
-<!-- End Article
-================================================== -->
-
-<!-- Begin Comments
-================================================== -->
-{% if page.comments != false %}
-    <div class="container">
-        <div id="comments" class="row justify-content-center mb-5">
-            <div class="col-md-8">
+            <!-- Comments -->
+            {% if page.comments != false %}
+            <div class="post-comments backdrop-sh">
                 {% include disqus.html %}
             </div>
+            {% endif %}
         </div>
     </div>
-{% endif %}
-<!--End Comments
-================================================== -->
+</div>
 
-<!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
-https://search.google.com/structured-data/testing-tool/u/0/
-================================================== -->
+<!-- Review with LD-JSON for SEO -->
 {% if page.rating %}
 <script type="application/ld+json">
 {
