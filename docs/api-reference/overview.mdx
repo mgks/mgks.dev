@@ -1,0 +1,76 @@
+---
+title: 'API Reference Overview'
+description: 'Overview of the mgks.dev APIs and endpoints'
+---
+
+# API Reference Overview
+
+This section provides information about the APIs and endpoints available in the mgks.dev project.
+
+## Project Architecture
+
+The mgks.dev website is primarily a static site built with Jekyll and hosted on GitHub Pages. While it doesn't have a traditional API in the sense of REST endpoints, it does have several key components and data structures that can be considered part of its "API" for customization and extension.
+
+## Key Components
+
+### Jekyll Data Structure
+
+The site uses Jekyll's data structure to manage content:
+
+- **Posts**: Blog posts stored in the `_posts` directory
+- **Pages**: Static pages stored in the `_pages` directory
+- **Layouts**: Templates in the `_layouts` directory
+- **Includes**: Reusable components in the `_includes` directory
+
+### Front Matter
+
+All content files (posts, pages) use YAML front matter to define metadata:
+
+```yaml
+---
+layout: post
+title: "Example Post"
+author: author_id
+categories: [category1, category2]
+tags: [tag1, tag2]
+image: path/to/image.jpg
+featured: true
+---
+```
+
+### Configuration
+
+The `_config.yml` file contains all site-wide configuration settings.
+
+## Data Files
+
+Jekyll uses YAML, JSON, or CSV files in the `_data` directory to store structured data:
+
+```
+_data/
+  ├── authors.yml
+  ├── navigation.yml
+  └── settings.yml
+```
+
+## Liquid Templating
+
+The site uses Liquid templating for dynamic content:
+
+```liquid
+{% for post in site.posts %}
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.excerpt }}</p>
+{% endfor %}
+```
+
+## Extending the Site
+
+To extend the site, you can:
+
+1. Add new posts in the `_posts` directory
+2. Create new layouts in the `_layouts` directory
+3. Modify the configuration in `_config.yml`
+4. Add new includes in the `_includes` directory
+
+For more detailed information on specific components, explore the subsections of this API reference. 
