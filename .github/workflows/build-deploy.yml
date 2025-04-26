@@ -38,7 +38,7 @@ jobs:
           JEKYLL_ENV: production
 
       - name: Install npm dependencies
-        run: npm ci || npm install
+        run: npm install
 
       - name: Install Mintlify CLI
         run: npm install -g mintlify@latest
@@ -48,19 +48,18 @@ jobs:
           mkdir -p ./_site/docs
           cp -r ./docs/* ./_site/docs/
           
-          # Create an HTML file that will redirect to index.mdx
+      - name: Create index.html redirect
+        run: |
           if [ ! -f ./_site/docs/index.html ]; then
-            cat > ./_site/docs/index.html << 'EOL'
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <meta http-equiv="refresh" content="0; url='index'" />
-            </head>
-            <body>
-              <p>Redirecting to <a href="index">documentation home</a>...</p>
-            </body>
-            </html>
-            EOL
+            echo '<!DOCTYPE html>' > ./_site/docs/index.html
+            echo '<html>' >> ./_site/docs/index.html
+            echo '<head>' >> ./_site/docs/index.html
+            echo '  <meta http-equiv="refresh" content="0; url=index" />' >> ./_site/docs/index.html
+            echo '</head>' >> ./_site/docs/index.html
+            echo '<body>' >> ./_site/docs/index.html
+            echo '  <p>Redirecting to <a href="index">documentation home</a>...</p>' >> ./_site/docs/index.html
+            echo '</body>' >> ./_site/docs/index.html
+            echo '</html>' >> ./_site/docs/index.html
           fi
 
       - name: Deploy to GitHub Pages
