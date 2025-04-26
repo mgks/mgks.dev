@@ -1,0 +1,61 @@
+<!-- Search -->
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="lunrsearch" class="search-input" placeholder="Search blog posts..." />
+        <button class="search-button" onclick="document.getElementById('lunrsearch').focus()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+        </button>
+    </div>
+    <div id="lunrsearchresults">
+        <ul></ul>
+    </div>
+</div>
+
+<!-- Connect the search input to lunrsearchengine.js -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById("lunrsearch");
+    const searchResults = document.getElementById("lunrsearchresults");
+    
+    searchInput.addEventListener("keyup", function() {
+        if(this.value.length < 3) {
+            searchResults.classList.remove("visible");
+            return;
+        }
+        
+        const results = search(this.value);
+        
+        if (results.length > 0) {
+            searchResults.classList.add("visible");
+            
+            let htmlResults = "<ul>";
+            for (let i = 0; i < results.length; i++) {
+                htmlResults += `
+                    <li>
+                        <a href="${results[i].url}">
+                            <div class="lunrsearchresult-title">${results[i].title}</div>
+                            <div class="lunrsearchresult-snippet">${results[i].date} · ${results[i].snippet}</div>
+                        </a>
+                    </li>
+                `;
+            }
+            htmlResults += "</ul>";
+            
+            searchResults.innerHTML = htmlResults;
+        } else {
+            searchResults.innerHTML = "<ul><li>No results found</li></ul>";
+            searchResults.classList.add("visible");
+        }
+    });
+    
+    // Close search results when clicking outside
+    document.addEventListener("click", function(e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.classList.remove("visible");
+        }
+    });
+});
+</script> 
