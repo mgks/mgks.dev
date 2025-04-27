@@ -28,13 +28,6 @@
 
 }
 
-@media (prefers-reduced-motion: reduce) {
-    * {
-        transition: none !important;
-        animation: none !important;
-    }
-}
-
 body {
     margin: 0;
     background-color: #fff;
@@ -56,10 +49,8 @@ canvas {
 }
 
 .shift-card {
-    transition: all .25s cubic-bezier(0.645, 0.045, 0.355, 1) 0s, opacity .5s cubic-bezier(0.645, 0.045, 0.355, 1) 0.2s, transform .5s cubic-bezier(0.645, 0.045, 0.355, 1) .2s;
     visibility: visible;
     opacity: 1;
-    transform:matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 }
 
 a {
@@ -99,9 +90,11 @@ header {
     z-index: 2;
     position: fixed;
     width: 94%;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    top:0
+    /*backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);*/
+    top:0;
+    background-color: rgba(255, 255, 255, 0.85);
+    transform: translateZ(0);
 }
 
 .menu a {
@@ -194,7 +187,8 @@ footer {
     width: 1px;
     height: 10em;
     margin: 0 auto;
-    background-color:var(--theme-exgrey)
+    background-color:var(--theme-exgrey);
+    will-change: transform;
 }
 
 .bar-email a {
@@ -409,10 +403,7 @@ body.dark a:hover {
 .fade {
     opacity: 0;
     visibility: hidden;
-    -webkit-transition: visibility .5s linear, opacity .5s linear;
-    -moz-transition: visibility .5s linear, opacity .5s linear;
-    -o-transition:visibility .5s linear, opacity .5s linear;
-    transition: visibility .5s linear, opacity .5s linear;
+    transition: opacity .5s linear;
 }
 
 .unfade {
@@ -423,9 +414,7 @@ body.dark a:hover {
 }
 
 .backdrop {
-    -webkit-backdrop-filter: blur(15px) opacity(0.9);
-    backdrop-filter: blur(15px) opacity(0.9);
-    background-color:var(--theme-backdrop)
+    background-color: var(--theme-backdrop);
 }
 
 .wa-about {padding: 7em 10%;width: 100%;}
@@ -454,10 +443,8 @@ body.dark a:hover {
 }
 
 .backdrop-sh{
-    -webkit-backdrop-filter: opacity(1);
-    backdrop-filter: opacity(1);
     background-color: var(--theme-backdrop);
-    box-shadow: 0 0 100px -2px var(--theme-backdrop-shadow);    
+    box-shadow: 0 0 25px -2px var(--theme-backdrop-shadow);    
 }
 
 .waee-p {
@@ -507,7 +494,8 @@ body.dark a:hover {
     border-radius: 100%;
     animation: spin 10s linear infinite;
     background-clip: content-box;
-    cursor:pointer
+    cursor: pointer;
+    will-change: transform;
 }
 
 .loading-logo:active .circle-load {
@@ -635,7 +623,6 @@ body.dark a:hover {
     width: 7%;
     overflow: hidden;
     margin: 0 1%;
-    display: inline-block;
     float:left
 }
 
@@ -643,9 +630,12 @@ body.dark a:hover {
     max-width: 100%;
     min-height: 4em;
     border-radius: 15px;
-    filter: grayscale(1);
-    transition: .5s;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
 
+.wapf-slider .sl-img img:hover {
+    opacity: 1;
 }
 
 .wapf-slider .sl-txt {
@@ -657,9 +647,8 @@ body.dark a:hover {
     font-size: 1.4em;
     text-align: center;
     border-radius: 5px;
-    transition: .5s;
+    transition: background-color 0.3s;
     width: 16%;
-
 }
 
 .wapf-info p {
@@ -818,7 +807,7 @@ body.dark a:hover {
 }
 
 .wapf-info:hover .wapf-slider .sl-img img {
-    filter:grayscale(0)
+    opacity: 1;
 }
 
 .wa-welcome {
@@ -883,7 +872,6 @@ body.dark a:hover {
 }
 
 .wap-block .wb-bio .wbb-logo, .wap-block .wb-bio .wbb-desc {
-    display: inline-block;
     float: left;
 }
 
@@ -1254,12 +1242,6 @@ body.dark a:hover {
 .blog-post-card {
     border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.blog-post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .post-image {
@@ -1272,7 +1254,6 @@ body.dark a:hover {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
 }
 
 .blog-post-card:hover .post-image img {
@@ -1299,7 +1280,6 @@ body.dark a:hover {
 
 .post-content h3 a {
     color: var(--theme-black);
-    transition: color 0.2s ease;
     text-decoration: none;
 }
 
