@@ -99,15 +99,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Close search results when clicking outside
+    // Handle click events for search box and results
     document.addEventListener('click', function(event) {
         const searchBox = document.querySelector('.search-box');
         const searchResults = document.querySelector('#lunrsearchresults');
+        const searchInput = document.getElementById('lunrsearch');
         
-        // If click is outside of search box and search results
-        if (searchResults.style.display !== 'none' && 
-            !searchBox.contains(event.target) && 
-            !searchResults.contains(event.target)) {
+        // If click is inside search box and input is not empty, show the results
+        if (searchBox.contains(event.target) && 
+            searchInput && 
+            searchInput.value.trim().length > 2) {
+            
+            // Only perform search if results aren't already visible
+            if (searchResults.style.display !== 'block') {
+                lunr_search(searchInput.value);
+            }
+        }
+        // If click is outside of search box and search results, hide the results
+        else if (searchResults.style.display !== 'none' && 
+                !searchBox.contains(event.target) && 
+                !searchResults.contains(event.target)) {
             
             searchResults.style.display = 'none';
             document.querySelector("body").classList.remove("modal-open");
