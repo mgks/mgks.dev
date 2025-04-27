@@ -32,21 +32,39 @@ function debounce(func, wait) {
     };
 }
 
+// Initialize DOM elements once
+let searchResults, searchResultsList, searchModal, searchModalTitle, bodyElement;
+
 function lunr_search(term) {
-    document.querySelector('#lunrsearchresults').style.display = 'block';
-    document.querySelector('#lunrsearchresults').classList.add('visible');
-    document.querySelector("body").classList.add("modal-open");
+    // Use cached elements instead of querying DOM repeatedly
+    searchResults.style.display = 'block';
+    searchResults.classList.add('visible');
+    bodyElement.classList.add("modal-open");
     
-    document.getElementById('lunrsearchresults').innerHTML = '<div id="resultsmodal" class="modal show d-block" tabindex="-1" role="dialog" aria-labelledby="resultsmodal"><div class="modal-dialog shadow-lg" role="document"><div class="modal-content"><div class="modal-header" id="modtit"></div><div class="modal-body"><ul class="mb-0"></ul></div><div class="modal-footer"><!--<button id="btnx" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>--></div></div></div></div>';
+    // Only set modal HTML if it hasn't been initialized
+    if (!searchResults.querySelector('#resultsmodal')) {
+        searchResults.innerHTML = '<div id="resultsmodal" class="modal show d-block" tabindex="-1" role="dialog" aria-labelledby="resultsmodal"><div class="modal-dialog shadow-lg" role="document"><div class="modal-content"><div class="modal-header" id="modtit"></div><div class="modal-body"><ul class="mb-0"></ul></div><div class="modal-footer"></div></div></div></div>';
+        // Re-initialize references after creating modal
+        searchModal = searchResults.querySelector('#resultsmodal');
+        searchModalTitle = searchResults.querySelector('#modtit');
+        searchResultsList = searchResults.querySelector('ul');
+    } else {
+        // Clear previous results instead of recreating HTML
+        searchResultsList.innerHTML = '';
+        searchModalTitle.innerHTML = '';
+    }
+    
     if(term) {
-        document.getElementById('modtit').innerHTML = "<h5 class='modal-title'>Search results for '" + term + "'</h5>" + document.getElementById('modtit').innerHTML;
-        //put results on the screen.
+        searchModalTitle.innerHTML = "<h5 class='modal-title'>Search results for '" + term + "'</h5>";
+        
+        // Get search results
         var results = idx.search(term);
-        if(results.length>0){
-            //console.log(idx.search(term));
-            //if results
+        
+        // Build results HTML (use document fragment for better performance)
+        var fragment = document.createDocumentFragment();
+        
+        if(results.length > 0) {
             for (var i = 0; i < results.length; i++) {
-                // more statements
                 var ref = results[i]['ref'];
                 var url = documents[ref]['url'];
                 // Fix double URL issue by checking for duplication
@@ -55,81 +73,85 @@ function lunr_search(term) {
                 }
                 var title = documents[ref]['title'];
                 var body = documents[ref]['body'].substring(0,160)+'...';
-                document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML + "<li class='lunrsearchresult'><a href='" + url + "'><span class='title'>" + title + "</span><br /><span class='body'>"+ body +"</span></a></li>";
+                
+                var li = document.createElement('li');
+                li.className = 'lunrsearchresult';
+                li.innerHTML = "<a href='" + url + "'><span class='title'>" + title + "</span><br /><span class='body'>"+ body +"</span></a>";
+                fragment.appendChild(li);
             }
         } else {
-            document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = "<li class='lunrsearchresult'>No results found, try a different keyword!</li>";
+            var li = document.createElement('li');
+            li.className = 'lunrsearchresult';
+            li.textContent = "No results found, try a different keyword!";
+            fragment.appendChild(li);
         }
+        
+        // Add all results at once (single DOM update)
+        searchResultsList.appendChild(fragment);
     }
+    
     return false;
 }
 
 // Initialize live search when document is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Cache DOM elements
+    searchResults = document.querySelector('#lunrsearchresults');
+    searchResultsList = searchResults.querySelector('ul');
+    bodyElement = document.querySelector("body");
+    
     // Track the last search term to avoid redundant searches
     let lastSearchTerm = '';
     
     // Add keyup listener for live search with 300ms debounce
     const searchInput = document.getElementById('lunrsearch');
+    const searchBox = document.querySelector('.search-box');
+    const searchButton = document.querySelector('.search-button');
+    
     if (searchInput) {
+        // Use a higher debounce value for better performance
         searchInput.addEventListener('keyup', debounce(function() {
             const currentSearchTerm = this.value.trim();
             
             // Only search if term is different and has at least 3 characters
             if (currentSearchTerm.length > 2 && currentSearchTerm !== lastSearchTerm) {
                 lastSearchTerm = currentSearchTerm;
-                lunr_search(currentSearchTerm);
+                // Use requestAnimationFrame to align with browser rendering cycle
+                requestAnimationFrame(() => {
+                    lunr_search(currentSearchTerm);
+                });
             } else if (currentSearchTerm.length === 0 && lastSearchTerm !== '') {
                 // Reset when search is cleared
                 lastSearchTerm = '';
-                document.querySelector('#lunrsearchresults').style.display = 'none';
-                document.querySelector("body").classList.remove("modal-open");
+                searchResults.style.display = 'none';
+                bodyElement.classList.remove("modal-open");
             }
-        }, 300));
+        }, 400)); // Increased debounce time
     }
     
-    // Add click handler for search button to focus on input
-    const searchButton = document.querySelector('.search-button');
+    // Add click handler for search button
     if (searchButton) {
         searchButton.addEventListener('click', function() {
-            const searchInput = document.getElementById('lunrsearch');
             if (searchInput) {
                 searchInput.focus();
             }
         });
     }
     
-    // Close button event handler
-    document.querySelector('#lunrsearchresults').addEventListener('click', function(event) {
-        if (event.target.id === 'btnx') {
-            document.querySelector('#lunrsearchresults').style.display = 'none';
-            document.querySelector("body").classList.remove("modal-open");
-        }
-    });
-
-    // Handle click events for search box and results
+    // Use event delegation for click handling
     document.addEventListener('click', function(event) {
-        const searchBox = document.querySelector('.search-box');
-        const searchResults = document.querySelector('#lunrsearchresults');
-        const searchInput = document.getElementById('lunrsearch');
-        
-        // If click is inside search box and input is not empty, show the results
-        if (searchBox.contains(event.target) && 
-            searchInput && 
-            searchInput.value.trim().length > 2) {
-            
-            // Only perform search if results aren't already visible
-            if (searchResults.style.display !== 'block') {
-                lunr_search(searchInput.value);
+        // If search results are visible
+        if (searchResults.style.display === 'block') {
+            // Click outside search area should close results
+            if (!searchBox.contains(event.target) && !searchResults.contains(event.target)) {
+                searchResults.style.display = 'none';
+                bodyElement.classList.remove("modal-open");
             }
-        }
-        // If click is outside of search box and search results, hide the results
-        else if (searchResults.style.display !== 'none' && 
-                !searchBox.contains(event.target) && 
-                !searchResults.contains(event.target)) {
-            
-            searchResults.style.display = 'none';
-            document.querySelector("body").classList.remove("modal-open");
+        } else if (searchBox.contains(event.target) && 
+                  searchInput && 
+                  searchInput.value.trim().length > 2) {
+            // Show results when clicking in search box with valid query
+            lunr_search(searchInput.value);
         }
     });
 });

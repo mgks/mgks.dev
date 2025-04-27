@@ -19,7 +19,7 @@ title: blog
                         <div class="blog-post-card backdrop-sh">
                             {% if post.image %}
                             <a href="{{ site.baseurl }}{{ post.url }}" class="post-image">
-                                <img src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
+                                <img loading="lazy" src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
                             </a>
                             {% endif %}
                             <div class="post-content">
@@ -31,7 +31,7 @@ title: blog
                                         {% assign author = site.authors[post.author] %}
                                         <div class="post-author">
                                             {% if author.avatar %}
-                                            <img src="{{ site.baseurl }}/{{ author.avatar }}" alt="{{ author.display_name }}">
+                                            <img loading="lazy" src="{{ site.baseurl }}/{{ author.avatar }}" alt="{{ author.display_name }}">
                                             {% endif %}
                                             <span>{{ author.display_name }}</span>
                                         </div>
@@ -59,7 +59,7 @@ title: blog
                     <div class="blog-post-card backdrop-sh">
                         {% if post.image %}
                         <a href="{{ site.baseurl }}{{ post.url }}" class="post-image">
-                            <img src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
+                            <img loading="lazy" src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
                         </a>
                         {% endif %}
                         <div class="post-content">
@@ -71,7 +71,7 @@ title: blog
                                     {% assign author = site.authors[post.author] %}
                                     <div class="post-author">
                                         {% if author.avatar %}
-                                        <img src="{{ site.baseurl }}/{{ author.avatar }}" alt="{{ author.display_name }}">
+                                        <img loading="lazy" src="{{ site.baseurl }}/{{ author.avatar }}" alt="{{ author.display_name }}">
                                         {% endif %}
                                         <span>{{ author.display_name }}</span>
                                     </div>

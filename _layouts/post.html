@@ -12,9 +12,9 @@ post_class: post-template
             {% if page.author %}
             <div class="post-author">
                 {% if author.avatar %}
-                <img class="author-image" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
+                <img loading="lazy" class="author-image" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
                 {% else %}
-                <img class="author-image" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
+                <img loading="lazy" class="author-image" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
                 {% endif %}
                 <div class="author-info">
                     <a href="{{ author.web }}">{{ author.display_name }}</a>
@@ -36,7 +36,7 @@ post_class: post-template
 
             <!-- Post Featured Image -->
             {% if page.image %}
-            <img class="featured-image backdrop-sh" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
+            <img loading="lazy" class="featured-image backdrop-sh" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ site.baseurl }}/{{ page.image }}{% endif %}" alt="{{ page.title }}">
             {% endif %}
 
             <!-- Table of Contents -->

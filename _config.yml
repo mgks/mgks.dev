@@ -50,9 +50,6 @@ adsense: "disabled"
 adsense-data-ad-client: ""
 adsense-data-ad-slot: ""
 
-# Lazy Images ("enabled" or "disabled")
-lazyimages: "disabled"
-
 # Tag permalink (defines URL pattern)
 permalink: /:title/
 tag_permalink: '/tag/:name/'
