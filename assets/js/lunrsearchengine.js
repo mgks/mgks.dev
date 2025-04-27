@@ -37,7 +37,7 @@ function lunr_search(term) {
     document.querySelector('#lunrsearchresults').classList.add('visible');
     document.querySelector("body").classList.add("modal-open");
     
-    document.getElementById('lunrsearchresults').innerHTML = '<div id="resultsmodal" class="modal show d-block"  tabindex="-1" role="dialog" aria-labelledby="resultsmodal"> <div class="modal-dialog shadow-lg" role="document"> <div class="modal-content"> <div class="modal-header" id="modtit"> <button type="button" class="close" id="btnx" data-dismiss="modal" aria-label="Close"> &times; </button> </div> <div class="modal-body"> <ul class="mb-0"> </ul>    </div> <div class="modal-footer"><button id="btnx" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button></div></div> </div></div>';
+    document.getElementById('lunrsearchresults').innerHTML = '<div id="resultsmodal" class="modal show d-block" tabindex="-1" role="dialog" aria-labelledby="resultsmodal"><div class="modal-dialog shadow-lg" role="document"><div class="modal-content"><div class="modal-header" id="modtit"></div><div class="modal-body"><ul class="mb-0"></ul></div><div class="modal-footer"><!--<button id="btnx" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>--></div></div></div></div>';
     if(term) {
         document.getElementById('modtit').innerHTML = "<h5 class='modal-title'>Search results for '" + term + "'</h5>" + document.getElementById('modtit').innerHTML;
         //put results on the screen.
@@ -55,7 +55,7 @@ function lunr_search(term) {
                 }
                 var title = documents[ref]['title'];
                 var body = documents[ref]['body'].substring(0,160)+'...';
-                document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML + "<li class='lunrsearchresult'><a href='" + url + "'><span class='title'>" + title + "</span><br /><small><span class='body'>"+ body +"</span></small></a></li>";
+                document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML + "<li class='lunrsearchresult'><a href='" + url + "'><span class='title'>" + title + "</span><br /><span class='body'>"+ body +"</span></a></li>";
             }
         } else {
             document.querySelectorAll('#lunrsearchresults ul')[0].innerHTML = "<li class='lunrsearchresult'>No results found, try a different keyword!</li>";
@@ -66,14 +66,22 @@ function lunr_search(term) {
 
 // Initialize live search when document is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Track the last search term to avoid redundant searches
+    let lastSearchTerm = '';
+    
     // Add keyup listener for live search with 300ms debounce
     const searchInput = document.getElementById('lunrsearch');
     if (searchInput) {
         searchInput.addEventListener('keyup', debounce(function() {
-            if (this.value.length > 2) { // Only search if at least 3 characters
-                lunr_search(this.value);
-            } else if (this.value.length === 0) {
-                // Hide results if search is cleared
+            const currentSearchTerm = this.value.trim();
+            
+            // Only search if term is different and has at least 3 characters
+            if (currentSearchTerm.length > 2 && currentSearchTerm !== lastSearchTerm) {
+                lastSearchTerm = currentSearchTerm;
+                lunr_search(currentSearchTerm);
+            } else if (currentSearchTerm.length === 0 && lastSearchTerm !== '') {
+                // Reset when search is cleared
+                lastSearchTerm = '';
                 document.querySelector('#lunrsearchresults').style.display = 'none';
                 document.querySelector("body").classList.remove("modal-open");
             }
