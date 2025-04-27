@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Ushering in an Era of Sentient Toasters or Just Faster Siri?"
+title: Ushering in an Era of Sentient Toasters or Just Faster Siri?
 author: ghazi
-categories: [ articles ]
-tags: [siri, artificial intelligence, apple, discussion]
+tags: siri, artificial intelligence, apple, discussion
 image: https://media.licdn.com/dms/image/v2/D5612AQFr9Ff2nrwbSw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1711052947604?e=1742428800&v=beta&t=rg8YtX2R3SYv2ReRkBra0RpOALFxPHEKEn07_rcIrck
-description: "This week's AI Weekly Newsletter is here to brighten your day! Just kidding, we're here to discuss the ever-evolving world of Artificial Intelligence, a world where machines are getting smarter and our jobs are increasingly...obsolete."
+description: This week's AI Weekly Newsletter is here to brighten your day! Just kidding, we're here to discuss the ever-evolving world of Artificial Intelligence, a world where machines are getting smarter and our jobs are increasingly...obsolete.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

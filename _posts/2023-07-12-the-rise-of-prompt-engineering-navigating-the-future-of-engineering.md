@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "The Rise of Prompt Engineering: Navigating the Future of Engineering"
+title: 'The Rise of Prompt Engineering: Navigating the Future of Engineering'
 author: ghazi
-categories: [ conversations ]
-tags: [artificial intelligence, career, prompts]
+tags: artificial intelligence, career, prompts
 image: assets/images/b10.jpg
-description: "Significance of prompt engineering, its growing relevance, & the transformative impact it can have on the careers of engineers."
+description: Significance of prompt engineering, its growing relevance, & the transformative impact it can have on the careers of engineers.
 featured: false
 hidden: false
 toc: false

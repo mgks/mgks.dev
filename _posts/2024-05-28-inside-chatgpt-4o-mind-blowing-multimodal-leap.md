@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Inside ChatGPT-4o's Mind-Blowing Multimodal Leap"
+title: Inside ChatGPT-4o's Mind-Blowing Multimodal Leap
 author: ghazi
-categories: [ articles ]
-tags: [chatgpt, artificial intelligence, openai]
+tags: chatgpt, artificial intelligence, openai
 image: https://media.licdn.com/dms/image/v2/D5612AQHh_Vuh8w0Fsw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721181739127?e=1742428800&v=beta&t=4h8a1KqxZx2wpuJmvIdVhD4r_5Qda9YmGfMmDjX6M_w
-description: "This is a world where machines not only understand our words but also decipher the subtle cues in our voices and the visual tapestry of our world. It's both exhilarating and, frankly, a little terrifying."
+description: This is a world where machines not only understand our words but also decipher the subtle cues in our voices and the visual tapestry of our world. It's both exhilarating and, frankly, a little terrifying.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "2024, From Sentient Toasters to the Singularity"
+title: 2024, From Sentient Toasters to the Singularity
 author: ghazi
-categories: [ newsletter ]
-tags: [artificial intelligence, ethics, future]
+tags: artificial intelligence, ethics, future
 image: assets/images/b12.jpg
-description: "2024's AI boom: from supercomputer basements to chess-playing robots, it's evolving faster than you can say Moore's Law. Are we ready for the ethical challenges?"
+description: 2024's AI boom, from supercomputer basements to chess-playing robots, it is evolving faster than you can say Moore's Law. Are we ready for the ethical challenges?
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Is AI, Friend or Foe? Untangling the Hype and Reality in 2024"
+title: Is AI, Friend or Foe? Untangling the Hype and Reality in 2024
 author: ghazi
-categories: [ articles ]
-tags: [blockchain, web3, discussion]
+tags: blockchain, web3, discussion
 image: assets/images/b17.jpg
-description: "This revolutionary concept promises a decentralised internet where you control your data and online experiences. Sounds amazing, right? But hold on to your crypto wallets! The full article explores the challenges of Web3, like complex technology, scalability issues, and security risks."
+description: This revolutionary concept promises a decentralised internet where you control your data and online experiences. Sounds amazing, right? But hold on to your crypto wallets! The full article explores the challenges of Web3, like complex technology, scalability issues, and security risks.
 featured: true
-topper: true
 hidden: false
 toc: false
 ---

@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Stable Diffusion 3, OpenAI Sora, and More Exciting Developments!"
+title: Stable Diffusion 3, OpenAI Sora, and More Exciting Developments!
 author: ghazi
-categories: [ newsletter ]
-tags: [artificial intelligence, stable diffusion, sora]
+tags: artificial intelligence, stable diffusion, sora
 image: assets/images/b14.jpg
-description: "Imagine conjuring stunning images with just a few words. Or generating entire videos from a simple prompt. This week in AI, the future of creativity is knocking on our doors, and it's got Stable Diffusion 3 and OpenAI's Sora in tow!"
+description: Imagine conjuring stunning images with just a few words. Or generating entire videos from a simple prompt. This week in AI, the future of creativity is knocking on our doors, and it's got Stable Diffusion 3 and OpenAI's Sora in tow!
 featured: true
-topper: false
 hidden: false
 toc: false
 ---

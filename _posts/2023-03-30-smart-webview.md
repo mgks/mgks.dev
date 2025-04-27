@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Introduction to Smart WebView"
+title: Introduction to Smart WebView
 author: ghazi
-categories: [ projects ]
-tags: [swv, android, ios, java, kotlin, webview]
+tags: swv, android, ios, java, kotlin, webview
 image: assets/images/b6.jpg
-description: "Smart WebView is a simple open source framework built to develop advanced hybrid webview applications with ease."
+description: Smart WebView is a simple open source framework built to develop advanced hybrid webview applications with ease.
 featured: true
 hidden: false
 toc: false

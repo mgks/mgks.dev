@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Gemma and Beyond!"
+title: Gemma and Beyond!
 author: ghazi
-categories: [ newsletter ]
-tags: [artificial intelligence, google, gemma, discussion]
+tags: artificial intelligence, google, gemma, discussion
 image: assets/images/b16.jpg
-description: "Buckle up, creative minds! The world of AI is getting seriously artistic, and you won't want to miss this. DeepMind's Genie lets you craft entire video games with just a text prompt – imagine describing a cyberpunk city and then BAM, you're hacking your way through neon streets in your own creation! And for those artistic endeavours, Google's Gemma offers an open-source AI muse to help you generate mind-blowing visuals and brainstorm killer content. "
+description: Buckle up, creative minds! The world of AI is getting seriously artistic, and you won't want to miss this. DeepMind's Genie lets you craft entire video games with just a text prompt – imagine describing a cyberpunk city and then BAM, you''re hacking your way through neon streets in your own creation! And for those artistic endeavours, Google's Gemma offers an open-source AI muse to help you generate mind-blowing visuals and brainstorm killer content.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

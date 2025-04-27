@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Decoding the AI That's About to Reshape Our World"
+title: Decoding the AI That's About to Reshape Our World
 author: ghazi
-categories: [ articles ]
-tags: [gemini, artificial intelligence, google]
+tags: gemini, artificial intelligence, google
 image: https://media.licdn.com/dms/image/v2/D5612AQHES8L8HxZtzw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1716451730748?e=1742428800&v=beta&t=8v1VxuMsK2gYHid95Qv_5RPkPcA55inrBjjWIkvBLAE
-description: "From robots taking over the world (hopefully not!) to machines that can write poetry (intriguing!), AI has captured our imaginations for decades."
+description: From robots taking over the world (hopefully not!) to machines that can write poetry (intriguing!), AI has captured our imaginations for decades.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

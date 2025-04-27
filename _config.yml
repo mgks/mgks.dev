@@ -5,10 +5,11 @@ description: "Hello, Ghazi here. I am an open source developer and I love buildi
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
 baseurl: https://mgks.dev
+docs_url: https://docs.mgks.dev
 google_analytics: 'G-DTYS057VRC'
 disqus: 'mgksdev'
 mailchimp-list: ''
-include: ["_pages", "docs/**"]
+include: ["_pages"]
 permalink: /:title/
 
 # Authors
@@ -29,16 +30,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-archives
-    
-# Archives
-jekyll-archives:
-  enabled:
-    - categories
-  layout: archive
-  permalinks:
-    category: '/category/:name/'
-    
+
 # Pagination 
 paginate: 6
 paginate_path: '/blog/page:num/'
@@ -61,7 +53,9 @@ adsense-data-ad-slot: ""
 # Lazy Images ("enabled" or "disabled")
 lazyimages: "disabled"
 
-# Documentation
-docs_url: "/docs"
+# Tag permalink (defines URL pattern)
+permalink: /:title/
+tag_permalink: '/tag/:name/'
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, "mintlify-docs-build", "node_modules", "vendor"]
+# Define what's excluded from build
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]

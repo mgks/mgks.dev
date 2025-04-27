@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Decoding Disease with Dreams"
+title: Decoding Disease with Dreams
 author: ghazi
-categories: [ articles ]
-tags: [health, artificial intelligence, generative ai]
+tags: health, artificial intelligence, generative ai
 image: https://media.licdn.com/dms/image/v2/D4D12AQFfZQvE9oU0ow/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1714457747771?e=1742428800&v=beta&t=XpGLGK5rXo8cBClPaGq1Vyn6ylJEszP8lKQZOnhJH0s
-description: "From medieval alchemists concocting questionable elixirs to modern scientists sifting through mountains of data, humanity's relentless pursuit of healing continues."
+description: From medieval alchemists concocting questionable elixirs to modern scientists sifting through mountains of data, humanity's relentless pursuit of healing continues.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

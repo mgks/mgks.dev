@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Is AI, Friend or Foe? Untangling the Hype and Reality in 2024"
+title: Is AI, Friend or Foe? Untangling the Hype and Reality in 2024
 author: ghazi
-categories: [ newsletter ]
-tags: [artificial intelligence, stable diffusion, discussion]
+tags: artificial intelligence, stable diffusion, discussion
 image: assets/images/b15.jpg
-description: "AI is advancing rapidly, but what does this mean for the future of work? Our latest LinkedIn post dives into the friend-or-foe debate surrounding AI in 2024. We examine the potential of AI as a productivity booster, innovation engine, and knowledge democratizer."
+description: AI is advancing rapidly, but what does this mean for the future of work? Our latest LinkedIn post dives into the friend-or-foe debate surrounding AI in 2024. We examine the potential of AI as a productivity booster, innovation engine, and knowledge democratizer.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

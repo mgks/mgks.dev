@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Google DeepMind's Gemini 1.5 Pro and the Power of Long Context Memory"
+title: Google DeepMind's Gemini 1.5 Pro and the Power of Long Context Memory
 author: ghazi
-categories: [ articles ]
-tags: [gemini, artificial intelligence, google]
+tags: gemini, artificial intelligence, google
 image: https://media.licdn.com/dms/image/v2/D5612AQHX4AU0QS9Odw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1713332470979?e=1742428800&v=beta&t=7BSl39RRvpYmluKAFTLH_39AekCQx_a7UaI6NnBfng0
-description: "Buckle up, because Gemini boasts a feature that sets it apart: a super-powered memory called a long context window."
+description: Buckle up, because Gemini boasts a feature that sets it apart, a super-powered memory called a long context window.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

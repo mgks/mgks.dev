@@ -3,18 +3,15 @@ layout: post
 date: 2024-06-13 12:42:00 +0300
 title: Stable Diffusion 3, A New Era of AI Image Synthesis
 author: ghazi
-categories: [artificial intelligence]
 tags: [stable diffusion, image generation]
 image: https://media.licdn.com/dms/image/v2/D5612AQF9uokDOuDDjw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1718269950503?e=1747872000&v=beta&t=El7uwH-nPX7JqZpfDkIft9v3z15hmSEwqtHaFBoqrXo
 description: We're not just talking about subtle tweaks here – this is a full-blown revolution in speed, quality, and the very way these AI models bring your artistic visions to life.
 video_embed: 
 tags_color: 
 featured: false
-topper: false
 hidden: false
 toc: false
 ---
-
 
 Hold onto your hats, tech wizards and art enthusiasts, because Stable Diffusion 3 just blew the doors off AI image generation. We're not just talking about subtle tweaks here – this is a full-blown revolution in speed, quality, and the very way these AI models bring your artistic visions to life.
 

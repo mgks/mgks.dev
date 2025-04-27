@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Let's Setup Machine Learning Environment on Windows Machines"
+title: Let's Setup Machine Learning Environment on Windows Machines
 author: ghazi
-categories: [ tutorials ]
-tags: [keras, python, machine learning, windows]
+tags: keras, python, machine learning, windows
 image: assets/images/b7.jpg
-description: "To run machine learning models and complex algorithms you'll need a powerful and reliable computer that can handle such demands, rest we'll follow."
+description: To run machine learning models and complex algorithms you'll need a powerful and reliable computer that can handle such demands, rest we'll follow.
 featured: false
 hidden: false
 toc: false

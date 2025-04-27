@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="container">
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h1 class="font-weight-bold title">{{ page.tag | capitalize }} Articles</h1>
+        <div class="page-description">
+            <p>Posts tagged with "{{ page.tag }}"</p>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        {% for post in site.tags[page.tag] %}
+        <div class="col-md-4 mb-4">
+            {% include postbox.html %}
+        </div>
+        {% endfor %}
+    </div>
+</div>

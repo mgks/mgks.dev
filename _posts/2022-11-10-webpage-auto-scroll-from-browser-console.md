@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Webpage Auto Scroll from Browser Console"
+title: Webpage Auto Scroll from Browser Console
 author: ghazi
-categories: [ gists ]
-tags: [console, log, javascript]
+tags: console, log, javascript
 image: assets/images/b4.jpg
-description: "Automate scroll through huge web pages with a small JavaScript snippet from your browser console, quick and easy."
+description: Automate scroll through huge web pages with a small JavaScript snippet from your browser console, quick and easy.
 featured: false
 hidden: false
 toc: false

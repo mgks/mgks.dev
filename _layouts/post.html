@@ -1,7 +1,6 @@
 ---
 layout: default
 disqus: false
-archive: false
 post_class: post-template
 ---
 
@@ -56,36 +55,15 @@ post_class: post-template
                 {{content}}
             </div>
 
-            <!-- Rating -->
-            {% if page.rating %}
-            <div class="post-rating">
-                <span>Rating:</span> {% include star_rating.html %}
-            </div>
-            {% endif %}
-
-            <!-- Categories and Tags -->
+            <!-- Tags -->
             <div class="post-meta">
-                <!-- Categories -->
-                {% if page.categories.size > 0 %}
-                <div class="post-categories">
-                    <span>Categories:</span>
-                    <ul>
-                    {% assign sortedCategories = page.categories | sort %}
-                    {% for category in sortedCategories %}
-                        <li><a href="{{site.baseurl}}/categories#{{ category | replace: " ","-" }}">{{ category }}</a></li>
-                    {% endfor %}
-                    </ul>
-                </div>
-                {% endif %}
-
-                <!-- Tags -->
                 {% if page.tags.size > 0 %}
                 <div class="post-tags">
                     <span>Tags:</span>
                     <ul>
                     {% assign sortedTags = page.tags | sort %}
                     {% for tag in sortedTags %}
-                        <li><a href="{{site.baseurl}}/tags#{{ tag | replace: " ","-" }}">#{{ tag }}</a></li>
+                        <li><a href="{{site.baseurl}}/tag/{{ tag | slugify }}/">#{{ tag }}</a></li>
                     {% endfor %}
                     </ul>
                 </div>
@@ -118,27 +96,3 @@ post_class: post-template
         </div>
     </div>
 </div>
-
-<!-- Review with LD-JSON for SEO -->
-{% if page.rating %}
-<script type="application/ld+json">
-{
-  "@context": "http://schema.org/",
-  "@type": "Review",
-  "itemReviewed": {
-    "@type": "Thing",
-    "name": "{{ page.title }}"
-  },
-  "author": {
-    "@type": "Person",
-    "name": "{{ author.display_name }}"
-  },
-  "datePublished": "{{ page.date | date:"%Y-%m-%d" }}",
-  "reviewRating": {
-    "@type": "Rating",
-    "ratingValue": "{{ page.rating }}",
-    "bestRating": "5"
-  }
-}
-</script>
-{% endif %}

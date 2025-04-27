@@ -54,24 +54,8 @@
 </head>
 
 <body>
-<!-- Begin Menu Navigation -->
-<header class="loading-hidden unfade">
-    <div class="loading-logo hide">
-        <div class="circle-load"></div>
-        <div class="banner disable-events">\.</div>
-    </div>
-    <div class="menu">
-        <nav>
-        <a href="{{ site.baseurl }}">mgks<span class="banner" title="home">\.</span>dev</a>
-        <a href="{{ site.baseurl }}#projects"><span class="link hover-this">projects</span></a>
-        <a href="{{ site.baseurl }}#experience"><span class="link hover-this">experience</span></a>
-        <a href="{{ site.baseurl }}/blog"><span class="link hover-this">blog</span></a>
-        <a href="{{ site.baseurl }}{{ site.docs_url }}"><span class="link hover-this">docs</span></a>
-        <a href="{{ site.baseurl }}#about"><span class="link hover-this">about</span></a>
-        <a href="{{ site.baseurl }}#contact"><span class="link hover-this">contact</span></a>
-        </nav>
-    </div>
-</header>
+
+    {% include header.html %}
 
 <div class="socialy lefty">
     <ul>
@@ -100,52 +84,25 @@
     <div class="bar-email"><a href="mailto:hello@mgks.dev">hello@mgks.dev</a></div>
 </div>
 
-<!-- Begin Footer -->
-<footer class="footer">
-    <div class="foot-bracket">
-        <div class="sponsor"><a href="https://github.com/sponsors/mgks">GitHub Sponsors</a></div>
-        <div class="built"><a href="https://github.com/mgks/mgks.dev">Built with <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16"><path d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z"></path></svg> by Ghazi Khan</a></div>
-    </div>
-</footer>
+{% include footer.html %}
 
 <script>
 // Simple script to handle basic functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle navigation
-    const links = document.querySelectorAll('header a');
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            if (this.getAttribute('href').includes('#') && !this.getAttribute('href').startsWith('/blog')) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').split('#')[1];
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-    
-    // Show content after loading
-    setTimeout(function() {
-        document.querySelectorAll('.loading-hidden').forEach(el => {
-            el.classList.remove('loading-hidden');
-        });
-    }, 200);
-});
+
 </script>
+
+{% if site.lazyimages == "enabled" %}
+<script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
+{% endif %}
 
 {% if page.layout == 'post' %}
 <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
 {% endif %}
 
 {% if page.layout == 'post' or page.title == 'blog' %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js"></script>
-<script src="{{ site.baseurl }}/assets/js/lunrsearchengine.js"></script>
+<script src="{{ site.baseurl }}/assets/js/lunr.js"></script>
 {% endif %}
+<script src="{{ site.baseurl }}/assets/js/script.js"></script>
 
 </body>
 </html>

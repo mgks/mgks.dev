@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Building a Sentiment Analysis Model with IMDB Dataset"
+title: Building a Sentiment Analysis Model with IMDB Dataset
 author: ghazi
-categories: [ tutorials ]
-tags: [machine learning, python]
+tags: machine learning, python
 image: assets/images/b8.jpg
-description: "Sentiment analysis is the process of determining the sentiment expressed in a piece of text as positive, negative, or neutral."
+description: Sentiment analysis is the process of determining the sentiment expressed in a piece of text as positive, negative, or neutral.
 featured: false
 hidden: false
 toc: false

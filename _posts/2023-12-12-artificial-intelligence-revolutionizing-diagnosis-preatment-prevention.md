@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Artifical Intelligence Revolutionizing Diagnosis, Treatment, and Prevention"
+title: Artifical Intelligence Revolutionizing Diagnosis, Treatment, and Prevention
 author: ghazi
-categories: [ conversations ]
-tags: [artificial intelligence, health, llm]
+tags: artificial intelligence, health, llm
 image: assets/images/b11.jpg
-description: "From personalized medicine and precision diagnostics to robotic surgery and AI-powered assistants, these innovations hold immense potential to improve patient outcomes, optimize healthcare delivery, and reduce costs."
+description: From personalized medicine and precision diagnostics to robotic surgery and AI-powered assistants, these innovations hold immense potential to improve patient outcomes, optimize healthcare delivery, and reduce costs.
 featured: false
 hidden: false
 toc: false

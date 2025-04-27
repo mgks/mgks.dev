@@ -1,13 +1,11 @@
 ---
 layout: post
-title:  "Unfolding Sora"
+title: Unfolding Sora
 author: ghazi
-categories: [ articles ]
-tags: [sora, artificial intelligence, openai]
+tags: sora, artificial intelligence, openai
 image: https://media.licdn.com/dms/image/v2/D5612AQH_pVV_JN-1Zg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1711622952517?e=1742428800&v=beta&t=ZUyhEyQGyoWoStTDdfh-kjPSV9ipwtt9xj742a046zE
-description: "This groundbreaking model takes simple text descriptions and transforms them into captivating short videos, pushing the boundaries of AI-powered creativity."
+description: This groundbreaking model takes simple text descriptions and transforms them into captivating short videos, pushing the boundaries of AI-powered creativity.
 featured: false
-topper: false
 hidden: false
 toc: false
 ---

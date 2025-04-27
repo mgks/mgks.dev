@@ -1,11 +1,10 @@
 ---
 layout: post
-title:  "Resources and Bug Fixes for Machine Learning and Deep Learning on NVIDIA GeForce 1050Ti Devices"
+title: Resources and Bug Fixes for Machine Learning and Deep Learning on NVIDIA GeForce 1050Ti Devices
 author: ghazi
-categories: [ machine learning ]
-tags: [gpu, nvidia, tensorflow]
+tags: gpu, nvidia, tensorflow
 image: assets/images/b3.jpg
-description: "We all know how important machine learning has become and developers are trying to train their models from high-end servers to low-tech PCs."
+description: We all know how important machine learning has become and developers are trying to train their models from high-end servers to low-tech PCs.
 featured: false
 hidden: false
 ---
