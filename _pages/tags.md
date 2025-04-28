@@ -1,5 +1,6 @@
 ---
 layout: tags
-title: tags
+title: Tags
 permalink: /tags
+description: Read articles on
 ---

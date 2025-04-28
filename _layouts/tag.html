@@ -1,5 +1,8 @@
 ---
 layout: default
+title: {{ page.tag | capitalize }} articles
+permalink: /tag/{{ page.tag | slugify }}/
+description: Posts tagged with "{{ page.tag }}"
 ---
 
 <div class="container">
