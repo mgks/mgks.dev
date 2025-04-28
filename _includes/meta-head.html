@@ -1,0 +1,54 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <title>{{ page.title }} : {{site.name}}</title>
+    <meta data-react-helmet="true" name="description" content="{{page.description}}">
+    <meta data-react-helmet="true" name="image" content="{{site.baseurl}}/assets/images/preview.png">
+    
+    <meta data-react-helmet="true" property="og:title" content="{{page.title}}">
+    <meta data-react-helmet="true" property="og:description" content="{{page.description}}">
+    <meta data-react-helmet="true" property="og:image" content="{{site.baseurl}}/assets/images/preview.png">
+    <meta data-react-helmet="true" property="og:url" content="{{site.baseurl}}{% if page.layout == 'post' %}{{post.url}}{% endif %}">
+    <meta data-react-helmet="true" property="og:type" content="website">
+    
+    <meta data-react-helmet="true" name="twitter:card" content="summary_large_image">
+    <meta data-react-helmet="true" name="twitter:title" content="{{page.title}}">
+    <meta data-react-helmet="true" name="twitter:description" content="{{page.description}}">
+    <meta data-react-helmet="true" name="twitter:image" content="{{site.baseurl}}/assets/images/preview.png">
+    
+    <link rel="sitemap" type="application/xml" href="{{site.baseurl}}/sitemap.xml">
+    <link rel="canonical" href="{{site.baseurl}}{% if page.layout == 'post' %}{{post.url}}{% endif %}">
+    
+    <link rel="icon" type="image/x-icon" href="{{site.baseurl}}/favicon.ico">
+    <link rel="icon" type="image/png" href="{{site.baseurl}}/assets/images/fav/144.png">
+    <link rel="apple-touch-icon" sizes="48x48" href="{{site.baseurl}}/assets/images/fav/48.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{site.baseurl}}/assets/images/fav/72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="{{site.baseurl}}/assets/images/fav/96.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{site.baseurl}}/assets/images/fav/144.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="{{site.baseurl}}/assets/images/fav/192.png">
+    <link rel="apple-touch-icon" sizes="256x256" href="{{site.baseurl}}/assets/images/fav/256.png">
+    <link rel="apple-touch-icon" sizes="384x384" href="{{site.baseurl}}/assets/images/fav/384.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="{{site.baseurl}}/assets/images/fav/512.png">
+        
+    <link href="{{ site.baseurl }}/assets/css/style.css" rel="stylesheet">
+    
+    <script type="application/ld+json">
+        {"@context":"https://schema.org","@type":"WebSite","description":"{{page.description}}","headline":"{{page.title}}","name":"{{page.title}} : {{site.name}}","publisher":{"@type":"Organization","logo":{"@type":"ImageObject","url":"{{site.baseurl}}/assets/images/fav/144.png"}},"url":"{{site.baseurl}}{% if page.layout == 'post' %}{{post.url}}{% endif %}"}
+    </script>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{site.google_analytics}}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{site.google_analytics}}');
+    </script>
+    
+    {% if jekyll.environment == 'production' %}
+    <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9276682923792397" crossorigin="anonymous"></script>-->
+    {% endif %}
+    
+    </head>
