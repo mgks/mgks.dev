@@ -12,12 +12,12 @@ description: A collection of articles, tutorials, and insights on open source, A
         {% include search.html %}
 
         <!-- Featured Posts -->
-        {% assign featured_posts = site.posts | where: "featured", "true" %}
+        {% assign featured_posts = site.posts | where: "featured", "true" | sort: "date" | reverse %}
         {% if featured_posts.size > 0 %}
             <div class="blog-section">
                 <h2>Featured Posts</h2>
                 <div class="blog-posts featured-posts">
-                    {% for post in featured_posts limit:3 %}
+                    {% for post in featured_posts limit:2 %}
                         <div class="blog-post-card backdrop-sh">
                             {% if post.image %}
                             <a href="{{ site.baseurl }}{{ post.url }}" class="post-image">
@@ -25,24 +25,16 @@ description: A collection of articles, tutorials, and insights on open source, A
                             </a>
                             {% endif %}
                             <div class="post-content">
-                                <span class="post-date">{{ post.date | date_to_string }}</span>
                                 <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+                                <span class="post-date">{{ post.date | date_to_string }}</span>
                                 <p>{{ post.excerpt | strip_html | truncatewords:15 }}</p>
                                 <div class="post-meta">
-                                    {% if post.author %}
-                                        {% assign author = site.authors[post.author] %}
-                                        <div class="post-author">
-                                            {% if author.avatar %}
-                                            <img loading="lazy" src="{{ site.baseurl }}/{{ author.avatar }}" alt="{{ author.display_name }}">
-                                            {% endif %}
-                                            <span>{{ author.display_name }}</span>
-                                        </div>
-                                    {% endif %}
-                                    {% if post.categories.size > 0 %}
-                                        <div class="post-categories">
-                                            {% for category in post.categories limit:1 %}
-                                                <span>{{ category }}</span>
-                                            {% endfor %}
+                                    {% if post.tags.size > 0 %}
+                                        <div class="post-tags">
+                                            {% assign sortedTags = post.tags | sort %}
+                                            {% for tag in sortedTags %}
+                                                <a href="{{site.baseurl}}/tag/{{ tag | slugify }}"><span>#{{ tag }}</span></a>
+                                            {% endfor %}    
                                         </div>
                                     {% endif %}
                                 </div>
@@ -65,23 +57,15 @@ description: A collection of articles, tutorials, and insights on open source, A
                         </a>
                         {% endif %}
                         <div class="post-content">
-                            <span class="post-date">{{ post.date | date_to_string }}</span>
                             <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+                            <span class="post-date">{{ post.date | date_to_string }}</span>
                             <p>{{ post.excerpt | strip_html | truncatewords:15 }}</p>
                             <div class="post-meta">
-                                {% if post.author %}
-                                    {% assign author = site.authors[post.author] %}
-                                    <div class="post-author">
-                                        {% if author.avatar %}
-                                        <img loading="lazy" src="{{ site.baseurl }}/{{ author.avatar }}" alt="{{ author.display_name }}">
-                                        {% endif %}
-                                        <span>{{ author.display_name }}</span>
-                                    </div>
-                                {% endif %}
-                                {% if post.categories.size > 0 %}
-                                    <div class="post-categories">
-                                        {% for category in post.categories limit:1 %}
-                                            <span>{{ category }}</span>
+                                {% if post.tags.size > 0 %}
+                                    <div class="post-tags">
+                                        {% assign sortedTags = post.tags | sort %}
+                                        {% for tag in sortedTags %}
+                                            <a href="{{site.baseurl}}/tag/{{ tag | slugify }}"><span>#{{ tag }}</span></a>
                                         {% endfor %}
                                     </div>
                                 {% endif %}

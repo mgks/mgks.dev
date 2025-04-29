@@ -1,25 +1,22 @@
 ---
 layout: default
 title: Tags
-permalink: /tags
 description: Browse articles by tag on mgks.dev
 ---
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <h1 class="font-weight-bold title">All Tags</h1>
-      <div class="page-description">
-        <p>Browse articles by tag</p>
-      </div>
-      <div class="tags-list">
-        {% assign sorted_tags = site.tags | sort %}
-        {% for tag in sorted_tags %}
-          <a href="{{ site.baseurl }}/tag/{{ tag[0] }}/" class="tag-button">
-            {{ tag[0] }} <span class="count">({{ tag[1].size }})</span>
-          </a>
-        {% endfor %}
-      </div>
+<div class="work-area unfade">
+  <div class="wa-post">
+    <h1 class="font-weight-bold title">All Tags</h1>
+    <div class="page-description">
+      <p>Browse articles by tags</p>
+    </div>
+    <div class="post-tags">
+      {% assign sorted_tags = site.tags | sort %}
+      {% for tag in sorted_tags %}
+        <a href="{{ site.baseurl }}/tag/{{ tag[0] | slugify }}/" class="tag-button">
+          #{{ tag[0] | slugify }} <span class="count">({{ tag[1].size }})</span>
+        </a>
+      {% endfor %}
     </div>
   </div>
 </div>
