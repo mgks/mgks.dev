@@ -5,23 +5,8 @@ post_class: post-template
 ---
 
 <div class="work-area loading-hidden unfade">
-    <div class="wa-pgs wa-post">
+    <div class="wa-post">
         <div class="wap-post">
-            <!-- Author info -->
-            {% assign author = site.authors[page.author] %}
-            {% if page.author %}
-            <div class="post-author">
-                {% if author.avatar %}
-                <img loading="lazy" class="author-image" src="{{site.baseurl}}/{{ author.avatar }}" alt="{{ author.display_name }}">
-                {% else %}
-                <img loading="lazy" class="author-image" src="https://www.gravatar.com/avatar/{{ author.gravatar }}?s=250&d=mm&r=x" alt="{{ author.display_name }}">
-                {% endif %}
-                <div class="author-info">
-                    <a href="{{ author.web }}">{{ author.display_name }}</a>
-                    <span>{{ author.description }}</span>
-                </div>
-            </div>
-            {% endif %}
 
             <!-- Post Title -->
             <h1 class="post-title">{{ page.title }}</h1>
@@ -44,14 +29,14 @@ post_class: post-template
                 {% if page.beforetoc %}
                     <p class="toc-description"><em>{{page.beforetoc}}</em></p>
                 {% endif %}
-                <div class="post-toc backdrop-sh">
+                <div class="post-toc">
                     <h3>Summary</h3>
                     {% include toc.html html=content %}
                 </div>
             {% endif %}
 
             <!-- Post Content -->
-            <div class="post-content backdrop-sh">
+            <div class="post-content">
                 {{content}}
             </div>
 
@@ -59,11 +44,10 @@ post_class: post-template
             <div class="post-meta">
                 {% if page.tags.size > 0 %}
                 <div class="post-tags">
-                    <span>Tags:</span>
                     <ul>
                     {% assign sortedTags = page.tags | sort %}
                     {% for tag in sortedTags %}
-                        <li><a href="{{site.baseurl}}/tag/{{ tag | slugify }}/">#{{ tag }}</a></li>
+                        <li><a href="{{site.baseurl}}/tag/{{ tag | slugify }}/">#{{ tag | slugify}}</a></li>
                     {% endfor %}
                     </ul>
                 </div>
@@ -89,7 +73,7 @@ post_class: post-template
 
             <!-- Comments -->
             {% if page.comments != false %}
-            <div class="post-comments backdrop-sh">
+            <div class="post-comments">
                 {% include disqus.html %}
             </div>
             {% endif %}
