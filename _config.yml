@@ -31,8 +31,8 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 
-# Pagination 
-paginate: 6
+# Pagination
+paginate: 9
 paginate_path: '/blog/page:num/'
     
 # Other

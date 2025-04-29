@@ -60,3 +60,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Dark mode functionality
+document.addEventListener('DOMContentLoaded', () => {
+  const themeToggle = document.getElementById('theme-toggle');
+  const sunIcon = document.getElementById('sun-icon');
+  const moonIcon = document.getElementById('moon-icon');
+  
+  // Check for saved user preference, otherwise respect OS preference
+  const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+  const storedTheme = localStorage.getItem('theme');
+  
+  if (storedTheme === 'dark' || (!storedTheme && prefersDarkScheme.matches)) {
+    document.body.classList.add('dark-mode');
+    moonIcon.style.display = 'block';
+    sunIcon.style.display = 'none';
+  } else {
+    moonIcon.style.display = 'none';
+    sunIcon.style.display = 'block';
+  }
+  
+  themeToggle.addEventListener('click', () => {
+    const isDarkMode = document.body.classList.contains('dark-mode');
+    
+    if (isDarkMode) {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('theme', 'light');
+      moonIcon.style.display = 'none';
+      sunIcon.style.display = 'block';
+    } else {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('theme', 'dark');
+      moonIcon.style.display = 'block';
+      sunIcon.style.display = 'none';
+    }
+  });
+});

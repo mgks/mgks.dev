@@ -27,14 +27,70 @@
     --dark-background: #001830;
     --hold-orange: #ffae0017;
     --hold-orange-dark: #ffae0042;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #0066cc;
+    --border-color: #dddddd;
+    --heading-color: #222222;
+    --card-bg: #f5f5f5;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --code-bg: #f0f0f0;
+}
+
+.dark-mode {
+    /* Dark mode variable overrides */
+    --background-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --link-color: #88bbff;
+    --border-color: #444444;
+    --heading-color: #ffffff;
+    --card-bg: #252525;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --code-bg: #2d2d2d;
 }
 
 body {
     margin: 0;
-    background-color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-family: var(--font-mono);
     -webkit-font-smoothing: antialiased;
     max-height:100vh;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+#moon-icon {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+}
+
+.card, article, section {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+code, pre {
+    background-color: var(--code-bg);
 }
 
 .absolute {
@@ -56,7 +112,7 @@ canvas {
 
 a {
     text-decoration: none;
-    color:var(--theme-grey)
+    color: var(--link-color);
 }
 
 .banner {
@@ -934,10 +990,6 @@ a.wac-contact-b {
 }
 
 .post-date {
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-    color: var(--theme-ligrey);
-    margin-bottom: 2em;
 }
 
 .featured-image {
@@ -963,19 +1015,13 @@ a.wac-contact-b {
     line-height: 1.8;
 }
 
-.post-content h1, 
-.post-content h2, 
-.post-content h3, 
-.post-content h4, 
-.post-content h5, 
-.post-content h6 {
+.post-content h1, .post-content h2, .post-content h4, .post-content h5, .post-content h6 {
     font-family: var(--font-title);
     margin-top: 1.5em;
     margin-bottom: 0.5em;
 }
 
 .post-content p {
-    margin-bottom: 1.5em;
 }
 
 .post-content img {
@@ -1029,22 +1075,10 @@ a.wac-contact-b {
     font-weight: bold;
 }
 
-.post-meta {
-    margin: 2em 0;
-    padding: 1em 0;
-    border-top: 1px solid var(--theme-exgrey);
-    border-bottom: 1px solid var(--theme-exgrey);
-}
-
 .post-categories, .post-tags {
-    margin: 1em 0;
+    margin: 1em 0 0;
 }
 
-.post-categories span, .post-tags span {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 0.5em;
-}
 
 .post-categories ul, .post-tags ul {
     display: flex;
@@ -1131,7 +1165,7 @@ a.wac-contact-b {
 }
 
 .blog-section {
-    margin-bottom: 4em;
+    margin-bottom: 3.5em;
 }
 
 .blog-section h2 {
@@ -1150,16 +1184,16 @@ a.wac-contact-b {
 }
 
 .featured-posts {
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(25em, 1fr));
 }
 
 .blog-post-card {
-    border-radius: 10px;
+    border-radius: 20px;
     overflow: hidden;
 }
 
 .post-image {
-    height: 200px;
+    height: 15em;
     overflow: hidden;
     display: block;
 }
@@ -1183,13 +1217,13 @@ a.wac-contact-b {
     font-size: 0.8em;
     color: var(--theme-ligrey);
     display: block;
-    margin-bottom: 0.5em;
 }
 
 .post-content h3 {
     font-family: var(--font-title);
     font-size: 1.5em;
-    margin: 0.5em 0;
+    margin: 0 0 .5em;
+    line-height: 1.5;
 }
 
 .post-content h3 a {
@@ -1203,7 +1237,6 @@ a.wac-contact-b {
 
 .post-content p {
     color: var(--theme-grey);
-    margin-bottom: 1.5em;
     line-height: 1.5;
 }
 
@@ -1211,7 +1244,7 @@ a.wac-contact-b {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1em;
+    padding-top: 0;
     border-top: 1px solid var(--theme-exgrey);
 }
 
@@ -1232,14 +1265,6 @@ a.wac-contact-b {
     color: var(--theme-dark);
 }
 
-.post-categories span {
-    display: inline-block;
-    padding: 0.3em 0.8em;
-    background-color: var(--theme-backdrop);
-    border-radius: 3px;
-    color: var(--theme-dark);
-    font-size: 0.8em;
-}
 
 .blog-pagination {
     text-align: center;
