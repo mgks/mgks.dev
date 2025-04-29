@@ -1,13 +1,11 @@
 ---
 layout: default
 title: Articles on open source, AI and technology
-permalink: /blog
 description: A collection of articles, tutorials, and insights on open source, AI and technology, written and curated by Ghazi Khan.
 ---
 <div class="work-area loading-hidden unfade">
     <div class="wa-pgs wa-blog">
-        <h1 class="blog-title">Blog</h1>
-        
+
         <!-- Search Component -->
         {% include search.html %}
 
@@ -33,7 +31,7 @@ description: A collection of articles, tutorials, and insights on open source, A
                                         <div class="post-tags">
                                             {% assign sortedTags = post.tags | sort %}
                                             {% for tag in sortedTags %}
-                                                <a href="{{site.baseurl}}/tag/{{ tag | slugify }}"><span>#{{ tag }}</span></a>
+                                                <a href="{{site.baseurl}}/tag/{{ tag | slugify }}"><span>#{{ tag | slugify}}</span></a>
                                             {% endfor %}    
                                         </div>
                                     {% endif %}
@@ -65,7 +63,7 @@ description: A collection of articles, tutorials, and insights on open source, A
                                     <div class="post-tags">
                                         {% assign sortedTags = post.tags | sort %}
                                         {% for tag in sortedTags %}
-                                            <a href="{{site.baseurl}}/tag/{{ tag | slugify }}"><span>#{{ tag }}</span></a>
+                                            <a href="{{site.baseurl}}/tag/{{ tag | slugify }}"><span>#{{ tag | slugify }}</span></a>
                                         {% endfor %}
                                     </div>
                                 {% endif %}
