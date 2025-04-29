@@ -6,14 +6,14 @@
     --font-mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
     --theme-color: #1876d2;
     --theme-lcolor: #6397c8;
-    --theme-dark: #0a5eb0;
+    --theme-text-dark: #0a5eb0;
     --theme-aesthetic: #ff570dc9;
     --theme-red: #d51313;
     --theme-lred: #ff6c6c;
     --theme-background: #f1f1f1;
     --theme-lgrey: #a1cdf7;
     --theme-exgrey: rgba(168, 168, 168, 0.27);
-    --opaque-white: rgb(244 249 255 / 85%);
+    --opaque-bg: rgb(244 249 255 / 85%);
     --theme-ligrey: #757980;
     --theme-grey: #606060;
     --theme-backdrop-shadow: #1a5eb047;
@@ -27,6 +27,7 @@
     --dark-background: #001830;
     --hold-orange: #ffae0017;
     --hold-orange-dark: #ffae0042;
+    --zen-bg: none;
     --background-color: #ffffff;
     --text-color: #333333;
     --link-color: #0066cc;
@@ -40,13 +41,20 @@
 .dark-mode {
     /* Dark mode variable overrides */
     --background-color: #1a1a1a;
+    --theme-color: #3295f6;
+    --theme-text-dark: #88bbff;
+    --theme-backdrop-shadow: #0000009c;
     --text-color: #e0e0e0;
+    --theme-grey: #f1f1f1;
     --link-color: #88bbff;
     --border-color: #444444;
     --heading-color: #ffffff;
     --card-bg: #252525;
     --shadow-color: rgba(0, 0, 0, 0.3);
     --code-bg: #2d2d2d;
+    --opaque-bg: #0000009c;
+    --zen-bg: #ff986da8;
+    --theme-comments-bg: #000000;
 }
 
 body {
@@ -68,11 +76,13 @@ body {
     color: inherit;
     display: flex;
     align-items: center;
+    float: right;
 }
 
 .theme-icon {
-    width: 24px;
-    height: 24px;
+    width: 2em;
+    padding: .2em 0;
+    height: 2em;
     fill: currentColor;
 }
 
@@ -84,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
 }
 
-.card, article, section {
+.card, article {
     background-color: var(--card-bg);
     border-color: var(--border-color);
 }
@@ -152,14 +162,14 @@ header {
     -webkit-backdrop-filter: blur(15px);*/
     border-radius: 10px;
     top:0;
-    background-color: var(--opaque-white);
+    background-color: var(--opaque-bg);
     transform: translateZ(0);
 }
 
 .menu a {
     display: inline-block;
     margin: 0 1em;
-    color: var(--theme-black);
+    color: var(--text-color);
 }
 
 .menu {
@@ -264,7 +274,7 @@ footer {
 .socialy, .emaily {
     bottom: 0;
     position: fixed;
-    z-index:1
+    z-index:1;
 }
 
 .work-area {
@@ -376,18 +386,17 @@ body.dark a:hover {
 .wa-welcome .waw-name {
     font-size: 5em;
     font-weight: 700;
-    color: var(--theme-dark);
+    color: var(--theme-text-dark);
     font-family:var(--font-title)
 }
 
 .wa-welcome .waw-work {
     font-size: 2.5em;
     font-weight: 700;
-    color: var(--theme-color);
+    color: var(--theme-text-dark);
     font-family: var(--font-title);
     line-height: .9em;
     opacity: .5;
-    mix-blend-mode:multiply
 }
 
 .wa-welcome .waw-sub {
@@ -410,7 +419,7 @@ body.dark a:hover {
 .wa-pgs h2 {
     font-size: 7vw;
     font-weight: 800;
-    color: var(--theme-color);
+    color: var(--theme-text-dark);
     font-family: var(--font-title);
     flex-direction: row;
     -webkit-box-align: center;
@@ -614,9 +623,6 @@ body.dark a:hover {
     margin: 1em auto;
 }
 
-.wap-projects {
-}
-
 .wapf-text {
     text-align: right;
     float: left;
@@ -744,7 +750,7 @@ body.dark a:hover {
 .wap-other .folder h3 {
     font-family: var(--font-title);
     font-size: 1.5em;
-    color:var(--theme-black);
+    color: var(--theme-text-dark);
     margin: .5em 0;
 }
 
@@ -807,7 +813,7 @@ a.wac-contact-b {
 
 .wac-featured h3 {
     font-family: var(--font-mono);
-    color: var(--theme-black);
+    color: var(--theme-grey);
     margin: 2em 0;
 }
 
@@ -837,7 +843,10 @@ a.wac-contact-b {
 }
 
 .zen-mode img {
-    max-height:inherit
+    max-height:inherit;
+    background-color: var(--zen-bg);
+    border-radius: 50px;
+    border: 2px dashed var(--zen-bg);
 }
 
 .wa-contact h2 {
@@ -873,7 +882,7 @@ a.wac-contact-b {
     font-size: 3em;
     margin: 0;
     font-family: var(--font-title);
-    color: var(--theme-color);
+    color: var(--theme-text-dark);
 }
 
 .wbb-social a svg {
@@ -943,14 +952,14 @@ a.wac-contact-b {
 
 /* Blog Post Styles */
 .wa-post {
-    padding: 2em 5%;
+    padding: 0 5%;
     max-width: 900px;
     margin: 0 auto;
 }
 
 .wap-post {
     width: 100%;
-    padding: 2em 0;
+    padding: 0;
 }
 
 .post-author {
@@ -984,18 +993,14 @@ a.wac-contact-b {
 
 .post-title {
     font-family: var(--font-title);
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-    color: var(--theme-black);
-}
-
-.post-date {
+    font-size: 3.5em;
+    margin: .5em 0;
+    color: var(--theme-text-dark);
 }
 
 .featured-image {
     width: 100%;
-    border-radius: 5px;
-    margin-bottom: 2em;
+    border-radius: 20px;
 }
 
 .post-toc {
@@ -1011,23 +1016,19 @@ a.wac-contact-b {
 
 .post-content {
     padding: 2em;
-    border-radius: 5px;
     line-height: 1.8;
 }
 
-.post-content h1, .post-content h2, .post-content h4, .post-content h5, .post-content h6 {
+.post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
     font-family: var(--font-title);
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
-}
-
-.post-content p {
+    letter-spacing: 1px;
 }
 
 .post-content img {
     max-width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
     margin: 1em 0;
+    box-shadow: 0 0 30px -5px var(--theme-backdrop-shadow);
 }
 
 .post-content a {
@@ -1036,10 +1037,6 @@ a.wac-contact-b {
     text-decoration-color: var(--theme-light);
     text-decoration-thickness: 2px;
     text-underline-offset: 2px;
-}
-
-.post-content a:hover {
-    color: var(--theme-dark);
 }
 
 .post-content blockquote {
@@ -1066,8 +1063,7 @@ a.wac-contact-b {
 }
 
 .post-content ul, .post-content ol {
-    margin-bottom: 1.5em;
-    padding-left: 1.5em;
+    padding: 0 0 0 2em;
 }
 
 .post-rating {
@@ -1075,7 +1071,7 @@ a.wac-contact-b {
     font-weight: bold;
 }
 
-.post-categories, .post-tags {
+.post-tags {
     margin: 1em 0 0;
 }
 
@@ -1093,12 +1089,13 @@ a.wac-contact-b {
     margin-bottom: 0.5em;
 }
 
-.post-categories a, .post-tags a {
+.post-tags a {
     display: inline-block;
-    padding: 0.3em 0.8em;
+    padding: .3em .8em;
     background-color: var(--theme-backdrop);
     border-radius: 3px;
-    color: var(--theme-dark);
+    margin-bottom: .75em;
+    color: var(--theme-text-dark);
     font-size: 0.9em;
     transition: all 0.2s ease;
 }
@@ -1111,12 +1108,13 @@ a.wac-contact-b {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin: 3em 0;
+    margin: 2.5em 0;
+    gap: 1%;
 }
 
 .prev-post, .next-post {
-    flex: 0 0 48%;
-    padding: 1em;
+    flex: 0 0 40%;
+    padding: 1em 2.5%;
     background-color: var(--theme-backdrop);
     border-radius: 5px;
     transition: all 0.2s ease;
@@ -1145,8 +1143,10 @@ a.wac-contact-b {
 
 .post-comments {
     padding: 2em;
-    border-radius: 5px;
+    margin: 0 2em;
+    border-radius: 20px;
     margin-top: 3em;
+    background-color: var(--theme-comments-bg);
 }
 
 /* Blog Index Page Styles */
@@ -1174,7 +1174,7 @@ a.wac-contact-b {
     margin-bottom: 1em;
     padding-bottom: 0.5em;
     border-bottom: 1px solid var(--theme-exgrey);
-    color: var(--theme-black);
+    color: var(--theme-grey);
 }
 
 .blog-posts {
@@ -1202,41 +1202,35 @@ a.wac-contact-b {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: .3s;
 }
 
 .blog-post-card:hover .post-image img {
     transform: scale(1.05);
-}
-
-.post-content {
-    padding: 1.5em;
+    transition:.3s
 }
 
 .post-date {
     font-family: var(--font-mono);
     font-size: 0.8em;
-    color: var(--theme-ligrey);
+    color: var(--theme-grey);
     display: block;
 }
 
 .post-content h3 {
     font-family: var(--font-title);
-    font-size: 1.5em;
-    margin: 0 0 .5em;
-    line-height: 1.5;
 }
 
 .post-content h3 a {
-    color: var(--theme-black);
+    color: var(--theme-text-dark);
     text-decoration: none;
+    transition: .3s;
 }
 
-.post-content h3 a:hover {
-    color: var(--theme-dark);
-}
+.post-content h3 a:hover {color: var(--theme-color);}
 
 .post-content p {
-    color: var(--theme-grey);
+    color: var(--text-color);
     line-height: 1.5;
 }
 
@@ -1284,7 +1278,7 @@ a.wac-contact-b {
 .pagination a, .pagination span {
     display: inline-block;
     padding: 0.8em 1.2em;
-    color: var(--theme-black);
+    color: var(--text-color);
     text-decoration: none;
     font-family: var(--font-mono);
     font-size: 0.9em;
@@ -1296,8 +1290,8 @@ a.wac-contact-b {
 }
 
 .pagination span {
-    background-color: var(--theme-dark);
-    color: white;
+    background-color: var(--theme-color);
+    color: var(--theme-white);
 }
 
 .search-container {
@@ -1322,7 +1316,7 @@ a.wac-contact-b {
     padding: 0.5em;
     font-family: var(--font-mono);
     font-size: 0.9em;
-    color: var(--theme-black);
+    color: var(--text-color);
 }
 
 .search-input:focus {
@@ -1346,13 +1340,14 @@ a.wac-contact-b {
     left: 0;
     right: 0;
     z-index: 100;
-    background: white;
-    border-radius: 5px;
-    margin-top: 5px;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    background: var(--background-color);
+    border-radius: 10px;
+    margin-top: .5em;
+    box-shadow: 0 0 15px 5px var(--shadow-color);
     max-height: 400px;
     overflow-y: auto;
     display: none;
+    border-bottom: .5em solid var(--background-color);
 }
 
 #lunrsearchresults.visible {
@@ -1368,6 +1363,7 @@ a.wac-contact-b {
 #lunrsearchresults li {
     padding: 1em;
     border-bottom: 1px solid var(--theme-exgrey);
+    font-size: .9em;
 }
 
 #lunrsearchresults li:last-child {
@@ -1375,7 +1371,7 @@ a.wac-contact-b {
 }
 
 #lunrsearchresults a {
-    color: var(--theme-dark);
+    color: var(--text-color);
     text-decoration: none;
     display: block;
 }
@@ -1404,7 +1400,43 @@ a.wac-contact-b {
 }
 
 .wbb-social a {
-    color: var(--theme-black);
+    color: var(--text-color);
+}
+
+#resultsmodal .modal-title {
+    text-align: center;
+    font-size: .75em;
+}
+
+.lunrsearchresult .title {
+    color: var(--theme-text-dark);
+    font-weight: bold;
+    display: block;
+    margin-bottom: .5em;
+}
+
+.socialy a, .emaily a {
+    color: var(--text-color);
+}
+
+.footer a {
+    color: var(--text-color);
+}
+
+.post-content li {
+    margin-bottom: .5em;
+}
+.work-area .single-pages h1 {
+    font-family: var(--font-title);
+    font-size: 3.5em;
+}
+
+.single-pages .post-tags a {
+    font-weight: bold;
+}
+
+.post-tags a .count {
+    opacity: .5;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -1480,7 +1512,7 @@ a.wac-contact-b {
         padding: 1.5em;
     }
     .prev-post, .next-post {
-        flex: 0 0 100%;
+        flex: 0 0 95%;
         margin-bottom: 1em;
     }
 }
