@@ -1,6 +1,5 @@
 ---
 layout: tags
 title: Tags
-permalink: /tags
-description: Read articles on
+description: Browse articles by tag on mgks.dev
 ---
