@@ -20,6 +20,7 @@ module Jekyll
       self.read_yaml(File.join(base, '_layouts'), 'tag.html')
       self.data['tag'] = tag
       self.data['title'] = "#{tag.capitalize} Articles"
+      self.data['description'] = "Collection of articles about #{tag.capitalize} by Ghazi Khan - I am an open source developer and I love building simple solutions for complex technical problems."
       self.data['permalink'] = "/#{@dir}/"
     end
   end

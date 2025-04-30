@@ -5,7 +5,7 @@ author: ghazi
 tags: chatgpt, artificial intelligence, openai
 image: assets/images/b25.png
 description: This is a world where machines not only understand our words but also decipher the subtle cues in our voices and the visual tapestry of our world. It's both exhilarating and, frankly, a little terrifying.
-featured: false
+featured: true
 hidden: false
 toc: false
 ---

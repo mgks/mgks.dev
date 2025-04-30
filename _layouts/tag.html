@@ -2,11 +2,16 @@
 layout: default
 ---
 
-<div class="work-area unfade">
+<div class="work-area indie-page unfade">
     <div class="wa-post">
-      <h1 class="font-weight-bold title">{{ page.tag | capitalize }} Articles</h1>
+      <h1 class="font-weight-bold title">{%- assign tag_slug = page.tag | slugify -%}
+        {%- assign tag_words = tag_slug | split: '-' -%}
+        {%- for word in tag_words -%}
+          {{ word | capitalize }}{% unless forloop.last %} {% endunless %}
+        {% endfor %} Articles
+      </h1>
       <div class="page-description">
-        <p>Browse articles tagged with "{{ page.tag }}"</p>
+        <p>Browse articles tagged with "{{ page.tag | slugify }}"</p>
       </div>
       <div class="blog-posts">
         {% for post in site.tags[page.tag] %}
