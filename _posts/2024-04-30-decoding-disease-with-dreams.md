@@ -3,7 +3,7 @@ layout: post
 title: Decoding Disease with Dreams
 author: ghazi
 tags: health, artificial intelligence, generative ai
-image: https://media.licdn.com/dms/image/v2/D4D12AQFfZQvE9oU0ow/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1714457747771?e=1742428800&v=beta&t=XpGLGK5rXo8cBClPaGq1Vyn6ylJEszP8lKQZOnhJH0s
+image: assets/images/b22.png
 description: From medieval alchemists concocting questionable elixirs to modern scientists sifting through mountains of data, humanity's relentless pursuit of healing continues.
 featured: false
 hidden: false
@@ -20,7 +20,7 @@ But here's the truly magical part, the AI doesn't just regurgitate the past. It 
 
 Think of it as a brainstorming session on steroids!  Except instead of brainstorming with a bunch of sleep-deprived grad students fueled by questionable cafeteria coffee, you've got a tireless AI churning out innovative ideas 24/7.
 
-![](https://media.licdn.com/dms/image/v2/D4D12AQFJTJpPf39AOQ/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1714458702668?e=1742428800&v=beta&t=RrzWyqpgng0C_-XyN49GW2RKXZ-EE591-dfmiP5OSXY)
+![1]({{ site.baseurl }}/assets/images/b22-1.jpeg)
 
 Now, before you envision robots taking over pharmaceutical labs and dispensing miracle cures like candy (although wouldn't that be something?), it's important to remember that generative AI is still in its early stages.  These AI dreamers need a guiding hand.
 

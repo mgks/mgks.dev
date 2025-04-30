@@ -16,7 +16,7 @@ layout: default
                     <img loading="lazy" src="{% if post.image contains '://' %}{{ post.image }}{% else %}{{ site.baseurl }}/{{ post.image }}{% endif %}" alt="{{ post.title }}">
                 </a>
                 {% endif %}
-                <div class="post-content">
+                <div class="post-card-content">
                     <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
                     <span class="post-date">{{ post.date | date_to_string }}</span>
                     <p>{{ post.excerpt | strip_html | truncatewords:15 }}</p>

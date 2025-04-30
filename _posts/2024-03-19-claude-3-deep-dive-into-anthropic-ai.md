@@ -37,7 +37,7 @@ The LLM landscape is a competitive space. Here's a breakdown of how Claude 3 sta
 - **OpenAI's GPT-4:**  Renowned for its impressive text generation capabilities and ability to adapt to different writing styles, GPT-4 has garnered significant attention. However, concerns exist around its potential for generating biased or misleading content.
 - **Google's Gemini Pro 1.5:** Details about Gemini Pro 1.5 remain somewhat shrouded in secrecy. While limited information suggests strong performance in text-to-code generation and reasoning tasks, a comprehensive comparison is challenging due to the lack of publicly available information.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQF2LXySw6vMxw/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1710224799207?e=1738800000&v=beta&t=a3RosDcIpY6ijvVvQEczUQyZOJ2mfesrOusdbIqgJXU)
+![1]({{ site.baseurl }}/assets/images/b18-1.png)
 
 ### Technical Specifications: A Deep Dive
 

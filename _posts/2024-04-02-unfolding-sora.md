@@ -3,7 +3,7 @@ layout: post
 title: Unfolding Sora
 author: ghazi
 tags: sora, artificial intelligence, openai
-image: https://media.licdn.com/dms/image/v2/D5612AQH_pVV_JN-1Zg/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1711622952517?e=1742428800&v=beta&t=ZUyhEyQGyoWoStTDdfh-kjPSV9ipwtt9xj742a046zE
+image: assets/images/b20.jpeg
 description: This groundbreaking model takes simple text descriptions and transforms them into captivating short videos, pushing the boundaries of AI-powered creativity.
 featured: false
 hidden: false
@@ -23,7 +23,7 @@ Imagine feeding Sora a massive library of videos and images, each paired with de
 
 ### Patching Things Together
 
-![](https://media.licdn.com/dms/image/v2/D5612AQEFDMlY8Yzr4A/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1711629463041?e=1742428800&v=beta&t=7ZeV_E79xQ7kNuQQA0eGudrlfQqiUHqt01FMbucZuJw)
+![1]({{ site.baseurl }}/assets/images/b20-1.png)
 
 Visual representation of turning video frames into patches
 
@@ -33,7 +33,7 @@ Sora utilises a unique technique called "patch-based representation." Think of c
 
 Remember how Sora understands the relationships between words in a text prompt? This is powered by a sophisticated AI architecture called a transformer. Similar to how a skilled translator interprets languages, the transformer decodes the meaning and context of the text description, guiding Sora in generating a visually coherent video.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQGm5e1Dt33Dlw/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1711629590179?e=1742428800&v=beta&t=LUTfh2M6roFENp5VH6id3cBmaixwuqGq9dlOwivlYCM)
+![2]({{ site.baseurl }}/assets/images/b20-2.png)
 
 Diffusion transformer denoising video with each training iteration
 

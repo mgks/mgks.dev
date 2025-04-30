@@ -4,7 +4,7 @@ date: 2024-06-13 12:42:00 +0300
 title: Stable Diffusion 3, A New Era of AI Image Synthesis
 author: ghazi
 tags: [stable diffusion, image generation]
-image: https://media.licdn.com/dms/image/v2/D5612AQF9uokDOuDDjw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1718269950503?e=1747872000&v=beta&t=El7uwH-nPX7JqZpfDkIft9v3z15hmSEwqtHaFBoqrXo
+image: assets/images/b26.jpeg
 description: We're not just talking about subtle tweaks here – this is a full-blown revolution in speed, quality, and the very way these AI models bring your artistic visions to life.
 video_embed: 
 tags_color: 
@@ -19,7 +19,7 @@ Hold onto your hats, tech wizards and art enthusiasts, because Stable Diffusion 
 
 Let’s face it, waiting for an AI to paint your masterpiece can feel longer than watching paint dry in real life. Traditional diffusion models, while capable of generating stunning imagery, have been notorious for their lengthy render times, especially as you crank up the resolution and complexity.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQHl2lfPz2EGYA/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1718269882602?e=1747872000&v=beta&t=w3FK1nqDa4CVIN2KhtBHGQKbp9PhnyP3o1ua3Exs_AU)
+![1]({{ site.baseurl }}/assets/images/b26-1.png)
 
 The culprit? It's all about the process. These models rely on a clever but computationally intensive technique called "denoising." Picture this: you start with pure, chaotic noise (think static on a TV screen) and then gradually refine it, step-by-step, into a coherent image. It’s like chiseling a sculpture out of a block of marble, pixel by pixel. Effective? Absolutely. Efficient? Not so much.
 
@@ -27,9 +27,9 @@ The culprit? It's all about the process. These models rely on a clever but compu
 
 Stable Diffusion 3 throws a wrench in the gears – in a good way, of course. It ditches the winding path of denoising in favor of a more direct approach: Rectified Flow. Instead of taking the scenic route, SD3 charts a straight-line course from random noise to your final image.
 
-The research paper \[1\] gets a bit technical, explaining that Rectified Flow "defines the forward process as straight paths between the data distribution and a standard normal distribution." But the takeaway is this: faster generation times without sacrificing quality.
+The research paper \\\[1\] gets a bit technical, explaining that Rectified Flow "defines the forward process as straight paths between the data distribution and a standard normal distribution." But the takeaway is this: faster generation times without sacrificing quality.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQGTvT_LCXO2gg/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1718269832722?e=1747872000&v=beta&t=4zCFnt-UbKS51DEZfUYIeZGmAJ7_2GpiCRUIPl1onik)
+![2]({{ site.baseurl }}/assets/images/b26-2.png)
 
 Scaling Rectified Flow Transformer Models
 
@@ -39,7 +39,7 @@ SD3 doesn't disappoint. The research paper is brimming with impressive results, 
 
 High-Resolution Synthesis: SD3 handles those pixel-packed images like a champ, producing stunning results even at resolutions previously unimaginable for diffusion models.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQFaFXl7Nh1N0w/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1718270084199?e=1747872000&v=beta&t=1PPBfs6amUvIlUe9C9q2ET2Hjny66AEODFsrJ3AVLNE)
+![3]({{ site.baseurl }}/assets/images/b26-3.png)
 
 Text Rendering and Comprehension: Ever try getting an AI to write legible text in an image? It's often a recipe for hilarious (and frustrating) results. SD3 takes a giant leap forward in this area, generating clearer, more accurate text within its creations.
 
@@ -47,7 +47,7 @@ Text Rendering and Comprehension: Ever try getting an AI to write legible text i
 
 Traditional diffusion models have often relied on U-Net architectures, which excel at capturing spatial features in images. While effective, U-Nets can struggle with the unique challenges of text-to-image generation, where the model must not only understand visual information but also interpret and translate complex language prompts into coherent imagery.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQHP9EJCipX_sg/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1718275947709?e=1747872000&v=beta&t=lI3I25-4QJR0NItcOp5J3vnZXEYtcupyopBzr3haos8)
+![4]({{ site.baseurl }}/assets/images/b26-4.png)
 
 The RMS-Norm for Q and K can be added to stabilize training runs.
 
@@ -59,7 +59,7 @@ The key to MM-DiT's power lies in its ability to handle text and image data sepa
 
 The research paper \\\[1\] explains how MM-DiT employs "two separate sets of weights for the two modalities, which enables a two-way flow of information between them." This bi-directional communication ensures that the model not only understands the individual elements of text and imagery but also grasps the intricate interplay between them.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQFqvdWYj1xGrQ/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1718276290329?e=1747872000&v=beta&t=2imhY1KsYB5ljc2zNvpvfw2I2gdRBoY2ADDar0QnFVQ)
+![5]({{ site.baseurl }}/assets/images/b26-5.png)
 
 ## Deciphering the Nuances of Language
 
@@ -81,10 +81,12 @@ Preventing Memorization: The researchers implemented clever techniques to preven
 
 The research paper \\\[1\] is packed with evidence of SD3's exceptional performance. It consistently outperforms previous open-source models on industry benchmarks like GenEval and T2I-CompBench, demonstrating superior prompt comprehension and compositional abilities.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQFQug5p2u5ipQ/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1718276591541?e=1747872000&v=beta&t=sPh54pZYcBwyuue0sKaIrKpAs5xbzxoA2eTSPP8Hocc)
+![6]({{ site.baseurl }}/assets/images/b26-6.png)
 
 But the true test of any AI art generator lies in its ability to satisfy human aesthetic sensibilities. The researchers conducted extensive human preference evaluations, pitting SD3 against other leading models, including proprietary giants like DALL-E 3. The verdict? SD3 consistently ranked high in visual aesthetics, prompt adherence, and its remarkable ability to render accurate and legible text within its creations.
 
 ## Architecting the Future of AI Art
 
 Stable Diffusion 3's MM-DiT architecture is a testament to the power of specialized design in AI. By tailoring the model to the specific demands of text-to-image generation, MM-DiT unlocks a new level of quality, control, and creative potential, setting a high bar for future AI artists and ushering in a new era of collaborative creativity between humans and machines.
+
+\\\[1] Esser, Patrick, et al. "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis." (2024) - [https://arxiv.org/abs/2403.03206](https://arxiv.org/abs/2403.03206)

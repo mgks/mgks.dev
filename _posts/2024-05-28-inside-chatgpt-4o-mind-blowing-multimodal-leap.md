@@ -3,7 +3,7 @@ layout: post
 title: Inside ChatGPT-4o's Mind-Blowing Multimodal Leap
 author: ghazi
 tags: chatgpt, artificial intelligence, openai
-image: https://media.licdn.com/dms/image/v2/D5612AQHh_Vuh8w0Fsw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1721181739127?e=1742428800&v=beta&t=4h8a1KqxZx2wpuJmvIdVhD4r_5Qda9YmGfMmDjX6M_w
+image: assets/images/b25.png
 description: This is a world where machines not only understand our words but also decipher the subtle cues in our voices and the visual tapestry of our world. It's both exhilarating and, frankly, a little terrifying.
 featured: false
 hidden: false
@@ -19,7 +19,7 @@ Everyone's throwing around "multimodal" like it's the latest Silicon Valley buzz
 
 ChatGPT-4o throws that fragmented approach out the window. It's built from the ground up to process text, audio, and images  natively. Think of it as an AI with its own senses, capable of experiencing the world in a much richer, more nuanced way than its predecessors.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQFtfFowFxSBaA/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1721196837861?e=1742428800&v=beta&t=2Pe1JdF6EbAhx5LMQ114iqVa0YNdsnjZpPSbqngOyKo)
+![1]({{ site.baseurl }}/assets/images/b25-1.jpeg)
 
 This native processing is the key to its jaw-dropping speed. Remember those awkward pauses waiting for GPT-4 to synthesize your voice? With an average response time of 320 milliseconds, ChatGPT-4o is faster than your morning coffee kicking in.
 
@@ -34,7 +34,7 @@ OpenAI is notoriously tight-lipped about their architectural secrets. However, b
 
 First, the API itself has to have undergone a radical transformation. The existing ChatGPT API, limited to text and image input/output, simply wouldn't cut it for real-time audio and video processing. We're likely looking at an entirely new API designed for streaming data input and output.
 
-![](https://media.licdn.com/dms/image/v2/D5612AQHqJRKhg0bbVQ/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1721196538050?e=1742428800&v=beta&t=85k0i5QZotyUlif-3yGHgPITRlUqzi4-kKjNC8yLOig)
+![2]({{ site.baseurl }}/assets/images/b25-2.png)
 
 Speculative ChatGPT-4o's Model Design by Olewave
 

@@ -31,14 +31,14 @@ There are lots of powerful things you can do with the Markdown editor. If you've
 
 As with the last post about the editor, you'll want to be actually editing this post as you read it so that you can see all the Markdown code we're using.
 
-![1]({{ site.baseurl }}/assets/images/b2-1.jpg)
+![1]({{ site.baseurl }}/assets/images/b2-1.png)
 
 ## 2. ENABLING THE IIS SERVER AND REQUIRED FEATURES
 
 Open `Server Manager > Add Roles and Feature`
 From `Add Roles and Features Wizard > Features > Web Server IIS` (ref. to the screen below)
 
-![2]({{ site.baseurl }}/assets/images/b2-2.jpg)
+![2]({{ site.baseurl }}/assets/images/b2-2.png)
 
 Either download tools on your PC and move them to your server or on your server open
 
@@ -67,7 +67,7 @@ Search for “URL rewrite”, add it, and start the installation.
 Open `PHP Manager > View recommendations` and update the requested values and click OK.
 Now click on Check phpinfo() with the default Website, if everything goes well, you’ll see this output.
 
-![3]({{ site.baseurl }}/assets/images/b2-3.jpg)
+![3]({{ site.baseurl }}/assets/images/b2-3.png)
 
 Open location *"C:\inetpub\wwwroot\"* and place your PHP website/script in the directory. Or you can change the Physical path from `IIS Manager > Sites > Your Website > Actions > Basic Settings > Physical path`.
 
@@ -100,6 +100,6 @@ This step is not for local hosts.
 
 Download the Win ACME Pluggable version and place the extracted files on your server. Now run file "wacs.exe".
 
-![4]({{ site.baseurl }}/assets/images/b2-4.jpg)
+![4]({{ site.baseurl }}/assets/images/b2-4.png)
 
 Choose the first option by entering the letter "N". Then select the website you want the SSL for, by keeping everything recommended. You can still choose either to go with single or all website bindings. The best way to renew the certificate is to keep it in the memory and let the program update the SSL itself.

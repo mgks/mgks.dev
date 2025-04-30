@@ -32,10 +32,11 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-archives
+  - jekyll-redirect-from
 
 # Pagination
 paginate: 9
-paginate_path: '/blog/page:num/'
+paginate_path: '/blog/page:num'
     
 # Other
 markdown: kramdown
@@ -53,8 +54,16 @@ adsense-data-ad-client: ""
 adsense-data-ad-slot: ""
 
 # Tag permalink (defines URL pattern)
-permalink: /:title/
-tag_permalink: '/tag/:name/'
+permalink: /:title
+tag_permalink: '/tag/:name'
+
+# Jekyll Archives configuration
+jekyll-archives:
+  enabled:
+    - tags
+  layout: tag
+  permalinks:
+    tag: '/tag/:name'
 
 # Define what's excluded from build
 exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]

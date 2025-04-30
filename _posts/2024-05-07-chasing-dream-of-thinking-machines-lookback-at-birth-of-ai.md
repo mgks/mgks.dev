@@ -3,7 +3,7 @@ layout: post
 title: Chasing the Dream of Thinking Machines, A Look Back at the Birth of AI
 author: ghazi
 tags: history, artificial intelligence, story
-image: https://media.licdn.com/dms/image/v2/D5612AQE97z5u7lBnrA/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1714715160158?e=1742428800&v=beta&t=OvZkv4ZU0pOJs1y-UpTKHfXTpnKMPa1sgz2wkSP7u4w
+image: assets/images/b23.jpeg
 description: From robots taking over the world (hopefully not!) to machines that can write poetry (intriguing!), AI has captured our imaginations for decades.
 featured: false
 hidden: false

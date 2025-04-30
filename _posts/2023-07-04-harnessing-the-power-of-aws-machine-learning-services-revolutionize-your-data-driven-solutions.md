@@ -3,7 +3,7 @@ layout: post
 title: Harnessing the Power of AWS Machine Learning Services, Revolutionize Your Data-driven Solutions
 author: ghazi
 tags: machine learning, python, aws
-image: assets/images/b9.jpg
+image: assets/images/b9.png
 description: In this article, we will explore the range of AWS machine learning services and how they can revolutionize your data-driven solutions.
 featured: false
 hidden: false

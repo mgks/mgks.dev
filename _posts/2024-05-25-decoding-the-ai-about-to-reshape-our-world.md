@@ -3,7 +3,7 @@ layout: post
 title: Decoding the AI That's About to Reshape Our World
 author: ghazi
 tags: gemini, artificial intelligence, google
-image: https://media.licdn.com/dms/image/v2/D5612AQHES8L8HxZtzw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1716451730748?e=1742428800&v=beta&t=8v1VxuMsK2gYHid95Qv_5RPkPcA55inrBjjWIkvBLAE
+image: assets/images/b24.jpeg
 description: From robots taking over the world (hopefully not!) to machines that can write poetry (intriguing!), AI has captured our imaginations for decades.
 featured: false
 hidden: false
@@ -15,7 +15,7 @@ Google I/O 2024 wasn't just another tech event -- it was a full-blown AI takeove
 Gemini Levels Up - Seeing, Hearing, and Outsmarting the Competition
 -------------------------------------------------------------------
 
-![](https://media.licdn.com/dms/image/v2/D5612AQHudEbw_5vmzA/article-inline_image-shrink_1000_1488/article-inline_image-shrink_1000_1488/0/1716452894201?e=1742428800&v=beta&t=3DpuZJxfsX5p-ksfcN2bEgwhrGXK8xuWMTQWzgZSdz0)
+![1]({{ site.baseurl }}/assets/images/b24-1.png)
 
 Gemini 1.5's 2 million token capability
 

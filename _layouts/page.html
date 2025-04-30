@@ -2,22 +2,19 @@
 layout: default
 ---
 
-<section>
-    <div class="section-title">
-        <h2><span>{{ page.title }}</span></h2>
+<div class="work-area unfade">
+    <div class="wa-post">
+      <h1 class="font-weight-bold title">{{ page.title }}</h1>
+      <div class="page-description">
+        <p>{{ page.description }}</p>
+      </div>
+
+      {{content}}
+
+      {% if page.comments == true %}
+      <div id="comments" class="comment-section">
+          {% include disqus.html %}
+      </div>
+      {% endif %}
     </div>
-
-    <div class="article-post">
-    {{content}}
-    </div>
-
-    {% if page.comments == true %}
-
-    <div id="comments" class="row mb-5">
-        <div class="col-md-8">
-            {% include disqus.html %}
-        </div>
-    </div>
-
-    {% endif %}
-</section>
+</div>

@@ -3,7 +3,7 @@ layout: post
 title: Ushering in an Era of Sentient Toasters or Just Faster Siri?
 author: ghazi
 tags: siri, artificial intelligence, apple, discussion
-image: https://media.licdn.com/dms/image/v2/D5612AQFr9Ff2nrwbSw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1711052947604?e=1742428800&v=beta&t=rg8YtX2R3SYv2ReRkBra0RpOALFxPHEKEn07_rcIrck
+image: assets/images/b19.jpeg
 description: This week's AI Weekly Newsletter is here to brighten your day! Just kidding, we're here to discuss the ever-evolving world of Artificial Intelligence, a world where machines are getting smarter and our jobs are increasingly...obsolete.
 featured: false
 hidden: false
@@ -17,7 +17,7 @@ The Singularity is Near (or Maybe Just a Really Fast Coffee Maker)
 
 The world of AI is abuzz with advancements in processing power, making some wonder if the robots are about to rise up and enslave humanity. Relax, that's probably just Hollywood. The real story is the emergence of powerful AI architectures like NVIDIA's Blackwell. Think of it as a super brain for computers, capable of handling complex tasks that would take a regular computer longer than it takes you to get a decent cup of coffee (assuming your robot barista hasn't already perfected the art).
 
-![](https://media.licdn.com/dms/image/v2/D5612AQFqodVS8D3R6Q/article-inline_image-shrink_1500_2232/article-inline_image-shrink_1500_2232/0/1711474103707?e=1742428800&v=beta&t=MAGe8uTn4xHZdxhwrBF-QStzFMpXm8YPqAr3diGEmAk)
+![1]({{ site.baseurl }}/assets/images/b19-1.jpeg)
 
 Jensen Huang introducing NVIDIA's Blackwell at GTC 2024
 
