@@ -7,7 +7,8 @@ source "https://rubygems.org"
 #     bundle exec jekyll serve
 #
 
-gem "github-pages", group: :jekyll_plugins
+# gem "github-pages", group: :jekyll_plugins # Removed to avoid version conflicts
+gem "jekyll", "~> 4.0" # Specify Jekyll version explicitly
 gem "webrick", "~> 1.8"
 
 # If you have any plugins, put them here!

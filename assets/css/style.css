@@ -158,8 +158,6 @@ header {
     z-index: 2;
     position: fixed;
     width: 90%;
-    /*backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);*/
     border-radius: 10px;
     top:0;
     background-color: var(--opaque-bg);
@@ -1412,6 +1410,21 @@ a.wac-contact-b {
     font-weight: bold;
     display: block;
     margin-bottom: .5em;
+}
+
+.error-page {
+    margin: 10em auto;
+    max-width: 50em;
+}
+
+.error-page .error-content {
+    margin: 5em 0 0;
+    text-align: center;
+}
+
+.error-page .error-content h1 {
+    font-family: var(--font-title);
+    font-size: 3em;
 }
 
 .socialy a, .emaily a {

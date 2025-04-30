@@ -12,7 +12,7 @@ post_class: post-template
 
             <!-- Post Date -->
             <p class="post-date">
-                <time datetime="{{ page.date | date:"%Y-%m-%d" }}">{{ page.date | date_to_string }}</time>
+                <time datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date_to_string }}</time>
                 {% if page.last_modified_at %}
                 <span>(Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>)</span>
                 {% endif %}
@@ -20,7 +20,7 @@ post_class: post-template
 
             <!-- Post Featured Image -->
             {% if page.image %}
-            <img loading="lazy" class="featured-image backdrop-sh" src="{% if page.image contains "://" %}{{ page.image }}{% else %}{{ page.image | relative_url }}{% endif %}" alt="{{ page.title }}">
+            <img loading="lazy" class="featured-image backdrop-sh" src="{% if page.image contains '://' %}{{ page.image }}{% else %}{{ page.image | relative_url }}{% endif %}" alt="{{ page.title }}">
             {% endif %}
 
             <!-- Table of Contents -->
