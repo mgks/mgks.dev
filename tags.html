@@ -8,7 +8,7 @@ permalink: /tags/
 <div class="post-tags">
     {% assign sorted_tags = site.tags | sort %}
     {% for tag in sorted_tags %}
-    <a href="{{ '/tag/' | append: tag[0] | append: '/' | slugify | relative_url }}" class="tag-button">
+    <a href="{{ '/tag/' | append: tag[0] | slugify | append: '/' | relative_url }}" class="tag-button">
         #{{ tag[0] | slugify }} <span class="count">({{ tag[1].size }})</span>
     </a>
     {% endfor %}

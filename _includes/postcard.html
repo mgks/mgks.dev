@@ -13,7 +13,7 @@
                 <div class="post-tags">
                     {% assign sortedTags = post.tags | sort %}
                     {% for tag in sortedTags %}
-                        <a href="{{ '/tag/' | append: tag | append: '/' | slugify | relative_url }}"><span>#{{ tag | slugify }}</span></a>
+                        <a href="{{ '/tag/' | append: tag | slugify | append: '/' | relative_url }}"><span>#{{ tag | slugify }}</span></a>
                     {% endfor %}
                 </div>
             {% endif %}
