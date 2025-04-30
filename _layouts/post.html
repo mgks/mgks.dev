@@ -1,5 +1,6 @@
 ---
 layout: default
+post_class: post-template
 ---
 
 <div class="work-area loading-hidden unfade">
@@ -45,7 +46,7 @@ layout: default
                     <ul>
                     {% assign sortedTags = page.tags | sort %}
                     {% for tag in sortedTags %}
-                        <li><a href="{{ '/tag/' | append: tag | append: '/' | slugify | relative_url }}">#{{ tag | slugify}}</a></li>
+                        <li><a href="{{ '/tag/' | relative_url }}{{ tag | slugify}}">#{{ tag | slugify }}</a></li>
                     {% endfor %}
                     </ul>
                 </div>

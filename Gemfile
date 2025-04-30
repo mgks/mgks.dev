@@ -7,6 +7,9 @@ source "https://rubygems.org"
 #     bundle exec jekyll serve
 #
 
+gem "github-pages", group: :jekyll_plugins
+gem "webrick", "~> 1.8"
+
 # If you have any plugins, put them here!
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 group :jekyll_plugins do
@@ -15,6 +18,7 @@ group :jekyll_plugins do
     gem 'jekyll-paginate'
     gem 'jekyll-seo-tag'
     gem 'jekyll-archives'
+    gem 'jekyll-redirect-from'
     gem 'kramdown'
     gem 'rouge'
 end

@@ -30,7 +30,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
   - jekyll-seo-tag
-  - jekyll-archives
   - jekyll-redirect-from
 
 # Pagination
@@ -52,13 +51,5 @@ adsense: "disabled"
 adsense-data-ad-client: ""
 adsense-data-ad-slot: ""
 
-# Jekyll Archives configuration
-jekyll-archives:
-  enabled:
-    - tags
-  layout: tag
-  permalinks:
-    tag: '/tag/:name/'
-
 # Define what's excluded from build
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock, vendor]
