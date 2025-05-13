@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2025-05-13 12:42:00 +0300
+date: 2025-05-13 05:00:00 +0530
 title: Introducing docmd – The Minimalist Markdown Documentation Generator
 author: ghazi
 tags: [open source, nodejs]
