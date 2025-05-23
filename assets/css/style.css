@@ -1013,7 +1013,8 @@ font-family:var(--font-title)
 
 .post-content {
 padding:2em;
-line-height:1.8
+line-height:1.8;
+word-wrap:anywhere;
 }
 
 .post-content h1,.post-content h2,.post-content h3,.post-content h4,.post-content h5,.post-content h6 {
