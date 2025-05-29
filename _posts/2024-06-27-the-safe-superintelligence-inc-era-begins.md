@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2024-06-27 12:42:00 +0300
-title: The "Safe Superintelligence Inc." Era Begins
+title: The Safe Superintelligence Inc. Era Begins
 author: ghazi
 tags: [open ai, ssi]
 image: assets/images/b27.png
