@@ -13,8 +13,6 @@ hidden: false
 toc: false
 ---
 
-## Agentic AI in 2025: The Doers, Planners, and Real-World Changers
-
 Agentic AI is dominating AI headlines and industry conferences—and for good reason. The arrival of autonomous AI agents is forcing a rewrite of what automation means and what “virtual assistants” can really do. So, what makes this class of AI such a big deal, and where is it actually working (or still struggling) in August 2025?
 
 ### What Sets Agentic AI Apart?
