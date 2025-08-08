@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2025-08-06 05:00:00 +0530
+date: 2025-08-07 05:00:00 +0530
 title: ChatGPT-5 vs ChatGPT-4. What’s New in OpenAI’s Latest AI Leap
 author: ghazi
 tags: [ai, openai, chatgpt]
