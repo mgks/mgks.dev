@@ -80,7 +80,7 @@ module.exports = {
   // Navigation Structure (Sidebar)
   // Icons are kebab-case names from Lucide Icons (https://lucide.dev/)
   navigation: [
-      { title: 'Back to mgks.dev', path: 'https://mgks.dev', icon: 'arrow-left'},
+      { title: 'Back to mgks.dev', path: '../', icon: 'arrow-left'},
       // { title: 'Memoryblock', path: 'https://docs.memoryblock.io', icon: 'box', external: true },
       { title: 'Projects',
         path: '/projects/',
