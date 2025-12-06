@@ -1,7 +1,8 @@
 // config.js: basic config for docmd
 module.exports = {
   // Core Site Metadata
-  siteTitle: 'mgks.dev documentation',
+  siteTitle: 'Documentation for mgks.dev Projects and Packages', // Title of your site
+  siteDescription: 'Explore open-source projects and packages by Ghazi Khan, including Docmd, SmartWebView, GitHub Tree, and more.', // Description of your site
   // Define a base URL for your site, crucial for SEO and absolute paths
   // No trailing slash
   siteUrl: 'https://mgks.dev/docs', // Replace with your actual deployed URL
@@ -9,9 +10,9 @@ module.exports = {
   // Logo Configuration
   logo: {
     light: '/assets/images/black.png', // Path relative to outputDir root
-    dark: '/assets/images/white.png',   // Path relative to outputDir root
-    alt: 'mgks.dev logo',                      // Alt text for the logo
-    href: '/',                              // Link for the logo, defaults to site root
+    dark: '/assets/images/white.png',  // Path relative to outputDir root
+    alt: 'mgks.dev logo',              // Alt text for the logo
+    href: '/',                         // Link for the logo, defaults to site root
   },
 
   // Directory Configuration
@@ -79,17 +80,25 @@ module.exports = {
   // Navigation Structure (Sidebar)
   // Icons are kebab-case names from Lucide Icons (https://lucide.dev/)
   navigation: [
-      { title: 'mgks.dev', path: '/', icon: 'home'},
+      { title: 'Back to mgks.dev', path: 'https://mgks.dev', icon: 'arrow-left'},
       // { title: 'Memoryblock', path: 'https://docs.memoryblock.io', icon: 'box', external: true },
-      { title: 'docmd', path: 'https://docmd.mgks.dev', icon: 'feather', external: true },
-      { title: 'aiContext',
-        path: '/ai-context/',
-        icon: 'brain-circuit',
+      { title: 'Projects',
+        path: '/projects/',
+        icon: 'folder-git',
+        expanded: true,
         children: [
-          { title: 'Getting Started', path: '/ai-context/getting-started', icon: 'monitor-down'},
-          { title: 'Configuration', path: '/ai-context/configuration', icon: 'settings'},
-          { title: 'CLI Reference', path: '/ai-context/cli-reference', icon: 'square-terminal'},
-          { title: 'Presets', path: '/ai-context/presets', icon: 'flag'}
+          { title: 'docmd', path: 'https://docmd.mgks.dev', icon: 'feather', external: true },
+          { title: 'GitHubTree', path: '/projects/githubtree', icon: 'tree-pine'},
+          { title: 'NotesMigrator', path: '/projects/notesmigrator', icon: 'notebook'},
+        ]
+      },
+      { title: 'Packages',
+        path: '/packages/',
+        icon: 'package-open',
+        expanded: true,
+        children: [
+          { title: 'genctx', path: '/packages/genctx', icon: 'package'},
+          { title: 'shaml', path: '/packages/shaml', icon: 'package'},
         ]
       },
       { title: 'GitHub (@mgks)', path: 'https://github.com/mgks', icon: 'github', external: true },
