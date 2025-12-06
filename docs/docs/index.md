@@ -1,6 +1,6 @@
 ---
-title: 'Projects'
-description: 'Explore open-source projects by Ghazi Khan, including Smart WebView, GitHub Tree, and more.'
+title: 'Projects & Packages Documentation'
+description: 'Explore open-source projects and packages by Ghazi Khan, including Smart WebView, GitHub Tree, and more.'
 mode: 'center'
 ---
 
