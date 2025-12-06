@@ -9,8 +9,8 @@ module.exports = {
 
   // Logo Configuration
   logo: {
-    light: '/assets/images/black.png', // Path relative to outputDir root
-    dark: '/assets/images/white.png',  // Path relative to outputDir root
+    light: '/assets/images/logo.png', // Path relative to outputDir root
+    dark: '/assets/images/logo.png',  // Path relative to outputDir root
     alt: 'mgks.dev logo',              // Alt text for the logo
     href: '/',                         // Link for the logo, defaults to site root
   },
