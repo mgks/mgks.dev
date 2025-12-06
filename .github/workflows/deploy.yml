@@ -1,4 +1,4 @@
-name: Deploy Unified Site
+name: Deploy Unified Site to GitHub Pages
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-          cache-dependency-path: 'docs/package-lock.json' # Point to docs lock file
+          cache-dependency-path: 'docs/package-lock.json'
 
       - name: Install Docmd Dependencies
         working-directory: ./docs
@@ -38,7 +38,7 @@ jobs:
       - name: Build Docmd Site
         working-directory: ./docs
         run: npx docmd build
-        # This creates ./docs/site
+        # This creates the folder ./docs/site
 
       # ----------------------------------------------------------------
       # 2. BUILD JEKYLL (Main Site)
@@ -48,42 +48,30 @@ jobs:
         with:
           ruby-version: '3.3'
           bundler-cache: true 
-          
-      - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v5
+          # This automatically runs 'bundle install' and caches gems
 
       - name: Build Jekyll Site
-        uses: jekyll/build-pages-artifact@v1
-        with:
-          source: .
-          destination: ./_site
-          # Ensure _config.yml excludes 'docs/' folder so raw source isn't copied
+        run: bundle exec jekyll build -d _site
+        env:
+          JEKYLL_ENV: production
+        # This builds the main site into the ./_site directory
 
       # ----------------------------------------------------------------
       # 3. MERGE & FINALIZE
       # ----------------------------------------------------------------
-      # The jekyll/build-pages-artifact action compresses _site into an artifact.
-      # We need to uncompress it, add docs, and re-upload. 
-      # Actually, it's easier to build Jekyll manually to control the folder structure.
-      
-      # Let's override the standard Jekyll action step above with manual build commands
-      # to make merging folders easier.
-
-      - name: Build Jekyll Manually
-        run: |
-          bundle install
-          bundle exec jekyll build -d _site
-        env:
-          JEKYLL_ENV: production
-
       - name: Merge Docmd into Jekyll
         run: |
-          # Create the docs directory inside the Jekyll build
+          # Create the docs directory inside the Jekyll build output
           mkdir -p _site/docs
           
           # Copy the contents of the docmd build (./docs/site) into ./_site/docs
           cp -r docs/site/* _site/docs/
+          
+          # Optional: List files to verify structure in logs
+          ls -R _site/docs
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
