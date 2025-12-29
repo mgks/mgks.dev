@@ -1,4 +1,4 @@
-name: Deploy Unified Site to GitHub Pages
+name: Deploy Astro Site to GitHub Pages
 
 on:
   push:
@@ -21,62 +21,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ----------------------------------------------------------------
-      # 1. BUILD DOCMD (Documentation)
-      # ----------------------------------------------------------------
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-          cache-dependency-path: 'docs/package-lock.json'
-
-      - name: Install Docmd Dependencies
-        working-directory: ./docs
+      - name: Install Dependencies
         run: npm ci
 
-      - name: Build Docmd Site
-        working-directory: ./docs
-        run: npx docmd build
-        # This creates the folder ./docs/site
-
-      # ----------------------------------------------------------------
-      # 2. BUILD JEKYLL (Main Site)
-      # ----------------------------------------------------------------
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true 
-          # This automatically runs 'bundle install' and caches gems
-
-      - name: Build Jekyll Site
-        run: bundle exec jekyll build -d _site
+      - name: Build Site
+        run: npm run build
         env:
-          JEKYLL_ENV: production
-        # This builds the main site into the ./_site directory
-
-      # ----------------------------------------------------------------
-      # 3. MERGE & FINALIZE
-      # ----------------------------------------------------------------
-      - name: Merge Docmd into Jekyll
-        run: |
-          # Create the docs directory inside the Jekyll build output
-          mkdir -p _site/docs
-          
-          # Copy the contents of the docmd build (./docs/site) into ./_site/docs
-          cp -r docs/site/* _site/docs/
-          
-          # Optional: List files to verify structure in logs
-          ls -R _site/docs
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./_site
+          path: ./dist
 
   deploy:
     environment:
