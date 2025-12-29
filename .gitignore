@@ -1,9 +1,9 @@
 # GITIGNORE
 .vscode/
+.astro/
 .DS_Store
-*/.DS_Store
-Gemfile.lock
-genctx.json
-context.md
-site/
+.env
 node_modules/
+_old/
+genctx.context.md
+genctx.config.json
