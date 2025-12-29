@@ -119,6 +119,13 @@ export const LIBRARIES = [
         icon: ""
     },
     { 
+        title: "gkeep-parser",
+        desc: "Convert Google Keep Takeout exports (HTML) into structured JSON data.",
+        link: "https://github.com/mgks/gkeep-parser",
+        tags: ["Google", "Keep", "CLI", "Node.js", "NPM"],
+        icon: ""
+    },
+    { 
         title: "clean-context",
         desc: "Code cleaner for AI context, strips comments and noise while strictly protecting strings, URLs, and regex.",
         link: "https://github.com/mgks/clean-context",
