@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Terms of Service" description="Terms of Service for mgks.dev">
+    
+    <section class="page-hero">
+        <h1 class="hero-title">Terms<span class="text-accent">.</span></h1>
+    </section>
+
+    <div class="container pb-12">
+        <article class="prose" style="margin-bottom: 6rem;">
+            <p>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+            <h2>1. Agreement to Terms</h2>
+            <p>
+                By accessing and using <strong>mgks.dev</strong>, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+            </p>
+
+            <h2>2. Intellectual Property</h2>
+            <p>
+                The content, source code, design, and original writing on this website are the property of Ghazi Khan unless otherwise stated. 
+            </p>
+            <ul>
+                <li><strong>Open Source:</strong> Code snippets and projects linked here often fall under open-source licenses (like MIT or Apache 2.0). Please refer to the specific license file in the respective GitHub repositories for usage rights.</li>
+                <li><strong>Content:</strong> You may not reproduce, distribute, or exploit the written content (articles) without explicit permission, except for brief excerpts used for educational or commentary purposes with proper attribution.</li>
+            </ul>
+
+            <h2>3. Disclaimer</h2>
+            <p>
+                The materials on <strong>mgks.dev</strong> are provided "as is". We make no warranties, expressed or implied, and hereby disclaim and negate all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+            </p>
+            <p>
+                Further, we do not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.
+            </p>
+
+            <h2>4. Limitations</h2>
+            <p>
+                In no event shall mgks.dev or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on mgks.dev.
+            </p>
+
+            <h2>5. Changes</h2>
+            <p>
+                We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms.
+            </p>
+
+            <h2>6. Contact Us</h2>
+            <p>
+                If you have any questions about these Terms, please contact us at: <a href="mailto:hello@mgks.dev">hello@mgks.dev</a>.
+            </p>
+        </article>
+    </div>
+</Layout>

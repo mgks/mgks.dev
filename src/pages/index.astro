@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TechStack from '../components/TechStack.astro';
+import Highlight from '../components/Highlight.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog', ({ data }) => {
+    return data.date <= new Date(); 
+})).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const featuredPosts = allPosts.filter(p => p.data.featured).slice(0, 2);
+const featuredIds = new Set(featuredPosts.map(p => p.id));
+const recentPosts = allPosts.filter(p => !featuredIds.has(p.id)).slice(0, 5);
+---
+
+<Layout title="mgks.dev" description="Open source, problem solving and stories by Ghazi Khan.">
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="mascot-wrapper">
+            <div class="mascot-glow"></div>
+            <img src="/assets/images/zen.gif" alt="Zen Mascot" class="mascot-img" />
+        </div>
+
+        <h1 class="hero-title">
+            I build simple solutions <br />
+            <span class="hero-subtitle">for complex problems<span class="text-accent">.</span></span>
+        </h1>
+        
+        <p class="hero-desc">
+            Hi, I'm <strong>Ghazi</strong>. I'm an open source developer focused on minimalism, performance, and ethical AI.
+        </p>
+
+        <div style="margin-bottom: 3rem;">
+            <a href="/work" class="icon-btn" style="width: auto; padding: 0.75rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); font-size: 0.9rem;">
+                See my work
+            </a>
+        </div>
+
+        <TechStack />
+    </section>
+
+    <Highlight />
+
+    <!-- Featured (Homepage uses specific grid from before, which was fine, or we can unify. 
+         Keeping standard Grid-2 for homepage as requested to keep it different but clean) -->
+    {featuredPosts.length > 0 && (
+        <section class="section-py">
+            <div class="section-header">
+                <h2 class="section-title">Featured Writings<span class="text-accent">.</span></h2>
+                <a href="/blog" class="section-link">Read all &rarr;</a>
+            </div>
+
+            <div class="grid grid-2">
+                {featuredPosts.map(post => (
+                    <a href={`/blog/${post.slug}`} class="blog-card">
+                        <div class="card-cover">
+                            {post.data.image ? (
+                                <img src={post.data.image} alt={post.data.title} />
+                            ) : (
+                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; opacity: 0.1;">.*</div>
+                            )}
+                            <div class="date-badge">
+                                {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <h3 class="card-title">{post.data.title}</h3>
+                            <p class="card-desc">{post.data.description}</p>
+                            <!--<span class="section-link" style="margin-top: auto;">Read Article &rarr;</span>-->
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </section>
+    )}
+
+    <!-- Latest List -->
+    <section class="section-py" style="margin-top: 3rem;">
+        <h2 class="project-section-title">Latest Archives</h2>
+        
+        <div class="archive-list">
+            {recentPosts.map(post => (
+                <a href={`/blog/${post.slug}`} class="archive-item">
+                    <time class="archive-date">
+                        {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                    </time>
+                    <div class="archive-content">
+                        <h3>{post.data.title}</h3>
+                        {post.data.description && <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">{post.data.description}</p>}
+                    </div>
+                </a>
+            ))}
+        </div>
+        
+        <div style="margin-top: 2rem;">
+            <a href="/blog" class="section-link">View all archives &rarr;</a>
+        </div>
+    </section>
+</Layout>

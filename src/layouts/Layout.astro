@@ -1,0 +1,100 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../data/config';
+
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+}
+
+const { title, description, image = '/assets/images/preview.png' } = Astro.props;
+
+// SEO Logic
+const tagline = "open source, problem solving and stories";
+const siteName = "mgks.dev";
+
+// If the page title matches the site name (Homepage), use the full slogan.
+// Otherwise, append the site name at the end.
+const fullTitle = title === siteName 
+    ? `${siteName} : ${tagline}` 
+    : `${title} : ${siteName}`;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+        <!-- Optimized viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+        <!-- Primary Meta Tags -->
+		<title>{fullTitle}</title>
+		<meta name="title" content={fullTitle} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+        <meta name="author" content="Ghazi Khan" />
+		<meta name="generator" content={Astro.generator} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, Astro.url)} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={fullTitle} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(image, Astro.url)} />
+        
+        <!-- Favicons -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+        
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Fira+Code:wght@300;400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="/src/style.css">
+
+        <!-- Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DTYS057VRC"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-DTYS057VRC');
+        </script>
+
+        <!-- Critical Theme Init -->
+        <script is:inline>
+            const theme = (() => {
+                if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                    return localStorage.getItem('theme');
+                }
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    return 'dark';
+                }
+                return 'light';
+            })();
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        </script>
+	</head>
+	<body>
+		<Header />
+        <main class="container">
+			<slot />
+		</main>
+		<Footer />
+        <script src="/src/script.js" is:inline></script>
+	</body>
+</html>

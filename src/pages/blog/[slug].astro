@@ -1,0 +1,78 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(entry => ({
+    params: { slug: entry.slug }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const allPosts = await getCollection('blog');
+const relatedPosts = allPosts
+    .filter(p => p.id !== entry.id && p.data.tags.some(t => entry.data.tags.includes(t)))
+    .sort(() => 0.5 - Math.random())
+    .slice(0, 2);
+---
+
+<Layout title={entry.data.title} description={entry.data.description} image={entry.data.image}>
+  
+  <div class="container">
+      <!-- Article Header & Cover -->
+      <div class="article-container">
+          {entry.data.image ? (
+              <div class="article-cover-box">
+                  <img src={entry.data.image} alt={entry.data.title} class="article-cover-img" />
+              </div>
+          ) : (
+              <div style="height: 1rem;"></div> /* Spacer if no image */
+          )}
+          
+          <div class="article-container-header">
+              <div class="text-muted">
+                 <time>{entry.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+              </div>
+              <h1 class="font-title">
+                  {entry.data.title}
+              </h1>
+              <div class="filter-group">
+                {entry.data.tags.map(tag => (
+                    <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
+                ))}
+              </div>
+          </div>
+      </div>
+
+      <!-- Content -->
+      <article class="prose">
+        <Content />
+      </article>
+
+      <!-- Read Next -->
+      {relatedPosts.length > 0 && (
+        <div style="padding-top: 3rem; margin-bottom: 4rem;">
+            <h2 class="project-section-title" style="margin-bottom: 2rem;">Read Next</h2>
+            <div class="grid grid-2">
+                {relatedPosts.map(post => (
+                    <a href={`/blog/${post.slug}`} class="related-card group">
+                        <div class="flex items-center gap-3 text-xs font-mono text-muted mb-1">
+                            <time>{post.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</time>
+                            <!--{post.data.tags[0] && <span class="text-accent">#{post.data.tags[0]}</span>}-->
+                        </div>
+                        <h4 style="font-weight: 700; font-size: 1.25rem; transition: color 0.2s;" class="group-hover:text-accent">
+                            {post.data.title}
+                        </h4>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); line-clamp: 2;">
+                            {post.data.description}
+                        </p>
+                    </a>
+                ))}
+            </div>
+        </div>
+      )}
+  </div>
+</Layout>

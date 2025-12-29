@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Privacy Policy" description="Privacy Policy for mgks.dev">
+    
+    <section class="page-hero">
+        <h1 class="hero-title">Privacy<span class="text-accent">.</span></h1>
+    </section>
+
+    <div class="container pb-12">
+        <article class="prose" style="margin-bottom: 6rem;">
+            <p>Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+            <h2>1. Introduction</h2>
+            <p>
+                Welcome to <strong>mgks.dev</strong>. This Privacy Policy describes how we collect, use, and disclose information when you use our website. We are committed to protecting your privacy and ensuring you have a positive experience on our site.
+            </p>
+
+            <h2>2. Information We Collect</h2>
+            <p>
+                We believe in minimalism, including data collection. We do not collect personal data such as your name, email, or address unless you explicitly provide it (e.g., by emailing us directly).
+            </p>
+            <ul>
+                <li><strong>Usage Data:</strong> We may use tools like Google Analytics to collect anonymous data about how our site is accessed and used. This usage data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, and other diagnostic data.</li>
+            </ul>
+
+            <h2>3. Cookies</h2>
+            <p>
+                We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.
+            </p>
+            <ul>
+                <li><strong>Preference Cookies:</strong> We use Preference Cookies to remember your preferences (such as Light or Dark mode).</li>
+                <li><strong>Analytics Cookies:</strong> We use Analytics Cookies to understand traffic patterns and improve the website.</li>
+            </ul>
+            <p>
+                You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, some portions of our Service (like theme persistence) may not function properly.
+            </p>
+
+            <h2>4. Third-Party Links</h2>
+            <p>
+                Our Service may contain links to other sites that are not operated by us (e.g., GitHub, Twitter/X, LinkedIn). If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
+            </p>
+
+            <h2>5. Contact Us</h2>
+            <p>
+                If you have any questions about this Privacy Policy, please contact us by email: <a href="mailto:hello@mgks.dev">hello@mgks.dev</a>.
+            </p>
+        </article>
+    </div>
+</Layout>

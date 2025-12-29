@@ -1,0 +1,77 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = (await getCollection('blog', ({ data }) => {
+    return data.date <= new Date(); 
+  })).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  
+  const uniqueTags = [...new Set(allPosts.flatMap(post => post.data.tags))];
+
+  return uniqueTags.flatMap(tag => {
+    const filteredPosts = allPosts.filter(post => post.data.tags.includes(tag));
+    return paginate(filteredPosts, {
+      params: { tag },
+      pageSize: 15 // Consistent with blog index
+    });
+  });
+}
+
+const { page } = Astro.props;
+const { tag } = Astro.params;
+---
+
+<Layout title={`#${tag}`} description={`Writings tagged with ${tag}`}>
+  
+  <!-- Consistent Hero -->
+  <section class="page-hero">
+    <span style="font-family: var(--font-mono); color: var(--accent); font-size: 0.9rem;">Tag</span>
+    <h1 class="hero-title">#{tag}<span class="text-accent">.</span></h1>
+    <p class="hero-desc">
+      {page.total} {page.total === 1 ? 'writing' : 'writings'} found
+    </p>
+  </section>
+
+  <!-- Consistent List -->
+  <section class="container mb-20">
+    <h2 class="project-section-title">
+        {page.currentPage === 1 ? 'Latest Archives' : `Page ${page.currentPage}`}
+    </h2>
+    
+    <div class="archive-list">
+        {page.data.map(post => (
+            <a href={`/blog/${post.slug}`} class="archive-item">
+                <time class="archive-date">
+                    {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </time>
+                <div class="archive-content">
+                    <h3>{post.data.title}</h3>
+                    {post.data.description && <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">{post.data.description}</p>}
+                </div>
+            </a>
+        ))}
+    </div>
+  </section>
+  
+  <!-- Pagination -->
+  <div class="pagination container">
+      {page.url.prev ? (
+          <a href={page.url.prev} class="page-btn">&larr; Previous</a>
+      ) : <span style="opacity: 0;">Prev</span>}
+      
+      <span class="text-muted" style="font-family: var(--font-mono); font-size: 0.9rem;">
+          Page {page.currentPage} of {page.lastPage}
+      </span>
+
+      {page.url.next ? (
+          <a href={page.url.next} class="page-btn">Next &rarr;</a>
+      ) : <span style="opacity: 0;">Next</span>}
+  </div>
+  
+  <div class="text-center pb-20 mt-8">
+      <a href="/blog" class="section-link" style="font-size: 0.9rem;">
+          View all writings &rarr;
+      </a>
+  </div>
+</Layout>

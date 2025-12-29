@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getSponsors } from '../utils/sponsors';
+
+// Fetch sponsors at build time
+const sponsors = await getSponsors();
+---
+
+<Layout 
+    title="About Ghazi Khan – open source developer" 
+    description="I am an open source developer specializing in building simple solutions for complex technical problems. Read about my journey and tech stack."
+>
+    
+    <section class="page-hero">
+        <div class="about-avatar">
+            <img src="/assets/images/mgks-profile.jpg" alt="Ghazi Khan" />
+        </div>
+        <h1 class="hero-title">About Me<span class="text-accent">.</span></h1>
+    </section>
+
+    <div class="container">
+        <div class="prose" style="margin-bottom: 2rem;">
+            <p>
+                Hello! My name is <strong>Ghazi Khan</strong>. I write code, break things, fix them, and sometimes, make life easier for others doing the same. 
+            </p>
+            <p>
+                My journey started in 2012, fueled by curiosity and a knack for solving problems. By 2016, I turned that into a consultancy career, helping businesses build, scale, and optimise their tech.
+            </p>
+            <p>
+                I work across <strong>PERN</strong> (PostgreSQL, Express.js, React.js, Node.js) and <strong>LAMP</strong> stacks, blending backend logic with intuitive user experiences.
+            </p>
+            <p>
+                I founded <strong>mgks.dev</strong> as a space for technical write-ups and open-source solutions—where I build, experiment, and contribute to projects that make technology more accessible.
+            </p>
+            
+            <blockquote>
+                "Still learning, still breaking things—always building."
+            </blockquote>
+        </div>
+
+        <!-- Sponsors Section -->
+        {sponsors.length > 0 && (
+            <div style="margin-bottom: 6rem; text-align: center;">
+                <h2 class="project-section-title" style="border: none; margin-bottom: 1rem;">Supported By</h2>
+                <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;">
+                    {sponsors.map((sponsor: any) => (
+                        <a href={sponsor.url} target="_blank" title={sponsor.name || sponsor.login} style="transition: transform 0.2s;" class="hover:scale-110">
+                            <img 
+                                src={sponsor.avatarUrl} 
+                                alt={sponsor.login} 
+                                style="width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 2px solid var(--border-color);" 
+                            />
+                        </a>
+                    ))}
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="https://github.com/sponsors/mgks" target="_blank" class="section-link" style="font-size: 0.9rem;">
+                        Become a sponsor &rarr;
+                    </a>
+                </div>
+            </div>
+        )}
+
+        <!-- Contact Section -->
+        <div class="text-center" style="padding: 4rem 0; border-top: 1px solid var(--border-color);">
+            <h2 class="project-section-title" style="border: none; margin-bottom: 1rem;">Get in Touch</h2>
+            <p class="text-muted" style="max-width: 30rem; margin: 0 auto 2rem auto;">
+                I try to respond to all the emails received. Whether it's a question, a project idea, or just to say hello.
+            </p>
+            <a href="mailto:hello@mgks.dev" class="page-btn" style="background-color: var(--text-main); color: var(--bg-body); border-color: var(--text-main);">
+                hello@mgks.dev
+            </a>
+        </div>
+    </div>
+</Layout>

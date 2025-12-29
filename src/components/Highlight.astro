@@ -1,0 +1,46 @@
+---
+import { HIGHLIGHT } from '../data/config';
+---
+
+{HIGHLIGHT.enabled && (
+    <section class="highlight-section">
+        <div class="highlight-glow"></div>
+        
+        <div class="highlight-card">
+            <div class="highlight-content">
+                <div class="highlight-label">
+                    <span class="pulse-dot"></span>
+                    <span>{HIGHLIGHT.title}</span>
+                </div>
+                
+                <h2 class="highlight-title">
+                    {HIGHLIGHT.project}
+                </h2>
+                
+                <p class="hero-desc">
+                    {HIGHLIGHT.description}
+                </p>
+
+                <div class="tag-row">
+                    {HIGHLIGHT.tags.map(tag => (
+                        <span class="tag-pill">{tag}</span>
+                    ))}
+                </div>
+
+                <a href={HIGHLIGHT.link} target="_blank" class="highlight-link">
+                    Check it out &rarr;
+                </a>
+            </div>
+
+            {HIGHLIGHT.image && (
+                <div class="highlight-image-wrap">
+                    <img 
+                        src={HIGHLIGHT.image} 
+                        alt={HIGHLIGHT.project} 
+                        class="highlight-image"
+                    />
+                </div>
+            )}
+        </div>
+    </section>
+)}

@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404" description="Page not found">
+
+    <div style="min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <h1 class="hero-title" style="font-size: 8rem; margin-bottom: 0; color: var(--accent);">404</h1>
+        <p style="font-family: var(--font-mono); font-size: 1.5rem; margin-bottom: 1rem;">Page not found</p>
+        
+        <div id="suggestion-box" style="display:none; margin-bottom: 2rem; flex-direction: column; gap: 1rem; align-items: center;">
+            <p style="color: var(--text-muted);">
+                Were you looking for some article?
+            </p>
+            <a id="suggestion-link" href="#" class="page-btn" style="border-color: var(--accent); color: var(--accent);">
+                <!-- JS will fill this -->
+            </a>
+        </div>
+
+        <p id="default-msg" style="color: var(--text-muted); max-width: 20rem; margin-bottom: 2rem;">
+            The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+        </p>
+        
+        <a href="/" class="page-btn">Go Home</a>
+    </div>
+
+    <script>
+        // SMART SUGGESTION LOGIC
+        // This runs only on the client side.
+        document.addEventListener('DOMContentLoaded', () => {
+            const path = window.location.pathname;
+            const cleanPath = path.replace(/^\/|\/$/g, ''); // Remove leading/trailing slashes
+            
+            // 1. Is this the blog root? (Already handled by 404, but just in case)
+            if (path.startsWith('/blog/')) return;
+
+            // 2. Does it look like a slug? 
+            // Logic: No file extension (like .xml, .txt) AND contains hyphens
+            const isSlugLike = !cleanPath.includes('.') && cleanPath.includes('-');
+
+            if (isSlugLike) {
+                const suggestionBox = document.getElementById('suggestion-box');
+                const suggestionLink = document.getElementById('suggestion-link');
+                const defaultMsg = document.getElementById('default-msg');
+
+                if (suggestionBox && suggestionLink && defaultMsg) {
+                    // Convert slug to Title Case for display (e.g., "my-cool-post" -> "My Cool Post")
+                    const title = cleanPath
+                        .split('-')
+                        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(' ');
+
+                    // Update UI
+                    suggestionLink.href = `/blog/${cleanPath}`;
+                    suggestionLink.textContent = `Read: "${title}"`;
+                    
+                    suggestionBox.style.display = 'flex';
+                    defaultMsg.style.display = 'none'; // Hide generic message
+                }
+            }
+        });
+    </script>
+</Layout>

@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { APPS, LIBRARIES } from '../data/config';
+
+// Combine tags for filter
+const allTags = [...new Set([
+    ...APPS.flatMap(app => app.tags),
+    ...LIBRARIES.flatMap(lib => lib.tags)
+])].sort();
+---
+
+<Layout 
+    title="My Works – open source projects & apps" 
+    description="A curated portfolio of open source libraries, android applications, and developer tools built by Ghazi Khan."
+>
+    
+    <section class="page-hero">
+        <h1 class="hero-title">My Works<span class="text-accent">.</span></h1>
+        <p class="hero-desc">
+            A curated collection of apps and open source libraries I have built.
+        </p>
+    </section>
+
+    <!-- Sticky Filter Bar -->
+    <div class="filter-bar">
+        <div class="container">
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All</button>
+                {allTags.map(tag => (
+                    <button class="filter-btn" data-filter={tag}>{tag}</button>
+                ))}
+            </div>
+        </div>
+    </div>
+
+    <!-- 1. APPS -->
+    <div class="project-section container">
+        <h2 class="project-section-title">Apps & Tools</h2>
+        <div class="grid grid-2">
+            {APPS.map(app => (
+                <a href={app.link} target="_blank" class="project-card app-card" data-tags={JSON.stringify(app.tags)}>
+                    <div class="app-header">
+                        <div class="app-logo-box">
+                             {app.icon && app.icon.startsWith('<svg') ? (
+                                <Fragment set:html={app.icon} />
+                             
+                             ) : app.icon && (app.icon.includes('/') || app.icon.includes('.')) ? (
+                                <img src={app.icon} alt={app.title} />
+                             
+                             ) : (
+                                <>
+                                {app.archived ? (
+                                    <svg width="32" height="32" viewBox="0 0 12.5 12.5" fill="none" xmlns="http://www.w3.org/2000/svg"><g stroke-width="0"/><g stroke-linecap="round" stroke-linejoin="round"/><path d="M8 7 6.25 8.75 4.5 7M2.25 3.75v6.5h8v-6.5l-1-1.5h-6zm4 1.5V8.5m-4-4.75h8" stroke="#121923" stroke-width=".75"/></svg>
+                                ) : (
+                                    <svg width="64" height="64" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g stroke-width="0"/><g stroke-linecap="round" stroke-linejoin="round"/><path fill-rule="evenodd" clip-rule="evenodd" fill="#00000" d="M6 2.972v.012h-.09q-.298 0-.562.121a1.5 1.5 0 0 0-.457.32 1.47 1.47 0 0 0-.42 1.035q0 .34.012.677.012.336 0 .665a5 5 0 0 1-.055.64q-.05.314-.168.603-.12.29-.324.552-.169.216-.413.403a2.3 2.3 0 0 1 .737.955q.12.289.168.608.05.31.055.64.012.324 0 .666-.012.33-.012.672 0 .304.111.573.119.265.309.468.196.196.457.319.263.115.563.115H6V14h-.09q-.47 0-.909-.185a2.3 2.3 0 0 1-.775-.53 2.2 2.2 0 0 1-.493-.753v-.001a3.5 3.5 0 0 1-.198-.824v-.002a6 6 0 0 1-.024-.87q.018-.433.018-.868 0-.297-.117-.566V9.4a1.4 1.4 0 0 0-.308-.465l-.002-.002a1.4 1.4 0 0 0-.455-.318h-.001a1.3 1.3 0 0 0-.557-.122H2v-.984h.09q.292 0 .557-.115.267-.123.456-.32.196-.201.309-.467.117-.27.117-.573 0-.435-.018-.869a6 6 0 0 1 .024-.863V4.3q.05-.43.197-.83v-.001a2.2 2.2 0 0 1 .494-.753A2.3 2.3 0 0 1 5 2.185Q5.441 2 5.911 2H6zm7.923 5.52H14v-.984h-.09q-.292 0-.556-.121l-.001-.001a1.4 1.4 0 0 1-.455-.318l-.002-.002a1.4 1.4 0 0 1-.307-.465l-.001-.002a1.4 1.4 0 0 1-.117-.566q0-.435.018-.869a6 6 0 0 0-.024-.87v-.001a3.5 3.5 0 0 0-.197-.824v-.001a2.2 2.2 0 0 0-.494-.753 2.3 2.3 0 0 0-.775-.53 2.3 2.3 0 0 0-.91-.185H10v.984h.09q.299 0 .562.115.26.123.457.32.19.201.309.467.11.27.11.573 0 .342-.011.672-.012.342 0 .665.006.333.055.64.05.32.168.609.12.29.324.552.169.216.413.403l-.031.025c.53.058 1.03.221 1.477.467"/><path fill="#ff570d" d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6"/></svg>
+                                )}
+                                </>
+                             )}
+                        </div>
+                        <svg class="w-5 h-5 text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </div>
+                    <h3 class="app-title">{app.title}</h3>
+                    <p class="app-desc">{app.desc}</p>
+                    <div class="tag-row">
+                        {app.tags.map(tag => <span class="tag-pill">{tag}</span>)}
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+
+    <!-- 2. LIBRARIES -->
+    <div class="project-section container">
+        <h2 class="project-section-title">Frameworks & Libraries</h2>
+        <div class="grid grid-3">
+            {LIBRARIES.map(lib => (
+                <a href={lib.link} target="_blank" class="project-card lib-card" data-tags={JSON.stringify(lib.tags)}>
+                    <div class="lib-header">
+                        <div class="lib-icon">
+                            {lib.icon ? (
+                                <>
+                                    {lib.icon}
+                                </>
+                             ) : (
+                                <>
+                                {lib.archived ? (
+                                    <svg width="32" height="32" viewBox="0 0 12.5 12.5" fill="none" xmlns="http://www.w3.org/2000/svg" class="is-archived"><g stroke-width="0"/><g stroke-linecap="round" stroke-linejoin="round"/><path d="M8 7 6.25 8.75 4.5 7M2.25 3.75v6.5h8v-6.5l-1-1.5h-6zm4 1.5V8.5m-4-4.75h8" stroke="#121923" stroke-width=".75"/></svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 12 12" fill="none" stroke="#000" stroke-width=".75" stroke-linecap="round" stroke-linejoin="round"><g stroke-width="0"/><g/><path d="m8.251 4.7-4.5-2.595M10.5 8V4a1 1 0 0 0-.5-.865l-3.5-2a1 1 0 0 0-1 0l-3.5 2A1 1 0 0 0 1.5 4v4a1 1 0 0 0 .5.865l3.5 2a1 1 0 0 0 1 0l3.5-2A1 1 0 0 0 10.5 8"/><path d="M1.635 3.48 6 6.005l4.365-2.525M6 11.04V6"/></svg>
+                                )}
+                                </>
+                             )}
+                        </div>
+                        <h3 class="lib-title">{lib.title}</h3>
+                    </div>
+                    <p class="lib-desc">{lib.desc}</p>
+                    <div class="tag-row">
+                        {lib.tags.map(tag => <span class="tag-pill">#{tag}</span>)}
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+</Layout>

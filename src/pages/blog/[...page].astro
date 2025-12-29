@@ -1,0 +1,104 @@
+---
+// ... (Keep existing frontmatter logic) ...
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = (await getCollection('blog', ({ data }) => {
+    return data.date <= new Date(); 
+  })).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return paginate(allPosts, { pageSize: 15 });
+}
+
+const { page } = Astro.props;
+const isFirstPage = page.currentPage === 1;
+const allPosts = await getCollection('blog');
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort().slice(0, 20); // Limit to 20
+const featuredPosts = isFirstPage ? allPosts.filter(p => p.data.featured && p.data.date <= new Date()).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3) : [];
+const featuredIds = new Set(featuredPosts.map(p => p.id));
+const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)) : page.data;
+---
+
+<Layout 
+    title="Writing – open source, innovation, technology, design, & ideas" 
+    description="Technical articles, tutorials, and insights on software engineering, ethical AI, and open source development."
+>
+  
+  <section class="page-hero">
+    <h1 class="hero-title">Writing<span class="text-accent">.</span></h1>
+    <p class="hero-desc">Thoughts on open source, innovation, technology, design, and ideas.</p>
+  </section>
+
+  <div class="filter-bar">
+      <div class="container">
+          <div class="filter-group">
+              <a href="/blog" class="filter-btn active">All</a>
+              {allTags.map(tag => (
+                  <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
+              ))}
+          </div>
+      </div>
+  </div>
+
+  <div class="container">
+    
+    {/* FEATURED */}
+    {isFirstPage && featuredPosts.length > 0 && (
+        <section class="project-section">
+             <h2 class="project-section-title">Featured Writings</h2>
+             <div class="featured-grid">
+                {/* Hero Post */}
+                <a href={`/blog/${featuredPosts[0].slug}`} class="group feat-hero">
+                    {featuredPosts[0].data.image ? (
+                        <img src={featuredPosts[0].data.image} class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+                    ) : (
+                        <div class="absolute inset-0 bg-surface-secondary"></div>
+                    )}
+                    {/* Fixed Padding Container */}
+                    <div class="hero-content-box">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="text-accent">Featured</span> &nbsp; <time class="text-gray-300 font-mono text-xs text-muted">{featuredPosts[0].data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white mb-2 leading-tight group-hover:text-accent transition-colors">{featuredPosts[0].data.title}</h3>
+                        <p class="text-gray-200 text-lg line-clamp-2">{featuredPosts[0].data.description}</p>
+                    </div>
+                </a>
+
+                {/* Sub-Featured */}
+                {featuredPosts.length > 1 && featuredPosts.slice(1).map(post => (
+                    <a href={`/blog/${post.slug}`} class="feat-sub group">
+                        <div class="flex items-center gap-3 text-xs font-mono text-muted mb-2">
+                            <time>{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors leading-tight">{post.data.title}</h3>
+                        <p class="text-sm text-muted line-clamp-2">{post.data.description}</p>
+                    </a>
+                ))}
+             </div>
+        </section>
+    )}
+
+    {/* MAIN LIST */}
+    <section class="project-section">
+        <h2 class="project-section-title">{isFirstPage ? 'Latest Archives' : `Page ${page.currentPage}`}</h2>
+        <div class="archive-list">
+            {mainListPosts.map(post => (
+                <a href={`/blog/${post.slug}`} class="archive-item">
+                    <time class="archive-date">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                    <div class="archive-content">
+                        <h3>{post.data.title}</h3>
+                        {post.data.description && <p>{post.data.description}</p>}
+                    </div>
+                </a>
+            ))}
+        </div>
+    </section>
+
+    {/* PAGINATION */}
+    <div class="pagination">
+        {page.url.prev ? <a href={page.url.prev} class="page-btn">&larr; Previous</a> : <span style="opacity: 0;">Prev</span>}
+        <span class="text-muted" style="font-family: var(--font-mono); font-size: 0.9rem;">Page {page.currentPage} of {page.lastPage}</span>
+        {page.url.next ? <a href={page.url.next} class="page-btn">Next &rarr;</a> : <span style="opacity: 0;">Next</span>}
+    </div>
+  </div>
+</Layout>
