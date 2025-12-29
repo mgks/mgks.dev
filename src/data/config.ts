@@ -104,6 +104,34 @@ export const LIBRARIES = [
         tags: ["AI", "Filesystem", "CLI", "Node.js", "NPM"],
         icon: ""
     },
+    { 
+        title: "ci-debug",
+        desc: "Safely print system info and environment variables with reducted secrets for debugging CI pipelines.",
+        link: "https://github.com/mgks/ci-debug",
+        tags: ["CI", "Debugger", "CLI", "Node.js", "NPM"],
+        icon: ""
+    },
+    { 
+        title: "clean-context",
+        desc: "Code cleaner for AI context, strips comments and noise while strictly protecting strings, URLs, and regex.",
+        link: "https://github.com/mgks/clean-context",
+        tags: ["JavaScript", "CLI", "Node.js", "NPM"],
+        icon: ""
+    },
+    {
+        title: "force-exit-zero",
+        desc: "Force a command to exit with code 0 (success), regardless of the result. Perfect for CI pipelines.",
+        link: "https://github.com/mgks/force-exit-zero",
+        tags: ["CI", "Failsafe", "Node.js", "NPM"],
+        icon: ""
+    },
+    {
+        title: "env-must-exist",
+        desc: "CLI to assert that environment variables are present. Fails fast in CI/CD if missing.",
+        link: "https://github.com/mgks/env-must-exist",
+        tags: ["CI", "Failsafe", "Node.js", "NPM"],
+        icon: ""
+    },
     {
         title: "android-biometric-gate",
         desc: "A secure, lifecycle-aware biometric lock screen for any Android Activity.",
@@ -137,27 +165,6 @@ export const LIBRARIES = [
         desc: "A lightweight library to handle file uploads, camera captures, and permissions in Android WebViews.",
         link: "https://github.com/mgks/android-webview-file-handler",
         tags: ["Android", "Kotlin", "Filesystem", "WebView", "File", "Jitpack"],
-        icon: ""
-    },
-    { 
-        title: "clean-context",
-        desc: "Code cleaner for AI context, strips comments and noise while strictly protecting strings, URLs, and regex.",
-        link: "https://github.com/mgks/clean-context",
-        tags: ["JavaScript", "CLI", "Node.js", "NPM"],
-        icon: ""
-    },
-    {
-        title: "force-exit-zero",
-        desc: "Force a command to exit with code 0 (success), regardless of the result. Perfect for CI pipelines.",
-        link: "https://github.com/mgks/force-exit-zero",
-        tags: ["CI", "Failsafe", "Node.js", "NPM"],
-        icon: ""
-    },
-    {
-        title: "env-must-exist",
-        desc: "CLI to assert that environment variables are present. Fails fast in CI/CD if missing.",
-        link: "https://github.com/mgks/env-must-exist",
-        tags: ["CI", "Failsafe", "Node.js", "NPM"],
         icon: ""
     },
     {
