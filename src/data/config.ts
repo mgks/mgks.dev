@@ -112,6 +112,13 @@ export const LIBRARIES = [
         icon: ""
     },
     { 
+        title: "enex-io",
+        desc: "High-performance parser and generator for Evernote/Apple Notes (.enex) files.",
+        link: "https://github.com/mgks/enex-io",
+        tags: ["iOS", "Mac", "CLI", "Node.js", "NPM"],
+        icon: ""
+    },
+    { 
         title: "clean-context",
         desc: "Code cleaner for AI context, strips comments and noise while strictly protecting strings, URLs, and regex.",
         link: "https://github.com/mgks/clean-context",
