@@ -243,9 +243,10 @@ html:not(.dark) .moon-icon { display: none; }
 }
 .hero-subtitle {
     background: linear-gradient(90deg, #9ca3af, #4b5563);
+    background-clip: text;
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
-html.dark .hero-subtitle { background: linear-gradient(90deg, #9ca3af, #d1d5db); -webkit-background-clip: text; }
+html.dark .hero-subtitle { background: linear-gradient(90deg, #9ca3af, #d1d5db); background-clip: text;-webkit-background-clip: text; }
 @media (min-width: 768px) { .hero-title { font-size: 5.5rem; } }
 
 .hero-desc {
@@ -340,7 +341,7 @@ html.dark .highlight-card { background-color: rgba(18, 18, 18, 0.5); }
 .blog-card:hover .card-title { color: var(--accent); }
 .card-desc {
     font-size: 0.95rem; color: var(--text-muted); line-height: 1.5;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    display: -webkit-box;line-clamp: 2; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 
 /* Archive List */
@@ -353,7 +354,7 @@ html.dark .highlight-card { background-color: rgba(18, 18, 18, 0.5); }
     gap: 0.5rem;            /* Smaller gap on mobile */
     padding: 1.25rem;       /* Slightly larger touch target */
     border-radius: var(--radius-md);
-    transition: background 0.2s;
+    transition: 0.2s;
     border-bottom: 1px solid var(--border-color); /* Separator for mobile readability */
 }
 
