@@ -27,7 +27,7 @@ jobs:
       - name: Build Site
         run: npm run build
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
