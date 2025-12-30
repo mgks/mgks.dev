@@ -73,7 +73,7 @@ export const LIBRARIES = [
         title: "docmd",
         desc: "Generate minimal, fast & beautiful docs from Markdown. No React, no bloat, just content. Built for developers.",
         link: "https://docmd.mgks.dev",
-        tags: ["Automation", "Web App", "CLI", "Node.js", "NPM"],
+        tags: ["Automation", "Web App", "Markdown", "CLI", "Node.js", "NPM"],
         icon: ""
     },
     { 
@@ -109,6 +109,13 @@ export const LIBRARIES = [
         desc: "Safely print system info and environment variables with reducted secrets for debugging CI pipelines.",
         link: "https://github.com/mgks/ci-debug",
         tags: ["CI", "Debugger", "CLI", "Node.js", "NPM"],
+        icon: ""
+    },
+    { 
+        title: "md-fusion",
+        desc: "Convert notes between HTML/JSON and Markdown with YAML Frontmatter.",
+        link: "https://github.com/mgks/md-fusion",
+        tags: ["Markdown", "YAML", "Notion", "CLI", "Node.js", "NPM"],
         icon: ""
     },
     { 
