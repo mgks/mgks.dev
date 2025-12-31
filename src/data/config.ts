@@ -41,9 +41,9 @@ export const APPS = [
     {
         title: "NotesMigrator",
         desc: "Migrate notes between Google Keep, Apple Notes, Evernote, and Notion.",
-        link: "https://notesmigrator.mgks.dev",
+        link: "https://migrator.mgks.dev",
         tags: ["Google Keep", "Apple Notes", "Evernote", "Notion"],
-        icon: `<svg width="64" height="64" viewBox="0 0 48 48" version="1" xmlns="http://www.w3.org/2000/svg"><g stroke-width="0"/><g stroke-linecap="round" stroke-linejoin="round"/><path fill="#ffccbc" d="M7 40V8c0-2.2 1.8-4 4-4h24c2.2 0 4 1.8 4 4v32c0 2.2-1.8 4-4 4H11c-2.2 0-4-1.8-4-4"/><g fill="#ff5722"><path d="M42.7 24 32 33V15z"/><path d="M14 21h23v6H14z"/></g></svg>`
+        icon: `<svg width="64" height="64" viewBox="149.332 85.334 761.6 853.334" class="icon" xmlns="http://www.w3.org/2000/svg"><g stroke-width="0"/><g stroke-linecap="round" stroke-linejoin="round"/><path d="M149.332 853.332V170.668c0-46.934 38.4-85.334 85.334-85.334h512c46.932 0 85.332 38.4 85.332 85.334v682.666c0 46.934-38.4 85.334-85.332 85.334h-512c-46.934 0-85.334-38.4-85.334-85.334" fill="#fbcc00"/><path d="M910.932 512 682.666 704V320z" fill="#e08200"/><path d="M298.668 448h490.666v128H298.668z" fill="#e08200"/></svg>`
     },
     {
         title: "dhwani",
