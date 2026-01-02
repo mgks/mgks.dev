@@ -188,6 +188,7 @@ export const LIBRARIES = [
         tags: ["Android", "Kotlin", "Filesystem", "WebView", "File", "Jitpack"],
         icon: ""
     },
+    /*
     {
         title: "nineclip",
         desc: "Small clipboard manager to record last 9 clips FILO for devs.",
@@ -212,4 +213,5 @@ export const LIBRARIES = [
         icon: "",
         archived: true
     },
+    */
 ];
