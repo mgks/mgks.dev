@@ -2,7 +2,7 @@
 title: "Data Provenance in AI? Sitting on a Legal Landmine"
 description: "You've got your shiny new language models and all that, but how often have you actually checked where the data came from? Yeah, thought so."
 date: 2024-09-03 17:00:00 +0530
-tags: ai, open source
+tags: artificial intelligence, open source
 image: b32
 ---
 

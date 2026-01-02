@@ -2,7 +2,7 @@
 title: "Is This the End of Traditional Google Search? Google's AI Mode and the Dawn of Conversational Queries"
 description: "Alright, buckle up buttercups, because Google just dropped something that's about to make your late-night internet rabbit holes even... well,  more  efficient, if that's even possible."
 date: 2025-04-03 17:00:00 +0530
-tags: ai, research
+tags: artificial intelligence, research
 image: b39
 ---
 

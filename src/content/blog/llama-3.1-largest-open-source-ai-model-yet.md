@@ -2,7 +2,7 @@
 title: "Llama 3.1 - Largest Open Source AI Model Yet"
 description: "In the thrilling world of AI and ML, it's not just about who's got the most powerful model - it's about who can deliver the right features, at the right time, for the right application."
 date: 2024-07-26 17:00:00 +0530
-tags: meta, llama, ai, open source
+tags: meta, llama, artificial intelligence, open source
 image: b30
 ---
 

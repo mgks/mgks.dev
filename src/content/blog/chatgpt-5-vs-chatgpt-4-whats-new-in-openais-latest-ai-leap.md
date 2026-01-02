@@ -2,7 +2,7 @@
 title: "ChatGPT-5 vs ChatGPT-4. What’s New in OpenAI’s Latest AI Leap"
 description: "The much-awaited GPT-5 is finally here. Here’s a deep technical dive into what's changed, what's improved, and what GPT-5 means for developers, tech workers, and AI enthusiasts."
 date: 2025-08-07 17:00:00 +0530
-tags: ai, openai, chatgpt
+tags: artificial intelligence, openai, chatgpt
 image: b43
 featured: true
 ---

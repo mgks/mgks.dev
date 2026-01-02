@@ -2,7 +2,7 @@
 title: "Unveiling Google’s Nano Banana, The AI Image Editing Revolution"
 description: "Google’s Nano Banana model, recently released under the Gemini 2.5 Flash Image suite, rewrites the playbook for image editing with AI."
 date: 2025-08-26 17:00:00 +0530
-tags: google, llm-model, newsletter
+tags: google, llm, newsletter
 image: b45
 featured: true
 ---

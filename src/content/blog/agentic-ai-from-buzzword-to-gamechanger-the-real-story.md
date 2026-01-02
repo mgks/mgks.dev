@@ -2,7 +2,7 @@
 title: "Agentic AI – From Buzzword to Gamechanger (The Real Story)"
 description: "Agentic AI is dominating AI headlines and industry conferences—and for good reason. The arrival of autonomous AI agents is forcing a rewrite of what automation means and what virtual assistants can really do."
 date: 2025-08-03 17:00:00 +0530
-tags: ai, openai, agents
+tags: artificial intelligence, openai, agents
 image: b41
 featured: true
 ---

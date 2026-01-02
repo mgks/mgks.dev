@@ -2,7 +2,7 @@
 title: "The Rise of AI with Physical Intelligence"
 description: "Imagine a world where AI doesn't just live in your computer but steps into the real world, making your morning coffee, folding your laundry, or even performing parkour."
 date: 2025-01-16 17:00:00 +0530
-tags: ai, research
+tags: artificial intelligence, research
 image: b36
 ---
 

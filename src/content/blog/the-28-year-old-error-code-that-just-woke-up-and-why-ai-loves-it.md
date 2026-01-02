@@ -2,7 +2,7 @@
 title: "The 28-Year-Old Error Code That Just Woke Up (And Why AI Loves It)"
 description: "For nearly three decades, it was reserved for future use. Well, the future is here, and it turns out the future involves AI agents trading fractions of a penny at lightspeed."
 date: 2025-12-01 17:00:00 +0530
-tags: ai, stripe, newsletter
+tags: artificial intelligence, stripe, newsletter
 image: b47
 ---
 

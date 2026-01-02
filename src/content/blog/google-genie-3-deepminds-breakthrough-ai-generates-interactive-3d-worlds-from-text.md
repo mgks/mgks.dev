@@ -2,7 +2,7 @@
 title: "Google Genie 3, DeepMind’s Breakthrough AI Generates Interactive 3D Worlds from Text Prompts in Real Time"
 description: "In an era of generative AI, Genie 3 demonstrates a leap forward by blending real-time graphics, physics simulation, and interactive storytelling into one package."
 date: 2025-08-06 17:00:00 +0530
-tags: ai, google, deepmind, genie
+tags: artificial intelligence, google, deepmind, genie
 image: b42
 featured: true
 ---
