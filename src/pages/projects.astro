@@ -2,37 +2,70 @@
 import Layout from '../layouts/Layout.astro';
 import { APPS, LIBRARIES } from '../data/config';
 
-// Combine tags for filter
-const allTags = [...new Set([
+// 1. Collect all tags
+const rawTags = [
     ...APPS.flatMap(app => app.tags),
     ...LIBRARIES.flatMap(lib => lib.tags)
-])].sort();
+];
+
+// 2. Count occurrences
+const tagCounts = rawTags.reduce((acc, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+}, {});
+
+// 3. Sort by Count DESC, then Alphabetical ASC
+const sortedTags = Object.keys(tagCounts).sort((a, b) => {
+    const diff = tagCounts[b] - tagCounts[a];
+    if (diff !== 0) return diff;
+    return a.localeCompare(b);
+});
+
+const VISIBLE_COUNT = 15;
+const visibleTags = sortedTags.slice(0, VISIBLE_COUNT);
+const hiddenTags = sortedTags.slice(VISIBLE_COUNT);
 ---
 
-<Layout title="My Selected Projects" description="A curated collection of open source libraries, applications, and developer tools built by Ghazi Khan.">
+<Layout title="My selected projects" description="A curated collection of open source libraries, applications, and developer tools built by Ghazi Khan.">
     
     <section class="page-hero">
         <h1 class="hero-title">Projects<span class="text-accent">.</span></h1>
         <p class="hero-desc">
-            A curated collection of apps and open source libraries I have built.
+            A curated collection of apps and open source libraries I’ve built.
         </p>
     </section>
 
-    <!-- Sticky Filter Bar -->
+    <!-- Sticky Filter Bar with Expandable Tags -->
     <div class="filter-bar">
         <div class="container">
             <div class="filter-group">
                 <button class="filter-btn active" data-filter="all">All</button>
-                {allTags.map(tag => (
+                
+                {/* Visible Tags */}
+                {visibleTags.map(tag => (
                     <button class="filter-btn" data-filter={tag}>{tag}</button>
                 ))}
+
+                {/* Hidden Tags Container */}
+                {hiddenTags.length > 0 && (
+                    <>
+                        <div id="hidden-tags" class="filter-group hidden" style="display: contents;">
+                            {hiddenTags.map(tag => (
+                                <button class="filter-btn" data-filter={tag}>{tag}</button>
+                            ))}
+                        </div>                    
+                        <button id="tag-toggle-btn" class="tag-toggle-btn">
+                            <span id="tag-btn-text">+ More</span>
+                        </button>
+                    </>
+                )}
             </div>
         </div>
     </div>
 
     <!-- 1. APPS -->
     <div class="project-section container">
-        <h2 class="project-section-title">Apps & Tools</h2>
+        <h2 class="project-section-title">Applications</h2>
         <div class="grid grid-2">
             {APPS.map(app => (
                 <a href={app.link} target="_blank" class="project-card app-card" data-tags={JSON.stringify(app.tags)}>
@@ -68,7 +101,7 @@ const allTags = [...new Set([
 
     <!-- 2. LIBRARIES -->
     <div class="project-section container">
-        <h2 class="project-section-title">Frameworks & Libraries</h2>
+        <h2 class="project-section-title">Libraries & Tools</h2>
         <div class="grid grid-3">
             {LIBRARIES.map(lib => (
                 <a href={lib.link} target="_blank" class="project-card lib-card" data-tags={JSON.stringify(lib.tags)}>
@@ -92,7 +125,7 @@ const allTags = [...new Set([
                     </div>
                     <p class="lib-desc">{lib.desc}</p>
                     <div class="tag-row">
-                        {lib.tags.map(tag => <span class="tag-pill">#{tag}</span>)}
+                        {lib.tags.map(tag => <span class="tag-pill">{tag}</span>)}
                     </div>
                 </a>
             ))}

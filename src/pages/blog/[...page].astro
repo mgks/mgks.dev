@@ -1,5 +1,4 @@
 ---
-// ... (Keep existing frontmatter logic) ...
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
@@ -12,37 +11,77 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 const isFirstPage = page.currentPage === 1;
+
+// 1. Tag Sorting Logic
 const allPosts = await getCollection('blog');
-const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort().slice(0, 20); // Limit to 20
+const rawTags = allPosts.flatMap(post => post.data.tags);
+
+// Count & Sort
+const tagCounts = rawTags.reduce((acc, tag) => {
+    acc[tag] = (acc[tag] || 0) + 1;
+    return acc;
+}, {});
+
+const sortedTags = Object.keys(tagCounts).sort((a, b) => {
+    const diff = tagCounts[b] - tagCounts[a];
+    if (diff !== 0) return diff;
+    return a.localeCompare(b);
+});
+
+// Split for View
+const VISIBLE_COUNT = 10;
+const visibleTags = sortedTags.slice(0, VISIBLE_COUNT);
+const hiddenTags = sortedTags.slice(VISIBLE_COUNT);
+
+// Featured Logic
 const featuredPosts = isFirstPage ? allPosts.filter(p => p.data.featured && p.data.date <= new Date()).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3) : [];
 const featuredIds = new Set(featuredPosts.map(p => p.id));
 const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)) : page.data;
 ---
 
 <Layout title="My writing on open source, innovation, technology, design, and ideas" description="Technical articles, tutorials, and insights on software engineering, ethical AI, and open source development.">
-  
+
   <section class="page-hero">
     <h1 class="hero-title">Writing<span class="text-accent">.</span></h1>
     <p class="hero-desc">Thoughts on open source, innovation, technology, design, and ideas.</p>
   </section>
 
+  <!-- TAGS (Expandable Pill Style) -->
   <div class="filter-bar">
       <div class="container">
           <div class="filter-group">
               <a href="/blog" class="filter-btn active">All</a>
-              {allTags.map(tag => (
+              
+              {/* Visible Tags */}
+              {visibleTags.map(tag => (
                   <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
               ))}
+
+              {/* Hidden Tags & Toggle */}
+              {hiddenTags.length > 0 && (
+                  <>
+                    <div id="hidden-tags" class="filter-group hidden" style="display: contents;">
+                        {hiddenTags.map(tag => (
+                            <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
+                        ))}
+                    </div>
+                    
+                    {/* Clean Toggle Button */}
+                    <button id="tag-toggle-btn" class="tag-toggle-btn">
+                        <span id="tag-btn-text">+ More</span>
+                    </button>
+                  </>
+              )}
           </div>
       </div>
   </div>
 
   <div class="container">
     
-    {/* FEATURED */}
+    <!-- FEATURED GRID -->
     {isFirstPage && featuredPosts.length > 0 && (
         <section class="project-section">
-             <h2 class="project-section-title">Featured Writings</h2>
+             <h2 class="project-section-title">Featured</h2>
              <div class="featured-grid">
                 {/* Hero Post */}
                 <a href={`/blog/${featuredPosts[0].slug}`} class="group feat-hero">
@@ -51,10 +90,9 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
                     ) : (
                         <div class="absolute inset-0 bg-surface-secondary"></div>
                     )}
-                    {/* Fixed Padding Container */}
                     <div class="hero-content-box">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="text-accent">Featured</span> &nbsp; <time class="text-gray-300 font-mono text-xs text-muted">{featuredPosts[0].data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                            <span class="text-accent font-mono text-xs uppercase tracking-wider bg-black/50 backdrop-blur px-2 py-1 rounded">Featured</span> &nbsp; <time class="archive-date">{featuredPosts[0].data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
                         </div>
                         <h3 class="text-3xl font-bold text-white mb-2 leading-tight group-hover:text-accent transition-colors">{featuredPosts[0].data.title}</h3>
                         <p class="text-gray-200 text-lg line-clamp-2">{featuredPosts[0].data.description}</p>
@@ -65,7 +103,8 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
                 {featuredPosts.length > 1 && featuredPosts.slice(1).map(post => (
                     <a href={`/blog/${post.slug}`} class="feat-sub group">
                         <div class="flex items-center gap-3 text-xs font-mono text-muted mb-2">
-                            <time>{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                            <time class="archive-date">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                            <!-- {post.data.tags[0] && <span class="text-accent">{post.data.tags[0]}</span>} -->
                         </div>
                         <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors leading-tight">{post.data.title}</h3>
                         <p class="text-sm text-muted line-clamp-2">{post.data.description}</p>
@@ -75,9 +114,9 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
         </section>
     )}
 
-    {/* MAIN LIST */}
+    <!-- MAIN LIST -->
     <section class="project-section">
-        <h2 class="project-section-title">{isFirstPage ? 'Latest Archives' : `Page ${page.currentPage}`}</h2>
+        <h2 class="project-section-title">{isFirstPage ? 'Latest' : `Page ${page.currentPage}`}</h2>
         <div class="archive-list">
             {mainListPosts.map(post => (
                 <a href={`/blog/${post.slug}`} class="archive-item">
@@ -91,7 +130,7 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
         </div>
     </section>
 
-    {/* PAGINATION */}
+    <!-- PAGINATION -->
     <div class="pagination">
         {page.url.prev ? <a href={page.url.prev} class="page-btn">&larr; Previous</a> : <span style="opacity: 0;">Prev</span>}
         <span class="text-muted" style="font-family: var(--font-mono); font-size: 0.9rem;">Page {page.currentPage} of {page.lastPage}</span>
