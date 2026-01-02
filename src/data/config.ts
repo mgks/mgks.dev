@@ -9,7 +9,8 @@ export const SITE = {
 export const SOCIALS = [
     { name: "GitHub", url: "https://github.com/mgks", icon: "github" },
     { name: "LinkedIn", url: "https://linkedin.com/in/mgks", icon: "linkedin" },
-    { name: "YouTube", url: "https://youtube.com/@mgks_dev", icon: "youtube" }
+    { name: "YouTube", url: "https://youtube.com/@mgksdev", icon: "youtube" },
+    // { name: "Instagram", url: "https://www.instagram.com/_enigmazi", icon: "instagram" }
 ];
 
 export const SPONSOR_URL = "https://github.com/sponsors/mgks";
