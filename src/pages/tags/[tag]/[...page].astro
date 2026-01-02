@@ -22,12 +22,12 @@ const { page } = Astro.props;
 const { tag } = Astro.params;
 ---
 
-<Layout title={`#${tag}`} description={`Writings tagged with ${tag}`}>
-  
+<Layout title={`Writings tagged with ${tag}`} description={`A collection of writings tagged with ${tag}`}>
+
   <!-- Consistent Hero -->
   <section class="page-hero">
     <span style="font-family: var(--font-mono); color: var(--accent); font-size: 0.9rem;">Tag</span>
-    <h1 class="hero-title">#{tag}<span class="text-accent">.</span></h1>
+    <h1 class="hero-title">{tag}<span class="text-accent">.</span></h1>
     <p class="hero-desc">
       {page.total} {page.total === 1 ? 'writing' : 'writings'} found
     </p>

@@ -19,10 +19,7 @@ const featuredIds = new Set(featuredPosts.map(p => p.id));
 const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)) : page.data;
 ---
 
-<Layout 
-    title="Writing – open source, innovation, technology, design, & ideas" 
-    description="Technical articles, tutorials, and insights on software engineering, ethical AI, and open source development."
->
+<Layout title="My writing on open source, innovation, technology, design, and ideas" description="Technical articles, tutorials, and insights on software engineering, ethical AI, and open source development.">
   
   <section class="page-hero">
     <h1 class="hero-title">Writing<span class="text-accent">.</span></h1>
