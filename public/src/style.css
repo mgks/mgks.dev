@@ -666,3 +666,86 @@ hr {
     border-top: 0;
 
 }
+
+/* UTILITY: Hidden Tags Animation */
+#hidden-tags {
+    transition: opacity 0.3s ease;
+}
+#hidden-tags.hidden {
+    display: none;
+}
+
+/* =========================================
+   TAG TOGGLE BUTTON (Custom Style)
+   ========================================= */
+.tag-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color); /* Match default border */
+    color: var(--accent); /* Text is accent */
+    background-color: transparent;
+    transition: all 0.2s;
+    cursor: pointer;
+    min-width: 4rem; /* Prevent layout shift when text changes */
+}
+
+.tag-toggle-btn:hover {
+    background-color: var(--bg-surface-secondary);
+    border-color: var(--accent);
+}
+
+/* =========================================
+   TABLE STYLING (Breakout & Scroll)
+   ========================================= */
+.prose table {
+    display: block;
+    width: 100%;
+    margin: 3rem 0; /* More vertical space */
+    border-collapse: separate; /* Allows border-radius */
+    border-spacing: 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    
+    /* Visuals */
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--nav-shadow); /* Highlight effect */
+}
+
+.prose thead {
+    background-color: var(--bg-surface-secondary);
+}
+
+.prose th {
+    text-align: left;
+    font-weight: 700;
+    color: var(--text-main);
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    font-family: var(--font-title);
+    letter-spacing: 0.02em;
+}
+
+.prose td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+.prose tr:last-child td { border-bottom: none; }
+.prose tr:hover td { background-color: var(--bg-surface-secondary); color: var(--text-main); }
+
+@media (min-width: 1024px) {
+    .prose table {
+        width: fit-content;
+        max-width: var(--container-width);
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+}

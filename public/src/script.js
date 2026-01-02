@@ -97,4 +97,27 @@ document.addEventListener('DOMContentLoaded', () => {
             wrapper.appendChild(button);
         });
     }
+
+    /* =========================================
+       5. TAG EXPANSION (More/Less)
+       ========================================= */
+    const tagToggleBtn = document.getElementById('tag-toggle-btn');
+    const hiddenTags = document.getElementById('hidden-tags');
+    const tagBtnText = document.getElementById('tag-btn-text');
+
+    if (tagToggleBtn && hiddenTags && tagBtnText) {
+        tagToggleBtn.addEventListener('click', () => {
+            const isHidden = hiddenTags.classList.contains('hidden');
+            
+            if (isHidden) {
+                // EXPAND
+                hiddenTags.classList.remove('hidden');
+                tagBtnText.innerText = '- Less';
+            } else {
+                // CONTRACT
+                hiddenTags.classList.add('hidden');
+                tagBtnText.innerText = '+ More';
+            }
+        });
+    }
 });
