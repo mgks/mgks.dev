@@ -105,6 +105,13 @@ export const LIBRARIES = [
         tags: ["AI", "Filesystem", "CLI", "Node.js", "NPM"],
         icon: ""
     },
+    {
+        title: "extract-inline-style",
+        desc: "Extract inline style attributes from HTML elements and move them to an external CSS file.",
+        link: "",
+        tags: ["CSS", "HTML", "CLI", "Node.js", "NPM"],
+        icon: ""
+    },
     { 
         title: "ci-debug",
         desc: "Safely print system info and environment variables with reducted secrets for debugging CI pipelines.",
