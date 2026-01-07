@@ -108,7 +108,7 @@ export const LIBRARIES = [
     {
         title: "extract-inline-style",
         desc: "Extract inline style attributes from HTML elements and move them to an external CSS file.",
-        link: "",
+        link: "https://github.com/mgks/extract-inline-style",
         tags: ["CSS", "HTML", "CLI", "Node.js", "NPM"],
         icon: ""
     },
