@@ -3,73 +3,62 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = (await getCollection('blog', ({ data }) => {
-    return data.date <= new Date(); 
+  // 1. Get posts for the MAIN LIST (Exclude 'rollup')
+  const articlePosts = (await getCollection('blog', ({ data }) => {
+    return data.date <= new Date() && !data.tags.includes('rollup'); 
   })).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-  return paginate(allPosts, { pageSize: 15 });
+
+  // Paginate only the articles
+  return paginate(articlePosts, { pageSize: 15 });
 }
 
 const { page } = Astro.props;
 const isFirstPage = page.currentPage === 1;
 
-// 1. Tag Sorting Logic
+// 2. Data for other sections (Fetched explicitly)
 const allPosts = await getCollection('blog');
+
+// Featured (Top 3, independent of tag)
+const featuredPosts = isFirstPage ? allPosts
+    .filter(p => p.data.featured && p.data.date <= new Date())
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    .slice(0, 3) 
+    : [];
+
+// Recent Rollups (Top 6, only 'rollup' tag)
+const recentRollups = isFirstPage ? allPosts
+    .filter(p => p.data.tags.includes('rollup') && p.data.date <= new Date())
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+    .slice(0, 6)
+    : [];
+
+// Tag Cloud Data (Optional: Keep your existing tag cloud logic here)
 const rawTags = allPosts.flatMap(post => post.data.tags);
-
-// Count & Sort
-const tagCounts = rawTags.reduce((acc, tag) => {
-    acc[tag] = (acc[tag] || 0) + 1;
-    return acc;
-}, {});
-
-const sortedTags = Object.keys(tagCounts).sort((a, b) => {
-    const diff = tagCounts[b] - tagCounts[a];
-    if (diff !== 0) return diff;
-    return a.localeCompare(b);
-});
-
-// Split for View
-const VISIBLE_COUNT = 10;
-const visibleTags = sortedTags.slice(0, VISIBLE_COUNT);
-const hiddenTags = sortedTags.slice(VISIBLE_COUNT);
-
-// Featured Logic
-const featuredPosts = isFirstPage ? allPosts.filter(p => p.data.featured && p.data.date <= new Date()).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()).slice(0, 3) : [];
-const featuredIds = new Set(featuredPosts.map(p => p.id));
-const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)) : page.data;
+const tagCounts = rawTags.reduce((acc, tag) => { acc[tag] = (acc[tag] || 0) + 1; return acc; }, {});
+const sortedTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+const visibleTags = sortedTags.filter(t => t !== 'rollup').slice(0, 10); // Exclude rollup from top filters to avoid redundancy
+const hiddenTags = sortedTags.filter(t => t !== 'rollup').slice(10);
 ---
 
-<Layout title="My writing on open source, innovation, technology, design, and ideas" description="Technical articles, tutorials, and insights on software engineering, ethical AI, and open source development.">
+<Layout title="Writing" description="Technical articles, tutorials, and insights.">
 
   <section class="page-hero">
     <h1 class="hero-title">Writing<span class="text-accent">.</span></h1>
-    <p class="hero-desc">Thoughts on open source, innovation, technology, design, and ideas.</p>
+    <p class="hero-desc">Thoughts on open source, innovation, technology, and design.</p>
   </section>
 
-  <!-- TAGS (Expandable Pill Style) -->
+  <!-- Filter Bar (Unchanged) -->
   <div class="filter-bar">
       <div class="container">
           <div class="filter-group">
               <a href="/blog" class="filter-btn active">All</a>
-              
-              {/* Visible Tags */}
-              {visibleTags.map(tag => (
-                  <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
-              ))}
-
-              {/* Hidden Tags & Toggle */}
+              {visibleTags.map(tag => <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>)}
               {hiddenTags.length > 0 && (
                   <>
                     <div id="hidden-tags" class="filter-group hidden" style="display: contents;">
-                        {hiddenTags.map(tag => (
-                            <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
-                        ))}
+                        {hiddenTags.map(tag => <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>)}
                     </div>
-                    
-                    {/* Clean Toggle Button */}
-                    <button id="tag-toggle-btn" class="tag-toggle-btn">
-                        <span id="tag-btn-text">+ More</span>
-                    </button>
+                    <button id="tag-toggle-btn" class="tag-toggle-btn"><span id="tag-btn-text">+ More</span></button>
                   </>
               )}
           </div>
@@ -78,7 +67,7 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
 
   <div class="container">
     
-    <!-- FEATURED GRID -->
+    <!-- SECTION 1: FEATURED (Page 1 Only) -->
     {isFirstPage && featuredPosts.length > 0 && (
         <section class="project-section">
              <h2 class="project-section-title">Featured</h2>
@@ -92,10 +81,13 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
                     )}
                     <div class="hero-content-box">
                         <div class="flex items-center gap-3 mb-3">
-                            <span class="text-accent font-mono text-xs uppercase tracking-wider bg-black/50 backdrop-blur px-2 py-1 rounded">Featured</span> &nbsp; <time class="archive-date">{featuredPosts[0].data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
+                            <span class="text-accent font-mono text-xs uppercase tracking-wider bg-black/50 backdrop-blur px-2 py-1 rounded">Featured</span>
+                            <time class="archive-date">{featuredPosts[0].data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
                         </div>
                         <h3 class="text-3xl font-bold text-white mb-2 leading-tight group-hover:text-accent transition-colors">{featuredPosts[0].data.title}</h3>
-                        <p class="text-gray-200 text-lg line-clamp-2">{featuredPosts[0].data.description}</p>
+                        <p class="text-sm text-muted line-clamp-3 leading-relaxed">
+                            {featuredPosts[0].data.description}
+                        </p>
                     </div>
                 </a>
 
@@ -104,21 +96,47 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
                     <a href={`/blog/${post.slug}`} class="feat-sub group">
                         <div class="flex items-center gap-3 text-xs font-mono text-muted mb-2">
                             <time class="archive-date">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
-                            <!-- {post.data.tags[0] && <span class="text-accent">{post.data.tags[0]}</span>} -->
                         </div>
                         <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors leading-tight">{post.data.title}</h3>
-                        <p class="text-sm text-muted line-clamp-2">{post.data.description}</p>
+                        <p class="text-sm text-muted line-clamp-3 leading-relaxed">
+                            {post.data.description}
+                        </p>
                     </a>
                 ))}
              </div>
         </section>
     )}
 
-    <!-- MAIN LIST -->
+    <!-- SECTION 2: RECENT ROLLUPS (Page 1 Only) -->
+    {isFirstPage && recentRollups.length > 0 && (
+        <section style="margin-bottom: 4rem;">
+            <div class="rollup-section">
+                <div class="rollup-header">
+                    <h2 class="rollup-title">Recent Rollups</h2>
+                    <a href="/tags/rollup" class="section-link">View all &rarr;</a>
+                </div>
+                
+                <div class="rollup-grid">
+                    {recentRollups.map(post => (
+                        <a href={`/blog/${post.slug}`} class="rollup-card">
+                            <div class="rollup-date">
+                                {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                            </div>
+                            <h3 class="rollup-heading">{post.data.title}</h3>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )}
+
+    <!-- SECTION 3: LATEST ARTICLES (Paginated, excludes rollups) -->
     <section class="project-section">
-        <h2 class="project-section-title">{isFirstPage ? 'Latest' : `Page ${page.currentPage}`}</h2>
+        <h2 class="project-section-title">
+            {isFirstPage ? 'Latest Articles' : `Page ${page.currentPage} - Articles`}
+        </h2>
         <div class="archive-list">
-            {mainListPosts.map(post => (
+            {page.data.map(post => (
                 <a href={`/blog/${post.slug}`} class="archive-item">
                     <time class="archive-date">{post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</time>
                     <div class="archive-content">
@@ -130,11 +148,12 @@ const mainListPosts = isFirstPage ? page.data.filter(p => !featuredIds.has(p.id)
         </div>
     </section>
 
-    <!-- PAGINATION -->
+    <!-- PAGINATION (Controls "Latest Articles" only) -->
     <div class="pagination">
         {page.url.prev ? <a href={page.url.prev} class="page-btn">&larr; Previous</a> : <span style="opacity: 0;">Prev</span>}
         <span class="text-muted" style="font-family: var(--font-mono); font-size: 0.9rem;">Page {page.currentPage} of {page.lastPage}</span>
         {page.url.next ? <a href={page.url.next} class="page-btn">Next &rarr;</a> : <span style="opacity: 0;">Next</span>}
     </div>
+
   </div>
 </Layout>
