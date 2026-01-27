@@ -2,7 +2,7 @@
 title: "AI Coding Agents Are Fast, But They Write Like Junior Developers"
 description: "I spent months testing AI agents on a real codebase. They shipped features quickly, but the code quality tells a different story about sustainable development."
 date: 2026-01-28 05:23:27 +0530
-tags: ai, software-development, code-quality, swift, architecture
+tags: rollup, ai, software-development, code-quality, swift, architecture
 image: 'https://images.unsplash.com/photo-1764075832552-bd8cd81cc063?q=1035&w=1035'
 featured: false
 ---
