@@ -517,7 +517,7 @@ html.dark .hero-subtitle {
 
 /* Highlight Card */
 .highlight-section {
-    padding: 5rem 0;
+    padding: 5rem 0 0;
     position: relative;
 }
 
@@ -1471,4 +1471,92 @@ hr {
         margin-left: 50%;
         transform: translateX(-50%);
     }
+}
+
+/* =========================================
+   9. ROLLUP SECTION STYLES
+   ========================================= */
+.rollup-section {
+    background-color: var(--bg-surface-secondary);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.rollup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 1rem;
+}
+
+.dark .rollup-header {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.rollup-title {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 1;
+}
+
+.rollup-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .rollup-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.rollup-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all 0.2s ease;
+    height: 100%;
+}
+
+.rollup-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: var(--nav-shadow);
+}
+
+.rollup-date {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+}
+
+.rollup-heading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-main);
+}
+
+/* 404 Specific Utilities */
+.loading-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid var(--bg-surface-secondary);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
