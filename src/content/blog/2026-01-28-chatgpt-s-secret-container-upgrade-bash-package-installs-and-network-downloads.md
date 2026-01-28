@@ -7,7 +7,7 @@ image: 'https://images.unsplash.com/photo-1765707886613-f4961bbd07dd?q=80&w=988'
 featured: false
 ---
 
-I've been using ChatGPT's code execution feature since it launched nearly three years ago as "Code Interpreter". At some point [OpenAI](https://mgks.dev/tags/open%20ai/) half-heartedly renamed it to "Advanced Data Analysis", which is about as uninspiring as corporate naming gets. The feature has always been useful, letting ChatGPT write and run Python in a sandboxed container to analyze data or generate visualizations.
+I've been using ChatGPT's code execution feature since it launched nearly three years ago as "Code Interpreter". At some point [OpenAI](https://mgks.dev/tags/open-ai/) half-heartedly renamed it to "Advanced Data Analysis", which is about as uninspiring as corporate naming gets. The feature has always been useful, letting ChatGPT write and run Python in a sandboxed container to analyze data or generate visualizations.
 
 Except somewhere in the last few months, OpenAI silently shipped what amounts to a complete overhaul of this system. And of course, they didn't document it anywhere.
 
@@ -47,6 +47,6 @@ I asked ChatGPT to list all its available tools with their exact names, descript
 
 Most of these tools have no public documentation. Developers who want to understand what ChatGPT can and can't do are left reverse engineering the system through experimentation. That's frustrating for something that's supposed to be a developer tool.
 
-OpenAI also needs to come up with better naming for this feature. "Advanced Data Analysis" doesn't describe what this actually is anymore. It's not just analyzing data, it's a full container environment with [bash](https://mgks.dev/tags/engineering/) access, package management, and network capabilities. I'm calling it ChatGPT Containers until they come up with something better.
+OpenAI also needs to come up with better naming for this feature. "Advanced Data Analysis" doesn't describe what this actually is anymore. It's not just analyzing data, it's a full container environment with [bash](https://mgks.dev/tags/bash/) access, package management, and network capabilities. I'm calling it ChatGPT Containers until they come up with something better.
 
 The lack of clear documentation and naming isn't just annoying, it actively limits how useful this feature can be. Developers need to know the boundaries of what's possible, what security guarantees exist, and how the underlying system works. Right now we're all just poking at it and hoping we understand the constraints correctly, which seems like exactly the wrong approach for a tool that's executing arbitrary code.
