@@ -1,33 +1,43 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { slugify } from '../../../utils/slugs';
 
 export async function getStaticPaths({ paginate }) {
+  // 1. Get all posts
   const allPosts = (await getCollection('blog', ({ data }) => {
     return data.date <= new Date(); 
   })).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   
+  // 2. Get unique tags
   const uniqueTags = [...new Set(allPosts.flatMap(post => post.data.tags))];
 
-  return uniqueTags.flatMap(tag => {
-    const filteredPosts = allPosts.filter(post => post.data.tags.includes(tag));
+  // 3. Generate paths
+  return uniqueTags.flatMap(tagName => {
+    // Filter posts that have this specific tag name
+    const filteredPosts = allPosts.filter(post => post.data.tags.includes(tagName));
+    
+    // Create the slug (e.g., "Artificial Intelligence" -> "artificial-intelligence")
+    const tagSlug = slugify(tagName);
+
     return paginate(filteredPosts, {
-      params: { tag },
-      pageSize: 15 // Consistent with blog index
+      params: { tag: tagSlug }, // URL will be /tags/artificial-intelligence
+      props: { tagName },       // Pass the original name "Artificial Intelligence" for display
+      pageSize: 15
     });
   });
 }
 
-const { page } = Astro.props;
-const { tag } = Astro.params;
+const { page, tagName } = Astro.props; // We now get tagName from props
+const { tag } = Astro.params; // 'tag' here is the slug (e.g. artificial-intelligence)
 ---
 
-<Layout title={`Writings tagged with ${tag}`} description={`A collection of writings tagged with ${tag}`}>
+<Layout title={`Writings tagged with ${tagName}`} description={`A collection of writings tagged with ${tagName}`}>
 
   <!-- Consistent Hero -->
   <section class="page-hero">
     <span style="font-family: var(--font-mono); color: var(--accent); font-size: 0.9rem;">Tag</span>
-    <h1 class="hero-title">{tag}<span class="text-accent">.</span></h1>
+    <h1 class="hero-title">{tagName}<span class="text-accent">.</span></h1>
     <p class="hero-desc">
       {page.total} {page.total === 1 ? 'writing' : 'writings'} found
     </p>

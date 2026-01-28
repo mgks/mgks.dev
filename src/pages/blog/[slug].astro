@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { slugify } from '../../utils/slugs';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -41,7 +42,7 @@ const relatedPosts = allPosts
               </h1>
               <div class="filter-group">
                 {entry.data.tags.map(tag => (
-                    <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
+                    <a href={`/tags/${slugify(tag)}`} class="filter-btn">{tag}</a>
                 ))}
               </div>
           </div>

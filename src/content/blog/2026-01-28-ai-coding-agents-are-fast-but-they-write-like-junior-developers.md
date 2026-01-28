@@ -33,7 +33,7 @@ The agent's generated code in the first step had declared tokens as non-optional
 
 I copy-pasted the error back to the agent. Its fix? Add `?? ""` at every call site, substituting an empty string when no token was present.
 
-This technically works. The code compiles. The feature runs. But it's wrong in a subtle, insidious way. The whole point of using optionals was to signal that tokens are optional. The agent threw that away and invented new semantics: an empty string now means "no token available." This is a classic code smell, the kind of [technical debt](https://mgks.dev/tags/architecture/) that accumulates silently until your codebase becomes a minefield.
+This technically works. The code compiles. The feature runs. But it's wrong in a subtle, insidious way. The whole point of using optionals was to signal that tokens are optional. The agent threw that away and invented new semantics: an empty string now means "no token available." This is a classic code smell, the kind of [technical debt](https://mgks.dev/tags/tech/) that accumulates silently until your codebase becomes a minefield.
 
 The correct fix? Add a single `?` to the function argument's type. One character. Keeps the semantics intact. Requires no changes at call sites. Takes five seconds if you understand what optionals are for.
 

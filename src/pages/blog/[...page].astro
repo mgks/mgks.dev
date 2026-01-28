@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { slugify } from '../../utils/slugs';
 
 export async function getStaticPaths({ paginate }) {
   // 1. Get posts for the MAIN LIST (Exclude 'rollup')
@@ -52,11 +53,11 @@ const hiddenTags = sortedTags.filter(t => t !== 'rollup').slice(10);
       <div class="container">
           <div class="filter-group">
               <a href="/blog" class="filter-btn active">All</a>
-              {visibleTags.map(tag => <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>)}
+              {visibleTags.map(tag => <a href={`/tags/${slugify(tag)}`} class="filter-btn">{tag}</a>)}
               {hiddenTags.length > 0 && (
                   <>
                     <div id="hidden-tags" class="filter-group hidden" style="display: contents;">
-                        {hiddenTags.map(tag => <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>)}
+                        {hiddenTags.map(tag => <a href={`/tags/${slugify(tag)}`} class="filter-btn">{tag}</a>)}
                     </div>
                     <button id="tag-toggle-btn" class="tag-toggle-btn"><span id="tag-btn-text">+ More</span></button>
                   </>

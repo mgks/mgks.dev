@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { slugify } from '../utils/slugs';
 
 // Get all valid tags to display suggestions
 const allPosts = await getCollection('blog');
@@ -29,7 +30,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
                 </p>
                 <div class="filter-group">
                     {allTags.slice(0, 10).map(tag => (
-                        <a href={`/tags/${tag}`} class="filter-btn">{tag}</a>
+                        <a href={`/tags/${slugify(tag)}`} class="filter-btn">{tag}</a>
                     ))}
                 </div>
             </div>
