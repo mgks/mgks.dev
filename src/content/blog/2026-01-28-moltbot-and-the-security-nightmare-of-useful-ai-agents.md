@@ -15,7 +15,7 @@ And yet, every time I see another developer hyping it up on social media, I wond
 
 Peter Steinberger, known as @steipete online, built this thing for himself. After stepping away from PSPDFKit, he barely touched his computer for three years. When he finally found his spark again, he channeled it into building Clawd (later Molty, now Moltbot after Anthropic forced a rebrand). The tool started as his "crusted assistant" to manage his digital life and explore human-AI collaboration.
 
-The name change is interesting in itself. He's a self-described "Claudoholic" who named his project after Anthropic's flagship product. They weren't having it. The lobster theme stayed, but the branding had to go. It's a reminder that even in the [open source](https://mgks.dev/tags/open%20source/) world, trademark lawyers are watching.
+The name change is interesting in itself. He's a self-described "Claudoholic" who named his project after Anthropic's flagship product. They weren't having it. The lobster theme stayed, but the branding had to go. It's a reminder that even in the [open source](https://mgks.dev/tags/open-source/) world, trademark lawyers are watching.
 
 What caught my attention wasn't just another developer scratching their own itch. It's how quickly this thing exploded. Over 44,200 stars on GitHub in weeks. Cloudflare's stock jumped 14% in premarket trading because developers were using their infrastructure to run it locally. Social media buzz around an AI agent literally moved markets.
 
