@@ -25,7 +25,7 @@ export const HIGHLIGHT = {
     title: "Currently Building",
     project: "docmd",
     description: "The minimalist, zero-config documentation generator for Node.js developers.",
-    link: "https://github.com/mgks/docmd",
+    link: "https://docmd.io",
     image: "/assets/images/cover-docmd.png",
     tags: ["Node.js", "Markdown", "Documentation"]
 };
@@ -80,7 +80,7 @@ export const LIBRARIES = [
     {
         title: "docmd",
         desc: "Generate minimal, fast & beautiful docs from Markdown. No React, no bloat, just content. Built for developers.",
-        link: "https://docmd.mgks.dev",
+        link: "https://docmd.io",
         tags: ["Automation", "Web App", "Markdown", "CLI", "Node.js", "NPM"],
         icon: ""
     },
