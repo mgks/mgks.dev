@@ -54,6 +54,13 @@ export const APPS = [
         icon: `<svg width="64" height="64" viewBox="0 0 1.92 1.92" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M.32.8v.24M1.28.8v.24" stroke="#737373" stroke-width=".136" stroke-linecap="round"/><path d="M.56.56v.72" stroke="#df1463" stroke-width=".136" stroke-linecap="round"/><path d="M1.04.56v.72m.48-.72v.72M.8.32v1.2" stroke="#737373" stroke-width=".136" stroke-linecap="round"/></svg>`
     },
     {
+        title: "WhereDidMyTaxGo",
+        desc: "A simple, visual breakdown of how government budgets spend your tax money, per person.",
+        link: "https://tax.mgks.dev",
+        tags: ["Government", "Tax", "Web App", "Node.js"],
+        icon: `<svg height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 44 44" xml:space="preserve" fill="" stroke=""><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path style="fill:#F0C419;" d="M22,44C9.869,44,0,34.131,0,22S9.869,0,22,0s22,9.869,22,22S34.131,44,22,44z"></path> <path style="fill:#FBD490;" d="M22.745,32h-1.491C20.009,32,19,30.991,19,29.745V13.255C19,12.009,20.009,11,21.255,11h1.491 C23.991,11,25,12.009,25,13.255v16.491C25,30.991,23.991,32,22.745,32z"></path> <path style="fill:#F0C419;" d="M22,44C9.869,44,0,34.131,0,22S9.869,0,22,0s22,9.869,22,22S34.131,44,22,44z"></path> <path style="fill:#FBD490;" d="M22.745,32h-1.491C20.009,32,19,30.991,19,29.745V13.255C19,12.009,20.009,11,21.255,11h1.491 C23.991,11,25,12.009,25,13.255v16.491C25,30.991,23.991,32,22.745,32z"></path> </g> </g></svg>`
+    },
+    {
         title: "thirsty-ai",
         desc: "Calculate hidden environmental cost of modern Artificial Intelligence usage.",
         link: "https://thirstyai.mgks.dev",
@@ -63,7 +70,7 @@ export const APPS = [
     {
         title: "PlanTrip",
         desc: "Visualize, organize, and manage itineraries and travel stops with a clean, visual timeline.",
-        link: "https://plantrip.mgks.dev",
+        link: "https://trip.mgks.dev",
         tags: ["Planner", "Calendar", "Travel", "TailwindCSS"],
         icon: ""
     }
