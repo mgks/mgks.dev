@@ -78,21 +78,24 @@ main {
 }
 
 .gsc-comment-box {
-  border-radius: 1.5rem !important;
+  border-radius: 1rem !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   background-color: #121212 !important;
 }
 
-.gsc-comment-box-textarea {
-  border-radius: 1rem !important;
-  background-color: #050505 !important;
-  color: #e4e4e7 !important;
+.gsc-comment-box-tabs{
+  border-start-end-radius: 1rem !important;
+  border-start-start-radius: 1rem !important;
 }
 
-.gsc-comment-box-buttons {
-  border-bottom-left-radius: 1.5rem !important;
-  border-bottom-right-radius: 1.5rem !important;
-  background-color: rgba(255, 255, 255, 0.02) !important;
+#__next .rounded-t{
+  border-start-end-radius: .5rem !important;
+  border-start-start-radius: .5rem !important;
+}
+
+.gsc-comment-box-textarea {
+  background-color: #050505 !important;
+  color: #e4e4e7 !important;
 }
 
 .gsc-reply {
@@ -102,4 +105,8 @@ main {
 .gsc-upvote-button, .gsc-reactions-button {
   border-radius: 0.75rem !important;
   background-color: #18181b !important;
+}
+
+.btn-primary{
+  border-radius: 0.8rem !important;
 }
