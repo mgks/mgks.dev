@@ -1,0 +1,105 @@
+main {
+  --color-prettylights-syntax-comment: #a1a1aa;
+  --color-prettylights-syntax-constant: #ff570d;
+  --color-prettylights-syntax-entity: #ff570d;
+  --color-prettylights-syntax-storage-modifier-import: #e4e4e7;
+  --color-prettylights-syntax-entity-tag: #ff570d;
+  --color-prettylights-syntax-keyword: #ff570d;
+  --color-prettylights-syntax-string: #e4e4e7;
+  --color-prettylights-syntax-variable: #ff570d;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #ef4444;
+  --color-prettylights-syntax-invalid-illegal-text: #e4e4e7;
+  --color-prettylights-syntax-invalid-illegal-bg: #922323;
+  --color-prettylights-syntax-carriage-return-text: #e4e4e7;
+  --color-prettylights-syntax-carriage-return-bg: #ad2e2c;
+  --color-prettylights-syntax-string-regexp: #ff570d;
+  --color-prettylights-syntax-markup-list: #eac55f;
+  --color-prettylights-syntax-markup-heading: #ff570d;
+  --color-prettylights-syntax-markup-italic: #e4e4e7;
+  --color-prettylights-syntax-markup-bold: #e4e4e7;
+  --color-prettylights-syntax-markup-deleted-text: #ffd8d3;
+  --color-prettylights-syntax-markup-deleted-bg: #78191b;
+  --color-prettylights-syntax-markup-inserted-text: #b4f1b4;
+  --color-prettylights-syntax-markup-inserted-bg: #1b4721;
+  --color-prettylights-syntax-markup-changed-text: #ffddb0;
+  --color-prettylights-syntax-markup-changed-bg: #682d0f;
+  --color-prettylights-syntax-markup-ignored-text: #e4e4e7;
+  --color-prettylights-syntax-markup-ignored-bg: #255ab2;
+  --color-prettylights-syntax-meta-diff-range: #ff570d;
+  --color-prettylights-syntax-brackethighlighter-angle: #a1a1aa;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #a1a1aa;
+  --color-prettylights-syntax-constant-other-reference-link: #ff570d;
+
+  --color-btn-text: #e4e4e7;
+  --color-btn-bg: #18181b;
+  --color-btn-border: rgba(255, 255, 255, 0.1);
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: #27272a;
+  --color-btn-hover-border: rgba(255, 255, 255, 0.2);
+  --color-btn-active-bg: #3f3f46;
+  --color-btn-active-border: rgba(255, 255, 255, 0.2);
+  --color-btn-selected-bg: #27272a;
+
+  --color-btn-primary-text: #fff;
+  --color-btn-primary-bg: #ff570d;
+  --color-btn-primary-border: rgba(255, 255, 255, 0.1);
+  --color-btn-primary-hover-bg: #e04800;
+
+  --color-fg-default: #e4e4e7;
+  --color-fg-muted: #a1a1aa;
+  --color-fg-subtle: #71717a;
+  --color-canvas-default: transparent;
+  --color-canvas-overlay: #121212;
+  --color-canvas-inset: #050505;
+  --color-canvas-subtle: #18181b;
+  --color-border-default: rgba(255, 255, 255, 0.1);
+  --color-border-muted: rgba(255, 255, 255, 0.05);
+  --color-neutral-muted: rgba(255, 255, 255, 0.1);
+  --color-accent-fg: #ff570d;
+  --color-accent-emphasis: #ff570d;
+  --color-accent-muted: rgba(255, 87, 13, 0.4);
+  --color-accent-subtle: rgba(255, 87, 13, 0.1);
+  --color-success-fg: #10b981;
+  --color-attention-fg: #f59e0b;
+  --color-danger-fg: #ef4444;
+}
+
+/* Custom UI Tweaks */
+.gsc-comment {
+  border-radius: 1.5rem !important;
+}
+
+.gsc-comment-header {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border-top-left-radius: 1.5rem !important;
+  border-top-right-radius: 1.5rem !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.gsc-comment-box {
+  border-radius: 1.5rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: #121212 !important;
+}
+
+.gsc-comment-box-textarea {
+  border-radius: 1rem !important;
+  background-color: #050505 !important;
+  color: #e4e4e7 !important;
+}
+
+.gsc-comment-box-buttons {
+  border-bottom-left-radius: 1.5rem !important;
+  border-bottom-right-radius: 1.5rem !important;
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.gsc-reply {
+  border-radius: 1rem !important;
+}
+
+.gsc-upvote-button, .gsc-reactions-button {
+  border-radius: 0.75rem !important;
+  background-color: #18181b !important;
+}

@@ -561,10 +561,11 @@ html.dark .highlight-card {
 }
 
 .highlight-content {
-    flex: 1;
+    flex: 2.5;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin-right: 2rem;
 }
 
 .highlight-content .hero-desc {
@@ -610,15 +611,14 @@ html.dark .highlight-card {
 
 .highlight-image-wrap {
     flex: 1;
-    max-width: 400px;
 }
 
 .highlight-image {
-    border-radius: 1rem;
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
-    transform: rotate(2deg);
+    border-radius: 100%;
+    box-shadow: 0 0 70px -25px rgb(255 87 13 / 22%);
+    /* transform: rotate(2deg); */
     transition: transform 0.5s ease;
-    border: 1px solid var(--border-color);
+    border: 1px solid rgba(255, 87, 13, 0.3);
 }
 
 .highlight-card:hover .highlight-image {
@@ -1024,6 +1024,22 @@ html.dark .highlight-card {
 
 .project-card.hidden {
     display: none;
+}
+
+.project-card.is-archived {
+    opacity: 0.7;
+    background-color: #d1d1d12e;
+    filter: blur(.7px);
+}
+
+.project-card.is-disabled {
+    cursor: default;
+}
+
+.project-card.is-disabled:hover {
+    transform: none;
+    border-color: var(--border-color);
+    box-shadow: none;
 }
 
 /* =========================================
@@ -1559,4 +1575,13 @@ hr {
 
 @keyframes spin {
     to { transform: rotate(360deg); }
+}
+
+.project-card.is-archived:hover {
+    opacity: 0.9;
+    filter: none;
+}
+.about-me strong {
+    color: var(--accent-hover);
+    font-weight: 600;
 }

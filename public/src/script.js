@@ -57,6 +57,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         card.classList.add('hidden');
                     }
                 });
+
+                // Hide sections if empty
+                const sections = document.querySelectorAll('.project-section');
+                sections.forEach(section => {
+                    const visibleCards = section.querySelectorAll('.project-card:not(.hidden)');
+                    if (visibleCards.length === 0) {
+                        section.classList.add('hidden');
+                    } else {
+                        section.classList.remove('hidden');
+                    }
+                });
             });
         });
     }
