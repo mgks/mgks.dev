@@ -7,3 +7,4 @@ node_modules/
 _old/
 genctx.context.md
 genctx.config.json
+/dist
