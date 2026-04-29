@@ -86,6 +86,7 @@ main {
 .gsc-comment-box-tabs{
   border-start-end-radius: 1rem !important;
   border-start-start-radius: 1rem !important;
+  border-top-width: 0px !important;
 }
 
 #__next .rounded-t{
@@ -108,5 +109,14 @@ main {
 }
 
 .btn-primary{
-  border-radius: 0.8rem !important;
+  border-color: inherit !important;
+}
+
+#__next .rounded-md{
+  border-radius: 1.5rem !important;
+}
+
+.gsc-comment-box{
+  width: 99% !important;
+  margin: 5px auto !important;
 }
