@@ -1,17 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Comments from '../../components/Comments.astro';
 import { slugify } from '../../utils/slugs';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+    params: { slug: entry.id }, props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
+
 
 const allPosts = await getCollection('blog');
 const relatedPosts = allPosts
@@ -53,13 +55,15 @@ const relatedPosts = allPosts
         <Content />
       </article>
 
+      <Comments />
+
       <!-- Read Next -->
       {relatedPosts.length > 0 && (
         <div style="padding-top: 3rem; margin-bottom: 4rem;">
             <h2 class="project-section-title" style="margin-bottom: 2rem;">Read Next</h2>
             <div class="grid grid-2">
                 {relatedPosts.map(post => (
-                    <a href={`/blog/${post.slug}`} class="related-card group">
+                    <a href={`/blog/${post.id}`} class="related-card group">
                         <div class="flex items-center gap-3 text-xs font-mono text-muted mb-1">
                             <time>{post.data.date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</time>
                             <!--{post.data.tags[0] && <span class="text-accent">#{post.data.tags[0]}</span>}-->

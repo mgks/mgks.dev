@@ -1,0 +1,30 @@
+{
+  "SITE": {
+    "title": "mgks.dev",
+    "description": "Open source, problem solving, tutorials, tools and stories by Ghazi Khan.",
+    "url": "https://mgks.dev",
+    "author": "Ghazi Khan",
+    "twitter": "@_enigmazi"
+  },
+  "SOCIALS": [
+    { "name": "GitHub", "url": "https://github.com/mgks", "icon": "github" },
+    { "name": "YouTube", "url": "https://youtube.com/@mgksdev", "icon": "youtube" },
+    { "name": "X", "url": "https://x.com/docmd_io", "icon": "twitter" }
+  ],
+  "SPONSOR_URL": "https://github.com/sponsors/mgks",
+  "TECH_STACK": [
+    "JavaScript",
+    "TypeScript",
+    "Node.js",
+    "Bun"
+  ],
+  "HIGHLIGHT": {
+    "enabled": true,
+    "title": "Currently Building",
+    "project": "docmd",
+    "description": "Build production-ready documentation from Markdown in seconds. No React, no bloat, just content.",
+    "link": "https://docmd.io",
+    "image": "/assets/images/logo-docmd.webp",
+    "tags": ["Documentation", "Markdown", "CLI", "Bun", "Node.js", "TypeScript"]
+  }
+}

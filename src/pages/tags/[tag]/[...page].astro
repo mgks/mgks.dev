@@ -51,7 +51,7 @@ const { tag } = Astro.params; // 'tag' here is the slug (e.g. artificial-intelli
     
     <div class="archive-list">
         {page.data.map(post => (
-            <a href={`/blog/${post.slug}`} class="archive-item">
+            <a href={`/blog/${post.id}`} class="archive-item">
                 <time class="archive-date">
                     {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </time>

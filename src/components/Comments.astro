@@ -1,0 +1,98 @@
+<div class="comments-wrapper">
+  <section class="giscus-container">
+    <div id="giscus-container"></div>
+  </section>
+</div>
+
+<script is:inline>
+  function getGiscusTheme() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const origin = window.location.origin;
+    
+    // Check if running on localhost to avoid CORS/Private Network errors with custom themes
+    // Giscus (public) cannot access CSS files on your private localhost.
+    const isLocalhost = origin.includes('localhost') || origin.includes('127.0.0.1');
+    if (isLocalhost) {
+      return isDark ? 'dark_dimmed' : 'light';
+    }
+
+    return isDark 
+      ? `${origin}/src/giscus-dark.css` 
+      : `${origin}/src/giscus-light.css`;
+  }
+
+  function loadGiscus() {
+    const theme = getGiscusTheme();
+    const script = document.createElement('script');
+    script.src = "https://giscus.app/client.js";
+    script.setAttribute('data-repo', "mgks/mgks.dev");
+    script.setAttribute('data-repo-id', "R_kgDOMm8j4g");
+    script.setAttribute('data-category', "Announcements");
+    script.setAttribute('data-category-id', "DIC_kwDOMm8j4s4Ch10F");
+    script.setAttribute('data-mapping', "pathname");
+    script.setAttribute('data-strict', "0");
+    script.setAttribute('data-reactions-enabled', "1");
+    script.setAttribute('data-emit-metadata', "0");
+    script.setAttribute('data-input-position', "bottom");
+    script.setAttribute('data-theme', theme);
+    script.setAttribute('data-lang', "en");
+    script.setAttribute('crossorigin', "anonymous");
+    script.async = true;
+    
+    const container = document.getElementById('giscus-container');
+    if (container) container.appendChild(script);
+  }
+
+  function updateGiscusTheme() {
+    const theme = getGiscusTheme();
+    const iframe = document.querySelector('iframe.giscus-frame');
+    if (!iframe) return;
+
+    iframe.contentWindow.postMessage(
+      { giscus: { setConfig: { theme: theme } } },
+      'https://giscus.app'
+    );
+  }
+
+  // Initial load
+  loadGiscus();
+
+  // Observe theme changes on the html element
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === 'class') {
+        updateGiscusTheme();
+      }
+    });
+  });
+
+  observer.observe(document.documentElement, { attributes: true });
+</script>
+
+<style>
+  .comments-wrapper {
+    width: 100%;
+    border-top: 1px solid var(--border-color);
+    margin-top: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .giscus-container {
+    max-width: 50rem;
+    margin: 0 auto;
+    padding: 2.5rem;
+    background-color: var(--bg-surface-secondary);
+    border-radius: 2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .giscus-container {
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+    }
+  }
+</style>
