@@ -3,7 +3,7 @@ title: "The Hidden Complexity Behind Meta's Friend Bubbles"
 description: "A deeper look at why seemingly simple features demand the deepest engineering work"
 date: 2026-05-25 12:54:12 +0530
 tags: rollup, software-engineering, machine-learning, mobile-development
-image: 'https://images.unsplash.com/photo-1765707886613-f4961bbd7a5d?q=80&w=988'
+image: 'https://images.unsplash.com/photo-1666462296991-45c5eb42067c?q=80&w=2076'
 featured: false
 ---
 
