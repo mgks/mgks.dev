@@ -8,15 +8,6 @@
             "icon": "<svg width='64' height='64' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z' stroke='#2a2a2a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M16 8 2 22' stroke='#2a2a2a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M17.5 15H9' stroke='#2a2a2a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>"
         },
         {
-            "title": "docmd search",
-            "desc": "Offline semantic search engine for docs.",
-            "link": "https://search.docmd.io",
-            "tags": ["Search", "Docs", "Web App", "CLI", "Library", "Node.js", "TypeScript"],
-            "icon": "<svg width='64' height='64' viewBox='0 0 1.92 1.92' fill='none' xmlns='http://www.w3.org/2000/svg' transform='rotate(-270)'><path d='M1.44.88a.56.56 0 1 1-1.12 0 .56.56 0 0 1 1.12 0' fill='#e74790'/><path d='m1.6 1.6-.16-.16' stroke='#2a2a2a' stroke-width='.16' stroke-linecap='round'/></svg>",
-            "featured": false,
-            "display": false
-        },
-        {
             "title": "memoryblock",
             "desc": "Private AI workspaces that run locally, using fewer tokens and less compute.",
             "link": "https://memoryblock.io",
@@ -41,6 +32,13 @@
         }
     ],
     "LIBRARIES": [
+        {
+            "title": "docmd search",
+            "desc": "Offline semantic search results powered by local embeddings in the browser. Zero network APIs, zero costs.",
+            "link": "https://docmd.io/search",
+            "tags": ["Search", "Docs", "Web App", "CLI", "Library", "Node.js", "TypeScript"],
+            "icon": "<svg width='30' height='30' viewBox='0 0 1.92 1.92' fill='none' xmlns='http://www.w3.org/2000/svg' transform='rotate(-270)'><path d='M1.44.88a.56.56 0 1 1-1.12 0 .56.56 0 0 1 1.12 0' fill='#e74790'/><path d='m1.6 1.6-.16-.16' stroke='#2a2a2a' stroke-width='.16' stroke-linecap='round'/></svg>"
+        },
         { 
             "title": "Android Smart WebView",
             "desc": "A simple use webview integrated with native features & plugin support for building hybrid apps.",
