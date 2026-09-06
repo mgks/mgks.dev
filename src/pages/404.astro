@@ -107,7 +107,7 @@ const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
                     if (match) {
                         showRedirect();
                         setTimeout(() => {
-                            window.location.href = `/blog/${match.slug}`;
+                            window.location.href = `/rollups/${match.slug}`;
                         }, 500);
                         return;
                     }

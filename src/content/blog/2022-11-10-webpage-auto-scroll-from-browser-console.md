@@ -2,7 +2,7 @@
 title: "Webpage Auto Scroll from Browser Console"
 description: "Automate scroll through huge web pages with a small JavaScript snippet from your browser console, quick and easy."
 date: 2022-11-10 17:00:00 +0530
-tags: console, log, javascript
+tags: rollup, console, log, javascript
 image: b4
 ---
 

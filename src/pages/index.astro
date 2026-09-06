@@ -9,12 +9,8 @@ const allPosts = (await getCollection('blog', ({ data }) => {
     return data.date <= new Date(); 
 })).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
-const featuredPosts = allPosts.filter(p => p.data.featured).slice(0, 2);
-
-// Rollups: Tagged rollup, not featured
-const rollupPosts = allPosts
-    .filter(p => p.data.tags.includes('rollup') && !p.data.featured)
-    .slice(0, 3); // 3 items looks best in the new grid
+// Latest rollups: show 6 latest items
+const rollupPosts = allPosts.slice(0, 6);
 ---
 
 <Layout title="mgks.dev" description="Open source, problem solving and stories by Ghazi Khan.">
@@ -34,7 +30,7 @@ const rollupPosts = allPosts
         </p>
         <div style="margin-bottom: 3rem;">
             <a href="/projects" class="icon-btn" style="width: auto; padding: 0.75rem 1.5rem; border-radius: 99px; border: 1px solid var(--border-color); font-size: 0.9rem;">
-                See my work
+                See my projects
             </a>
         </div>
         <TechStack />
@@ -44,11 +40,11 @@ const rollupPosts = allPosts
 
     <section class="section-py" style="margin: 2rem 0;">
         <div class="grid grid-2">
-            {APPS.filter(app => app.featured && app.display !== false).map(app => {
+            {APPS.filter(app => app.featured && app.display !== false).slice(0, 2).map(app => {
                 const CardTag = app.link ? 'a' : 'div';
                 const cardProps = app.link 
-                    ? { href: app.link, target: "_blank", class: `project-card app-card ${app.archived ? 'is-archived' : ''}`, style: "padding: 2.5rem;" }
-                    : { class: `project-card app-card is-disabled ${app.archived ? 'is-archived' : ''}`, style: "padding: 2.5rem;" };
+                    ? { href: app.link, target: "_blank", rel: "noopener noreferrer", class: `project-card app-card ${app.archived ? 'is-archived' : ''}` }
+                    : { class: `project-card app-card is-disabled ${app.archived ? 'is-archived' : ''}` };
 
                 return (
                     <CardTag {...cardProps}>
@@ -56,7 +52,7 @@ const rollupPosts = allPosts
                             {/* Logo / Icon */}
                             <div class="app-logo-box" style="width: 4.5rem; height: 4.5rem; border-radius: 1.25rem;">
                                 {app.icon && app.icon.startsWith('<svg') ? (
-                                    <Fragment set:html={app.icon.replace('width="64"', 'width="32"').replace('height="64"', 'height="32"')} />
+                                    <Fragment set:html={app.icon.replace(/width=['"]\d+['"]/, 'width="32"').replace(/height=['"]\d+['"]/, 'height="32"')} />
                                 ) : app.icon ? (
                                     <img src={app.icon} alt={app.title} />
                                 ) : (
@@ -65,8 +61,8 @@ const rollupPosts = allPosts
                             </div>
                         </div>
 
-                        <h3 class="app-title" style="font-size: 2rem;">{app.title}</h3>
-                        <p class="app-desc" style="font-size: 1.1rem; line-height: 1.5;">{app.desc}</p>
+                        <h3 class="app-title">{app.title}</h3>
+                        <p class="app-desc">{app.desc}</p>
                         
                         <div class="tag-row">
                             {app.tags.map(tag => <span class="tag-pill">{tag}</span>)}
@@ -77,52 +73,26 @@ const rollupPosts = allPosts
         </div>
     </section>
 
-    <!-- Featured Writings -->
-    {featuredPosts.length > 0 && (
-        <section class="section-py">
-            <div class="section-header">
-                <h2 class="section-title">Featured Writings<span class="text-accent">.</span></h2>
-                <a href="/blog" class="section-link">Read all &rarr;</a>
-            </div>
-
-            <div class="grid grid-2">
-                {featuredPosts.map(post => (
-                    <a href={`/blog/${post.id}`} class="blog-card">
-                        <div class="card-cover">
-                            {post.data.image ? (
-                                <img src={post.data.image} alt={post.data.title} />
-                            ) : (
-                                <div style="display: flex; align-items: center; justify-content: center; height: 100%; opacity: 0.1;">.*</div>
-                            )}
-                            <div class="date-badge">
-                                {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="card-title">{post.data.title}</h3>
-                            <p class="card-desc">{post.data.description}</p>
-                        </div>
-                    </a>
-                ))}
-            </div>
-        </section>
-    )}
-
-    <!-- Latest Rollups (New Style) -->
+    <!-- Latest Rollups -->
     <section class="section-py" style="margin-top: 3rem;">
         <div class="rollup-section">
             <div class="rollup-header">
                 <h2 class="rollup-title">Latest Rollups</h2>
-                <a href="/tags/rollup" class="section-link">View all &rarr;</a>
+                <a href="/rollups" class="section-link">View all &rarr;</a>
             </div>
             
             <div class="rollup-grid">
                 {rollupPosts.map(post => (
-                    <a href={`/blog/${post.id}`} class="rollup-card">
+                    <a href={`/rollups/${post.id}`} class="rollup-card">
                         <div class="rollup-date">
-                            {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                            {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                         </div>
                         <h3 class="rollup-heading">{post.data.title}</h3>
+                        {post.data.description && (
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                {post.data.description}
+                            </p>
+                        )}
                     </a>
                 ))}
                 

@@ -5,14 +5,22 @@
             "desc": "Build production-ready documentation from Markdown in seconds. No React, no bloat, just content.",
             "link": "https://docmd.io",
             "tags": ["Documentation", "Markdown", "Web App", "CLI", "Library", "Node.js", "TypeScript"],
-            "icon": "<svg width='64' height='64' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z' stroke='#2a2a2a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M16 8 2 22' stroke='#2a2a2a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/><path d='M17.5 15H9' stroke='#2a2a2a' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>"
+            "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12.67 19a2 2 0 0 0 1.416-.588l6.154-6.172a6 6 0 0 0-8.49-8.49L5.586 9.914A2 2 0 0 0 5 11.328V18a1 1 0 0 0 1 1z\" stroke=\"#2a2a2a\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M16 8 2 22\" stroke=\"#2a2a2a\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M17.5 15H9\" stroke=\"#2a2a2a\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>"
         },
         {
             "title": "memoryblock",
             "desc": "Private AI workspaces that run locally, using fewer tokens and less compute.",
             "link": "https://memoryblock.io",
             "tags": ["AI", "LLM", "Private", "Local", "Web App", "CLI", "Library", "Bun", "TypeScript"],
-            "icon": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='#AF52DE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-hexagon-icon lucide-hexagon'><path d='M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z'/></svg>",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#AF52DE\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z\"/></svg>",
+            "featured": true
+        },
+        {
+            "title": "AIMonitor",
+            "desc": "Native macOS menu bar app for monitoring AI usage, quotas, and provider status in real time.",
+            "link": "https://github.com/mgks/AIMonitor",
+            "tags": ["macOS", "Swift", "AI", "Menu Bar", "Open Source"],
+            "icon": "<svg width=\"64\" height=\"64\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 24C5.4 24 0 18.6 0 12S5.4 0 12 0s12 5.4 12 12-5.4 12-12 12zm0-22C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z\" fill=\"#00a0c6\"/><rect x=\"2\" y=\"16\" width=\"20\" height=\"2\" fill=\"#00a0c6\"/><path d=\"M12 18c-.2 0-.3 0-.5-.1-.5-.3-.6-.9-.4-1.4l5-8.7c.3-.5.9-.6 1.4-.4.5.3.6.9.4 1.4l-5 8.7c-.2.5-.6.5-.9.5z\" fill=\"#00a0c6\"/></svg>",
             "featured": true
         },
         {
@@ -20,44 +28,85 @@
             "desc": "Visualise any GitHub repository folder structure. Available as a web app, CLI tool, and node.js library.",
             "link": "https://githubtree.mgks.dev",
             "tags": ["Web App", "API", "CLI", "Node.js", "GitHub"],
-            "icon": "<svg height='64' width='64' xmlns='http://www.w3.org/2000/svg' viewBox='-267 288.9 264.5 225.1' xml:space='preserve'><g stroke-width='0'/><g stroke-linecap='round' stroke-linejoin='round'/><path d='M-21.8 354.4c-.8-.9-1.3-2.3-1.2-3.5.9-20.1-1.8-39.6-8.6-58.6-.9-2.4-2-3.3-4.5-2.6-5.6 1.7-11.4 3-16.9 5-15.2 5.5-29.1 13.5-42.6 22.2-1.4.9-3.5 1.5-5.2 1.2-22.1-3.9-44.3-3.7-66.5-.3-2.2.3-5-.2-6.8-1.3-15.7-10.2-31.7-20.2-50-25-15.1-4-12-4.8-16.3 8.9-5.1 16.4-7.1 33.4-6 50.6.1 1.2-.8 2.7-1.6 3.8-6.6 7.9-11.7 16.6-14.8 26.4-6 19-4.8 38.2-1 57.3 7.5 37.5 32.8 63.8 70.2 70.3 19.3 3.4 39.2 3.7 57.3 5.2 20.2-1.5 38.9-1.6 57.1-4.5 31.8-5.1 55.8-22 67.8-52.7 4.2-10.7 6.5-22.4 7.9-33.8 3.2-25.1-1.1-48.7-18.3-68.6m-17.7 104.4c-3.3 15.6-12.4 26.3-27.6 31.8-14.7 5.4-29.9 7.6-45.4 8.6-7.5.5-15 .1-22.5.1-20.2.4-40.4-.4-59.9-6.2-24.5-7.3-35.5-21.9-36.2-47.5-.3-9.1.7-17.9 5-26.1 8.5-16.5 23.2-22.3 40.6-22.6 9.5-.1 19.1.7 28.7 1.6 20.1 1.8 40-.1 60-1.2 8.8-.5 17.8-.7 26.4.8 18.5 3.2 32.5 21.6 32.8 42.3 0 6.1-.7 12.4-1.9 18.4' /><path d='M-191.5 424.5c-5.5 5.7-7.4 12.9-7.7 19.3 0 9.6 2.8 17.3 7.7 22.3 6.8 6.9 16.1 6.7 22.6-.3 9.8-10.6 9.7-30.5 0-41-6.5-7.1-16-7.2-22.6-.3m92.1-.8c-11.2 10.3-11.2 33 0 43.2 6.5 5.9 15.3 5.6 21.4-.7 5.6-5.8 7.6-13.1 7.8-21-.2-7.9-2.2-15.1-7.9-20.9-6.1-6.3-14.9-6.5-21.3-.6' /></svg>",
-            "featured": true
-        },
-        {
-            "title": "Migrator",
-            "desc": "Migrate notes between Google Keep, Apple Notes, Evernote, and Notion.",
-            "link": "https://migrator.mgks.dev",
-            "tags": ["Google Keep", "Apple Notes", "Evernote", "Notion"],
-            "icon": "<svg width='64' height='64' viewBox='149.332 85.334 761.6 853.334' class='icon' xmlns='http://www.w3.org/2000/svg'><g stroke-width='0'/><g stroke-linecap='round' stroke-linejoin='round'/><path d='M149.332 853.332V170.668c0-46.934 38.4-85.334 85.334-85.334h512c46.932 0 85.332 38.4 85.332 85.334v682.666c0 46.934-38.4 85.334-85.332 85.334h-512c-46.934 0-85.334-38.4-85.334-85.334' fill='#fbcc00'/><path d='M910.932 512 682.666 704V320z' fill='#e08200'/><path d='M298.668 448h490.666v128H298.668z' fill='#e08200'/></svg>"
+            "icon": "<svg height=\"64\" width=\"64\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"-267 288.9 264.5 225.1\" xml:space=\"preserve\"><g stroke-width=\"0\"/><g stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M-21.8 354.4c-.8-.9-1.3-2.3-1.2-3.5.9-20.1-1.8-39.6-8.6-58.6-.9-2.4-2-3.3-4.5-2.6-5.6 1.7-11.4 3-16.9 5-15.2 5.5-29.1 13.5-42.6 22.2-1.4.9-3.5 1.5-5.2 1.2-22.1-3.9-44.3-3.7-66.5-.3-2.2.3-5-.2-6.8-1.3-15.7-10.2-31.7-20.2-50-25-15.1-4-12-4.8-16.3 8.9-5.1 16.4-7.1 33.4-6 50.6.1 1.2-.8 2.7-1.6 3.8-6.6 7.9-11.7 16.6-14.8 26.4-6 19-4.8 38.2-1 57.3 7.5 37.5 32.8 63.8 70.2 70.3 19.3 3.4 39.2 3.7 57.3 5.2 20.2-1.5 38.9-1.6 57.1-4.5 31.8-5.1 55.8-22 67.8-52.7 4.2-10.7 6.5-22.4 7.9-33.8 3.2-25.1-1.1-48.7-18.3-68.6m-17.7 104.4c-3.3 15.6-12.4 26.3-27.6 31.8-14.7 5.4-29.9 7.6-45.4 8.6-7.5.5-15 .1-22.5.1-20.2.4-40.4-.4-59.9-6.2-24.5-7.3-35.5-21.9-36.2-47.5-.3-9.1.7-17.9 5-26.1 8.5-16.5 23.2-22.3 40.6-22.6 9.5-.1 19.1.7 28.7 1.6 20.1 1.8 40-.1 60-1.2 8.8-.5 17.8-.7 26.4.8 18.5 3.2 32.5 21.6 32.8 42.3 0 6.1-.7 12.4-1.9 18.4\" /><path d=\"M-191.5 424.5c-5.5 5.7-7.4 12.9-7.7 19.3 0 9.6 2.8 17.3 7.7 22.3 6.8 6.9 16.1 6.7 22.6-.3 9.8-10.6 9.7-30.5 0-41-6.5-7.1-16-7.2-22.6-.3m92.1-.8c-11.2 10.3-11.2 33 0 43.2 6.5 5.9 15.3 5.6 21.4-.7 5.6-5.8 7.6-13.1 7.8-21-.2-7.9-2.2-15.1-7.9-20.9-6.1-6.3-14.9-6.5-21.3-.6\" /></svg>"
         }
     ],
     "LIBRARIES": [
+        {
+            "title": "docmd assistant",
+            "desc": "Universal headless AI Assistant engine with extensible tool execution and custom relay support.",
+            "link": "https://docmd.io/assistant/",
+            "tags": ["AI", "Assistant", "LLM", "Documentation", "TypeScript", "Node.js"],
+            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z\"/></svg>"
+        },
         {
             "title": "docmd search",
             "desc": "Offline semantic search results powered by local embeddings in the browser. Zero network APIs, zero costs.",
             "link": "https://docmd.io/search",
             "tags": ["Search", "Docs", "Web App", "CLI", "Library", "Node.js", "TypeScript"],
-            "icon": "<svg width='30' height='30' viewBox='0 0 1.92 1.92' fill='none' xmlns='http://www.w3.org/2000/svg' transform='rotate(-270)'><path d='M1.44.88a.56.56 0 1 1-1.12 0 .56.56 0 0 1 1.12 0' fill='#e74790'/><path d='m1.6 1.6-.16-.16' stroke='#2a2a2a' stroke-width='.16' stroke-linecap='round'/></svg>"
+            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"11\" cy=\"11\" r=\"8\"/><line x1=\"21\" y1=\"21\" x2=\"16.65\" y2=\"16.65\"/></svg>"
+        },
+        {
+            "title": "aiplug",
+            "desc": "A lightweight runtime that unifies 110+ AI providers behind a single, OpenAI-compatible API.",
+            "link": "https://github.com/mgks/aiplug",
+            "tags": ["AI", "LLM", "API", "Runtime", "OpenAI", "Go"],
+            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M12 22v-5\"/><path d=\"M9 8V2\"/><path d=\"M15 8V2\"/><path d=\"M18 8v5a6 6 0 0 1-12 0V8z\"/></svg>"
         },
         { 
             "title": "Android Smart WebView",
-            "desc": "A simple use webview integrated with native features & plugin support for building hybrid apps.",
+            "desc": "A simple-to-use WebView framework integrated with advanced native features & plugin support for hybrid apps.",
             "link": "https://github.com/mgks/Android-SmartWebView",
-            "tags": ["Framework", "Android", "Java", "WebView", "Hybrid"],
-            "icon": ""
+            "tags": ["Framework", "Android", "Java", "Kotlin", "WebView", "Hybrid"],
+            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 100 100\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"50\" cy=\"50\" r=\"44\" stroke=\"currentColor\" stroke-width=\"6\" fill=\"currentColor\" fill-opacity=\"0.1\"/><text x=\"50\" y=\"59\" font-family=\"system-ui, -apple-system, sans-serif\" font-size=\"26\" font-weight=\"800\" text-anchor=\"middle\" fill=\"currentColor\" letter-spacing=\"-0.5\">SWV</text></svg>"
+        },
+        {
+            "title": "Migrator",
+            "desc": "Migrate notes between Google Keep, Apple Notes, Evernote, and Notion.",
+            "link": "https://migrator.mgks.dev",
+            "tags": ["Web App", "Tool", "Notion", "Apple Notes", "Evernote", "Google Keep"],
+            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7 16V4\"/><path d=\"M7 4l-3 3\"/><path d=\"M7 4l3 3\"/><path d=\"M17 8v12\"/><path d=\"M17 20l-3-3\"/><path d=\"M17 20l3-3\"/></svg>"
+        },
+        {
+            "title": "embed-lite",
+            "desc": "Lightweight tool for embedding content from various sources into web pages.",
+            "link": "https://embed.mgks.dev/",
+            "tags": ["Web App", "Library", "Embed", "OpenGraph", "TypeScript", "Node.js"],
+            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"13 2 3 14 12 14 11 22 21 10 12 10 13 2\"/></svg>"
+        },
+        {
+            "title": "automation-hub",
+            "desc": "The largest searchable directory of community n8n workflows. A fully automated, self-updating static site.",
+            "link": "https://hub.mgks.dev",
+            "tags": ["Web App", "Automation", "n8n", "Workflows", "Directory"],
+            "icon": "<svg width=\"24\" height=\"24\" viewBox=\"0 0 100 100\" fill=\"currentColor\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M94.768 24.796c2.733 1.635 4.243 3.902 5.232 6.871.213 2.915.242 5.455-1.333 8l-.354.629C96.917 42.53 94.551 44.07 92 44.667c-3.238.659-6.121.084-8.901-1.717a12.9 12.9 0 0 1-3.766-4.949v-1q-2.793.035-5.587.087-.95.017-1.899.028-1.367.018-2.735.047l-.853.007c-2.042.05-3.491.423-5.009 1.887-.747 1.209-.984 2.332-1.25 3.715-.575 2.685-1.149 5.023-3.333 6.896.445.962.968 1.715 1.625 2.542 1.2 1.74 1.522 3.582 1.856 5.634.33 1.848.835 2.835 2.186 4.157.987.67 1.736.743 2.917.708l.807-.018.609-.024.283-.647c1.274-2.749 2.818-4.834 5.643-6.091 3.08-1.088 5.963-1.223 8.975.148 2.885 1.611 4.788 3.741 5.766 6.923.686 3.465.177 6.241-1.723 9.212-1.55 1.999-3.757 3.653-6.277 4.121-3.78.362-6.636-.13-9.604-2.542-1.102-1.013-1.585-1.83-2.083-3.229-.334-.881-.334-.881-.979-1.563-1.101-.334-2.122-.508-3.257-.655-2.952-.403-5.133-1.769-7.035-4.074-1.231-1.896-1.657-4.035-2.088-6.227-.396-1.907-.839-3.042-2.287-4.378-1.49-.706-2.998-.799-4.625-.875l-.695-.039q-.84-.046-1.68-.086l-.112.741c-.579 2.417-2.479 4.616-4.556 5.927-3.045 1.525-5.949 1.85-9.208.833-2.869-1.168-4.772-3.125-6.199-5.84-.259-.659-.259-.659-.259-1.659h-6l-.333 1.667c-1.609 3.104-3.74 5.019-7.056 6.103-2.904.709-5.453.203-8.061-1.188-2.366-1.452-4.18-3.447-5.058-6.118-.606-3.055-.421-6.092 1.174-8.798 1.715-2.462 3.973-4.305 6.96-4.905 3.195-.429 5.964-.01 8.633 1.901 1.754 1.491 2.923 2.848 3.741 5.004v1h6L27 46.021c.887-2.621 2.642-4.433 5.083-5.688 2.757-1.264 5.55-1.429 8.458-.5 2.869 1.168 4.772 3.125 6.199 5.84.26.66.26.66.26 1.66 4.467-.005 4.467-.005 8.197-2.211.652-1.095.834-2.242 1.074-3.477.774-3.546 1.896-6.369 4.962-8.523 2.659-1.58 5.375-1.841 8.4-1.822l.843.002q1.325.004 2.649.01l1.803.005q2.202.006 4.405.016l.314-1.126c.835-2.857 2.813-4.427 5.353-5.874 3.231-1.304 6.653-1.012 9.768.462m-8.938 5.682c-1.013 1.16-1.451 2.053-1.601 3.585.143 1.753.617 3.196 1.952 4.402 1.495.968 2.734 1.063 4.486.868 1.621-.572 2.838-1.478 3.667-3 .456-1.535.415-2.711-.021-4.25-.859-1.441-1.7-2.471-3.361-2.961-1.957-.313-3.622-.07-5.121 1.356M6.216 46.91c-.865 1.475-1.042 2.708-.752 4.387.41 1.42 1.146 2.349 2.224 3.328 1.543.591 3.016.586 4.646.375 1.503-.683 2.366-1.575 3.1-3.027.529-1.45.522-2.645-.084-4.033-.779-1.345-1.511-2.405-3.016-2.94-2.424-.326-4.544-.104-6.117 1.91m26.45-.243c-.974 1.583-1.142 2.825-.858 4.618.383 1.432 1.133 2.359 2.212 3.34 1.721.659 3.641.799 5.367.07 1.329-.877 2.093-1.834 2.612-3.362.256-1.971-.223-3.396-1.333-5-1.199-1.17-2.183-1.434-3.812-1.521-1.806.073-2.977.495-4.188 1.854m42.25 15.729c-1.006 1.617-1.362 2.944-1.042 4.833.681 1.641 1.313 2.489 2.854 3.396 1.56.46 2.72.572 4.271.042 1.359-.899 2.477-1.765 3-3.333.213-1.799.124-3.297-.892-4.831-.954-1.087-2.019-1.707-3.448-1.951-1.991-.091-3.335.475-4.743 1.844\"/></svg>"
         },
         {
             "title": "dhwani",
             "desc": "A JavaScript library & web app for real-time vocal swar (note) detection for Hindustani classical music.",
             "link": "https://dhwani.mgks.dev",
-            "tags": ["Web App", "Audio API", "Tool", "Node.js"],
+            "tags": ["Web App", "Audio API", "Tool", "JavaScript", "Music"],
             "icon": ""
         },
-        {
-            "title": "embed-lite",
-            "desc": "Lightweight tool for embeding content from various sources into web pages.",
-            "link": "https://github.com/mgks/embed-lite",
-            "tags": ["Library", "Embed", "Social Media", "OpenGraph", "TypeScript", "Node.js"],
+        { 
+            "title": "genctx",
+            "desc": "A node.js CLI tool to generate high-signal code context for AI agents and assistants.",
+            "link": "https://github.com/mgks/genctx",
+            "tags": ["Library", "AI", "Context", "CLI", "Node.js", "TypeScript"],
+            "icon": ""
+        },
+        { 
+            "title": "tree-fs",
+            "desc": "Turn text trees into real files. The standard \"Paste & Go\" receiver for AI-generated projects.",
+            "link": "https://github.com/mgks/tree-fs",
+            "tags": ["Library", "AI", "Filesystem", "CLI", "Node.js"],
+            "icon": ""
+        },
+        { 
+            "title": "clean-context",
+            "desc": "Code cleaner for AI context, strips comments and noise while strictly protecting strings, URLs, and regex.",
+            "link": "https://github.com/mgks/clean-context",
+            "tags": ["Library", "AI", "JavaScript", "CLI", "Node.js"],
             "icon": ""
         },
         {
@@ -69,100 +118,30 @@
         },
         {
             "title": "lite-hl",
-            "desc": "A universal, no-config, heuristic code tokenizer and highlighter.",
+            "desc": "A universal, no-config, heuristic code tokenizer and syntax highlighter.",
             "link": "https://github.com/docmd-io/lite-hl",
-            "tags": ["Library", "Code", "Tokenization", "Highlighting", "TypeScript", "Node.js"],
+            "tags": ["Library", "Code", "Highlighting", "TypeScript", "Node.js"],
             "icon": ""
         },
         {
             "title": "lite-matter",
             "desc": "Ultra lightweight, zero-bloat frontmatter extractor.",
             "link": "https://github.com/docmd-io/lite-matter",
-            "tags": ["Library", "Markdown", "Parser", "Node.js", "TypeScript"],
+            "tags": ["Library", "Markdown", "Parser", "TypeScript", "Node.js"],
             "icon": ""
         },
         { 
-            "title": "genctx",
-            "desc": "A node.js CLI tool to generate high-signal code context for AI agents and assistants.",
-            "link": "https://github.com/mgks/genctx",
-            "tags": ["Library", "AI", "Context", "CLI", "Node.js"],
+            "title": "android-webview-js-bridge",
+            "desc": "A lightweight, two-way, promise-based bridge between Android Kotlin/Java and JavaScript in WebViews.",
+            "link": "https://github.com/mgks/android-webview-js-bridge",
+            "tags": ["Library", "Android", "Kotlin", "JavaScript", "WebView", "Jitpack"],
             "icon": ""
         },
         { 
-            "title": "tree-fs",
-            "desc": "Turn text trees into real files. The standard \"Paste & Go\" receiver for AI-generated projects.",
-            "link": "https://github.com/mgks/tree-fs",
-            "tags": ["Library", "AI", "Filesystem", "CLI", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "extract-inline-style",
-            "desc": "Extract inline style attributes from HTML elements and move them to an external CSS file.",
-            "link": "https://github.com/mgks/extract-inline-style",
-            "tags": ["Library", "CSS", "HTML", "CLI", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "ci-debug",
-            "desc": "Safely print system info and environment variables with reducted secrets for debugging CI pipelines.",
-            "link": "https://github.com/mgks/ci-debug",
-            "tags": ["Library", "CI", "Debugger", "CLI", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "md-fusion",
-            "desc": "Convert notes between HTML/JSON and Markdown with YAML Frontmatter.",
-            "link": "https://github.com/mgks/md-fusion",
-            "tags": ["Library", "Markdown", "YAML", "Notion", "CLI", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "enex-io",
-            "desc": "High-performance parser and generator for Evernote/Apple Notes (.enex) files.",
-            "link": "https://github.com/mgks/enex-io",
-            "tags": ["Library", "iOS", "Mac", "CLI", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "gkeep-parser",
-            "desc": "Convert Google Keep Takeout exports (HTML) into structured JSON data.",
-            "link": "https://github.com/mgks/gkeep-parser",
-            "tags": ["Library", "Google", "Keep", "CLI", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "clean-context",
-            "desc": "Code cleaner for AI context, strips comments and noise while strictly protecting strings, URLs, and regex.",
-            "link": "https://github.com/mgks/clean-context",
-            "tags": ["Library", "JavaScript", "CLI", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "force-exit-zero",
-            "desc": "Force a command to exit with code 0 (success), regardless of the result. Perfect for CI pipelines.",
-            "link": "https://github.com/mgks/force-exit-zero",
-            "tags": ["Library", "CI", "Failsafe", "Node.js"],
-            "icon": ""
-        },
-        { 
-            "title": "env-must-exist",
-            "desc": "CLI to assert that environment variables are present. Fails fast in CI/CD if missing.",
-            "link": "https://github.com/mgks/env-must-exist",
-            "tags": ["Library", "CI", "Failsafe", "Node.js"],
-            "icon": ""
-        },
-        {
-            "title": "PlanTrip",
-            "desc": "Visualize, organize, and manage itineraries and travel stops with a clean, visual timeline.",
-            "link": "https://trip.mgks.dev",
-            "tags": ["Web App", "Planner", "Calendar", "Travel", "TailwindCSS"],
-            "icon": ""
-        },
-        {
-            "title": "thirsty-ai",
-            "desc": "Calculate hidden environmental cost of modern Artificial Intelligence usage.",
-            "link": "https://thirstyai.mgks.dev",
-            "tags": ["Web App", "CLI", "AI", "Sustainability", "Node.js", "Side Project"],
+            "title": "android-webview-file-handler",
+            "desc": "A lightweight library to handle file uploads, camera captures, and permissions in Android WebViews.",
+            "link": "https://github.com/mgks/android-webview-file-handler",
+            "tags": ["Library", "Android", "Kotlin", "Filesystem", "WebView", "Jitpack"],
             "icon": ""
         },
         { 
@@ -180,13 +159,6 @@
             "icon": ""
         },
         { 
-            "title": "android-webview-js-bridge",
-            "desc": "A lightweight, two-way, promise-based bridge between Android Kotlin/Java and JavaScript in WebViews.",
-            "link": "https://github.com/mgks/android-webview-js-bridge",
-            "tags": ["Library", "Android", "Kotlin", "JavaScript", "WebView", "Jitpack"],
-            "icon": ""
-        },
-        { 
             "title": "android-webview-fcm-sync",
             "desc": "A lightweight utility to sync FCM tokens into Android WebView cookies for targeted push notifications.",
             "link": "https://github.com/mgks/android-webview-fcm-sync",
@@ -194,11 +166,69 @@
             "icon": ""
         },
         { 
-            "title": "android-webview-file-handler",
-            "desc": "A lightweight library to handle file uploads, camera captures, and permissions in Android WebViews.",
-            "link": "https://github.com/mgks/android-webview-file-handler",
-            "tags": ["Library", "Android", "Kotlin", "Filesystem", "WebView", "File", "Jitpack"],
+            "title": "md-fusion",
+            "desc": "Convert notes between HTML/JSON and Markdown with YAML Frontmatter.",
+            "link": "https://github.com/mgks/md-fusion",
+            "tags": ["Library", "Markdown", "YAML", "Notion", "CLI", "Node.js"],
             "icon": ""
+        },
+        { 
+            "title": "enex-io",
+            "desc": "High-performance parser and generator for Evernote/Apple Notes (.enex) files.",
+            "link": "https://github.com/mgks/enex-io",
+            "tags": ["Library", "Evernote", "Apple Notes", "CLI", "Node.js"],
+            "icon": ""
+        },
+        { 
+            "title": "gkeep-parser",
+            "desc": "Convert Google Keep Takeout exports (HTML) into structured JSON data.",
+            "link": "https://github.com/mgks/gkeep-parser",
+            "tags": ["Library", "Google Keep", "Parser", "CLI", "Node.js"],
+            "icon": ""
+        },
+        { 
+            "title": "ci-debug",
+            "desc": "Safely print system info and environment variables with redacted secrets for debugging CI pipelines.",
+            "link": "https://github.com/mgks/ci-debug",
+            "tags": ["Library", "CI", "Debugger", "CLI", "Node.js"],
+            "icon": ""
+        },
+        { 
+            "title": "env-must-exist",
+            "desc": "CLI to assert that environment variables are present. Fails fast in CI/CD if missing.",
+            "link": "https://github.com/mgks/env-must-exist",
+            "tags": ["Library", "CI", "Failsafe", "CLI", "Node.js"],
+            "icon": ""
+        },
+        { 
+            "title": "force-exit-zero",
+            "desc": "Force a command to exit with code 0 (success), regardless of the result. Perfect for CI pipelines.",
+            "link": "https://github.com/mgks/force-exit-zero",
+            "tags": ["Library", "CI", "Failsafe", "Node.js"],
+            "icon": ""
+        },
+        { 
+            "title": "extract-inline-style",
+            "desc": "Extract inline style attributes from HTML elements and move them to an external CSS file.",
+            "link": "https://github.com/mgks/extract-inline-style",
+            "tags": ["Library", "CSS", "HTML", "CLI", "Node.js"],
+            "icon": ""
+        },
+        {
+            "title": "PlanTrip",
+            "desc": "Visualize, organize, and manage itineraries and travel stops with a clean, visual timeline.",
+            "link": "https://trip.mgks.dev",
+            "tags": ["Archived", "Web App", "Planner", "Travel"],
+            "icon": "",
+            "archived": true
+        },
+        {
+            "title": "thirsty-ai",
+            "desc": "Calculate hidden environmental cost of modern Artificial Intelligence usage.",
+            "link": "https://thirstyai.mgks.dev",
+            "tags": ["Archived", "Web App", "AI", "Sustainability", "Side Project"],
+            "icon": "",
+            "archived": true
         },
         {
             "title": "WhereDidMyTaxGo",
@@ -208,11 +238,19 @@
             "icon": "",
             "archived": true
         },
+        { 
+            "title": "iOS-SmartWebView",
+            "desc": "A simple use iOS webview integrated w/ native features & plugin support for building hybrid apps.",
+            "link": "https://github.com/mgks/iOS-SmartWebView",
+            "tags": ["Archived", "iOS", "Swift", "WebView", "Hybrid"],
+            "icon": "",
+            "archived": true
+        },
         {
             "title": "fluid.js",
             "desc": "A lightweight, zero-dependency fluid simulation for web that reacts to device motion.",
             "link": "",
-            "tags": ["Archived", "Library", "UI", "Frontend", "JavaScript", "Node.js"],
+            "tags": ["Archived", "Library", "Frontend", "JavaScript", "Node.js"],
             "icon": "",
             "archived": true
         },

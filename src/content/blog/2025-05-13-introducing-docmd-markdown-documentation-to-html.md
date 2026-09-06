@@ -2,7 +2,7 @@
 title: "Introducing docmd – The Minimalist Markdown Documentation Generator"
 description: "Docmd (docmd) is a Node.js command-line tool dedicated to generating beautiful, lightweight static documentation sites from standard Markdown files."
 date: 2025-05-13 17:00:00 +0530
-tags: open source, nodejs, docmd
+tags: rollup, open source, nodejs, docmd
 image: b40
 ---
 

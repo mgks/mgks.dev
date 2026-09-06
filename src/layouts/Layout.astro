@@ -75,15 +75,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <meta name="publication-media-verification" content="dec7e1f26a30496a9d900f712fdeddd1">
 
-        <!-- Critical Theme Init -->
+        <!-- Critical Theme Init: Default is always light, dark only if user explicitly set it -->
         <script is:inline>
             const theme = (() => {
                 if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
                     return localStorage.getItem('theme');
                 }
-                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    return 'dark';
-                }
+                // Default: light (ignore system preference)
                 return 'light';
             })();
             if (theme === 'dark') {

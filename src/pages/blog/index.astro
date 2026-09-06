@@ -1,15 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
-
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(entry => ({
-    params: { slug: entry.id },
-  }));
-}
-
-const { slug } = Astro.params;
-const target = `/rollups/${slug}/`;
+// Redirect /blog to /rollups/
+const target = '/rollups/';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -22,8 +13,8 @@ const target = `/rollups/${slug}/`;
   </head>
   <body>
     <p>Redirecting to <a href={target}>{target}</a>...</p>
-    <script is:inline define:vars={{ target }}>
-      window.location.replace(target);
+    <script is:inline>
+      window.location.replace('/rollups/');
     </script>
   </body>
 </html>

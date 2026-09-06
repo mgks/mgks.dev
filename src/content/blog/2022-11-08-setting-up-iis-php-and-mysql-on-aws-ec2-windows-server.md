@@ -2,7 +2,7 @@
 title: "Setting Up IIS, PHP, and MySQL on AWS EC2 Windows Server"
 description: "We’re going to set up a Windows server on IIS with PHP, MySQL, and OpenSSL, enabling you to configure and host public websites."
 date: 2022-11-08 17:00:00 +0530
-tags: aws, iis, php, mysql, openssl
+tags: rollup, aws, iis, php, mysql, openssl
 image: b2
 ---
 

@@ -14,7 +14,9 @@ import { HIGHLIGHT } from '../data/config';
                 </div>
                 
                 <h2 class="highlight-title">
-                    {HIGHLIGHT.project}
+                    <a href={HIGHLIGHT.link} target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none;">
+                        {HIGHLIGHT.project}
+                    </a>
                 </h2>
                 
                 <p class="hero-desc">
@@ -27,19 +29,19 @@ import { HIGHLIGHT } from '../data/config';
                     ))}
                 </div>
 
-                <a href={HIGHLIGHT.link} target="_blank" class="highlight-link">
+                <a href={HIGHLIGHT.link} target="_blank" rel="noopener noreferrer" class="highlight-link">
                     Check it out &rarr;
                 </a>
             </div>
 
             {HIGHLIGHT.image && (
-                <div class="highlight-image-wrap">
+                <a href={HIGHLIGHT.link} target="_blank" rel="noopener noreferrer" class="highlight-image-wrap" style="display: block;">
                     <img 
                         src={HIGHLIGHT.image} 
                         alt={HIGHLIGHT.project} 
                         class="highlight-image"
                     />
-                </div>
+                </a>
             )}
         </div>
     </section>

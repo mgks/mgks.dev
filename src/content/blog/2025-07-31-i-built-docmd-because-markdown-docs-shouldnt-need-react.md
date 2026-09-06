@@ -2,7 +2,7 @@
 title: "I Built Docmd Because Markdown Docs Shouldn't Need React"
 description: "All I wanted was to render a bunch of `.md` files into a clean-looking docs site. No dark magic. No Webpack. No theming rabbit hole. Just Markdown in, HTML out."
 date: 2025-07-31 17:00:00 +0530
-tags: open source, nodejs, docmd
+tags: rollup, open source, nodejs, docmd
 image: b40
 featured: true
 ---

@@ -2,7 +2,7 @@
 title: "SKILL.md vs OKF: what they are, what they aren't, and how to use both"
 description: "Two small formats that look similar and solve different problems. Here's the mental model, the failure modes, and how to write a good OKF bundle from scratch."
 date: 2026-06-23 01:00:00 +0530
-tags: okf, agent-skills, ai, llm, documentation, knowledge-management
+tags: rollup, okf, agent-skills, ai, llm, documentation, knowledge-management
 image: b48
 featured: true
 ---

@@ -2,7 +2,7 @@
 title: "Introduction to Smart WebView"
 description: "Smart WebView is a simple open source framework built to develop advanced hybrid webview applications with ease."
 date: 2023-03-30 17:00:00 +0530
-tags: swv, android, ios, java, kotlin, webview
+tags: rollup, swv, android, ios, java, kotlin, webview
 image: b6
 featured: true
 ---

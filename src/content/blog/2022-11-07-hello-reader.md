@@ -2,7 +2,7 @@
 title: "Hello, Reader."
 description: "I’m Ghazi, and I created this blog to share some ideas, issues and solve problems related to programming."
 date: 2022-11-07 17:00:00 +0530
-tags: intro, story
+tags: rollup, intro, story
 image: b1
 ---
 

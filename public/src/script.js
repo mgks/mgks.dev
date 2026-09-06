@@ -131,4 +131,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    /* =========================================
+       6. EXTERNAL & PROJECT LINKS IN NEW TAB
+       ========================================= */
+    const allAnchors = document.querySelectorAll('a[href]');
+    allAnchors.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+
+        // Skip anchor jumps, mailto, tel, and relative site paths
+        if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+        if (href.startsWith('/') && !href.startsWith('//')) return;
+
+        try {
+            const url = new URL(href, window.location.href);
+            const currentHost = window.location.hostname;
+
+            // Check if external domain or project subdomain (e.g. *.mgks.dev)
+            const isSubdomain = url.hostname.endsWith('.mgks.dev') && url.hostname !== 'mgks.dev';
+            const isExternalHost = url.hostname !== currentHost;
+
+            if (isExternalHost || isSubdomain) {
+                link.setAttribute('target', '_blank');
+                link.setAttribute('rel', 'noopener noreferrer');
+            }
+        } catch (e) {
+            // Ignore malformed URLs
+        }
+    });
 });

@@ -2,7 +2,7 @@
 title: "Frustration to Foundation - Building the Ultimate Lightweight Documentation Tool"
 description: "Documentation tools have become bloated. What started as simple ways to convert text to HTML has evolved into massive React applications that require complex build pipelines just to display a 'Hello World' page. We built docmd to solve this."
 date: 2025-11-30 17:00:00 +0530
-tags: open source, nodejs, docmd
+tags: rollup, open source, nodejs, docmd
 image: b46
 featured: true
 ---

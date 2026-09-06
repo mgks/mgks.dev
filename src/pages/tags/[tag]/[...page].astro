@@ -9,30 +9,34 @@ export async function getStaticPaths({ paginate }) {
     return data.date <= new Date(); 
   })).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
   
-  // 2. Get unique tags
-  const uniqueTags = [...new Set(allPosts.flatMap(post => post.data.tags))];
+  // 2. Group posts by slugified tag to avoid duplicates (e.g. "open source" and "open-source")
+  const tagMap = new Map();
+  for (const post of allPosts) {
+    for (const rawTag of post.data.tags) {
+      const slug = slugify(rawTag);
+      if (!tagMap.has(slug)) {
+        tagMap.set(slug, { tagName: rawTag, posts: new Set() });
+      }
+      tagMap.get(slug).posts.add(post);
+    }
+  }
 
   // 3. Generate paths
-  return uniqueTags.flatMap(tagName => {
-    // Filter posts that have this specific tag name
-    const filteredPosts = allPosts.filter(post => post.data.tags.includes(tagName));
-    
-    // Create the slug (e.g., "Artificial Intelligence" -> "artificial-intelligence")
-    const tagSlug = slugify(tagName);
-
-    return paginate(filteredPosts, {
-      params: { tag: tagSlug }, // URL will be /tags/artificial-intelligence
-      props: { tagName },       // Pass the original name "Artificial Intelligence" for display
+  return Array.from(tagMap.entries()).flatMap(([tagSlug, { tagName, posts }]) => {
+    const postList = Array.from(posts).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+    return paginate(postList, {
+      params: { tag: tagSlug },
+      props: { tagName },
       pageSize: 15
     });
   });
 }
 
-const { page, tagName } = Astro.props; // We now get tagName from props
-const { tag } = Astro.params; // 'tag' here is the slug (e.g. artificial-intelligence)
+const { page, tagName } = Astro.props;
+const { tag } = Astro.params;
 ---
 
-<Layout title={`Writings tagged with ${tagName}`} description={`A collection of writings tagged with ${tagName}`}>
+<Layout title={`Rollups tagged with ${tagName}`} description={`A collection of rollups tagged with ${tagName}`}>
 
   <!-- Consistent Hero -->
   <section class="page-hero">
@@ -51,7 +55,7 @@ const { tag } = Astro.params; // 'tag' here is the slug (e.g. artificial-intelli
     
     <div class="archive-list">
         {page.data.map(post => (
-            <a href={`/blog/${post.id}`} class="archive-item">
+            <a href={`/rollups/${post.id}`} class="archive-item">
                 <time class="archive-date">
                     {post.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </time>
@@ -80,8 +84,8 @@ const { tag } = Astro.params; // 'tag' here is the slug (e.g. artificial-intelli
   </div>
   
   <div class="text-center pb-20 mt-8">
-      <a href="/blog" class="section-link" style="font-size: 0.9rem;">
-          View all writings &rarr;
+      <a href="/rollups" class="section-link" style="font-size: 0.9rem;">
+          View all rollups &rarr;
       </a>
   </div>
 </Layout>
