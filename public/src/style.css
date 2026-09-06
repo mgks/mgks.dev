@@ -1322,9 +1322,14 @@ html.dark .highlight-card {
     overflow: hidden;
     min-height: 260px;
     border: 1px solid var(--border-color);
-    background-color: #121212;
-    background-image: radial-gradient(circle at 20% 80%, rgba(var(--accent-rgb, 99, 102, 241), 0.08) 0%, transparent 60%),
-        radial-gradient(circle at 80% 20%, rgba(var(--accent-rgb, 99, 102, 241), 0.05) 0%, transparent 50%);
+    background-color: var(--bg-surface);
+    transition: all 0.3s ease;
+}
+
+.feat-hero:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
 /* Feature Sub Cards (Right Side) */
@@ -1382,7 +1387,7 @@ html.dark .highlight-card {
     left: 0;
     right: 0;
     height: 60px;
-    background: linear-gradient(to bottom, transparent, var(--bg-card, #1a1a1a));
+    background: linear-gradient(to bottom, transparent, var(--bg-surface));
     pointer-events: none;
 }
 
