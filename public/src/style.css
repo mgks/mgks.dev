@@ -846,10 +846,6 @@ html.dark .highlight-card {
     color: white;
 }
 
-.project-section {
-    /* spacing handled by parent container gap or individual page context */
-}
-
 /* Projects page: sections need bottom spacing since they use normal flow */
 .project-section.container {
     padding-bottom: 4rem;
@@ -1048,9 +1044,8 @@ html.dark .highlight-card {
 }
 
 .project-card.is-archived {
-    opacity: 0.7;
+    opacity: 0.5;
     background-color: #d1d1d12e;
-    filter: blur(.7px);
 }
 
 .project-card.is-disabled {
@@ -1328,8 +1323,8 @@ html.dark .highlight-card {
     min-height: 260px;
     border: 1px solid var(--border-color);
     background-color: #121212;
-    background-image: radial-gradient(circle at 20% 80%, rgba(var(--accent-rgb, 99,102,241), 0.08) 0%, transparent 60%),
-                      radial-gradient(circle at 80% 20%, rgba(var(--accent-rgb, 99,102,241), 0.05) 0%, transparent 50%);
+    background-image: radial-gradient(circle at 20% 80%, rgba(var(--accent-rgb, 99, 102, 241), 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(var(--accent-rgb, 99, 102, 241), 0.05) 0%, transparent 50%);
 }
 
 /* Feature Sub Cards (Right Side) */
@@ -1431,11 +1426,6 @@ html.dark .highlight-card {
     gap: 4rem;
     padding-top: 2.5rem;
     padding-bottom: 2rem;
-}
-
-/* Preview section (top 3 cards) — no extra padding needed, gap handles it */
-.rollups-preview {
-    /* intentionally empty — gap from parent handles spacing */
 }
 
 /* Consistent Page Headers */
@@ -1598,12 +1588,12 @@ hr {
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     padding-bottom: 1rem;
 }
 
 .dark .rollup-header {
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .rollup-title {
@@ -1668,13 +1658,16 @@ hr {
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .project-card.is-archived:hover {
     opacity: 0.9;
     filter: none;
 }
+
 .about-me strong {
     color: var(--accent-hover);
     font-weight: 600;
